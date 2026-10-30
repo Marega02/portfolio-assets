@@ -1,0 +1,213 @@
+/* ======================================
+   THE INTERACTIVE STAGE — VERSION 01
+====================================== */
+
+/* Contenitore principale */
+.world-main {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+}
+
+/* Il testo rimane davanti alla scena */
+.world-main > .world-eyebrow,
+.world-main > .world-title,
+.world-main > .world-subtitle {
+  position: relative;
+  z-index: 2;
+}
+
+/* La parte superiore e i link rimangono cliccabili */
+.world-top,
+.world-links {
+  position: relative;
+  z-index: 3;
+}
+
+/* Area visiva */
+.world-stage {
+  --paper: #D9C7AB;
+
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  width: min(37vw, 460px);
+  height: 410px;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Anello decorativo */
+.stage-orbit {
+  position: absolute;
+  inset: 3%;
+  border: 1px solid rgba(237, 232, 223, 0.30);
+  border-radius: 50%;
+  transform: rotate(-24deg) scaleY(0.78);
+}
+
+/* Pannello posteriore */
+.stage-sheet-back {
+  position: absolute;
+  top: 17%;
+  left: 23%;
+  width: 65%;
+  height: 72%;
+  background: #555752;
+  border: 1px solid #777971;
+  transform: rotate(11deg);
+  box-shadow: 0 24px 65px rgba(0,0,0,0.18);
+}
+
+/* Manifesto principale */
+.stage-sheet {
+  position: absolute;
+  top: 10%;
+  left: 12%;
+  width: 70%;
+  height: 77%;
+  padding: 27px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--paper);
+  color: #24231F;
+  transform: rotate(-7deg);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.20);
+  border: 1px solid rgba(255,255,255,0.20);
+  transition: background-color 0.5s ease;
+  will-change: transform;
+}
+
+/* Leggera texture cartacea */
+.stage-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(30,30,30,0.025) 1px,
+      transparent 3px
+    );
+  pointer-events: none;
+}
+
+/* Numero superiore */
+.stage-overline {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+/* Titolo artistico */
+.stage-word {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(42px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+/* Descrizione inferiore */
+.stage-caption {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 190px;
+}
+
+/* Focus visibile per la navigazione */
+.world-link:focus-visible {
+  outline: 2px solid #D2A487;
+  outline-offset: 6px;
+}
+
+/* ======================================
+   TABLET
+====================================== */
+@media (max-width: 991px) {
+
+  .world-main {
+    padding-top: 55px;
+    padding-bottom: 35px;
+  }
+
+  .world-main > .world-title {
+    max-width: 100%;
+    font-size: clamp(52px, 8vw, 78px);
+  }
+
+  .world-stage {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+
+    width: min(100%, 440px);
+    height: 360px;
+    margin: 30px auto 0;
+    flex: 0 0 auto;
+  }
+
+  .world-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ======================================
+   MOBILE
+====================================== */
+@media (max-width: 600px) {
+
+  .world-hub {
+    padding: 24px 18px !important;
+  }
+
+  .world-meta {
+    display: none;
+  }
+
+  .world-main {
+    padding-top: 60px;
+    padding-bottom: 25px;
+  }
+
+  .world-main > .world-title {
+    font-size: clamp(42px, 11vw, 64px);
+    letter-spacing: -2px;
+  }
+
+  .world-stage {
+    width: 100%;
+    max-width: 370px;
+    height: 330px;
+    margin-top: 28px;
+  }
+
+  .stage-sheet {
+    padding: 22px;
+  }
+
+  .stage-word {
+    font-size: clamp(38px, 11vw, 58px);
+  }
+
+  .world-links {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-sheet {
+    transition: none;
+  }
+}
