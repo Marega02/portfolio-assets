@@ -1,0 +1,1754 @@
+/* =====================================
+   WORK WORLD — VERSION 01
+===================================== */
+
+.work-world {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 32px 40px 42px;
+  background: #EDE8DF;
+  color: #20211F;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+/* Permette l'interazione quando è aperto */
+.work-world.is-active {
+  pointer-events: auto;
+}
+
+body.is-work-open {
+  overflow: hidden;
+}
+
+/* Header */
+.work-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.work-brand {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.work-back {
+  background: transparent;
+  color: #44413C;
+  border: none;
+  padding: 10px 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.work-back:hover {
+  opacity: 0.55;
+}
+
+.work-back:focus-visible {
+  outline: 2px solid #A56A4B;
+  outline-offset: 5px;
+}
+
+/* Main editorial */
+.work-main {
+  padding: clamp(70px, 11vh, 140px) 0
+           clamp(50px, 9vh, 110px);
+}
+
+.work-eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: #A56A4B;
+}
+
+.work-title {
+  font-family: Arial, sans-serif;
+  font-size: clamp(66px, 11vw, 160px);
+  font-weight: 600;
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+  color: #20211F;
+  margin: 20px 0 26px;
+}
+
+.work-intro {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 430px;
+  margin: 0;
+  color: #666159;
+}
+
+/* Projects */
+.work-projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.work-project {
+  border-top: 1px solid #9A948B;
+  padding-top: 16px;
+  min-height: 155px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.project-number {
+  font-size: 12px;
+  color: #A56A4B;
+  letter-spacing: 0.1em;
+}
+
+.project-title {
+  font-family: Arial, sans-serif;
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: #20211F;
+}
+
+.project-category {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: #77716A;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .work-world {
+    padding: 28px;
+  }
+
+  .work-projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .work-world {
+    padding: 22px 18px;
+  }
+
+  .work-brand,
+  .work-back {
+    font-size: 10px;
+  }
+
+  .work-main {
+    padding: 70px 0 60px;
+  }
+
+  .work-title {
+    font-size: clamp(52px, 13vw, 86px);
+    letter-spacing: -0.06em;
+  }
+
+  .work-projects {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .work-project {
+    min-height: 120px;
+  }
+}
+
+/* STEP 6 — TRANSIZIONE CORRETTA */
+
+.work-world {
+  opacity: 1;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translate3d(0, 100%, 0);
+
+  transition:
+    transform 0.95s cubic-bezier(0.76, 0, 0.24, 1),
+    visibility 0s linear 0.95s;
+}
+
+/* Ambiente aperto */
+.work-world.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translate3d(0, 0, 0);
+
+  transition:
+    transform 0.95s cubic-bezier(0.76, 0, 0.24, 1),
+    visibility 0s;
+}
+
+/* Preferenza per movimento ridotto */
+@media (prefers-reduced-motion: reduce) {
+  .work-world,
+  .work-world.is-active {
+    transition: none;
+  }
+}
+
+/* ======================================
+   STEP 7 — INTERACTIVE PROJECT GALLERY
+====================================== */
+
+/* Riduciamo leggermente lo spazio del titolo */
+.work-main {
+  padding: clamp(55px, 8vh, 105px) 0
+           clamp(40px, 6vh, 75px);
+}
+
+.work-title {
+  font-size: clamp(65px, 9vw, 135px);
+}
+
+/* Layout a due colonne */
+.work-showcase {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: clamp(30px, 5vw, 85px);
+  align-items: start;
+  width: 100%;
+  padding-bottom: 36px;
+}
+
+/* Elenco verticale dei progetti */
+.work-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+}
+
+/* Singolo progetto */
+.work-project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+  min-height: 140px;
+  padding: 24px 55px 24px 0;
+
+  border-top: 1px solid #B5AEA3;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.work-project:last-child {
+  border-bottom: 1px solid #B5AEA3;
+}
+
+.project-number {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  color: #8C857A;
+  transition: color 0.3s ease;
+}
+
+.project-title {
+  font-size: clamp(24px, 2.7vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  margin: 0;
+  color: #25231F;
+  transition:
+    color 0.3s ease,
+    transform 0.4s ease;
+}
+
+.project-category {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #77716A;
+}
+
+/* Freccia che appare sul progetto attivo */
+.work-project::after {
+  content: "↗";
+  position: absolute;
+  right: 12px;
+  top: 43%;
+  font-size: 26px;
+  color: #A56A4B;
+
+  opacity: 0;
+  transform: translate(-10px, 10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s ease;
+}
+
+/* Progetto selezionato */
+.work-project.is-current {
+  border-top-color: #A56A4B;
+}
+
+.work-project.is-current .project-number {
+  color: #A56A4B;
+}
+
+.work-project.is-current .project-title {
+  color: #A56A4B;
+  transform: translateX(8px);
+}
+
+.work-project.is-current::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.work-project:focus-visible {
+  outline: 2px solid #A56A4B;
+  outline-offset: 4px;
+}
+
+/* ======================================
+   IL MANIFESTO VISIVO
+====================================== */
+
+.work-preview {
+  position: sticky;
+  top: 24px;
+  isolation: isolate;
+  overflow: hidden;
+
+  width: 100%;
+  height: min(56vh, 520px);
+  min-height: 390px;
+
+  background: #793B37;
+  color: #FAEEE5;
+  border-radius: 2px;
+
+  opacity: 0;
+  transform: translateY(24px);
+
+  transition:
+    background-color 0.55s ease,
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+/* Entrata del manifesto quando apri WORK */
+.work-world.is-active .work-preview {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s, 0.28s, 0.28s;
+}
+
+/* Cerchio grafico decorativo */
+.work-preview::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  aspect-ratio: 1;
+  top: 10%;
+  right: -22%;
+
+  border: 1px solid rgba(255,255,255,0.23);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Texture leggera */
+.work-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(20,20,20,0.025) 1px,
+      transparent 3px
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      transparent 60%
+    );
+}
+
+/* Tre identità cromatiche */
+.work-preview[data-theme="redhouse"] {
+  background: #793B37;
+  color: #FAEEE5;
+}
+
+.work-preview[data-theme="soca"] {
+  background: #49665A;
+  color: #ECF0E6;
+}
+
+.work-preview[data-theme="gianni"] {
+  background: #AA7656;
+  color: #FFF1DB;
+}
+
+/* Piccola scritta superiore */
+.preview-kicker {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+  z-index: 2;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: inherit;
+}
+
+/* Grande elemento tipografico */
+.preview-mark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(120px, 17vw, 255px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.12em;
+  white-space: nowrap;
+
+  opacity: 0.83;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
+
+/* Nome del progetto */
+.preview-title {
+  position: absolute;
+  bottom: 72px;
+  left: 30px;
+  right: 25px;
+  z-index: 2;
+
+  font-family: Arial, sans-serif;
+  font-size: clamp(22px, 2.5vw, 38px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  color: inherit;
+}
+
+/* Categoria inferiore */
+.preview-footer {
+  position: absolute;
+  bottom: 29px;
+  left: 30px;
+  z-index: 2;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: inherit;
+}
+
+/* ======================================
+   TABLET
+====================================== */
+
+@media (max-width: 991px) {
+
+  .work-showcase {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .work-preview {
+    position: relative;
+    top: auto;
+    order: -1;
+    height: 390px;
+    min-height: 0;
+  }
+
+  .work-project {
+    min-height: 115px;
+  }
+
+  .preview-mark {
+    font-size: 190px;
+  }
+}
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media (max-width: 600px) {
+
+  .work-main {
+    padding: 65px 0 45px;
+  }
+
+  .work-title {
+    font-size: clamp(52px, 12vw, 80px);
+  }
+
+  .work-preview {
+    height: 300px;
+  }
+
+  .preview-mark {
+    font-size: 150px;
+  }
+
+  .preview-kicker {
+    top: 20px;
+    left: 20px;
+  }
+
+  .preview-title {
+    left: 20px;
+    bottom: 60px;
+    font-size: 26px;
+  }
+
+  .preview-footer {
+    left: 20px;
+    bottom: 20px;
+  }
+
+  .work-project {
+    padding: 18px 45px 18px 0;
+  }
+
+  .project-title {
+    font-size: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-preview,
+  .project-title,
+  .work-project::after {
+    transition: none;
+  }
+
+  .work-world.is-active .work-preview {
+    transition-delay: 0s;
+  }
+}
+
+/* =====================================
+   STEP 8A — PERFECT DESKTOP FIT
+===================================== */
+
+/* Desktop con sufficiente altezza */
+@media (min-width: 992px) and (min-height: 680px) {
+
+  .work-world {
+    box-sizing: border-box;
+    display: grid;
+
+    grid-template-rows:
+      auto
+      auto
+      minmax(0, 1fr);
+
+    gap: clamp(12px, 1.6vh, 18px);
+
+    height: 100dvh;
+    padding: clamp(18px, 2.5vh, 26px) 40px;
+
+    overflow-y: auto;
+  }
+
+  /* Titolo più compatto */
+  .work-main {
+    padding: 0;
+  }
+
+  .work-title {
+    font-size: clamp(
+      58px,
+      min(7.5vw, 9.2vh),
+      112px
+    );
+
+    line-height: 0.88;
+    margin: 9px 0 12px;
+  }
+
+  .work-intro {
+    line-height: 1.4;
+  }
+
+  /* La galleria prende lo spazio rimanente */
+  .work-showcase {
+    height: 100%;
+    min-height: 0;
+    padding-bottom: 0;
+    align-items: stretch;
+    gap: clamp(26px, 4vw, 64px);
+  }
+
+  .work-projects {
+    height: 100%;
+    min-height: 0;
+  }
+
+  /* Tre righe proporzionate */
+  .work-project {
+    flex: 1;
+    min-height: 0;
+
+    padding:
+      clamp(10px, 1.5vh, 17px)
+      44px
+      clamp(10px, 1.5vh, 17px)
+      0;
+
+    gap: clamp(5px, 1vh, 10px);
+  }
+
+  .project-title {
+    font-size: clamp(22px, 2.4vw, 34px);
+  }
+
+  /* Anteprima adattiva */
+  .work-preview {
+    position: relative;
+    top: auto;
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+/* Desktop con finestra particolarmente bassa */
+@media (min-width: 992px) and (max-height: 679px) {
+
+  .work-world {
+    padding: 18px 30px;
+    overflow-y: auto;
+  }
+
+  .work-main {
+    padding: 22px 0 30px;
+  }
+
+  .work-title {
+    font-size: clamp(55px, 7vw, 90px);
+  }
+
+  .work-preview {
+    height: 330px;
+    min-height: 330px;
+  }
+
+  .work-project {
+    min-height: 110px;
+    padding: 16px 40px 16px 0;
+  }
+}
+
+/* =====================================
+   STEP 8B — EDITORIAL IMAGE GALLERY
+===================================== */
+
+/* La composizione resta contenuta */
+.work-preview {
+  isolation: isolate;
+}
+
+/* Contenitore degli screenshot */
+.preview-visuals {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Singolo frame fotografico */
+.preview-visual {
+  position: absolute;
+
+  top: 13%;
+  left: 12%;
+  width: 76%;
+  height: 62%;
+
+  overflow: hidden;
+  border: 8px solid #F0EBE3;
+  background: #E8E1D6;
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.24),
+    0 4px 12px rgba(0,0,0,0.12);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translate3d(0, 20px, 0)
+    rotate(-6deg)
+    scale(0.96);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.65s cubic-bezier(0.22,1,0.36,1),
+    visibility 0s linear 0.65s;
+}
+
+/* Immagine mostrata */
+.preview-visual.is-visible {
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translate3d(0, 0, 0)
+    rotate(-4deg)
+    scale(1);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.65s cubic-bezier(0.22,1,0.36,1),
+    visibility 0s;
+}
+
+/* Screenshot */
+.preview-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Cerchio decorativo dietro l'immagine */
+.work-preview::before {
+  z-index: 0;
+}
+
+/* Texture sopra la composizione */
+.work-preview::after {
+  z-index: 3;
+}
+
+/* Le iniziali rimangono sullo sfondo */
+.preview-mark {
+  z-index: 1;
+  opacity: 0.24;
+}
+
+/* Testi davanti a tutto */
+.preview-kicker,
+.preview-title,
+.preview-footer {
+  z-index: 4;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.25);
+}
+
+/* Testo finale vicino al frame */
+.preview-title {
+  bottom: 62px;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+  .preview-visual {
+    top: 13%;
+    left: 9%;
+    width: 82%;
+    height: 55%;
+    border-width: 5px;
+  }
+
+  .preview-title {
+    bottom: 58px;
+  }
+}
+
+/* Riduzione delle animazioni */
+@media (prefers-reduced-motion: reduce) {
+
+  .preview-visual,
+  .preview-visual.is-visible {
+    transition: none;
+  }
+}
+
+/* ======================================
+   STEP 9 — PROJECT EXPERIENCE
+====================================== */
+
+/* Pulsante nella galleria WORK */
+
+.case-open {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 12px 17px;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 2px;
+
+  background: rgba(28,28,27,.75);
+  color: #F5F0E8;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  cursor: pointer;
+
+  transition:
+    background .3s ease,
+    transform .3s ease;
+}
+
+.case-open:hover {
+  background: #242422;
+  transform: translateY(-3px);
+}
+
+.case-open:focus-visible,
+.case-back:focus-visible,
+.case-back-bottom:focus-visible {
+  outline: 2px solid #E4AD8D;
+  outline-offset: 4px;
+}
+
+/* ======================================
+   NUOVO AMBIENTE
+====================================== */
+
+.case-world {
+  --case-accent: #C78A73;
+
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  padding: 0 clamp(22px, 3.5vw, 60px);
+  background: #191A19;
+  color: #F4EFE7;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, 102%, 0);
+
+  transition:
+    transform 1s cubic-bezier(.76,0,.24,1),
+    visibility 0s linear 1s;
+}
+
+/* Scena aperta */
+
+.case-world.is-active {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0,0,0);
+
+  transition:
+    transform 1s cubic-bezier(.76,0,.24,1),
+    visibility 0s;
+}
+
+/* Colori specifici per progetto */
+
+.case-world[data-theme="redhouse"] {
+  --case-accent: #C78A73;
+}
+
+.case-world[data-theme="soca"] {
+  --case-accent: #A4BDA9;
+}
+
+.case-world[data-theme="gianni"] {
+  --case-accent: #DAB084;
+}
+
+/* ======================================
+   HEADER
+====================================== */
+
+.case-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  padding: 25px 0;
+  border-bottom: 1px solid #4C4E49;
+  background: rgba(25,26,25,.97);
+}
+
+.case-brand,
+.case-back {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .09em;
+}
+
+.case-brand {
+  color: #C9C4BA;
+}
+
+.case-back,
+.case-back-bottom {
+  border: 0;
+  padding: 8px 0;
+  background: transparent;
+  color: #F4EFE7;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+.case-back:hover,
+.case-back-bottom:hover {
+  color: var(--case-accent);
+}
+
+/* ======================================
+   HERO
+====================================== */
+
+.case-hero {
+  display: grid;
+  grid-template-columns:
+    minmax(0, .85fr)
+    minmax(0, 1.15fr);
+
+  align-items: center;
+  gap: clamp(35px, 5vw, 90px);
+
+  min-height: calc(100dvh - 90px);
+  padding: 45px 0 65px;
+}
+
+.case-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  min-width: 0;
+}
+
+.case-index,
+.case-category,
+.case-scroll-hint {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .14em;
+}
+
+.case-index,
+.case-scroll-hint {
+  color: var(--case-accent);
+}
+
+.case-category {
+  color: #AAA79F;
+}
+
+.case-title {
+  margin: 10px 0 0;
+
+  font-family: Arial, sans-serif;
+  font-size: clamp(54px, 6.5vw, 125px);
+  font-weight: 600;
+  line-height: .88;
+  letter-spacing: -.075em;
+
+  color: #F4EFE7;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.case-deck {
+  max-width: 440px;
+  margin: 0;
+
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: #B9B5AC;
+}
+
+.case-scroll-hint {
+  margin-top: 40px;
+}
+
+/* ======================================
+   IMMAGINE CINEMATOGRAFICA
+====================================== */
+
+.case-visual {
+  position: relative;
+  width: 100%;
+  height: min(70vh, 660px);
+  min-height: 400px;
+  margin: 0;
+
+  overflow: hidden;
+  background: #343431;
+  isolation: isolate;
+
+  clip-path: inset(8% 8% 8% 8%);
+  transition:
+    clip-path 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+/* L'immagine si rivela mentre entra */
+.case-world.is-active .case-visual {
+  clip-path: inset(0 0 0 0);
+  transition-delay: .22s;
+}
+
+.case-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+
+  transform: scale(1.13);
+  transition:
+    transform 1.6s cubic-bezier(.22,1,.36,1);
+}
+
+.case-world.is-active .case-image {
+  transform: scale(1);
+  transition-delay: .2s;
+}
+
+.case-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    transparent 65%,
+    rgba(0,0,0,.55)
+  );
+}
+
+.case-image-caption {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2;
+
+  color: #FFFFFF;
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+/* Entrata editoriale dei testi */
+
+.case-copy > * {
+  opacity: 0;
+  transform: translateY(25px);
+
+  transition:
+    opacity .75s ease,
+    transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+.case-world.is-active .case-copy > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: .4s;
+}
+
+/* ======================================
+   PROJECT STORY
+====================================== */
+
+.case-story {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+
+  padding: clamp(90px, 12vw, 180px) 0;
+  border-top: 1px solid #4C4E49;
+}
+
+.case-story-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: #918E87;
+}
+
+.case-story-content {
+  max-width: 850px;
+}
+
+.case-small-label {
+  margin-bottom: 30px;
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--case-accent);
+}
+
+.case-statement {
+  max-width: 800px;
+  margin: 0 0 35px;
+
+  font-size: clamp(48px, 6vw, 100px);
+  line-height: .98;
+  letter-spacing: -.065em;
+  font-weight: 500;
+  white-space: pre-line;
+  color: #F4EFE7;
+}
+
+.case-description {
+  max-width: 640px;
+  margin: 0;
+
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.7;
+  color: #B9B5AC;
+}
+
+.case-rule {
+  height: 1px;
+  margin: 70px 0 35px;
+  background: #484A45;
+}
+
+.case-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+}
+
+.case-info-block > span {
+  display: block;
+  margin-bottom: 20px;
+
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--case-accent);
+}
+
+.case-info-block > p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #B9B5AC;
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+
+.case-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  padding: 28px 0 35px;
+  border-top: 1px solid #4C4E49;
+
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: #96948D;
+}
+
+/* ======================================
+   TABLET
+====================================== */
+
+@media (max-width: 991px) {
+
+  .case-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 45px;
+    padding: 65px 0 90px;
+  }
+
+  .case-title {
+    font-size: clamp(55px, 10vw, 90px);
+  }
+
+  .case-visual {
+    height: 58vw;
+    min-height: 330px;
+    max-height: 560px;
+  }
+
+  .case-story {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media (max-width: 600px) {
+
+  .case-world {
+    padding: 0 18px;
+  }
+
+  .case-top {
+    padding: 20px 0;
+  }
+
+  .case-brand,
+  .case-back {
+    font-size: 9px;
+  }
+
+  .case-hero {
+    padding: 45px 0 75px;
+  }
+
+  .case-title {
+    font-size: clamp(48px, 12vw, 72px);
+  }
+
+  .case-visual {
+    height: 420px;
+    min-height: 0;
+  }
+
+  .case-story {
+    padding: 90px 0;
+  }
+
+  .case-statement {
+    font-size: 48px;
+  }
+
+  .case-info-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .case-open {
+    top: 12px;
+    right: 12px;
+    padding: 10px 12px;
+    font-size: 9px;
+  }
+
+  .case-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ACCESSIBILITÀ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .case-world,
+  .case-world.is-active,
+  .case-visual,
+  .case-image,
+  .case-copy > * {
+    transition: none !important;
+  }
+
+  .case-world.is-active .case-copy > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =====================================
+   STEP 10 — SHARED IMAGE TRANSITION
+===================================== */
+
+/*
+  Quando apriamo un progetto con la nuova
+  animazione, disattiviamo temporaneamente
+  la vecchia transizione verticale.
+*/
+
+.case-world.is-morph-opening {
+  transform: translate3d(0, 0, 0) !important;
+  transition: none !important;
+  opacity: 0;
+  pointer-events: none !important;
+}
+
+/* Evitiamo animazioni concorrenti */
+.case-world.is-morph-opening .case-visual {
+  clip-path: inset(0) !important;
+  transition: none !important;
+}
+
+.case-world.is-morph-opening .case-image {
+  transform: none !important;
+  transition: none !important;
+}
+
+/*
+  Copia temporanea della fotografia.
+  JavaScript la sposterà dalla galleria
+  alla posizione finale del case study.
+*/
+
+.project-morph-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4000;
+
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 6px solid #F0EBE3;
+  background: #E8E1D6;
+
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.28);
+
+  pointer-events: none;
+  will-change: transform, width, height;
+}
+
+.project-morph-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Non applichiamo il nuovo effetto su mobile */
+@media (max-width: 991px) {
+  .project-morph-frame {
+    display: none;
+  }
+}
+
+/* ======================================
+   STEP 11 — CINEMATIC SCROLL
+====================================== */
+
+/* PROGRESS LINE */
+
+.case-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #42433E;
+  pointer-events: none;
+}
+
+.case-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--case-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ======================================
+   VISUAL CHAPTER
+====================================== */
+
+.case-chapter {
+  --chapter-bg: #D9D0C4;
+  --chapter-ink: #292622;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vh, 40px);
+
+  min-height: 100dvh;
+
+  margin-inline:
+    calc(-1 * clamp(22px, 3.5vw, 60px));
+
+  padding: clamp(26px, 4vw, 60px);
+
+  background: var(--chapter-bg);
+  color: var(--chapter-ink);
+}
+
+/* Identità dei singoli progetti */
+
+.case-world[data-theme="soca"] .case-chapter {
+  --chapter-bg: #D6DDD4;
+  --chapter-ink: #24352D;
+}
+
+.case-world[data-theme="gianni"] .case-chapter {
+  --chapter-bg: #E6D4BC;
+  --chapter-ink: #443328;
+}
+
+/* Intestazione */
+
+.chapter-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding-bottom: 18px;
+  border-bottom: 1px solid currentColor;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .13em;
+}
+
+/* Titolo */
+
+.chapter-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.chapter-eyebrow {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .16em;
+  opacity: .7;
+}
+
+.chapter-headline {
+  max-width: 1100px;
+  margin: 0;
+
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+
+  font-size: clamp(56px, 8vw, 135px);
+  line-height: .92;
+  letter-spacing: -.065em;
+  color: inherit;
+}
+
+/* Soča ha una tipografia differente */
+
+.case-world[data-theme="soca"] .chapter-headline {
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ======================================
+   IMAGE REVEAL
+====================================== */
+
+.chapter-media {
+  position: relative;
+  flex: 1;
+  isolation: isolate;
+  overflow: hidden;
+
+  width: 100%;
+  min-height: 330px;
+  max-height: 700px;
+  margin: 0;
+
+  background: #56524B;
+}
+
+/* Leggera profondità durante lo scroll */
+
+.chapter-image {
+  position: absolute;
+  top: -7.5%;
+  left: 0;
+
+  display: block;
+  width: 100%;
+  height: 115%;
+
+  object-fit: cover;
+  object-position: center 30%;
+
+  transform:
+    translate3d(0, var(--chapter-y, 0px), 0)
+    scale(1.08);
+}
+
+/* Sfumatura inferiore */
+
+.chapter-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    transparent 65%,
+    rgba(0,0,0,.55) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* Etichette sulla fotografia */
+
+.chapter-image-credit {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 24px;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+/* Chiusura */
+
+.chapter-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.chapter-note {
+  max-width: 350px;
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* ======================================
+   SCROLL REVEALS
+====================================== */
+
+/* Le animazioni vengono abilitate
+   soltanto quando JavaScript è pronto */
+
+.case-world.case-enhanced .case-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+
+  transition:
+    opacity .85s ease,
+    transform .95s cubic-bezier(.22,1,.36,1);
+}
+
+.case-world.case-enhanced .case-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================================
+   TABLET
+====================================== */
+
+@media (max-width: 991px) {
+
+  .case-chapter {
+    min-height: auto;
+    padding: 35px 28px;
+  }
+
+  .chapter-headline {
+    font-size: clamp(52px, 9vw, 95px);
+  }
+
+  .chapter-media {
+    height: 54vw;
+    min-height: 350px;
+    flex: none;
+  }
+}
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media (max-width: 600px) {
+
+  .case-chapter {
+    margin-inline: -18px;
+    padding: 28px 18px;
+  }
+
+  .chapter-topline {
+    font-size: 9px;
+  }
+
+  .chapter-headline {
+    font-size: clamp(45px, 12vw, 72px);
+  }
+
+  .chapter-media {
+    height: 420px;
+    min-height: 0;
+  }
+
+  .chapter-image-credit {
+    left: 15px;
+    right: 15px;
+    bottom: 18px;
+  }
+
+  .chapter-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* ACCESSIBILITÀ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .case-world.case-enhanced .case-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .chapter-image {
+    transform: none !important;
+  }
+}
+
+/* STEP 11.7 — PHOTO RESTORE */
+
+.chapter-media {
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.chapter-image {
+  position: absolute;
+  top: -12%;
+  left: 0;
+  width: 100%;
+  height: 124%;
+
+  display: block;
+  object-fit: cover;
+  object-position: center;
+
+  transform: translate3d(0, 0, 0) scale(1.03);
+}
+
+/* STEP 11.8 — SMOOTH TEXT REVEAL */
+
+/* Stato iniziale: testo già nascosto */
+.case-world .case-reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.9s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Stato finale: testo visibile */
+.case-world .case-reveal-ready.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Accessibilità */
+@media (prefers-reduced-motion: reduce) {
+  .case-world .case-reveal-ready {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
