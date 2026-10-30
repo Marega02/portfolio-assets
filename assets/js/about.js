@@ -105,3 +105,51 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initAbout, {once:true});
   else initAbout();
 })();
+
+/* STEP 18 — ABOUT: interactive field notes */
+(() => {
+  function setup() {
+    const about = document.querySelector(".a17-world");
+    const visual = about?.querySelector(".a18-visual");
+    if (!about || !visual || about.dataset.a18Ready === "true") return;
+    const chapters = [...about.querySelectorAll(".a18-entry")];
+    const counter = about.querySelector(".a18-visual-count");
+    const word = about.querySelector(".a18-visual-word");
+    const caption = about.querySelector(".a18-visual-caption");
+    const workCta = about.querySelector(".a18-work-cta");
+    const back = about.querySelector(".a17-back");
+    const hub = document.querySelector(".world-hub");
+    if (chapters.length !== 3 || !counter || !word || !caption || !workCta || !back || !hub) return;
+    const scenes = {
+      make: {counter:"01 / 03",word:"FORM.",caption:"MAKE THE DETAILS MATTER"},
+      listen: {counter:"02 / 03",word:"FEEL.",caption:"FIND THE RHYTHM"},
+      wander: {counter:"03 / 03",word:"MOVE.",caption:"LET CURIOSITY LEAD"}
+    };
+    const select = key => {
+      const scene = scenes[key];
+      if (!scene) return;
+      visual.dataset.scene = key;
+      counter.textContent = scene.counter;
+      word.textContent = scene.word;
+      caption.textContent = scene.caption;
+      chapters.forEach(button => {
+        const active = button.dataset.scene === key;
+        button.classList.toggle("is-current",active);
+        button.setAttribute("aria-pressed",String(active));
+      });
+    };
+    chapters.forEach(button => button.addEventListener("click",()=>select(button.dataset.scene)));
+    workCta.addEventListener("click",() => {
+      const workLink = [...hub.querySelectorAll(".world-link")].find(link => {
+        const title = link.querySelector(".world-name");
+        return (title ? title.textContent : link.textContent).trim().toUpperCase() === "WORK";
+      });
+      back.click();
+      if (workLink) requestAnimationFrame(() => workLink.click());
+    });
+    about.dataset.a18Ready = "true";
+    select("make");
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded",setup,{once:true});
+  else setup();
+})();
