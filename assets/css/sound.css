@@ -1,0 +1,608 @@
+/* ======================================
+   STEP 12 — THE SOUND ROOM
+====================================== */
+
+.sound-world {
+  --sound-accent: #D2A78F;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  padding: 26px clamp(22px, 3.4vw, 56px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #1D201E;
+  color: #F0ECE4;
+
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, 102%, 0);
+
+  transition:
+    transform 1s cubic-bezier(.76,0,.24,1),
+    visibility 0s linear 1s;
+}
+
+/* Apertura della scena */
+
+.sound-world.is-active {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0,0,0);
+
+  transition:
+    transform 1s cubic-bezier(.76,0,.24,1),
+    visibility 0s;
+}
+
+body.is-sound-open {
+  overflow: hidden;
+}
+
+/* Identità cromatiche */
+
+.sound-world[data-mood="soul"] {
+  --sound-accent: #D2A78F;
+}
+
+.sound-world[data-mood="hiphop"] {
+  --sound-accent: #B9C3A6;
+}
+
+.sound-world[data-mood="alternative"] {
+  --sound-accent: #A9B9CA;
+}
+
+/* ======================================
+   HEADER
+====================================== */
+
+.sound-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  width: 100%;
+}
+
+.sound-brand,
+.sound-back {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .09em;
+}
+
+.sound-brand {
+  color: #C9C6BD;
+}
+
+.sound-back {
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: #EAE5DC;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+.sound-back:hover {
+  color: var(--sound-accent);
+}
+
+.sound-back:focus-visible,
+.sound-mood:focus-visible {
+  outline: 2px solid var(--sound-accent);
+  outline-offset: 5px;
+}
+
+/* ======================================
+   LAYOUT PRINCIPALE
+====================================== */
+
+.sound-layout {
+  flex: 1;
+  min-height: 0;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.05fr)
+    minmax(0, .95fr);
+
+  align-items: center;
+  gap: clamp(25px, 5vw, 85px);
+}
+
+/* Testi a sinistra */
+
+.sound-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(15px, 2.6vh, 28px);
+  min-width: 0;
+}
+
+.sound-index,
+.sound-instruction {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: .17em;
+  color: var(--sound-accent);
+}
+
+.sound-title {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: clamp(64px, 8.2vw, 140px);
+  font-weight: 600;
+  line-height: .85;
+  letter-spacing: -.075em;
+
+  color: #F0ECE4;
+}
+
+/* Seconda riga più artistica */
+
+.sound-title em {
+  display: block;
+  margin-top: 12px;
+
+  font-family: Georgia, serif;
+  font-size: .76em;
+  font-weight: 400;
+  font-style: italic;
+  line-height: .95;
+  letter-spacing: -.065em;
+
+  color: var(--sound-accent);
+
+  transition: color .5s ease;
+}
+
+.sound-description {
+  max-width: 380px;
+  min-height: 3em;
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.6;
+  color: #B9B7AF;
+}
+
+.sound-instruction {
+  margin-top: 15px;
+}
+
+/* ======================================
+   VINILE INTERATTIVO
+====================================== */
+
+.sound-art {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: min(51vh, 480px);
+  min-height: 270px;
+}
+
+/* Anello esterno */
+.sound-orbit {
+  position: absolute;
+
+  width: min(42vw, 52vh, 490px);
+  aspect-ratio: 1;
+
+  border: 1px solid rgba(240,236,228,.20);
+  border-radius: 50%;
+
+  transform: scaleX(.92) rotate(-18deg);
+  pointer-events: none;
+}
+
+/* Superficie del disco */
+
+.sound-record {
+  position: relative;
+
+  width: min(34vw, 44vh, 410px);
+  aspect-ratio: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  border: 1px solid #464C45;
+
+  background:
+    radial-gradient(
+      circle at 38% 28%,
+      rgba(255,255,255,.12),
+      transparent 44%
+    ),
+    repeating-radial-gradient(
+      circle at center,
+      #161A18 0px,
+      #252B26 2px,
+      #151917 4px,
+      #1B211D 6px
+    );
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.32),
+    inset 0 0 30px rgba(0,0,0,.35);
+
+  transform: rotate(-5deg);
+
+  transition:
+    transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+/* Etichetta centrale */
+
+.sound-record-core {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 37%;
+  aspect-ratio: 1;
+  padding: 17px 10px;
+
+  box-sizing: border-box;
+
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.22);
+
+  background: var(--sound-accent);
+  color: #252722;
+
+  transition: background-color .55s ease;
+}
+
+/* Foro centrale del vinile */
+
+.sound-record-core::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: #292C28;
+}
+
+.sound-record-top,
+.sound-side {
+  font-family: Arial, sans-serif;
+  font-size: clamp(6px, .7vw, 9px);
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+.sound-current {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 43px);
+  line-height: 1;
+  letter-spacing: -.07em;
+  text-align: center;
+}
+
+.sound-art-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  color: #8E958D;
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+/* Orientamenti secondo il genere */
+
+.sound-world[data-mood="hiphop"] .sound-record {
+  transform: rotate(12deg);
+}
+
+.sound-world[data-mood="alternative"] .sound-record {
+  transform: rotate(-11deg);
+}
+
+/* ======================================
+   SELEZIONE DEI GENERI
+====================================== */
+
+.sound-moods {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: clamp(18px, 3vw, 48px);
+  width: 100%;
+}
+
+.sound-mood {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+
+  position: relative;
+
+  min-height: 100px;
+  padding: 16px 35px 10px 0;
+
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #555A54;
+
+  color: #E9E4DA;
+  text-align: left;
+  cursor: pointer;
+
+  transition: border-color .35s ease;
+}
+
+.sound-mood-index {
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: #949990;
+}
+
+.sound-mood-name {
+  font-family: Arial, sans-serif;
+  font-size: clamp(21px, 2.5vw, 35px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.05em;
+
+  transition:
+    color .35s ease,
+    transform .4s ease;
+}
+
+.sound-mood-arrow {
+  position: absolute;
+  right: 5px;
+  top: 17px;
+
+  color: var(--sound-accent);
+  font-size: 21px;
+  opacity: 0;
+  transform: translate(-7px,7px);
+
+  transition:
+    opacity .3s ease,
+    transform .4s ease;
+}
+
+.sound-mood:hover .sound-mood-name {
+  transform: translateX(5px);
+}
+
+.sound-mood.is-current {
+  border-top-color: var(--sound-accent);
+}
+
+.sound-mood.is-current .sound-mood-name {
+  color: var(--sound-accent);
+}
+
+.sound-mood.is-current .sound-mood-arrow {
+  opacity: 1;
+  transform: translate(0,0);
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+
+.sound-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding-top: 12px;
+  border-top: 1px solid #414741;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: .11em;
+
+  color: #8B928A;
+}
+
+/* ======================================
+   ANIMAZIONE DI ENTRATA
+====================================== */
+
+/* Il contenuto parte leggermente più in basso */
+.sound-copy,
+.sound-art,
+.sound-moods {
+  opacity: 0;
+  transform: translateY(24px);
+
+  transition:
+    opacity .75s ease,
+    transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+/* Diventa visibile quando apriamo SOUND */
+.sound-world.is-active .sound-copy,
+.sound-world.is-active .sound-art,
+.sound-world.is-active .sound-moods {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: .3s;
+}
+
+/* ======================================
+   TABLET
+====================================== */
+
+@media (max-width: 991px) {
+
+  .sound-world {
+    padding: 26px;
+  }
+
+  .sound-layout {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 55px 0 20px;
+  }
+
+  .sound-art {
+    height: 370px;
+  }
+
+  .sound-record {
+    width: 320px;
+  }
+
+  .sound-orbit {
+    width: 365px;
+  }
+
+  .sound-title {
+    font-size: clamp(65px, 10vw, 110px);
+  }
+
+  .sound-moods {
+    gap: 20px;
+  }
+}
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media (max-width: 600px) {
+
+  .sound-world {
+    padding: 22px 18px;
+  }
+
+  .sound-brand,
+  .sound-back {
+    font-size: 9px;
+  }
+
+  .sound-layout {
+    padding-top: 48px;
+  }
+
+  .sound-title {
+    font-size: clamp(52px, 12vw, 78px);
+  }
+
+  .sound-art {
+    height: 300px;
+    min-height: 0;
+  }
+
+  .sound-record {
+    width: 260px;
+  }
+
+  .sound-orbit {
+    width: 290px;
+  }
+
+  .sound-moods {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sound-mood {
+    min-height: 70px;
+    padding: 12px 32px 10px 0;
+    gap: 8px;
+  }
+
+  .sound-mood-name {
+    font-size: 26px;
+  }
+
+  .sound-bottom {
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+}
+
+/* ACCESSIBILITÀ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .sound-world,
+  .sound-world.is-active,
+  .sound-copy,
+  .sound-art,
+  .sound-moods,
+  .sound-record,
+  .sound-record-core {
+    transition: none !important;
+  }
+}
+
+/* STEP 12.6 — PERFECT ROUND VINYL */
+
+.sound-art {
+  min-width: 0;
+}
+
+.sound-record {
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 50%;
+}
+
+.sound-orbit {
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 50%;
+
+  /* Niente schiacciamento orizzontale */
+  transform: rotate(-18deg);
+}
+
+@media (max-width: 600px) {
+  .sound-record {
+    width: min(260px, calc(100vw - 54px));
+  }
+
+  .sound-orbit {
+    width: min(290px, calc(100vw - 36px));
+  }
+}
