@@ -1,0 +1,99 @@
+/* STEP 36 — NARRATIVE RHYTHM / CINEMATIC EDITORIAL SCORE
+   Dedicated story punctuation, no changes to original animations or progress bars.
+   Case World and Travel Journal only. */
+.case-world.s36-ready{--s36-accent:var(--case-accent,#c78a73);--s36-base:#20231f;--s36-line:rgba(241,233,218,.22)}
+.case-world.s36-ready[data-theme="soca"]{--s36-base:#1e3028}
+.case-world.s36-ready[data-theme="gianni"]{--s36-base:#382b23}
+.p15-journal.s36-ready{--s36-accent:var(--p15-accent,#b8d8c6);--s36-base:#202b25;--s36-line:rgba(241,233,218,.22)}
+.p15-journal.s36-ready[data-place="london"]{--s36-base:#382d30}
+.p15-journal.s36-ready[data-place="kl"]{--s36-base:#3c3027}
+.s36-interlude{
+ position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;
+ min-height:clamp(220px,33vh,420px);display:flex;align-items:center;justify-content:space-between;
+ gap:clamp(20px,6vw,110px);padding:clamp(42px,5vw,82px);
+ background:var(--s36-base);color:#f3eee5;
+ border-top:1px solid var(--s36-line);border-bottom:1px solid var(--s36-line);
+}
+.case-world.s36-ready>.s36-interlude{margin-inline:calc(-1 * clamp(22px,3.5vw,60px))}
+.p15-journal.s36-ready>.s36-interlude{margin-inline:0}
+.s36-interlude::before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background-image:linear-gradient(90deg,rgba(245,232,209,.06) 1px,transparent 1px),
+ linear-gradient(rgba(245,232,209,.045) 1px,transparent 1px);
+ background-size:clamp(66px,10vw,160px) clamp(66px,10vw,160px);
+ -webkit-mask-image:linear-gradient(90deg,transparent,#000 30%,#000 88%,transparent);
+ mask-image:linear-gradient(90deg,transparent,#000 30%,#000 88%,transparent);
+}
+.s36-interlude::after{content:"";position:absolute;right:-10%;top:-45%;width:min(80vw,710px);
+ aspect-ratio:1;z-index:-1;pointer-events:none;border:1px solid rgba(245,231,207,.13);
+ border-radius:50%;box-shadow:0 0 0 52px rgba(255,255,255,.013),0 0 0 107px rgba(255,255,255,.009)}
+.s36-interlude-content{position:relative;z-index:2;display:flex;flex-direction:column;gap:clamp(16px,3vh,28px);max-width:920px;min-width:0}
+.s36-interlude-kicker{display:flex;align-items:center;gap:14px;
+ font:700 10px/1.5 monospace;letter-spacing:.18em;color:var(--s36-accent)}
+.s36-interlude-kicker::before{content:"";display:block;width:26px;height:1px;background:var(--s36-accent)}
+.s36-interlude-title{margin:0;max-width:1000px;color:#f3eee5;
+ font:650 clamp(43px,6.3vw,102px)/.92 Arial,Helvetica,sans-serif;
+ letter-spacing:-.082em;text-wrap:balance}
+.s36-interlude-title em{color:var(--s36-accent);
+ font:italic 400 .86em/1 Georgia,"Times New Roman",serif;letter-spacing:-.07em}
+.s36-interlude-subtitle{margin:0;max-width:610px;color:#bec5bb;
+ font:400 clamp(13px,1.12vw,17px)/1.7 Arial,Helvetica,sans-serif}
+.s36-interlude-index{position:relative;flex:0 0 auto;align-self:flex-end;
+ font:750 clamp(105px,17vw,275px)/.8 Arial,Helvetica,sans-serif;
+ letter-spacing:-.13em;color:transparent;-webkit-text-stroke:1px rgba(243,232,216,.24);
+ pointer-events:none;user-select:none}
+.s36-interlude-rule{position:absolute;left:clamp(42px,5vw,82px);right:clamp(42px,5vw,82px);
+ bottom:clamp(20px,2vw,32px);height:2px;background:rgba(245,233,217,.12);pointer-events:none}
+.s36-interlude-rule::before{content:"";display:block;height:100%;width:100%;
+ transform-origin:left center;transform:scaleX(0);
+ background:linear-gradient(90deg,var(--s36-accent),transparent);
+ transition:transform 1250ms cubic-bezier(.16,1,.3,1)}
+.s36-interlude.is-in-view .s36-interlude-rule::before{transform:scaleX(1)}
+/* Animate only newly created interlude text, never existing content or images */
+@media(prefers-reduced-motion:no-preference){
+ .s36-interlude-content{opacity:.3;transform:translate3d(0,18px,0);
+ transition:opacity 850ms cubic-bezier(.16,1,.3,1),transform 850ms cubic-bezier(.16,1,.3,1)}
+ .s36-interlude.is-in-view .s36-interlude-content{opacity:1;transform:translate3d(0,0,0)}
+}
+/* Decorative chapter score lives in an unused outer edge, no controls or focus targets. */
+.s36-score{position:fixed;right:8px;top:50%;transform:translateY(-50%);
+ z-index:24;pointer-events:none;user-select:none;
+ display:none;align-items:center;flex-direction:column;gap:14px;
+ padding:18px 7px;border:1px solid rgba(242,228,205,.15);
+ background:rgba(18,22,19,.82);backdrop-filter:blur(7px);
+ color:var(--s36-accent);min-width:24px}
+.case-world.s36-ready.is-active>.s36-score,
+.p15-journal.s36-ready.is-open>.s36-score{display:flex}
+.s36-score-name{font:700 9px/1.1 monospace;letter-spacing:.17em;
+ writing-mode:vertical-rl;transform:rotate(180deg);
+ color:#eee7da;max-height:170px;overflow:hidden}
+.s36-score-dots{display:flex;flex-direction:column;align-items:center;gap:9px}
+.s36-score-dots i{display:block;width:4px;height:4px;
+ background:rgba(241,232,211,.36);border-radius:50%;transition:width .3s,height .3s,background .3s}
+.s36-score-dots i.is-current{width:7px;height:7px;background:var(--s36-accent);
+ box-shadow:0 0 0 4px color-mix(in srgb,var(--s36-accent) 15%,transparent)}
+.s36-score-count{font:700 8px/1.2 monospace;color:var(--s36-accent);
+ writing-mode:vertical-rl;letter-spacing:.12em}
+@media(max-width:1390px){.s36-score{display:none!important}}
+@media(max-width:760px){
+ .s36-interlude{min-height:210px;padding:46px 22px 58px;gap:12px}
+ .case-world.s36-ready>.s36-interlude{margin-inline:-18px}
+ .s36-interlude-title{font-size:clamp(38px,8.5vw,65px)}
+ .s36-interlude-index{font-size:clamp(65px,12vw,110px);opacity:.45}
+ .s36-interlude-kicker{font-size:9px;letter-spacing:.12em}
+ .s36-interlude-subtitle{font-size:12px}
+ .s36-interlude-rule{left:22px;right:22px;bottom:20px}
+}
+@media(max-width:440px){
+ .s36-interlude{padding:42px 18px 55px;min-height:210px}
+ .s36-interlude-content{gap:14px}
+ .s36-interlude-title{font-size:clamp(36px,10vw,49px)}
+ .s36-interlude-index{position:absolute;right:18px;bottom:48px;opacity:.22}
+ .s36-interlude-kicker{font-size:9px}
+ .s36-interlude-rule{left:18px;right:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ .s36-interlude-content{opacity:1!important;transform:none!important;transition:none!important}
+ .s36-interlude-rule::before{transform:scaleX(1)!important;transition:none!important}
+ .s36-score-dots i{transition:none!important}
+}
