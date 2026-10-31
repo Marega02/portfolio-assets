@@ -5,8 +5,8 @@
 .world-hub.s31-ready[data-s31-scene="places"]{--s31-glow:#a8c4d5}
 .world-hub.s31-ready[data-s31-scene="about"]{--s31-glow:#e0a99b}
 .world-hub.s31-ready .s31-spotlight{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;--s31-x:72%;--s31-y:45%;
- background:radial-gradient(circle min(28vw,420px) at var(--s31-x) var(--s31-y),color-mix(in srgb,var(--s31-glow) 15%,transparent),transparent 90%),
- radial-gradient(circle min(40vw,550px) at 70% 45%,color-mix(in srgb,var(--s31-glow) 6%,transparent),transparent 85%);
+ background:radial-gradient(circle at var(--s31-x) var(--s31-y),color-mix(in srgb,var(--s31-glow) 15%,transparent) 0%,transparent min(28vw,420px)),
+ radial-gradient(circle at 70% 45%,color-mix(in srgb,var(--s31-glow) 6%,transparent) 0%,transparent min(40vw,550px));
  opacity:.9;transition:opacity .3s ease}
 .world-hub.s31-ready .world-main>.s31-dossier{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;
  margin-top:clamp(28px,4vh,53px);max-width:min(445px,46vw);min-width:0;width:100%;padding:16px 0 0;
