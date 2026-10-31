@@ -1,0 +1,116 @@
+/* STEP 44 — THE QUIET FRAME / MATERIAL RESPONSE
+   A restrained physical-light interaction on five existing hero artworks.
+   No new media, typography panels, endless animation, GSAP edits or new controls.
+   The layers stay behind foreground copy and are pointer transparent. */
+
+.s44-material{
+  --s44-x:50%;
+  --s44-y:45%;
+  position:absolute;
+  inset:0;
+  display:block;
+  z-index:1;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none!important;
+  user-select:none;
+  transform:translateZ(0);
+  transition:opacity .65s cubic-bezier(.16,1,.3,1),visibility 0s linear .65s;
+  will-change:auto;
+}
+.s44-material.is-s44-lit{
+  opacity:1;
+  visibility:visible;
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),visibility 0s;
+}
+/* Fine secondary imprint beneath the surface light.
+   This contains no text, so nothing obscures existing copy. */
+.s44-material::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(
+    112deg,
+    transparent 0,
+    transparent 13px,
+    rgba(255,255,255,.025) 14px,
+    transparent 16px
+  );
+  opacity:.34;
+}
+.world-hub.s44-ready .stage-sheet>.s44-material{
+  z-index:4;
+  background:
+    radial-gradient(ellipse 43% 49% at var(--s44-x) var(--s44-y),
+      rgba(255,255,246,.41),rgba(255,246,227,.11) 45%,transparent 82%),
+    linear-gradient(112deg,transparent 26%,rgba(255,254,246,.10) 49%,transparent 76%);
+  mix-blend-mode:screen;
+}
+/* On HOME the central overline, title and caption remain above the light. */
+.world-hub.s44-ready .stage-sheet>.stage-overline,
+.world-hub.s44-ready .stage-sheet>.stage-word,
+.world-hub.s44-ready .stage-sheet>.stage-caption{
+  position:relative;z-index:5;
+}
+.work-world.s44-ready .work-preview>.s44-material{
+  z-index:1;
+  background:
+    radial-gradient(ellipse 46% 62% at var(--s44-x) var(--s44-y),
+      rgba(255,244,225,.36) 0%,rgba(255,229,204,.10) 39%,transparent 83%),
+    linear-gradient(134deg,rgba(255,255,255,.06),transparent 61%);
+  mix-blend-mode:soft-light;
+}
+.work-world.s44-ready .work-preview>.preview-kicker,
+.work-world.s44-ready .work-preview>.preview-title,
+.work-world.s44-ready .work-preview>.preview-footer{
+  position:absolute;z-index:4;
+}
+/* Vinyl is a physical disc: tight specular highlight, no overlay on label text. */
+.sound-world.s44-ready .sound-record>.s44-material{
+  z-index:1;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse 19% 55% at var(--s44-x) var(--s44-y),
+      rgba(255,255,243,.47) 0%,rgba(255,255,255,.12) 37%,transparent 75%),
+    radial-gradient(ellipse 72% 47% at var(--s44-x) var(--s44-y),
+      rgba(176,211,181,.13),transparent 85%);
+  mix-blend-mode:screen;
+}
+.sound-world.s44-ready .sound-record>.sound-record-core{z-index:2}
+/* Matte postcard paper: quiet warm bounce, preserved title readability. */
+.p14-world.s44-ready .p14-postcard>.s44-material{
+  z-index:2;
+  background:
+    radial-gradient(ellipse 50% 61% at var(--s44-x) var(--s44-y),
+      rgba(255,244,221,.38) 0%,rgba(255,244,221,.10) 38%,transparent 79%);
+  mix-blend-mode:soft-light;
+}
+.p14-world.s44-ready .p14-postcard>.p14-card-top,
+.p14-world.s44-ready .p14-postcard>.p14-card-bottom{
+  z-index:4;
+}
+.p14-world.s44-ready .p14-postcard>.p14-postcard-shade{z-index:1}
+/* Identity card: soft iridescent sheen, no extra three-dimensional transform. */
+.a17-world.s44-ready .a17-card>.s44-material{
+  z-index:1;
+  background:
+    radial-gradient(ellipse 53% 50% at var(--s44-x) var(--s44-y),
+      rgba(255,255,245,.40),rgba(226,248,230,.13) 40%,transparent 80%),
+    conic-gradient(from 55deg at var(--s44-x) var(--s44-y),
+      transparent 0deg,rgba(244,197,169,.12) 48deg,
+      transparent 104deg,rgba(181,221,205,.08) 210deg,transparent 300deg);
+  mix-blend-mode:screen;
+}
+.a17-world.s44-ready .a17-card>.a17-card-head,
+.a17-world.s44-ready .a17-card>.a17-card-bottom,
+.a17-world.s44-ready .a17-card>.a17-card-stamp{z-index:4}
+.a17-world.s44-ready .a17-card>.a17-card-art{z-index:3}
+/* Respect the existing viewer's explicit request for quiet. */
+body.s41-studio-focus .s44-material{opacity:0!important;visibility:hidden!important}
+@media(max-width:991px),(hover:none),(pointer:coarse){
+ .s44-material{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .s44-material{display:none!important;transition:none!important}
+}
+@media(prefers-contrast:more){
+ .s44-material{display:none!important}
+}
