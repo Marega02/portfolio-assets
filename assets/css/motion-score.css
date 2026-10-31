@@ -1,0 +1,147 @@
+/* STEP 42 — MOTION SCORE / CINEMATIC SELECTION BEATS
+   One shared, ephemeral motion language for WORK / SOUND / PLACES / ABOUT.
+   NO changes to original transforms, GSAP, route timing, cursor or event handlers.
+   One small decorative card per world, pointer-transparent and aria-hidden. */
+
+.s42-beat{
+ --s42-ink:#24352b;
+ --s42-accent:#a4634b;
+ --s42-paper:rgba(239,232,221,.97);
+ position:fixed;
+ left:clamp(22px,3.5vw,60px);
+ bottom:clamp(22px,3.5vw,54px);
+ z-index:40;
+ box-sizing:border-box;
+ width:clamp(235px,23vw,340px);
+ max-width:calc(100% - 50px);
+ padding:16px 18px 17px;
+ display:flex;
+ flex-direction:column;
+ gap:17px;
+ color:var(--s42-ink);
+ background:var(--s42-paper);
+ border:1px solid color-mix(in srgb,var(--s42-accent) 35%,transparent);
+ box-shadow:0 20px 60px rgba(0,0,0,.18);
+ opacity:0;
+ visibility:hidden;
+ pointer-events:none;
+ user-select:none;
+ font-family:Arial,Helvetica,sans-serif;
+ transform:translate3d(0,18px,0);
+ isolation:isolate;
+}
+.s42-beat *{box-sizing:border-box}
+.s42-beat[data-s42-scene="work"]{
+ --s42-ink:#2e312a;--s42-accent:#ae6f51;--s42-paper:rgba(241,233,220,.96)
+}
+.s42-beat[data-s42-scene="sound"]{
+ --s42-ink:#e9eee2;--s42-accent:#b9cba9;--s42-paper:rgba(25,35,29,.96)
+}
+.s42-beat[data-s42-scene="places"]{
+ --s42-ink:#234438;--s42-accent:#426c5e;--s42-paper:rgba(230,235,221,.97)
+}
+.s42-beat[data-s42-scene="about"]{
+ --s42-ink:#f1eae1;--s42-accent:#e2b29a;--s42-paper:rgba(33,38,34,.97)
+}
+.s42-beat::before{
+ content:"";
+ position:absolute;left:0;top:0;bottom:0;width:3px;
+ background:var(--s42-accent);
+}
+.s42-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:15px;
+ color:var(--s42-accent);
+ font:700 9px/1.4 monospace;
+ letter-spacing:.16em;
+}
+.s42-head em{font-style:normal;color:var(--s42-ink);opacity:.68}
+.s42-main{
+ display:grid;grid-template-columns:56px minmax(0,1fr);
+ gap:16px;align-items:end;
+}
+.s42-number{
+ display:block;
+ font:700 56px/.82 Arial,Helvetica,sans-serif;
+ letter-spacing:-.105em;
+ color:var(--s42-accent);
+ font-variant-numeric:tabular-nums;
+}
+.s42-word{
+ display:block;min-width:0;max-width:100%;
+ font:italic 400 clamp(23px,2.2vw,32px)/.96 Georgia,"Times New Roman",serif;
+ letter-spacing:-.055em;
+ color:var(--s42-ink);
+ overflow-wrap:break-word;
+}
+.s42-foot{
+ display:flex;align-items:center;gap:11px;
+}
+.s42-track{
+ position:relative;flex:1;min-width:0;height:2px;
+ background:color-mix(in srgb,var(--s42-accent) 25%,transparent);
+ overflow:hidden;
+}
+.s42-track::after{
+ content:"";position:absolute;inset:0;
+ transform-origin:left center;transform:scaleX(0);
+ background:var(--s42-accent);
+}
+.s42-foot-code{
+ flex:0 0 auto;color:var(--s42-accent);
+ font:700 9px/1.2 monospace;letter-spacing:.12em;
+}
+.s42-beat.is-performing{
+ visibility:visible;
+ opacity:1;
+ transform:translate3d(0,0,0);
+ animation:s42-arrive 1560ms cubic-bezier(.16,1,.3,1) both;
+}
+.s42-beat.is-performing .s42-track::after{
+ animation:s42-sweep 1560ms cubic-bezier(.16,1,.3,1) both;
+}
+.s42-beat.is-performing .s42-word{
+ animation:s42-word-arrive 1560ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s42-arrive{
+ 0%{opacity:0;transform:translate3d(0,16px,0)}
+ 14%{opacity:1;transform:translate3d(0,0,0)}
+ 69%{opacity:1;transform:translate3d(0,0,0)}
+ 100%{opacity:0;transform:translate3d(0,-8px,0)}
+}
+@keyframes s42-sweep{
+ 0%,12%{transform:scaleX(0)}
+ 78%,100%{transform:scaleX(1)}
+}
+@keyframes s42-word-arrive{
+ 0%{opacity:0;transform:translate3d(0,10px,0)}
+ 20%{opacity:1;transform:translate3d(0,0,0)}
+ 82%{opacity:1}
+ 100%{opacity:0;transform:translate3d(0,-4px,0)}
+}
+/* Keep all original controls usable; no motion score in nested overlays. */
+body:has(.w19-root.is-open) .s42-beat,
+body:has(.s34-overlay:not([hidden])) .s42-beat,
+body:has(.case-world.is-active) .work-world>.s42-beat,
+body:has(.sound-archive.is-open) .sound-world>.s42-beat,
+body:has(.p15-journal.is-open) .p14-world>.s42-beat{
+ display:none!important;
+}
+.work-world:not(.is-active)>.s42-beat,
+.sound-world:not(.is-active)>.s42-beat,
+.p14-world:not(.is-active)>.s42-beat,
+.a17-world:not(.is-active)>.s42-beat{visibility:hidden!important}
+/* Disabled on touch/tablet to preserve the entire content viewport. */
+@media(max-width:991px),(max-height:650px){
+ .s42-beat{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .s42-beat.is-performing,
+ .s42-beat.is-performing .s42-track::after,
+ .s42-beat.is-performing .s42-word{
+   animation:none!important;
+   transition:none!important;
+ }
+ .s42-beat.is-performing{opacity:1;transform:none}
+ .s42-beat.is-performing .s42-track::after{transform:scaleX(1)}
+}
