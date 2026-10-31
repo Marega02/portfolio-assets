@@ -108,3 +108,51 @@ body.s34-modal-open .w19-trigger{opacity:0!important;pointer-events:none!importa
  .s34-next{min-height:44px;padding:9px 11px;font-size:9px}}
 @media(max-height:650px) and (min-width:851px){.s34-copy{padding-top:27px;padding-bottom:27px;gap:14px}.s34-heading{font-size:clamp(42px,5vw,77px)}.s34-number{font-size:85px}.s34-visual{min-height:270px;padding:24px}.s34-art{max-width:270px}}
 @media(prefers-reduced-motion:reduce){.s34-overlay .s34-sheet{animation:none!important}.s34-art .s34-spin,.s34-step-button,.s34-trigger,.s34-next{transition:none!important}}
+
+
+/* STEP 34.1 — CONTROL COLLISION FIX
+   Keep 01/02/03 and NEXT FRAGMENT in distinct non-overlapping regions.
+   Prior CSS flex layout could squeeze the next button, especially in WORK. */
+.s34-overlay .s34-sheet{min-width:0}
+.s34-overlay .s34-controls{
+  position:relative;
+  z-index:6;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) max-content;
+  column-gap:clamp(10px,2vw,25px);
+  row-gap:12px;
+  align-items:center;
+  background:var(--s34-ink);
+  flex-shrink:0;
+}
+.s34-overlay .s34-steps{
+  display:flex;
+  flex:0 1 auto;
+  min-width:0;
+  max-width:100%;
+  flex-wrap:nowrap;
+  gap:clamp(5px,1vw,9px);
+  position:relative;
+  z-index:1;
+}
+.s34-overlay .s34-step-button{
+  flex:0 0 auto;
+  position:relative;
+  z-index:1;
+}
+.s34-overlay .s34-next{
+  flex:0 0 auto;
+  min-width:max-content;
+  max-width:100%;
+  justify-self:end;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+  white-space:nowrap;
+  isolation:isolate;
+}
+@media(max-width:680px){
+  .s34-overlay .s34-controls{grid-template-columns:minmax(0,1fr)}
+  .s34-overlay .s34-steps{justify-content:flex-start}
+  .s34-overlay .s34-next{width:100%;min-width:0;justify-self:stretch;justify-content:space-between}
+}
