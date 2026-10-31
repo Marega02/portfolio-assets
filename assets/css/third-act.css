@@ -156,3 +156,40 @@ body.s41-studio-focus .s45-plaque{
   .s45-plaque,.s45-stages i,.s45-finale{transition:none!important}
   .s45-plaque.is-unlocking,.s45-plaque.is-unlocking .s45-emblem{animation:none!important}
 }
+
+/* One short beam of light across the artwork, not a fullscreen overlay. */
+.s45-flare{
+  position:absolute;inset:0;z-index:6;pointer-events:none!important;
+  background:
+    radial-gradient(ellipse 75% 62% at 78% 25%,
+      color-mix(in srgb,var(--s45-accent) 23%,transparent),transparent 78%),
+    linear-gradient(111deg,transparent 20%,color-mix(in srgb,var(--s45-accent) 25%,transparent) 54%,transparent 82%);
+  opacity:0;visibility:hidden;
+}
+.s45-ceremony .s45-flare{
+  visibility:visible;
+  animation:s45-light-pass 1650ms ease both;
+}
+@keyframes s45-light-pass{
+  0%{opacity:0}
+  26%{opacity:.7}
+  54%{opacity:.48}
+  100%{opacity:0}
+}
+/* During the finale, the older Motion Score does not compete for attention. */
+.s45-ceremony>.s42-beat{display:none!important}
+/* Screen-reader-only status for visitors exploring with assistive technology. */
+.s45-status{
+  position:absolute!important;width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
+@media(max-width:760px){
+  /* The existing artworks are too compact for extra plaques on mobile. */
+  .s45-plaque{display:none!important}
+  .s45-flare{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .s45-ceremony .s45-flare{animation:none!important}
+  .s45-flare{display:none!important}
+}
