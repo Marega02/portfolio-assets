@@ -1,0 +1,206 @@
+/* STEP 32 — TYPOGRAPHIC TAKEOVER / EDITION 002
+   An art-direction revision, not another navigation system.
+   Scope: HOME only. Original GSAP, poster, Live Dossier and world handlers untouched. */
+.world-hub.s32-ready{
+  --s32-accent:#dda984;
+  --s32-dim:rgba(240,229,211,.12);
+  --s32-stroke:rgba(239,227,208,.17);
+}
+.world-hub.s32-ready[data-s32-scene="sound"]{
+  --s32-accent:#b9cfb5;--s32-dim:rgba(185,207,181,.13);--s32-stroke:rgba(185,207,181,.21);
+}
+.world-hub.s32-ready[data-s32-scene="places"]{
+  --s32-accent:#a9c8d5;--s32-dim:rgba(169,200,213,.12);--s32-stroke:rgba(169,200,213,.19);
+}
+.world-hub.s32-ready[data-s32-scene="about"]{
+  --s32-accent:#e3b0a0;--s32-dim:rgba(227,176,160,.12);--s32-stroke:rgba(227,176,160,.19);
+}
+/* Consolidate earlier background ornamentation so the typography has space. */
+.world-hub.s32-ready .s22-serial,
+.world-hub.s32-ready .s22-chrome,
+.world-hub.s32-ready .world-stage::after{display:none}
+.world-hub.s32-ready .s22-atmosphere::after{opacity:.32}
+.world-hub.s32-ready .s31-spotlight{opacity:.48}
+.world-hub.s32-ready .s32-ghost{
+  position:absolute;z-index:0;right:-4%;top:43%;
+  transform:translateY(-50%);white-space:nowrap;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(110px,16vw,270px);font-weight:800;
+  line-height:.78;letter-spacing:-.095em;
+  text-transform:uppercase;color:transparent;
+  -webkit-text-stroke:1px var(--s32-stroke);
+  opacity:.95;pointer-events:none;user-select:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 26%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 26%,#000 88%,transparent);
+  transition:opacity .28s ease,filter .28s ease;
+}
+/* Headline: editorial sans + expressive italic second line. */
+@media(min-width:992px){
+  .world-hub.s32-ready .world-main>.world-title{
+    max-width:66%;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:clamp(73px,7.25vw,128px);
+    font-weight:700;
+    letter-spacing:-.087em;
+    line-height:.87;
+    text-transform:uppercase;
+    text-wrap:balance;
+    color:#f3eee6;
+    text-shadow:0 12px 55px rgba(0,0,0,.14);
+  }
+  .world-hub.s32-ready .world-stage{
+    right:1%;top:50%;width:min(40vw,515px);
+    height:clamp(400px,41vw,478px);
+  }
+  .world-hub.s32-ready .world-main>.world-subtitle{
+    max-width:480px;
+  }
+}
+.world-hub.s32-ready .s32-title-highlight{
+  display:inline-block;
+  color:var(--s32-accent);
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-weight:400;
+  text-transform:none;
+  letter-spacing:-.076em;
+  line-height:1;
+  text-shadow:0 9px 40px color-mix(in srgb,var(--s32-accent) 8%,transparent);
+  transition:color .35s ease;
+}
+.world-hub.s32-ready .world-main>.world-title::after{
+  content:"";display:block;
+  width:clamp(65px,9vw,135px);height:3px;
+  background:var(--s32-accent);
+  margin-top:clamp(13px,2vh,22px);
+  box-shadow:clamp(68px,10vw,145px) 0 0 -1px var(--s32-dim);
+  transition:background .35s ease;
+}
+.world-hub.s32-ready .world-main>.world-eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-family:monospace;
+  font-size:clamp(9px,.85vw,12px);
+  letter-spacing:.22em;
+  font-weight:600;
+  color:var(--s32-accent);
+  text-shadow:0 1px 16px rgba(0,0,0,.25);
+}
+.world-hub.s32-ready .world-main>.world-eyebrow::before{
+  content:"";display:block;width:24px;height:1px;background:var(--s32-accent);flex:0 0 auto;
+}
+.world-hub.s32-ready .world-main>.world-subtitle{
+  font-size:clamp(13px,1vw,16px);
+  line-height:1.65;letter-spacing:.01em;
+  color:#cac5bc;
+  margin-top:clamp(16px,2.5vh,29px);
+  text-wrap:pretty;
+}
+/* Poster remains legible: illustrations read on the right, text on the left. */
+.world-hub.s32-ready .stage-sheet{
+  border:1px solid rgba(31,41,34,.44);
+  box-shadow:0 38px 98px rgba(0,0,0,.41),0 0 0 1px rgba(255,255,255,.1) inset;
+}
+.world-hub.s32-ready .s22-art{
+  inset:15% 2% 14%;
+  -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.03) 0%,rgba(0,0,0,.18) 26%,#000 58%,#000);
+  mask-image:linear-gradient(90deg,rgba(0,0,0,.03) 0%,rgba(0,0,0,.18) 26%,#000 58%,#000);
+}
+.world-hub.s32-ready .stage-overline,
+.world-hub.s32-ready .stage-word,
+.world-hub.s32-ready .stage-caption{z-index:5}
+.world-hub.s32-ready .stage-word{
+  font-size:clamp(44px,4.7vw,76px);
+  letter-spacing:-.07em;
+  color:#17221b;
+  text-shadow:0 0 20px var(--paper),0 1px 0 rgba(255,255,255,.7);
+  background:linear-gradient(90deg,var(--paper),color-mix(in srgb,var(--paper) 90%,transparent) 74%,transparent 100%);
+}
+.world-hub.s32-ready .stage-caption{
+  font-size:clamp(11px,.93vw,13px);
+  font-weight:650;
+  color:#1a241d;
+  line-height:1.35;
+  background:linear-gradient(90deg,var(--paper),color-mix(in srgb,var(--paper) 94%,transparent) 86%,transparent);
+}
+/* Give the four destinations a more striking editorial hierarchy. */
+.world-hub.s32-ready .world-links{position:relative;z-index:4}
+.world-hub.s32-ready .world-links .world-link{
+  position:relative;
+  padding-top:clamp(14px,1.8vh,21px);
+  padding-bottom:clamp(9px,1.2vh,13px);
+  border-top-color:rgba(238,231,219,.31);
+  transition:border-color .3s ease,background .3s ease;
+}
+.world-hub.s32-ready .world-links .world-link.is-s31-current{border-top-color:var(--s32-accent)}
+.world-hub.s32-ready .world-links .world-link .world-name{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(19px,2.35vw,38px);
+  font-weight:650;letter-spacing:-.07em;
+  line-height:1;transition:color .3s ease,letter-spacing .3s ease;
+}
+.world-hub.s32-ready .world-links .world-link.is-s31-current .world-name{color:#f6f0e6}
+.world-hub.s32-ready .world-links .world-link:hover .world-name,
+.world-hub.s32-ready .world-links .world-link:focus-visible .world-name{
+  color:var(--s32-accent);letter-spacing:-.045em;
+}
+.world-hub.s32-ready .world-links .world-description{color:#b8b5ae;font-size:clamp(10px,.85vw,13px)}
+.world-hub.s32-ready .world-links .world-index{color:var(--s32-accent);font-family:monospace;letter-spacing:.09em}
+/* The Live Dossier stays purposeful and distinct from the larger hero title. */
+.world-hub.s32-ready .world-main>.s31-dossier{
+  max-width:min(445px,45%);
+  margin-top:clamp(21px,3vh,34px);
+}
+.world-hub.s32-ready .s31-headline{
+  font-size:clamp(27px,3vw,45px);
+  line-height:1.01;
+}
+.world-hub.s32-ready .s31-message{padding-top:clamp(13px,2vh,23px);padding-bottom:clamp(12px,2vh,22px);min-height:0}
+.world-hub.s32-ready .s31-summary{font-size:clamp(12px,.97vw,14px)}
+/* The two text systems have a different rhythm and do not compete. */
+@media(min-width:992px) and (max-height:800px){
+ .world-hub.s32-ready .world-main>.world-title{font-size:clamp(67px,6.4vw,105px)}
+ .world-hub.s32-ready .world-stage{height:clamp(335px,39vw,430px)}
+ .world-hub.s32-ready .world-main>.s31-dossier{margin-top:12px}
+ .world-hub.s32-ready .s31-headline{font-size:clamp(26px,2.6vw,38px)}
+ .world-hub.s32-ready .s31-message{padding:9px 0}
+}
+@media(min-width:992px) and (max-height:670px){
+ .world-hub.s32-ready .world-main>.world-title{font-size:clamp(61px,5.9vw,90px)}
+ .world-hub.s32-ready .world-main>.world-title::after{height:2px;margin-top:10px}
+ .world-hub.s32-ready .world-stage{height:clamp(300px,36vw,375px)}
+ .world-hub.s32-ready .s31-headline{font-size:30px}
+ .world-hub.s32-ready .s31-summary{line-height:1.35}
+}
+@media(max-width:991px){
+ .world-hub.s32-ready .s32-ghost{display:none}
+ .world-hub.s32-ready .world-main>.world-title{
+   font-family:Arial,Helvetica,sans-serif;
+   letter-spacing:-.075em;line-height:.91;
+   max-width:100%;
+ }
+ .world-hub.s32-ready .world-main>.world-title::after{height:2px;margin-top:15px}
+ .world-hub.s32-ready .world-main>.s31-dossier{max-width:min(100%,650px);width:100%;margin-top:24px}
+ .world-hub.s32-ready .world-stage{position:relative;top:auto;right:auto;transform:none;width:min(100%,440px);height:360px}
+ .world-hub.s32-ready .world-links .world-link .world-name{font-size:clamp(21px,3.8vw,30px)}
+}
+@media(max-width:600px){
+ .world-hub.s32-ready .world-main>.world-title{font-size:clamp(42px,11vw,64px)}
+ .world-hub.s32-ready .world-main>.world-eyebrow{font-size:10px;letter-spacing:.11em;gap:8px}
+ .world-hub.s32-ready .world-main>.world-eyebrow::before{width:15px}
+ .world-hub.s32-ready .world-main>.world-subtitle{max-width:100%;font-size:13px;margin-top:15px}
+ .world-hub.s32-ready .world-main>.s31-dossier{margin-top:19px}
+ .world-hub.s32-ready .s31-headline{font-size:clamp(31px,8.3vw,42px)}
+ .world-hub.s32-ready .world-stage{width:100%;max-width:370px;height:330px}
+ .world-hub.s32-ready .stage-word{font-size:clamp(38px,11vw,58px)}
+ .world-hub.s32-ready .world-links .world-link .world-name{font-size:clamp(23px,7vw,31px)}
+}
+@media(max-width:360px){
+ .world-hub.s32-ready .world-main>.world-title{font-size:clamp(39px,11vw,45px)}
+ .world-hub.s32-ready .s31-headline{font-size:29px}
+}
+@media(prefers-reduced-motion:reduce){
+ .world-hub.s32-ready .s32-ghost,
+ .world-hub.s32-ready .s32-title-highlight,
+ .world-hub.s32-ready .world-links .world-link .world-name{transition:none!important}
+}
