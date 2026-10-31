@@ -1,0 +1,75 @@
+/* STEP 27 — CINEMATIC TRANSITIONS / THE CHAPTER GATE
+   Fixed, pointer-transparent chapter ident.
+   Does NOT override GSAP, world transforms, focus or navigation. */
+.s27-sequence{
+ --s27-accent:#d8a588;--s27-back:#191c1a;--s27-soft:#e8ded1;
+ position:fixed;inset:0;z-index:4100;isolation:isolate;
+ overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;
+ user-select:none;-webkit-user-select:none;contain:layout paint;
+ font-family:Arial,Helvetica,sans-serif;color:var(--s27-soft);
+}
+.s27-sequence[data-scene="work"]{--s27-accent:#c79074;--s27-back:#25241f;--s27-soft:#f1ece4}
+.s27-sequence[data-scene="sound"]{--s27-accent:#bdd1b9;--s27-back:#17241c;--s27-soft:#f0ebe2}
+.s27-sequence[data-scene="places"]{--s27-accent:#9dc4b0;--s27-back:#182a29;--s27-soft:#eee8db}
+.s27-sequence[data-scene="about"]{--s27-accent:#e9b28e;--s27-back:#24201d;--s27-soft:#f5eee3}
+.s27-sequence.is-playing{opacity:1;visibility:visible}
+.s27-sequence *,.s27-sequence *::before,.s27-sequence *::after{box-sizing:border-box}
+.s27-gate{position:absolute;top:0;height:100%;width:52%;background:var(--s27-back);will-change:transform}
+.s27-gate::before{content:"";position:absolute;inset:0;opacity:.32;background:repeating-linear-gradient(0deg,transparent 0,transparent 4px,rgba(248,236,212,.045) 5px,transparent 6px),linear-gradient(117deg,transparent 40%,rgba(246,233,211,.05) 65%,transparent 90%);pointer-events:none}
+.s27-gate-left{left:0;transform:translate3d(-101%,0,0)}
+.s27-gate-right{right:0;transform:translate3d(101%,0,0)}
+.s27-sequence.is-playing .s27-gate-left{animation:s27-left 1150ms cubic-bezier(.66,0,.2,1) both}
+.s27-sequence.is-playing .s27-gate-right{animation:s27-right 1150ms cubic-bezier(.66,0,.2,1) both}
+@keyframes s27-left{
+ 0%{transform:translate3d(-101%,0,0)}
+ 18%,44%{transform:translate3d(0,0,0)}
+ 82%,100%{transform:translate3d(-101%,0,0)}
+}
+@keyframes s27-right{
+ 0%{transform:translate3d(101%,0,0)}
+ 18%,44%{transform:translate3d(0,0,0)}
+ 82%,100%{transform:translate3d(101%,0,0)}
+}
+.s27-scan{position:absolute;z-index:2;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,rgba(246,232,212,.9),transparent);opacity:0}
+.s27-sequence.is-playing .s27-scan{animation:s27-scan 1150ms ease both}
+@keyframes s27-scan{0%,13%{opacity:0;transform:scaleY(.2)}23%,46%{opacity:.6;transform:scaleY(1)}68%,100%{opacity:0;transform:scaleY(.65)}}
+.s27-inner{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,8vw,132px);opacity:0;transform:translate3d(0,26px,0)}
+.s27-sequence.is-playing .s27-inner{animation:s27-copy 1150ms cubic-bezier(.16,1,.3,1) both}
+@keyframes s27-copy{0%,16%{opacity:0;transform:translate3d(0,26px,0)}27%,45%{opacity:1;transform:translate3d(0,0,0)}69%,100%{opacity:0;transform:translate3d(0,-27px,0)}}
+.s27-topline{display:flex;justify-content:space-between;gap:16px;align-items:center;border-bottom:1px solid rgba(245,231,210,.33);padding:0 0 18px;font:600 10px/1.5 monospace;letter-spacing:.19em;max-width:1040px}
+.s27-topline span:last-child{color:var(--s27-accent)}
+.s27-eyebrow{margin:clamp(30px,5vh,80px) 0 19px;font:600 11px/1.4 monospace;letter-spacing:.22em;color:var(--s27-accent)}
+.s27-title{display:block;font-family:Arial,Helvetica,sans-serif;font-size:clamp(80px,16vw,285px);font-weight:700;letter-spacing:-.095em;line-height:.81;color:var(--s27-soft);white-space:nowrap;text-shadow:0 10px 45px rgba(0,0,0,.24)}
+.s27-title em{font-family:Georgia,"Times New Roman",serif;font-size:.34em;font-weight:400;font-style:italic;letter-spacing:-.05em;color:var(--s27-accent);margin-left:.18em;vertical-align:baseline}
+.s27-subline{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:25px;margin-top:clamp(30px,5vh,70px);border-top:1px solid rgba(245,231,210,.33);max-width:1040px;font:600 10px/1.5 monospace;letter-spacing:.18em}
+.s27-subline span:last-child{color:var(--s27-accent)}
+.s27-ghost{position:absolute;z-index:3;right:clamp(25px,7vw,120px);top:50%;transform:translateY(-50%);font:750 clamp(150px,35vw,610px)/.7 Arial,Helvetica,sans-serif;letter-spacing:-.13em;color:transparent;-webkit-text-stroke:1px rgba(243,233,216,.13);opacity:0}
+.s27-sequence.is-playing .s27-ghost{animation:s27-ghost-anim 1150ms ease both}
+@keyframes s27-ghost-anim{0%,15%{opacity:0;transform:translate3d(0,-40%,0) rotate(8deg)}27%,49%{opacity:.8;transform:translate3d(0,-50%,0) rotate(0)}76%,100%{opacity:0;transform:translate3d(0,-61%,0) rotate(-6deg)}}
+.s27-beam{position:absolute;z-index:5;left:0;right:0;bottom:clamp(29px,5vh,70px);height:2px;background:var(--s27-accent);transform-origin:left center;transform:scaleX(0);opacity:0;box-shadow:0 0 28px var(--s27-accent)}
+.s27-sequence.is-playing .s27-beam{animation:s27-beam-anim 1150ms cubic-bezier(.16,1,.3,1) both}
+@keyframes s27-beam-anim{0%,23%{transform:scaleX(0);opacity:0}39%{transform:scaleX(.4);opacity:.9}63%{transform:scaleX(1);opacity:1}81%,100%{transform:scaleX(1);opacity:0}}
+.s27-grain{position:absolute;z-index:3;inset:0;opacity:0;pointer-events:none;background-image:radial-gradient(rgba(242,224,195,.5) .6px,transparent .7px);background-size:5px 5px;mix-blend-mode:screen}
+.s27-sequence.is-playing .s27-grain{animation:s27-grain-anim 1150ms linear both}
+@keyframes s27-grain-anim{0%,17%{opacity:0}25%,50%{opacity:.075}77%,100%{opacity:0}}
+@media(max-width:760px){
+ .s27-inner{padding:26px}
+ .s27-title{font-size:clamp(68px,17vw,145px)}
+ .s27-topline{font-size:9px}
+ .s27-eyebrow{font-size:9px;margin-bottom:12px}
+ .s27-ghost{right:9%;font-size:48vw}
+ .s27-subline{font-size:9px}
+ .s27-gate{width:52%}
+}
+@media(max-width:480px){
+ .s27-title{font-size:clamp(54px,19vw,95px)}
+ .s27-title em{display:block;margin:.1em 0 0}
+ .s27-topline span:first-child{max-width:170px}
+ .s27-subline span:last-child{display:none}
+ .s27-beam{bottom:24px}
+ .s27-gate{background:color-mix(in srgb,var(--s27-back) 90%,transparent)}
+}
+@media(prefers-reduced-motion:reduce){
+ .s27-sequence,.s27-sequence.is-playing{visibility:hidden!important;opacity:0!important}
+ .s27-sequence.is-playing *{animation:none!important}
+}
