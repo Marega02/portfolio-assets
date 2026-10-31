@@ -113,7 +113,7 @@
         const shape=(def.key==="hub"||def.key==="index")?key:def.key;
         target=coordinates(shape,index);
         root.dataset.s43Variant=key;
-        head.style.setProperty("--s43-progress",index/Math.max(1,def.variants.length-1));
+        head.style.setProperty("--s43-progress",(index/Math.max(1,def.variants.length-1)*100).toFixed(2)+"%");
         id.textContent=String(index+1).padStart(2,"0")+" / "+String(def.variants.length).padStart(2,"0");
         if(frame){cancelAnimationFrame(frame);frame=0;}
         if(!current||reduce?.matches||document.hidden){
@@ -146,7 +146,7 @@
       });
       select();
       root.classList.add("s43-connected");
-      active.push({select,stop:()=>{if(frame)cancelAnimationFrame(frame);frame=0;}});
+      active.push({select,stop:()=>{if(frame)cancelAnimationFrame(frame);frame=0;if(target){current=target;render(current);}}});
     }
     document.addEventListener("visibilitychange",()=>{
       if(document.hidden)active.forEach(x=>x.stop());
