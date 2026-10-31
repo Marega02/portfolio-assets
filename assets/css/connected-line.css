@@ -48,7 +48,7 @@
  pointer-events:none;z-index:0;
 }
 .s43-rail::before{
- content:"";position:absolute;left:calc(var(--s43-progress,0) * 100%);
+ content:"";position:absolute;left:var(--s43-progress,0%);
  top:-2px;width:5px;height:5px;border-radius:50%;
  background:var(--s43-ink);
  box-shadow:0 0 0 4px var(--s43-secondary);
