@@ -121,6 +121,9 @@
  .case-world.s30-ready .s30-note-title{font-size:clamp(28px,7.9vw,44px)}
  .case-world.s30-ready .s30-chip{font-size:8px}
  .case-world.s30-ready .s30-tech-main{min-height:280px}
+ .case-world.s30-ready .s30-tech-foot{flex-wrap:wrap;gap:8px}
+ .case-world.s30-ready .s30-tech-foot b{overflow-wrap:anywhere;font-size:8px}
+ .case-world.s30-ready .s30-tech-project{overflow-wrap:anywhere}
  .case-world.s30-ready .s30-blueprint{width:min(76%,320px)}
  .case-world.s30-ready .s30-kicker-row,.case-world.s30-ready .s30-bottomline{font-size:9px}
 }
