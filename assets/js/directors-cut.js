@@ -45,7 +45,7 @@
     const activeTheme=()=>details[scene.dataset.theme]?scene.dataset.theme:"redhouse";
     function sync(){
       const data=details[activeTheme()];
-      ident.textContent="CASE FILE / 00"+data.index;
+      ident.textContent="CASE FILE / 0"+data.index;
       heading.querySelector("span").textContent=data.title;
       heading.querySelector("em").textContent=data.italic;
       deck.textContent=data.deck;
