@@ -1,0 +1,74 @@
+/* STEP 24 — ANALOG FREQUENCIES | non-invasive SOUND art direction */
+.sound-world.s24-ready{--s24-hue:#d2a78f;--s24-tint:rgba(210,167,143,.13);--s24-surface:#1d201e;background-image:radial-gradient(ellipse 44% 58% at 80% 42%,var(--s24-tint),transparent 75%),linear-gradient(135deg,rgba(255,255,255,.025),transparent 35%);background-color:var(--s24-surface)}
+.sound-world.s24-ready[data-mood="hiphop"]{--s24-hue:#b9c3a6;--s24-tint:rgba(165,187,153,.14)}
+.sound-world.s24-ready[data-mood="alternative"]{--s24-hue:#a9b9ca;--s24-tint:rgba(151,180,203,.15)}
+.sound-world.s24-ready .sound-top{position:relative;z-index:1;border-bottom:1px solid rgba(240,236,228,.2);padding-bottom:clamp(12px,1.7vh,20px)}
+.sound-world.s24-ready .s24-edition{display:inline-flex;align-items:center;gap:10px;margin-left:auto;padding:0 14px;color:#a8ada5;font:10px/1.2 monospace;letter-spacing:.13em;white-space:nowrap}
+.sound-world.s24-ready .s24-edition::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--s24-hue);box-shadow:0 0 0 4px var(--s24-tint)}
+.sound-world.s24-ready .sound-layout{position:relative;isolation:isolate}
+.sound-world.s24-ready .sound-layout::before{content:"";position:absolute;inset:4% -3% 3%;z-index:-1;pointer-events:none;background-image:linear-gradient(90deg,rgba(237,226,214,.055) 1px,transparent 1px),linear-gradient(rgba(237,226,214,.055) 1px,transparent 1px);background-size:clamp(55px,7vw,106px) clamp(55px,7vw,106px);mask-image:linear-gradient(90deg,transparent,black 27%,black 87%,transparent);opacity:.55}
+.sound-world.s24-ready .sound-copy{position:relative;z-index:1}
+.sound-world.s24-ready .sound-index{letter-spacing:.22em}
+.sound-world.s24-ready .sound-title{text-shadow:0 12px 50px rgba(0,0,0,.17)}
+.sound-world.s24-ready .sound-title em{letter-spacing:-.075em}
+.sound-world.s24-ready .sound-description{color:#d1cdc3}
+.sound-world.s24-ready .s24-current-spectrum{display:flex;align-items:center;gap:16px;margin-top:2px;padding:12px 0;border-top:1px solid rgba(243,234,221,.24);width:min(390px,100%);pointer-events:none}
+.sound-world.s24-ready .s24-spectrum-label{display:flex;flex-direction:column;gap:5px;min-width:125px}
+.sound-world.s24-ready .s24-spectrum-label strong{font:11px monospace;letter-spacing:.17em;color:var(--s24-hue);font-weight:500}
+.sound-world.s24-ready .s24-spectrum-label small{font:9px monospace;letter-spacing:.07em;color:#aeb4aa}
+.sound-world.s24-ready .s24-spectrum{display:flex;align-items:center;justify-content:space-between;gap:3px;width:100%;height:33px;min-width:0}
+.sound-world.s24-ready .s24-spectrum i{display:block;flex:1;height:var(--s24-height,25%);max-width:5px;min-width:1px;border-radius:1px;background:linear-gradient(0deg,var(--s24-hue),rgba(237,231,218,.38));opacity:.78;transform-origin:center;transition:height .55s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.sound-world.s24-ready .sound-art{isolation:isolate}
+.sound-world.s24-ready .s24-technical-ring{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:-1;opacity:.74}
+.sound-world.s24-ready .s24-technical-ring::before{content:"";position:absolute;width:min(46vw,58vh,490px);aspect-ratio:1;border:1px dashed rgba(241,229,209,.21);border-radius:50%;transform:rotate(-22deg)}
+.sound-world.s24-ready .s24-technical-ring::after{content:"";position:absolute;width:min(39vw,49vh,425px);aspect-ratio:1;border:1px solid rgba(241,229,209,.14);border-radius:50%;box-shadow:0 0 0 18px rgba(255,255,255,.012),0 0 0 33px rgba(255,255,255,.01)}
+.sound-world.s24-ready .s24-side-stamp{position:absolute;left:0;top:calc(50% - 35px);font:9px/1.5 monospace;letter-spacing:.19em;color:#abb1a6;writing-mode:vertical-rl;transform:rotate(180deg);pointer-events:none}
+.sound-world.s24-ready .s24-side-stamp b{font-weight:400;color:var(--s24-hue)}
+.sound-world.s24-ready .s24-counter{position:absolute;right:0;top:10%;display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right;pointer-events:none}
+.sound-world.s24-ready .s24-counter strong{font:700 clamp(38px,5.5vw,78px)/.86 Arial,Helvetica,sans-serif;letter-spacing:-.11em;color:transparent;-webkit-text-stroke:1px rgba(231,225,214,.35)}
+.sound-world.s24-ready .s24-counter small{font:9px monospace;letter-spacing:.12em;color:#aeb4aa}
+.sound-world.s24-ready .sound-record{box-shadow:0 28px 85px rgba(0,0,0,.42),inset 0 0 30px rgba(0,0,0,.35)}
+.sound-world.s24-ready .sound-record::after{content:"";position:absolute;inset:7%;border:1px solid rgba(242,231,212,.09);border-radius:50%;pointer-events:none}
+.sound-world.s24-ready .sound-moods{border-bottom:1px solid rgba(240,236,228,.16);gap:clamp(15px,3vw,42px)}
+.sound-world.s24-ready .sound-mood{padding-left:10px;transition:background .35s,border-color .35s}
+.sound-world.s24-ready .sound-mood::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--s24-hue);transform:scaleY(0);transform-origin:top;transition:transform .35s ease;pointer-events:none}
+.sound-world.s24-ready .sound-mood.is-current::before,.sound-world.s24-ready .sound-mood:hover::before,.sound-world.s24-ready .sound-mood:focus-visible::before{transform:scaleY(1)}
+.sound-world.s24-ready .sound-mood.is-current{background:linear-gradient(90deg,var(--s24-tint),transparent 84%)}
+.sound-world.s24-ready .sound-bottom{border-top:0;color:#a7b0a8}
+/* Archive additions: do not change existing transitions/positions */
+.sound-world.s24-ready .sound-archive{background-image:radial-gradient(ellipse 48% 54% at 78% 29%,rgba(169,112,82,.10),transparent 72%),linear-gradient(90deg,rgba(255,255,255,.27),transparent 62%);background-color:#eae5db}
+.sound-world.s24-ready .sa-intro{position:relative}
+.sound-world.s24-ready .sa-intro::after{content:"004 / ANALOG STUDIES";position:absolute;right:0;top:0;font:9px monospace;letter-spacing:.15em;color:#887969}
+.sound-world.s24-ready .sa-item{padding-left:10px}
+.sound-world.s24-ready .sa-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#a16f50;transform:scaleY(0);transform-origin:top;transition:transform .35s}
+.sound-world.s24-ready .sa-item.is-selected::before,.sound-world.s24-ready .sa-item:hover::before{transform:scaleY(1)}
+.sound-world.s24-ready .sa-art{outline:1px solid rgba(65,52,43,.28);outline-offset:6px}
+.sound-world.s24-ready .s24-art-overlay{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.sound-world.s24-ready .s24-art-overlay::before{content:"";position:absolute;left:14%;top:17%;width:72%;aspect-ratio:1;border:1px solid rgba(255,242,221,.46);border-radius:50%;box-shadow:0 0 0 15px rgba(255,244,230,.055),0 0 0 31px rgba(255,244,230,.055)}
+.sound-world.s24-ready .s24-art-overlay::after{content:"";position:absolute;inset:7%;border:1px dashed rgba(255,242,222,.32)}
+.sound-world.s24-ready .sa-art-top,.sound-world.s24-ready .sa-art-mark,.sound-world.s24-ready .sa-art-bottom{position:relative;z-index:1;text-shadow:0 1px 12px rgba(10,15,12,.22)}
+.sound-world.s24-ready .s24-record-folio{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:18px 0 0;padding:13px 0;border-top:1px solid #b8aea2;border-bottom:1px solid #b8aea2;font:10px monospace;letter-spacing:.13em;color:#786f65}
+.sound-world.s24-ready .s24-record-folio b{font-weight:500;color:#a16f50}
+@media(max-width:991px){
+.sound-world.s24-ready .s24-edition{display:none}
+.sound-world.s24-ready .s24-counter{right:6%;top:2%}
+.sound-world.s24-ready .s24-technical-ring::before{width:min(85vw,435px)}
+.sound-world.s24-ready .s24-technical-ring::after{width:min(70vw,350px)}
+.sound-world.s24-ready .s24-side-stamp{left:6%}
+}
+@media(max-width:600px){
+.sound-world.s24-ready .sound-layout::before{opacity:.25}
+.sound-world.s24-ready .s24-current-spectrum{padding:9px 0;gap:10px}
+.sound-world.s24-ready .s24-spectrum-label{min-width:100px}
+.sound-world.s24-ready .s24-spectrum-label strong{font-size:9px}
+.sound-world.s24-ready .s24-technical-ring::before{width:min(92vw,320px)}
+.sound-world.s24-ready .s24-technical-ring::after{width:min(80vw,280px)}
+.sound-world.s24-ready .s24-side-stamp{display:none}
+.sound-world.s24-ready .s24-counter{right:0;top:0}
+.sound-world.s24-ready .s24-counter strong{font-size:43px}
+.sound-world.s24-ready .sa-intro::after{display:none}
+.sound-world.s24-ready .s24-record-folio{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+.sound-world.s24-ready .s24-spectrum i,.sound-world.s24-ready .sound-mood::before,.sound-world.s24-ready .sa-item::before{transition:none!important}
+}
