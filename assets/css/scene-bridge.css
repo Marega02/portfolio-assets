@@ -1,0 +1,14 @@
+/* STEP 39 — CONNECTIVE TISSUE / current chapter identity */
+.w19-root.s39-ready{--s39-accent:#d9ac89}
+.w19-root.s39-ready[data-s39-world="sound"]{--s39-accent:#abc7a8}
+.w19-root.s39-ready[data-s39-world="places"]{--s39-accent:#afd1c5}
+.w19-root.s39-ready[data-s39-world="about"]{--s39-accent:#e4b19b}
+.w19-root.s39-ready .w19-trigger{gap:11px;border-color:color-mix(in srgb,var(--s39-accent) 55%,transparent)}
+.w19-root.s39-ready .s39-chapter{display:inline-flex;align-items:center;gap:7px;padding-left:10px;border-left:1px solid rgba(244,238,228,.25);font:700 9px/1 monospace;letter-spacing:.12em;color:var(--s39-accent);white-space:nowrap}
+.w19-root.s39-ready .s39-chapter::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.w19-root.s39-ready .w19-head{border-bottom-color:color-mix(in srgb,var(--s39-accent) 30%,transparent)}
+.w19-root.s39-ready .w19-close:hover{border-color:var(--s39-accent)}
+.w19-root.s39-ready .s38-gallery{transition:background-color .35s ease}
+@media(max-width:500px){.w19-root.s39-ready .w19-trigger{gap:8px}.w19-root.s39-ready .s39-chapter{font-size:8px;padding-left:8px}}
+@media(max-width:350px){.w19-root.s39-ready .s39-chapter{display:none}}
+@media(prefers-reduced-motion:reduce){.w19-root.s39-ready .s38-gallery{transition:none!important}}
