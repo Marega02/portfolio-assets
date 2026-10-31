@@ -119,6 +119,8 @@
  82%{opacity:1}
  100%{opacity:0;transform:translate3d(0,-4px,0)}
 }
+/* Studio Focus stays intentionally quiet. */
+body.s41-studio-focus .s42-beat{display:none!important}
 /* Keep all original controls usable; no motion score in nested overlays. */
 body:has(.w19-root.is-open) .s42-beat,
 body:has(.s34-overlay:not([hidden])) .s42-beat,
