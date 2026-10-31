@@ -1,0 +1,13 @@
+/* STEP 40 — FOUR-FOLD COVER | visual-only coordination */
+(()=>{function init(){const hub=document.querySelector(".world-hub"),stage=hub?.querySelector(".world-stage"),sheet=stage?.querySelector(".stage-sheet");if(!hub||!stage||!sheet||hub.classList.contains("s40-ready"))return;
+const halo=document.createElement("span");halo.className="s40-halo";halo.setAttribute("aria-hidden","true");const calib=document.createElement("span");calib.className="s40-calibration";calib.setAttribute("aria-hidden","true");stage.prepend(halo,calib);
+const marks=document.createElement("span");marks.className="s40-cropmarks";marks.setAttribute("aria-hidden","true");const wipe=document.createElement("span");wipe.className="s40-ink-wipe";wipe.setAttribute("aria-hidden","true");sheet.append(marks,wipe);
+const stamp=document.createElement("span");stamp.className="s40-imprint";stamp.setAttribute("aria-hidden","true");stamp.textContent="LM® / PRESS STUDY";
+const notes=document.createElement("span");notes.className="s40-side-notes";notes.setAttribute("aria-hidden","true");notes.innerHTML="<span>ARCHIVE / 004</span><strong>ED. 040</strong>";
+const edition=document.createElement("div");edition.className="s40-edition";edition.setAttribute("aria-hidden","true");edition.innerHTML='<span>FOUR FOLDS / ONE WORLD</span><span class="s40-edition-ticks"><i></i><i></i><i></i><i></i></span><strong class="s40-edition-number">01/04</strong>';
+stage.append(stamp,notes,edition);
+const scenes=["work","sound","places","about"],ticks=[...edition.querySelectorAll("i")],number=edition.querySelector(".s40-edition-number");
+let active="",timer=0;
+function sync(){const raw=hub.dataset.s31Scene||hub.dataset.s22Scene||"work";const key=scenes.includes(raw)?raw:"work";if(active===key)return;const old=active;active=key;hub.dataset.s40Scene=key;const i=scenes.indexOf(key);number.textContent=String(i+1).padStart(2,"0")+"/04";ticks.forEach((t,n)=>t.classList.toggle("is-current",n===i));if(old&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){wipe.classList.remove("is-flashing");void wipe.offsetWidth;wipe.classList.add("is-flashing");clearTimeout(timer);timer=setTimeout(()=>wipe.classList.remove("is-flashing"),750)}}
+new MutationObserver(sync).observe(hub,{attributes:true,attributeFilter:["data-s31-scene","data-s22-scene"]});sync();hub.classList.add("s40-ready");}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();
