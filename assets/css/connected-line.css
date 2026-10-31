@@ -1,0 +1,107 @@
+/* STEP 43 — THE CONNECTED LINE / AN INTERACTIVE VISUAL DNA
+   A single evolving vector signature spanning HOME, 4 worlds and World Index.
+   No new navigation, content overlays, images, fonts or background polling.
+   Existing GSAP elements and original click handlers remain untouched. */
+
+.world-hub.s43-connected{--s43-ink:#e0ac8c;--s43-secondary:rgba(226,171,138,.23)}
+.work-world.s43-connected{--s43-ink:#ab6a52;--s43-secondary:rgba(171,106,82,.20)}
+.work-world.s43-connected[data-s43-variant="soca"]{--s43-ink:#557c66;--s43-secondary:rgba(85,124,102,.20)}
+.work-world.s43-connected[data-s43-variant="gianni"]{--s43-ink:#986d45;--s43-secondary:rgba(152,109,69,.23)}
+.sound-world.s43-connected{--s43-ink:var(--sound-accent,#d2a78f);--s43-secondary:rgba(217,204,179,.18)}
+.p14-world.s43-connected{--s43-ink:var(--p14-accent,#426c5e);--s43-secondary:rgba(71,109,84,.17)}
+.a17-world.s43-connected{--s43-ink:var(--a17-accent,#e9b28e);--s43-secondary:rgba(233,178,142,.19)}
+.w19-root.s43-connected{--s43-ink:var(--s38-accent,#d9ac89);--s43-secondary:rgba(235,211,173,.18)}
+
+.world-hub.s43-connected .world-top,
+.work-world.s43-connected .work-top,
+.sound-world.s43-connected .sound-top,
+.p14-world.s43-connected .p14-top,
+.a17-world.s43-connected .a17-header,
+.w19-root.s43-connected .w19-head{position:relative}
+
+/* Place the signal inside existing headers; it never adds to their height. */
+.s43-signal{
+ position:absolute;left:50%;top:50%;
+ transform:translate(-50%,-50%);
+ z-index:0;
+ display:flex;align-items:center;justify-content:center;gap:10px;
+ width:clamp(190px,22vw,335px);
+ height:49px;max-width:35%;
+ color:var(--s43-ink);
+ opacity:.85;pointer-events:none;user-select:none;
+ font:700 8px/1.3 monospace;letter-spacing:.12em;
+}
+.s43-signal svg{display:block;width:100%;height:100%;overflow:visible;flex:1;min-width:0}
+.s43-primary,.s43-echo{
+ fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;
+ vector-effect:non-scaling-stroke;
+}
+.s43-primary{stroke-width:1.8}
+.s43-echo{stroke-width:.75;opacity:.32}
+.s43-endpoints circle{fill:currentColor;opacity:.75}
+.s43-signal-label{max-width:82px;min-width:65px;white-space:nowrap;text-align:right;opacity:.85}
+.s43-signal-id{position:absolute;right:0;bottom:-4px;
+ font:700 8px/1.2 monospace;letter-spacing:.13em;opacity:.7}
+.s43-rail{
+ position:absolute;left:0;right:0;bottom:-10px;height:1px;
+ background:linear-gradient(90deg,transparent,var(--s43-secondary) 25%,var(--s43-secondary) 75%,transparent);
+ pointer-events:none;z-index:0;
+}
+.s43-rail::before{
+ content:"";position:absolute;left:calc(var(--s43-progress,0) * 100%);
+ top:-2px;width:5px;height:5px;border-radius:50%;
+ background:var(--s43-ink);
+ box-shadow:0 0 0 4px var(--s43-secondary);
+ transform:translateX(-50%);
+ transition:left .7s cubic-bezier(.16,1,.3,1),background-color .45s;
+}
+/* The existing personal signature feels like part of this same circuit. */
+.s43-connected.s26-signed .s26-signature-icon{
+ filter:drop-shadow(0 0 8px var(--s43-secondary));
+}
+.s43-connected.s26-signed .s26-signature-rule{
+ background:var(--s43-ink);
+ opacity:.8;
+}
+.world-hub.s43-connected .s43-signal{color:var(--s43-ink)}
+.world-hub.s43-connected[data-s43-variant="sound"]{--s43-ink:#b6d2b1;--s43-secondary:rgba(182,210,177,.18)}
+.world-hub.s43-connected[data-s43-variant="places"]{--s43-ink:#a8ced5;--s43-secondary:rgba(168,206,213,.2)}
+.world-hub.s43-connected[data-s43-variant="about"]{--s43-ink:#e8b4a5;--s43-secondary:rgba(232,180,165,.19)}
+
+/* The ABOUT header already has a centered title; keep our artwork below it. */
+.a17-world.s43-connected .s43-signal{
+ left:auto;right:clamp(120px,10vw,175px);
+ top:calc(100% + 38px);transform:none;
+ width:clamp(180px,20vw,285px);max-width:28%;opacity:.57;
+}
+.a17-world.s43-connected .s43-rail{bottom:-10px}
+.w19-root.s43-connected .s43-signal{
+ max-width:34%;width:270px;
+ opacity:.67;
+}
+.w19-root.s43-connected .s43-rail{bottom:0}
+.p14-world.s43-connected .s43-rail{bottom:-8px}
+.sound-world.s43-connected .s43-rail{bottom:-10px}
+.work-world.s43-connected .s43-rail{bottom:-10px}
+.world-hub.s43-connected .s43-rail{bottom:-10px}
+
+/* Protect existing header controls on laptops and narrow devices. */
+@media(max-width:1400px){
+ .s43-signal{width:205px;max-width:30%;opacity:.56}
+ .s43-signal-label{display:none}
+ .a17-world.s43-connected .s43-signal{display:none}
+}
+@media(max-width:1080px){
+ .s43-signal{display:none!important}
+ .s43-rail{opacity:.45}
+}
+@media(max-width:700px){
+ .s43-rail{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .s43-rail::before{transition:none!important}
+}
+@media(prefers-contrast:more){
+ .s43-signal{opacity:1}
+ .s43-rail{background:currentColor}
+}
