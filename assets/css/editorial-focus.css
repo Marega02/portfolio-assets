@@ -1,0 +1,152 @@
+/* STEP 41 — EDITORIAL FOCUS / ACCESSIBLE ART DIRECTION
+   Cinematic by default, optional editorial reading treatment.
+   Scoped to already-existing UI; no changes to transforms, scroll or GSAP. */
+
+/* FIRST: improve real-world legibility even in cinematic mode. */
+.world-hub.s40-ready .stage-overline{
+  color:#1b3024;
+  font-weight:800;
+  text-shadow:0 1px 0 rgba(255,255,255,.35);
+}
+.world-hub.s40-ready .stage-word{
+  color:#102218;
+  font-weight:500;
+  text-shadow:0 1px 0 rgba(255,255,255,.50),0 0 19px var(--paper);
+  background:linear-gradient(90deg,var(--paper) 0%,color-mix(in srgb,var(--paper) 96%,transparent) 78%,transparent 100%);
+  max-width:100%;
+  overflow-wrap:break-word;
+}
+.world-hub.s40-ready .stage-caption{
+  color:#172b1d;
+  font-weight:650;
+  font-size:clamp(12px,.98vw,14px);
+  line-height:1.55;
+  max-width:235px;
+  background:linear-gradient(90deg,var(--paper) 0%,color-mix(in srgb,var(--paper) 94%,transparent) 84%,transparent 100%);
+  text-shadow:0 1px 0 rgba(255,255,255,.3);
+}
+.world-hub.s32-ready .world-main>.world-subtitle{
+  color:#e4ddd2;max-width:465px;
+}
+.world-hub.s31-ready .s31-summary{color:#e3dfd5;line-height:1.6}
+.world-hub.s31-ready .s31-head{color:#c9c5bb}
+.work-world .work-intro{color:#4a463e}
+.work-world .project-category{color:#5d584e}
+.case-world .case-deck{color:#e0dbd2}
+.case-world .case-category{color:#ccc6bd}
+.sound-world .sound-description{color:#dcdad0}
+.sound-world .sound-art-caption{color:#c0c7bd}
+.p14-world .p14-intro{color:#4c5047}
+.p14-world .p14-hint{color:#555b50}
+.p14-world .p14-card-title{text-shadow:0 3px 16px rgba(0,0,0,.55)}
+.a17-world .a17-lead{color:#eee9df}
+.a17-world .a17-panel-copy{color:#e0e2d9}
+
+/* Discreet exhibition control: inside original World Index reading column. */
+.w19-root.s41-ready .s41-switcher{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;min-width:0;
+  padding:16px 0;border-top:1px solid rgba(240,231,214,.26);
+  border-bottom:1px solid rgba(240,231,214,.26);
+  margin:5px 0 2px;
+}
+.w19-root.s41-ready .s41-switch-copy{display:flex;flex-direction:column;gap:6px;min-width:0}
+.w19-root.s41-ready .s41-switch-eyebrow{
+  font:700 9px/1.3 monospace;letter-spacing:.15em;color:var(--s38-accent,#d9ac89);
+}
+.w19-root.s41-ready .s41-switch-caption{
+  font:400 11px/1.4 Arial,Helvetica,sans-serif;color:#c8cdc2;
+}
+.w19-root.s41-ready .s41-switch{
+  appearance:none;display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;flex:0 0 auto;min-height:44px;padding:10px 13px;
+  border:1px solid rgba(236,225,207,.43);border-radius:0;
+  background:transparent;color:#f5eee3;
+  font:700 10px/1.4 monospace;letter-spacing:.075em;
+  text-align:center;cursor:pointer;
+  transition:background .22s,border-color .22s,color .22s;
+}
+.w19-root.s41-ready .s41-switch:hover{
+  border-color:var(--s38-accent,#d9ac89);color:var(--s38-accent,#d9ac89);
+}
+.w19-root.s41-ready .s41-switch[aria-pressed="true"]{
+  background:var(--s38-accent,#d9ac89);border-color:var(--s38-accent,#d9ac89);
+  color:#1a261f;
+}
+.w19-root.s41-ready .s41-switch:focus-visible{
+  outline:3px solid var(--s38-accent,#d9ac89);outline-offset:3px;
+}
+.w19-root.s41-ready .s41-switch-indicator{
+  display:block;width:6px;height:6px;flex:0 0 auto;
+  border-radius:50%;background:currentColor;opacity:.95;
+}
+.w19-root.s41-ready .w19-list{margin-top:clamp(11px,1.9vh,23px)}
+
+/* EDITORIAL MODE: remove ornamental competition, not project content.
+   User can return immediately to the cinematic version. */
+body.s41-studio-focus .world-hub .s31-spotlight,
+body.s41-studio-focus .world-hub .s22-atmosphere,
+body.s41-studio-focus .world-hub .s32-ghost,
+body.s41-studio-focus .world-hub .s40-halo,
+body.s41-studio-focus .world-hub .s40-calibration,
+body.s41-studio-focus .world-hub .s40-ink-wipe,
+body.s41-studio-focus .world-hub .s40-side-notes{opacity:0!important;visibility:hidden!important}
+body.s41-studio-focus .world-hub .s22-art{opacity:.69}
+body.s41-studio-focus .world-hub .stage-sheet{
+  box-shadow:0 6px 0 rgba(15,24,18,.1),0 25px 70px rgba(0,0,0,.24);
+}
+body.s41-studio-focus .world-hub .s31-dossier::before{
+  background:linear-gradient(105deg,rgba(24,28,26,.78),rgba(24,28,26,.48) 75%,transparent);
+}
+body.s41-studio-focus .world-hub .world-title{
+  text-shadow:none!important;
+}
+body.s41-studio-focus .world-hub .world-links .world-link:not(.is-s31-current){
+  opacity:.87;
+}
+body.s41-studio-focus .work-world .s23-preview-decor,
+body.s41-studio-focus .work-world .work-main::before,
+body.s41-studio-focus .sound-world .s24-technical-ring,
+body.s41-studio-focus .p14-world .p25-card-traces,
+body.s41-studio-focus .a17-world .a17-backdrop{opacity:.18!important}
+body.s41-studio-focus .work-world .s37-finder,
+body.s41-studio-focus .p14-world .s37-finder,
+body.s41-studio-focus .a17-world .s37-finder{opacity:.2}
+body.s41-studio-focus .sound-world .sound-art::before{opacity:.3}
+body.s41-studio-focus .case-world .s36-interlude::before,
+body.s41-studio-focus .case-world .s28-dossier::before,
+body.s41-studio-focus .case-world .s30-evidence::before,
+body.s41-studio-focus .p15-journal .s36-interlude::before{
+  opacity:.07;
+}
+body.s41-studio-focus .case-world .case-deck,
+body.s41-studio-focus .sound-world .sound-description,
+body.s41-studio-focus .a17-world .a17-lead,
+body.s41-studio-focus .p14-world .p14-intro{
+  letter-spacing:.005em;line-height:1.78;
+}
+/* Preserve original mobile layout and keep the toggle comfortably tappable. */
+@media(max-width:720px){
+ .w19-root.s41-ready .s41-switcher{padding:11px 0;margin:0 0 4px}
+ .w19-root.s41-ready .s41-switch-caption{font-size:10px}
+ .w19-root.s41-ready .s41-switch{padding:9px 11px;font-size:9px;min-height:44px}
+}
+@media(max-width:390px){
+ .w19-root.s41-ready .s41-switcher{flex-wrap:wrap}
+ .w19-root.s41-ready .s41-switch{width:100%;justify-content:space-between}
+ .world-hub.s40-ready .stage-caption{font-size:12px}
+}
+@media(prefers-contrast:more){
+ .world-hub .stage-word,.world-hub .stage-caption,.world-hub .stage-overline{
+   text-shadow:none!important;
+ }
+ .world-hub .stage-word,.world-hub .stage-caption{
+   background:var(--paper)!important;color:#101c13!important;
+ }
+ .world-hub .s31-summary,.sound-world .sound-description,
+ .a17-world .a17-panel-copy{color:#f5f0e6!important}
+ .p14-world .p14-intro{color:#232a25!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .w19-root.s41-ready .s41-switch{transition:none!important}
+ body.s41-studio-focus .world-hub .s22-art{transition:none!important}
+}
