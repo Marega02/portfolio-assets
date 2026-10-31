@@ -89,7 +89,7 @@
         if(ceremonyTimer){clearTimeout(ceremonyTimer);ceremonyTimer=0;}
         if(resetTimer){clearTimeout(resetTimer);resetTimer=0;}
         plaque.classList.remove("is-unlocking");
-        root.classList.remove("s45-ceremony");
+        flare.classList.remove("is-running");
       }
       function finish(){
         if(unlocked)return;
@@ -101,11 +101,11 @@
           ceremonyTimer=0;
           if(!root.classList.contains("is-active")||root.inert||blockers())return;
           plaque.classList.add("is-unlocking");
-          root.classList.add("s45-ceremony");
+          flare.classList.add("is-running");
           resetTimer=setTimeout(()=>{
             resetTimer=0;
             plaque.classList.remove("is-unlocking");
-            root.classList.remove("s45-ceremony");
+            flare.classList.remove("is-running");
           },1710);
         },320);
       }
@@ -121,11 +121,12 @@
         render();
         if(visited.size===3)finish();
       }
+      let wasActive=root.classList.contains("is-active");
       function onRootState(){
-        if(!root.classList.contains("is-active")){
-          cancelMotion();
-          return;
-        }
+        const nowActive=root.classList.contains("is-active");
+        if(nowActive===wasActive)return; // ignore unrelated class updates
+        wasActive=nowActive;
+        if(!nowActive){cancelMotion();return;}
         collect();
       }
       new MutationObserver(collect).observe(source,{
