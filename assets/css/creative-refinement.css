@@ -1,0 +1,60 @@
+/* STEP 35 — CREATIVE REFINEMENT
+  Cohesive interface micro-details. Additive, scoped, respectful of originals.
+  No new media, no animations on GSAP transform targets. */
+.world-hub.s31-ready .world-link,
+.work-world .work-project,
+.sound-world .sound-mood,
+.p14-world .p14-choice{ -webkit-tap-highlight-color:transparent }
+.world-hub.s31-ready .world-link:focus-visible,
+.work-world .work-project:focus-visible,
+.sound-world .sound-mood:focus-visible,
+.p14-world .p14-choice:focus-visible{
+ outline:2px solid currentColor;outline-offset:5px;
+}
+/* Directional micro-line: one design language, four distinct palettes */
+.work-world .work-project .project-title,
+.sound-world .sound-mood .sound-mood-name,
+.p14-world .p14-choice .p14-choice-name{
+ text-underline-offset:.21em;text-decoration-thickness:1px;
+}
+@media(hover:hover) and (pointer:fine){
+ .work-world .work-project:hover .project-title{text-decoration:underline;text-decoration-color:#a56a4b}
+ .sound-world .sound-mood:hover .sound-mood-name{text-decoration:underline;text-decoration-color:var(--sound-accent)}
+ .p14-world .p14-choice:hover .p14-choice-name{text-decoration:underline;text-decoration-color:var(--p14-accent)}
+}
+/* Reduce the accidental impression that every frame has equal emphasis. */
+.work-world.s23-ready .work-project:not(.is-current){opacity:.88}
+.work-world.s23-ready .work-project.is-current{opacity:1}
+.sound-world.s24-ready .sound-mood:not(.is-current){opacity:.89}
+.p14-world.s25-ready .p14-choice:not(.is-selected){opacity:.91}
+.work-world.s23-ready .work-project,
+.sound-world.s24-ready .sound-mood,
+.p14-world.s25-ready .p14-choice{
+ transition:opacity .26s ease,background-color .26s ease,border-color .26s ease;
+}
+/* Form accessibility and legibility on the collaborative console */
+.a17-world .s29-service[aria-pressed="true"]{box-shadow:inset 0 0 0 1px rgba(246,238,221,.25)}
+.a17-world .s29-status:not(:empty){padding:9px 12px;border-left:2px solid #607e66;background:rgba(96,126,102,.08)}
+/* More distinct keyboard navigation inside chapters and case-study controls */
+.s34-overlay .s34-close:focus-visible,
+.s34-overlay .s34-step-button:focus-visible,
+.s34-overlay .s34-next:focus-visible,
+.case-world .s30-tab:focus-visible,
+.case-world .s33-choice:focus-visible{
+ outline-width:3px;outline-offset:3px;
+}
+/* Prevent major hover effects being triggered on touch */
+@media(hover:none){
+ .case-world.s28-ready .s28-panel:hover{box-shadow:none}
+ .case-world.s33-ready .s33-technical:hover .s33-blueprint{transform:none}
+}
+/* Ensure controls wrap rather than clipping on smaller viewports */
+@media(max-width:500px){
+ .a17-world .s29-actions{flex-direction:column;align-items:stretch}
+ .a17-world .s29-copy{justify-content:space-between}
+ .s34-overlay .s34-next{min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){
+ .work-world.s23-ready .work-project,.sound-world.s24-ready .sound-mood,
+ .p14-world.s25-ready .p14-choice{transition:none!important}
+}
