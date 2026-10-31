@@ -1,0 +1,131 @@
+/* STEP 30 — INSIDE THE BUILD / VERIFIED PROJECT BREAKDOWN
+   New case-study chapter. No changes to existing case visuals, GSAP,
+   shared-image transition, global focus handling, or navigation. */
+.case-world.s30-ready .s30-evidence{
+  --s30-ink:#f0ece4;--s30-muted:#b7b9b0;--s30-line:rgba(241,234,219,.20);
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:0 calc(-1 * clamp(22px,3.5vw,60px));
+  padding:clamp(65px,8vw,130px) clamp(22px,4vw,70px) clamp(75px,10vw,145px);
+  background:#20231f;color:var(--s30-ink);
+  border-top:1px solid rgba(236,233,222,.18);
+}
+.case-world.s30-ready[data-theme="soca"] .s30-evidence{background:#1a2722}
+.case-world.s30-ready[data-theme="gianni"] .s30-evidence{background:#29221c}
+.case-world.s30-ready .s30-evidence::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 62% 57% at 83% 47%,
+    color-mix(in srgb,var(--case-accent) 11%,transparent),transparent 78%);
+}
+.case-world.s30-ready .s30-kicker-row{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding-bottom:22px;border-bottom:1px solid var(--s30-line);
+  font:700 10px/1.5 monospace;letter-spacing:.17em}
+.case-world.s30-ready .s30-kicker-row span:first-child{color:var(--case-accent)}
+.case-world.s30-ready .s30-kicker-row span:last-child{color:var(--s30-muted)}
+.case-world.s30-ready .s30-intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);
+  align-items:end;gap:clamp(30px,5vw,85px);padding:clamp(40px,5.5vw,90px) 0 clamp(45px,5.5vw,90px)}
+.case-world.s30-ready .s30-headline{margin:0;font:650 clamp(58px,8.6vw,143px)/.89 Arial,Helvetica,sans-serif;
+  letter-spacing:-.085em;color:var(--s30-ink);text-wrap:balance}
+.case-world.s30-ready .s30-headline em{font:italic 400 .73em/.95 Georgia,serif;display:block;
+  margin-top:.06em;letter-spacing:-.065em;color:var(--case-accent)}
+.case-world.s30-ready .s30-intro-desc{max-width:320px;margin:0 0 5px;font-size:clamp(14px,1.2vw,17px);
+  line-height:1.8;color:#c2c4bb}
+.case-world.s30-ready .s30-workbench{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);
+  align-items:stretch;gap:clamp(18px,3vw,55px)}
+.case-world.s30-ready .s30-notes{display:flex;min-width:0;flex-direction:column;border-top:1px solid var(--s30-line)}
+.case-world.s30-ready .s30-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--s30-line)}
+.case-world.s30-ready .s30-tab{appearance:none;position:relative;min-width:0;text-align:left;
+  background:transparent;border:0;border-right:1px solid var(--s30-line);color:var(--s30-muted);
+  display:flex;flex-direction:column;justify-content:space-between;gap:15px;padding:22px 16px 23px 0;
+  cursor:pointer;font-family:inherit;transition:color .25s,background .25s}
+.case-world.s30-ready .s30-tab:not(:first-child){padding-left:16px}
+.case-world.s30-ready .s30-tab:last-child{border-right:0}
+.case-world.s30-ready .s30-tab-index{font:650 10px/1.3 monospace;letter-spacing:.13em;opacity:.65}
+.case-world.s30-ready .s30-tab-label{font:600 clamp(14px,1.4vw,21px)/1.1 Arial,Helvetica,sans-serif;letter-spacing:-.04em}
+.case-world.s30-ready .s30-tab::after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:3px;background:var(--case-accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.16,1,.3,1)}
+.case-world.s30-ready .s30-tab[aria-pressed="true"]{color:var(--case-accent)}
+.case-world.s30-ready .s30-tab[aria-pressed="true"]::after{transform:scaleX(1)}
+.case-world.s30-ready .s30-tab:hover{color:var(--s30-ink)}
+.case-world.s30-ready .s30-tab:focus-visible{outline:2px solid var(--case-accent);outline-offset:4px;z-index:2}
+.case-world.s30-ready .s30-note{flex:1;display:flex;flex-direction:column;min-height:310px;gap:22px;
+  padding:clamp(29px,4vw,65px) 0 23px}
+.case-world.s30-ready .s30-note-label{font:700 10px/1.4 monospace;letter-spacing:.15em;color:var(--case-accent)}
+.case-world.s30-ready .s30-note-title{margin:0;max-width:660px;font:600 clamp(32px,3.3vw,55px)/1.06 Arial,Helvetica,sans-serif;
+  letter-spacing:-.065em;color:var(--s30-ink);text-wrap:balance}
+.case-world.s30-ready .s30-note-copy{max-width:620px;margin:0;font:400 clamp(14px,1.2vw,17px)/1.8 Arial,Helvetica,sans-serif;color:#c1c3b9}
+.case-world.s30-ready .s30-capabilities{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:23px}
+.case-world.s30-ready .s30-chip{padding:9px 11px;border:1px solid rgba(245,235,216,.2);
+  color:#e1ded5;font:600 9px/1.4 monospace;letter-spacing:.09em}
+.case-world.s30-ready .s30-technical{position:relative;display:flex;flex-direction:column;min-width:0;
+  background:#d8d4c7;color:#283b30;border:1px solid rgba(242,236,225,.25);
+  box-shadow:0 25px 70px rgba(0,0,0,.16);overflow:hidden}
+.case-world.s30-ready[data-theme="soca"] .s30-technical{background:#cbd7ce;color:#233c2e}
+.case-world.s30-ready[data-theme="gianni"] .s30-technical{background:#ddc9af;color:#493628}
+.case-world.s30-ready .s30-tech-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:17px 21px;border-bottom:1px solid rgba(35,54,42,.24);font:650 9px/1.4 monospace;
+  letter-spacing:.14em}
+.case-world.s30-ready .s30-tech-lights{display:flex;gap:6px}
+.case-world.s30-ready .s30-tech-lights i{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.45}
+.case-world.s30-ready .s30-tech-main{position:relative;display:flex;flex:1;flex-direction:column;
+  justify-content:center;align-items:center;min-height:350px;overflow:hidden;padding:20px}
+.case-world.s30-ready .s30-tech-main::before{content:"";position:absolute;inset:0;opacity:.15;pointer-events:none;
+  background-image:linear-gradient(90deg,currentColor 1px,transparent 1px),
+   linear-gradient(currentColor 1px,transparent 1px);background-size:35px 35px}
+.case-world.s30-ready .s30-blueprint{position:relative;width:min(78%,360px);aspect-ratio:1.04/1;
+  border:1px solid currentColor;display:flex;flex-direction:column;padding:clamp(12px,2vw,26px);
+  transform:rotate(-6deg);transition:transform .7s cubic-bezier(.16,1,.3,1),border-radius .7s}
+.case-world.s30-ready .s30-technical:hover .s30-blueprint{transform:rotate(0deg) scale(1.03)}
+.case-world.s30-ready .s30-blueprint::after{content:"";position:absolute;inset:12px;border:1px dashed currentColor;opacity:.26;pointer-events:none}
+.case-world.s30-ready .s30-bp-head{position:relative;z-index:1;display:flex;justify-content:space-between;gap:8px;
+  font:700 9px/1.3 monospace;letter-spacing:.12em}
+.case-world.s30-ready .s30-bp-core{position:relative;flex:1;display:grid;place-items:center;z-index:1}
+.case-world.s30-ready .s30-bp-core::before{content:"";position:absolute;width:65%;aspect-ratio:1;border:1px solid currentColor;
+  transform:rotate(22deg);transition:transform .6s,border-radius .6s}
+.case-world.s30-ready .s30-bp-core::after{content:"";position:absolute;width:46%;aspect-ratio:1;border:1px solid currentColor;
+  transform:rotate(-18deg);opacity:.63;transition:transform .6s,border-radius .6s}
+.case-world.s30-ready .s30-bp-symbol{position:relative;z-index:2;font:italic 400 clamp(47px,5vw,85px)/1 Georgia,serif;
+  letter-spacing:-.08em}
+.case-world.s30-ready .s30-bp-footer{display:flex;justify-content:space-between;gap:10px;position:relative;z-index:1;
+  padding-top:10px;border-top:1px solid currentColor;font:650 9px/1.4 monospace;letter-spacing:.13em}
+.case-world.s30-ready .s30-technical[data-view="build"] .s30-bp-core::before{transform:rotate(0deg);border-radius:10px}
+.case-world.s30-ready .s30-technical[data-view="build"] .s30-bp-core::after{transform:rotate(0deg);border-radius:0}
+.case-world.s30-ready .s30-technical[data-view="result"] .s30-bp-core::before{transform:rotate(-15deg) scale(1.04);border-radius:50%}
+.case-world.s30-ready .s30-technical[data-view="result"] .s30-bp-core::after{transform:rotate(20deg) scale(.8);border-radius:50%}
+.case-world.s30-ready .s30-technical[data-theme="soca"] .s30-blueprint{transform:rotate(4deg)}
+.case-world.s30-ready .s30-technical[data-theme="gianni"] .s30-blueprint{transform:rotate(-2deg)}
+.case-world.s30-ready .s30-tech-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:18px 21px;border-top:1px solid rgba(35,54,42,.24);font:700 9px/1.4 monospace;letter-spacing:.1em}
+.case-world.s30-ready .s30-tech-foot b{font-weight:750}
+.case-world.s30-ready .s30-bottomline{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  margin-top:clamp(38px,5vw,73px);padding-top:19px;border-top:1px solid var(--s30-line);
+  font:650 10px/1.5 monospace;letter-spacing:.12em;color:#bec0b6}
+.case-world.s30-ready .s30-bottomline span:last-child{color:var(--case-accent);text-align:right}
+@media(max-width:960px){
+ .case-world.s30-ready .s30-intro{grid-template-columns:1fr;gap:23px}
+ .case-world.s30-ready .s30-intro-desc{max-width:600px}
+ .case-world.s30-ready .s30-workbench{grid-template-columns:1fr;gap:26px}
+ .case-world.s30-ready .s30-technical{min-height:410px}
+ .case-world.s30-ready .s30-tech-main{min-height:300px}
+ .case-world.s30-ready .s30-blueprint{width:min(65%,350px)}
+ .case-world.s30-ready .s30-note{min-height:245px}
+}
+@media(max-width:600px){
+ .case-world.s30-ready .s30-evidence{margin-inline:-18px;padding:56px 18px 70px}
+ .case-world.s30-ready .s30-headline{font-size:clamp(53px,13.8vw,82px)}
+ .case-world.s30-ready .s30-intro{padding:42px 0 35px}
+ .case-world.s30-ready .s30-tab{padding:15px 8px 17px 0;gap:10px}
+ .case-world.s30-ready .s30-tab:not(:first-child){padding-left:9px}
+ .case-world.s30-ready .s30-tab-label{font-size:13px}
+ .case-world.s30-ready .s30-tab-index{font-size:9px}
+ .case-world.s30-ready .s30-note{min-height:0;padding:33px 0}
+ .case-world.s30-ready .s30-note-title{font-size:clamp(28px,7.9vw,44px)}
+ .case-world.s30-ready .s30-chip{font-size:8px}
+ .case-world.s30-ready .s30-tech-main{min-height:280px}
+ .case-world.s30-ready .s30-blueprint{width:min(76%,320px)}
+ .case-world.s30-ready .s30-kicker-row,.case-world.s30-ready .s30-bottomline{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .case-world.s30-ready .s30-tab,.case-world.s30-ready .s30-tab::after,
+ .case-world.s30-ready .s30-blueprint,.case-world.s30-ready .s30-bp-core::before,
+ .case-world.s30-ready .s30-bp-core::after{transition:none!important}
+}
