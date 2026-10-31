@@ -1,0 +1,179 @@
+/* STEP 40 — THE FOUR-FOLD COVER / MASTER COMPOSITION
+   A master art-direction pass on HOME's original paper poster.
+   No GSAP targets, navigation mechanics, external images, or font loads changed. */
+.world-hub.s40-ready{
+ --s40-metal:#e0a985;
+ --s40-ink:#27392f;
+ --s40-ambient:rgba(222,169,133,.14);
+}
+.world-hub.s40-ready[data-s40-scene="sound"]{
+ --s40-metal:#b6d2b1;--s40-ink:#244c3a;--s40-ambient:rgba(145,197,155,.16);
+}
+.world-hub.s40-ready[data-s40-scene="places"]{
+ --s40-metal:#a8ced5;--s40-ink:#2f5362;--s40-ambient:rgba(156,189,208,.17);
+}
+.world-hub.s40-ready[data-s40-scene="about"]{
+ --s40-metal:#e8b4a5;--s40-ink:#5e403a;--s40-ambient:rgba(224,171,149,.16);
+}
+/* Keep the actual illustration as the sole point of focus. */
+.world-hub.s40-ready .world-stage{
+ isolation:isolate;
+ filter:drop-shadow(0 22px 32px rgba(0,0,0,.09));
+}
+.world-hub.s40-ready .s40-halo{
+ position:absolute;z-index:-1;inset:-14%;pointer-events:none;
+ border-radius:50%;
+ background:radial-gradient(ellipse at 53% 50%,var(--s40-ambient) 0%,transparent 64%);
+ box-shadow:inset 0 0 0 1px rgba(238,230,208,.075);
+ opacity:.9;
+}
+.world-hub.s40-ready .s40-calibration{
+ position:absolute;z-index:0;left:-3%;right:-2%;top:4%;bottom:6%;pointer-events:none;
+ opacity:.62;
+ background:
+   linear-gradient(var(--s40-metal),var(--s40-metal)) center 0 / 1px 18px no-repeat,
+   linear-gradient(var(--s40-metal),var(--s40-metal)) center 100% / 1px 18px no-repeat,
+   linear-gradient(90deg,var(--s40-metal),var(--s40-metal)) 0 center / 18px 1px no-repeat,
+   linear-gradient(90deg,var(--s40-metal),var(--s40-metal)) 100% center / 18px 1px no-repeat;
+}
+.world-hub.s40-ready .s40-calibration::before{
+ content:"";position:absolute;inset:8%;pointer-events:none;
+ border:1px solid rgba(237,224,206,.18);border-radius:50%;
+ transform:rotate(-19deg) scaleY(.8);
+}
+.world-hub.s40-ready .s40-calibration::after{
+ content:"";position:absolute;inset:18% 10%;pointer-events:none;
+ border:1px dashed rgba(237,224,206,.17);border-radius:50%;
+ transform:rotate(27deg) scaleY(.8);
+}
+/* Printed cover is the original Webflow stage sheet; add only its edging. */
+.world-hub.s40-ready .stage-sheet{
+ border:1px solid rgba(35,52,41,.48);
+ box-shadow:0 7px 0 rgba(13,24,17,.13),0 42px 112px rgba(0,0,0,.4),
+            inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.world-hub.s40-ready .s40-cropmarks{
+ position:absolute;inset:11px;z-index:4;pointer-events:none;
+ border:1px solid rgba(28,43,32,.17);
+ background:
+   linear-gradient(var(--s40-ink),var(--s40-ink)) top left / 18px 1px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) top left / 1px 18px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) top right / 18px 1px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) top right / 1px 18px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) bottom left / 18px 1px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) bottom left / 1px 18px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) bottom right / 18px 1px no-repeat,
+   linear-gradient(var(--s40-ink),var(--s40-ink)) bottom right / 1px 18px no-repeat;
+ opacity:.48;
+}
+/* A translucent paper window passes over the existing illustration on selection.
+   Its transform is isolated to a child, never to the GSAP-controlled sheet. */
+.world-hub.s40-ready .s40-ink-wipe{
+ position:absolute;inset:0;z-index:6;pointer-events:none;
+ background:linear-gradient(109deg,transparent 0%,rgba(248,240,225,.10) 38%,var(--s40-metal) 57%,transparent 76%);
+ opacity:0;transform:translateX(-120%) skewX(-12deg);
+}
+.world-hub.s40-ready .s40-ink-wipe.is-flashing{
+ animation:s40-press 720ms cubic-bezier(.25,.6,.22,1) both;
+}
+@keyframes s40-press{
+ 0%{opacity:0;transform:translateX(-120%) skewX(-12deg)}
+ 24%{opacity:.28}
+ 72%{opacity:.18}
+ 100%{opacity:0;transform:translateX(130%) skewX(-12deg)}
+}
+.world-hub.s40-ready .s40-imprint{
+ position:absolute;z-index:4;left:0;top:0;
+ display:flex;align-items:center;gap:10px;
+ font:700 9px/1.3 monospace;letter-spacing:.17em;
+ color:var(--s40-metal);pointer-events:none;
+ text-shadow:0 2px 14px rgba(0,0,0,.3);
+}
+.world-hub.s40-ready .s40-imprint::before{
+ content:"";display:block;width:23px;height:1px;background:currentColor;
+}
+.world-hub.s40-ready .s40-side-notes{
+ position:absolute;z-index:4;right:-2%;bottom:1%;
+ display:flex;align-items:center;gap:14px;pointer-events:none;
+ font:700 9px/1.3 monospace;letter-spacing:.12em;color:#d7d3c9;
+}
+.world-hub.s40-ready .s40-side-notes strong{
+ font-weight:700;color:var(--s40-metal);
+}
+.world-hub.s40-ready .s40-edition{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;
+ position:absolute;left:10%;right:10%;bottom:0;z-index:2;
+ padding:0 2px 0;border-top:1px solid rgba(238,228,209,.33);
+ padding-top:7px;pointer-events:none;
+ font:700 9px/1.4 monospace;letter-spacing:.12em;color:#d1d0c7;
+}
+.world-hub.s40-ready .s40-edition .s40-edition-number{color:var(--s40-metal)}
+.world-hub.s40-ready .s40-edition-ticks{display:flex;gap:5px;align-items:center}
+.world-hub.s40-ready .s40-edition-ticks i{
+ display:block;width:15px;height:2px;background:rgba(230,224,207,.23);
+ transition:background .3s,width .3s;
+}
+.world-hub.s40-ready .s40-edition-ticks i.is-current{
+ background:var(--s40-metal);width:26px;
+}
+/* Colour grading of original artwork, without overlays obscuring its content. */
+.world-hub.s40-ready .s22-art{opacity:.95}
+.world-hub.s40-ready .s22-frame svg{
+ filter:drop-shadow(0 6px 7px rgba(14,27,20,.07));
+}
+.world-hub.s40-ready .stage-sheet-back{
+ box-shadow:0 20px 52px rgba(0,0,0,.24);
+}
+.world-hub.s40-ready .stage-overline{
+ font-weight:700;font-size:10px;letter-spacing:.18em;
+ color:var(--s40-ink);border-bottom-color:rgba(32,50,38,.42);
+}
+.world-hub.s40-ready .stage-word{
+ color:#15231b;text-shadow:0 1px 0 rgba(255,255,255,.5),0 0 14px var(--paper);
+}
+.world-hub.s40-ready .stage-caption{
+ color:#203528;line-height:1.4;
+}
+/* Final editorial balance: headline and Dossier occupy one quiet column.
+   The existing poster remains large, with no new text blocks in the hero. */
+@media(min-width:992px){
+ .world-hub.s40-ready .world-main>.world-title{
+   max-width:62%;
+   letter-spacing:-.088em;
+ }
+ .world-hub.s40-ready .world-main>.world-subtitle{max-width:405px}
+ .world-hub.s40-ready .world-main>.s31-dossier{
+   max-width:min(423px,44%);margin-top:clamp(19px,2.6vh,31px);
+ }
+ .world-hub.s40-ready .world-stage{
+   width:min(41vw,540px);
+   right:0;
+ }
+ .world-hub.s40-ready .s32-ghost{opacity:.58}
+}
+@media(min-width:992px) and (max-height:800px){
+ .world-hub.s40-ready .world-stage{width:min(38vw,490px)}
+ .world-hub.s40-ready .world-main>.s31-dossier{margin-top:12px}
+}
+@media(max-width:991px){
+ .world-hub.s40-ready .s40-imprint{left:7%;top:0}
+ .world-hub.s40-ready .s40-side-notes{right:8%;bottom:0}
+ .world-hub.s40-ready .s40-edition{left:12%;right:12%}
+ .world-hub.s40-ready .s40-calibration{opacity:.33}
+}
+@media(max-width:600px){
+ .world-hub.s40-ready .world-stage{filter:none}
+ .world-hub.s40-ready .s40-halo{opacity:.42}
+ .world-hub.s40-ready .s40-calibration{display:none}
+ .world-hub.s40-ready .s40-cropmarks{inset:8px;opacity:.3}
+ .world-hub.s40-ready .s40-imprint{font-size:8px;left:4%;top:2%}
+ .world-hub.s40-ready .s40-side-notes{display:none}
+ .world-hub.s40-ready .s40-edition{left:12%;right:12%;font-size:8px;bottom:0}
+ .world-hub.s40-ready .s40-edition-ticks i{width:9px}
+ .world-hub.s40-ready .s40-edition-ticks i.is-current{width:16px}
+ .world-hub.s40-ready .stage-sheet{box-shadow:0 3px 0 rgba(13,24,17,.12),0 22px 57px rgba(0,0,0,.3)}
+}
+@media(prefers-reduced-motion:reduce){
+ .world-hub.s40-ready .s40-ink-wipe{display:none!important}
+ .world-hub.s40-ready .s40-edition-ticks i{transition:none!important}
+}
