@@ -1,0 +1,126 @@
+/* STEP 47.1 — LAYOUT HOTFIX / HOME + PLACES
+   Addresses decorative line collisions on HOME and crowded PLACES header.
+   CSS only. Original GSAP, selected states and click handlers unchanged. */
+
+/* HOME — The Opening Spread already has a title rule and a Dossier divider.
+   Remove the additional frame borders, folio rule and navigation separator
+   that were competing with those existing lines. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .world-main::before{
+    border:0;
+    box-shadow:none;
+    clip-path:none;
+    background:radial-gradient(ellipse 60% 61% at 50% 45%,var(--s47-paper),transparent 82%);
+    opacity:.65;
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{
+    content:none!important;
+    display:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-links{
+    border-top:0;
+    padding-top:clamp(8px,1.5vh,17px);
+  }
+  .world-hub.s40-ready.s32-ready .world-links::before{
+    content:none!important;
+    display:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    background:var(--s47-accent);
+    width:clamp(78px,8vw,118px);
+    height:2px;
+  }
+}
+/* The persistent Connected Line can remain; its extra rail duplicates
+   the existing HOME header separators. */
+.world-hub.s43-connected .world-top>.s43-rail{display:none!important}
+.world-hub.s40-ready .s40-calibration{opacity:.21}
+.world-hub.s40-ready .world-stage::before{opacity:.36}
+
+/* PLACES — the original header needs only the brand and BACK button.
+   Keep the original bottom border, emblem and accessible navigation,
+   but remove the centered vector that competes for the same space. */
+.p14-world.s43-connected .p14-top>.s43-signal,
+.p14-world.s43-connected .p14-top>.s43-rail{
+  display:none!important;
+}
+.p14-world .p14-top{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) max-content;
+  align-items:center;
+  column-gap:clamp(9px,1.4vw,22px);
+  row-gap:9px;
+  min-height:50px;
+  isolation:isolate;
+}
+.p14-world .p14-top>.p14-brand{
+  min-width:0;
+  max-width:100%;
+  display:inline-flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:0;
+  font-size:inherit;
+  letter-spacing:.10em;
+  white-space:nowrap;
+}
+.p14-world .p14-top>.p14-back{
+  position:relative;
+  z-index:2;
+  min-width:max-content;
+  min-height:36px;
+  white-space:nowrap;
+  justify-self:end;
+  text-align:right;
+}
+/* On wide screens the old signature added a SECOND text label in
+   the brand, crowding the header. Keep its distinctive icon only. */
+.p14-world.s26-signed .p14-brand .s26-signature{
+  margin-left:10px;
+  padding-left:9px;
+  gap:0;
+  flex:0 0 auto;
+}
+.p14-world.s26-signed .p14-brand .s26-signature-type{
+  display:none!important;
+}
+.p14-world.s26-signed .p14-brand .s26-signature-icon{
+  width:28px;
+  height:28px;
+}
+/* The giant "03" from Step 46 may cross into the title's own top margin.
+   PLACES already has its chapter number in the eyebrow; avoid duplication. */
+.p14-world .p14-title::before{content:none!important;display:none!important}
+.p14-world .p14-title::after{
+  width:clamp(62px,8vw,105px);
+  height:2px;
+  bottom:-12px;
+}
+/* Preserve the original mobile header while preventing awkward wraps. */
+@media(max-width:700px){
+  .p14-world .p14-top{
+    grid-template-columns:minmax(0,1fr) auto;
+    column-gap:8px;
+    padding-bottom:13px;
+  }
+  .p14-world .p14-top>.p14-brand{
+    font-size:clamp(7px,2.35vw,9px);
+    letter-spacing:.055em;
+    white-space:normal;
+    overflow-wrap:normal;
+    line-height:1.35;
+  }
+  .p14-world .p14-top>.p14-back{
+    font-size:clamp(8px,2.4vw,10px);
+    letter-spacing:.04em;
+  }
+}
+@media(max-width:360px){
+  .p14-world .p14-top>.p14-brand{font-size:7.3px;letter-spacing:0}
+  .p14-world .p14-top>.p14-back{font-size:8px;letter-spacing:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.s40-ready.s32-ready .world-links .world-link{
+    transition:none!important;
+  }
+}
