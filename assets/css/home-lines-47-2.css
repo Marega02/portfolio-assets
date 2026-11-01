@@ -1,0 +1,43 @@
+/* STEP 47.2 — PRESERVED HOME HOTFIX
+   Maintains the approved HOME layout, without affecting other worlds.
+   CSS only. Original GSAP, selected states and click handlers unchanged. */
+
+/* HOME — The Opening Spread already has a title rule and a Dossier divider.
+   Remove the additional frame borders, folio rule and navigation separator
+   that were competing with those existing lines. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .world-main::before{
+    border:0;
+    box-shadow:none;
+    clip-path:none;
+    background:radial-gradient(ellipse 60% 61% at 50% 45%,var(--s47-paper),transparent 82%);
+    opacity:.65;
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{
+    content:none!important;
+    display:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-links{
+    border-top:0;
+    padding-top:clamp(8px,1.5vh,17px);
+  }
+  .world-hub.s40-ready.s32-ready .world-links::before{
+    content:none!important;
+    display:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    background:var(--s47-accent);
+    width:clamp(78px,8vw,118px);
+    height:2px;
+  }
+}
+/* The persistent Connected Line can remain; its extra rail duplicates
+   the existing HOME header separators. */
+.world-hub.s43-connected .world-top>.s43-rail{display:none!important}
+.world-hub.s40-ready .s40-calibration{opacity:.21}
+.world-hub.s40-ready .world-stage::before{opacity:.36}
+
+
+@media(prefers-reduced-motion:reduce){
+  .world-hub.s40-ready.s32-ready .world-links .world-link{transition:none!important}
+}
