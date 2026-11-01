@@ -1,0 +1,250 @@
+/* STEP 47 — THE OPENING SPREAD / FIRST IMPRESSION
+   A decisive ART-BOOK layout intervention on the existing home.
+   CSS ONLY: no JS, new DOM elements, observers, requestAnimationFrame or GSAP changes.
+   Original stage rotations, title animation, Live Dossier and links remain intact. */
+
+/* A consistent chromatic editorial system follows the selected universe. */
+.world-hub.s40-ready.s32-ready{
+  --s47-accent:#dfaa83;
+  --s47-folio:"01";
+  --s47-paper:rgba(221,178,140,.11);
+  --s47-line:rgba(227,200,168,.34);
+}
+.world-hub.s40-ready.s32-ready[data-s40-scene="sound"]{
+  --s47-accent:#bad5b4;--s47-folio:"02";
+  --s47-paper:rgba(153,198,160,.11);--s47-line:rgba(180,222,184,.30);
+}
+.world-hub.s40-ready.s32-ready[data-s40-scene="places"]{
+  --s47-accent:#b4d1df;--s47-folio:"03";
+  --s47-paper:rgba(143,189,205,.12);--s47-line:rgba(180,216,226,.30);
+}
+.world-hub.s40-ready.s32-ready[data-s40-scene="about"]{
+  --s47-accent:#eab3a4;--s47-folio:"04";
+  --s47-paper:rgba(214,161,149,.11);--s47-line:rgba(237,190,179,.31);
+}
+
+/* Desktop: the main artwork becomes the second page of an exhibition spread.
+   Pseudo-elements lie BEHIND the artwork and all interactive content. */
+@media(min-width:1150px) and (min-height:720px){
+  .world-hub.s40-ready.s32-ready .world-main{
+    position:relative;
+    isolation:isolate;
+  }
+  .world-hub.s40-ready.s32-ready .world-main::before{
+    content:"";position:absolute;
+    z-index:0;pointer-events:none;user-select:none;
+    inset:-7% -2% -7% 52%;
+    background:
+      linear-gradient(142deg,rgba(255,255,255,.025),transparent 54%),
+      radial-gradient(ellipse 60% 61% at 49% 45%,var(--s47-paper),transparent 88%);
+    border-top:1px solid var(--s47-line);
+    border-right:1px solid color-mix(in srgb,var(--s47-line) 45%,transparent);
+    border-bottom:1px solid var(--s47-line);
+    clip-path:polygon(10% 0%,100% 0%,100% 100%,0% 100%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{
+    content:"LM / " var(--s47-folio) "    —    THE OPENING SPREAD";
+    position:absolute;z-index:0;pointer-events:none;user-select:none;
+    right:1%;bottom:-6%;max-width:40%;
+    color:var(--s47-accent);opacity:.75;
+    font:700 9px/1.4 monospace;letter-spacing:.20em;
+    white-space:nowrap;text-align:right;
+    border-top:1px solid var(--s47-line);
+    padding-top:12px;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-title{
+    max-width:58%;
+    font-size:clamp(73px,7.6vw,132px);
+    line-height:.86;
+    letter-spacing:-.093em;
+    color:#f5f0e8;
+    text-shadow:none;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-subtitle{
+    max-width:400px;
+    color:#e0ddd2;
+    font-size:clamp(13px,1.04vw,16px);
+    line-height:1.74;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.s31-dossier{
+    max-width:min(425px,42%);
+    margin-top:clamp(18px,2.6vh,28px);
+    border-top-color:var(--s47-line);
+  }
+  .world-hub.s40-ready.s32-ready .world-stage{
+    right:0.5%;width:min(41vw,530px);
+    height:clamp(390px,39vw,475px);
+  }
+  .world-hub.s40-ready.s32-ready .s32-ghost{
+    opacity:.42;
+    right:-1%;
+    -webkit-text-stroke:1px rgba(244,235,220,.16);
+  }
+  .world-hub.s40-ready.s32-ready .s40-calibration{opacity:.28}
+  .world-hub.s40-ready.s32-ready .s40-halo{opacity:.63}
+}
+/* A more ambitious poster silhouette without modifying its GSAP transform. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .stage-sheet{
+    border:1px solid rgba(35,53,42,.55);
+    box-shadow:0 5px 0 rgba(13,23,16,.16),
+      13px 17px 0 -8px rgba(235,224,203,.12),
+      0 46px 115px rgba(0,0,0,.36);
+  }
+  .world-hub.s40-ready.s32-ready .stage-sheet-back{
+    border-color:color-mix(in srgb,var(--s47-accent) 33%,transparent);
+    box-shadow:0 20px 52px rgba(0,0,0,.20);
+  }
+  .world-hub.s40-ready.s32-ready .stage-overline{
+    letter-spacing:.21em;
+    color:#1a2d21;
+  }
+  .world-hub.s40-ready.s32-ready .stage-word{
+    color:#14281b;
+    text-shadow:0 1px 0 rgba(255,255,255,.65),0 0 15px var(--paper);
+  }
+  .world-hub.s40-ready.s32-ready .stage-caption{
+    color:#1c3325;line-height:1.53;
+  }
+}
+
+/* A crisp editorial eyebrow and a legible reading rail. */
+.world-hub.s40-ready.s32-ready .world-main>.world-eyebrow{
+  letter-spacing:.24em;
+  color:var(--s47-accent);
+}
+.world-hub.s40-ready.s32-ready .world-main>.world-eyebrow::before{
+  width:34px;background:var(--s47-accent);
+}
+.world-hub.s40-ready.s32-ready .world-main>.world-title .s32-title-highlight{
+  color:var(--s47-accent);
+  text-shadow:0 13px 40px color-mix(in srgb,var(--s47-accent) 8%,transparent);
+}
+.world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+  background:linear-gradient(90deg,var(--s47-accent) 0 55%,transparent 55% 63%,var(--s47-accent) 63% 100%);
+  height:3px;
+  width:clamp(90px,11vw,156px);
+  box-shadow:none;
+}
+
+/* Existing Live Dossier gains a coherent editorial spine, no new controls. */
+.world-hub.s40-ready.s31-ready .world-main>.s31-dossier{
+  border-top:1px solid var(--s47-line);
+}
+.world-hub.s40-ready.s31-ready .s31-head{
+  color:#c8cbc1;
+}
+.world-hub.s40-ready.s31-ready .s31-headline{
+  font-weight:650;
+  letter-spacing:-.075em;
+}
+.world-hub.s40-ready.s31-ready .s31-actions{
+  border-top-color:var(--s47-line);
+}
+.world-hub.s40-ready.s31-ready .s31-enter{
+  border-color:var(--s47-line);
+  min-height:44px;
+}
+
+/* Navigation below the spread reads as a curated exhibition index.
+   Original columns, links, click handlers and focus behaviour are preserved. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .world-links{
+    position:relative;
+    padding-top:clamp(15px,2.2vh,26px);
+    border-top:1px solid rgba(237,226,211,.22);
+  }
+  .world-hub.s40-ready.s32-ready .world-links::before{
+    content:"FOUR WORLDS   /   ONE CREATIVE UNIVERSE";
+    position:absolute;z-index:0;pointer-events:none;
+    left:0;top:-20px;
+    color:#bdbeb6;
+    font:700 9px/1.2 monospace;letter-spacing:.16em;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link{
+    min-width:0;
+    padding-left:clamp(10px,1.1vw,20px);
+    padding-right:clamp(9px,1vw,18px);
+    border-left:1px solid rgba(232,222,208,.14);
+    background:linear-gradient(150deg,rgba(240,231,210,.014),transparent 67%);
+    transition:border-color .3s ease,background-color .3s ease;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link.is-s31-current{
+    border-left-color:var(--s47-accent);
+    background:linear-gradient(140deg,color-mix(in srgb,var(--s47-accent) 7%,transparent),transparent 76%);
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link::after{
+    content:"";position:absolute;pointer-events:none;
+    right:clamp(9px,1vw,16px);top:clamp(13px,1.8vh,23px);
+    width:6px;height:6px;border-radius:50%;
+    background:var(--s47-accent);opacity:0;
+    box-shadow:0 0 0 5px color-mix(in srgb,var(--s47-accent) 13%,transparent);
+    transition:opacity .26s;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link.is-s31-current::after,
+  .world-hub.s40-ready.s32-ready .world-links .world-link:hover::after,
+  .world-hub.s40-ready.s32-ready .world-links .world-link:focus-visible::after{
+    opacity:1;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-index{
+    color:var(--s47-accent);
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-name{
+    color:#f4efe5;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-description{
+    color:#c7c5bb;
+    line-height:1.55;
+  }
+}
+/* Short displays don't get additional decoration or compression risks. */
+@media(min-width:992px) and (max-height:780px){
+  .world-hub.s40-ready.s32-ready .world-main>.world-title{
+    font-size:clamp(66px,6.6vw,105px);
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.s31-dossier{
+    margin-top:10px;
+  }
+  .world-hub.s40-ready.s32-ready .world-stage{
+    height:clamp(315px,36vw,424px);
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{display:none}
+}
+@media(max-width:991px){
+  /* Preserve the tested tablet/mobile flow entirely. */
+  .world-hub.s40-ready.s32-ready .world-main::before,
+  .world-hub.s40-ready.s32-ready .world-main::after,
+  .world-hub.s40-ready.s32-ready .world-links::before,
+  .world-hub.s40-ready.s32-ready .world-links .world-link::after{
+    content:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-eyebrow{
+    letter-spacing:.13em;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-eyebrow::before{width:19px}
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    height:2px;width:76px;margin-top:13px;
+  }
+  .world-hub.s40-ready.s31-ready .world-main>.s31-dossier{
+    max-width:min(100%,650px);width:100%;
+  }
+}
+@media(max-width:600px){
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    width:61px;height:2px;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-subtitle{line-height:1.65}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.s40-ready.s32-ready .world-links .world-link,
+  .world-hub.s40-ready.s32-ready .world-links .world-link::after{
+    transition:none!important;
+  }
+}
+@media(prefers-contrast:more){
+  .world-hub.s40-ready.s32-ready .world-main>.world-title,
+  .world-hub.s40-ready.s32-ready .world-links .world-name{color:#fff}
+  .world-hub.s40-ready.s32-ready .world-links .world-description{color:#eee}
+  .world-hub.s40-ready.s32-ready .world-main::before{background:transparent}
+}
