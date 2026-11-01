@@ -1,0 +1,213 @@
+/* STEP 46 — THE FINAL EDIT / EDITORIAL ART DIRECTION
+   No JavaScript, observers, timers, new downloads, or GSAP modifications.
+   An intentional typography + hierarchy pass across four worlds.
+   The existing Studio Focus and accessibility settings continue to apply. */
+
+/* ONE EDITORIAL GRAMMAR, FOUR DISTINCT TONES */
+.work-world{--s46-accent:var(--s37-tone,#a56a4b);--s46-rule:rgba(98,79,65,.23)}
+.sound-world{--s46-accent:var(--sound-accent,#c6baa4);--s46-rule:rgba(239,227,213,.27)}
+.p14-world{--s46-accent:var(--p14-accent,#557563);--s46-rule:rgba(58,82,67,.23)}
+.a17-world{--s46-accent:var(--a17-accent,#e7b69c);--s46-rule:rgba(239,227,211,.28)}
+
+/* Four monumental title treatments, using the original text elements. */
+.work-world .work-title,
+.sound-world .sound-title,
+.p14-world .p14-title,
+.a17-world .a17-title{
+  position:relative;
+  isolation:isolate;
+  text-wrap:balance;
+}
+.work-world .work-title{color:#242620;letter-spacing:-.086em;line-height:.89}
+.sound-world .sound-title{color:#f5efe5;letter-spacing:-.085em}
+.p14-world .p14-title{letter-spacing:-.085em!important;color:#252c27!important}
+.a17-world .a17-title{color:#f6f1e8;letter-spacing:-.087em}
+
+/* A characteristic split registration line beneath the original titles.
+   Absolute positioning does not increase block height or shift GSAP content. */
+.work-world .work-title::after,
+.sound-world .sound-title::after,
+.p14-world .p14-title::after,
+.a17-world .a17-title::after{
+  content:"";position:absolute;left:0;bottom:-17px;
+  width:clamp(96px,13vw,185px);height:3px;
+  background:linear-gradient(90deg,var(--s46-accent) 0 58%,transparent 58% 62%,var(--s46-accent) 62% 67%,transparent 67% 71%,var(--s46-accent) 71% 100%);
+  pointer-events:none;
+  opacity:.95;
+}
+.sound-world .sound-title::after{bottom:-19px;width:clamp(110px,14vw,175px)}
+.p14-world .p14-title::after{bottom:-15px}
+.a17-world .a17-title::after{bottom:-18px}
+
+/* Book-cover numerals: visual composition only.
+   Far lighter than another illustration, with no extra SVG or image requests. */
+@media(min-width:1200px) and (min-height:740px){
+  .work-world .work-title::before,
+  .sound-world .sound-title::before,
+  .p14-world .p14-title::before,
+  .a17-world .a17-title::before{
+    position:absolute;
+    z-index:-1;
+    right:0;top:-.40em;
+    font:800 clamp(88px,10vw,168px)/1 Arial,Helvetica,sans-serif;
+    letter-spacing:-.11em;
+    color:transparent;
+    -webkit-text-stroke:1px var(--s46-accent);
+    opacity:.23;
+    pointer-events:none;
+    user-select:none;
+    transform:none;
+  }
+  .work-world .work-title::before{content:"01"}
+  .sound-world .sound-title::before{content:"02"}
+  .p14-world .p14-title::before{content:"03"}
+  .a17-world .a17-title::before{content:"04"}
+}
+
+/* Supporting text reads like editorial copy, not small UI labels. */
+.work-world .work-intro{
+  max-width:445px;
+  color:#4c4840;
+  line-height:1.75;
+  letter-spacing:.002em;
+}
+.sound-world .sound-description{
+  max-width:420px;
+  color:#e5e2d9;
+  line-height:1.72;
+  letter-spacing:.004em;
+}
+.p14-world .p14-intro{
+  max-width:450px;
+  color:#4b5047;
+  line-height:1.76;
+  letter-spacing:.002em;
+}
+.a17-world .a17-lead{
+  max-width:560px;
+  color:#e7e6de;
+  line-height:1.72;
+  letter-spacing:.002em;
+}
+/* Titles and descriptions need air: preserve current containers/grid dimensions. */
+.work-world .work-intro,
+.sound-world .sound-description,
+.p14-world .p14-intro,
+.a17-world .a17-lead{overflow-wrap:break-word}
+
+/* Treat selectable rows as an editorial table of contents.
+   Keep original clickable elements, current state and hit targets untouched. */
+.work-world .work-project,
+.sound-world .sound-mood,
+.p14-world .p14-choice,
+.a17-world .a17-mode{
+  -webkit-tap-highlight-color:transparent;
+  outline-offset:4px;
+}
+.work-world .work-project.is-current,
+.sound-world .sound-mood.is-current,
+.p14-world .p14-choice.is-selected,
+.a17-world .a17-mode.is-selected{
+  box-shadow:inset 0 -1px 0 var(--s46-accent);
+}
+.work-world .work-project.is-current .project-title,
+.sound-world .sound-mood.is-current .sound-mood-name,
+.p14-world .p14-choice.is-selected .p14-choice-name{
+  letter-spacing:-.065em;
+}
+.a17-world .a17-mode.is-selected{
+  border-color:var(--s46-accent);
+}
+/* Make keyboard focus unmissable without animating the selected item. */
+.work-world .work-project:focus-visible,
+.sound-world .sound-mood:focus-visible,
+.p14-world .p14-choice:focus-visible,
+.a17-world .a17-mode:focus-visible{
+  outline:2px solid var(--s46-accent);
+}
+
+/* The presentation surface is the subject, not another heavy shadow layer. */
+.work-world .work-preview{
+  border:1px solid color-mix(in srgb,var(--s46-accent) 40%,transparent);
+}
+.p14-world .p14-postcard{
+  outline:1px solid color-mix(in srgb,var(--s46-accent) 30%,transparent);
+  outline-offset:4px;
+}
+.a17-world .a17-card{
+  outline:1px solid color-mix(in srgb,var(--s46-accent) 26%,transparent);
+  outline-offset:4px;
+}
+
+/* Reduce repetition across accumulated art layers in the original cinematic mode.
+   Keep the essential subject, signature and interaction cues fully visible. */
+.work-world.s37-ready .s23-preview-decor{opacity:.23}
+.sound-world.s24-ready .s24-technical-ring{opacity:.30}
+.sound-world.s37-ready .sound-orbit{opacity:.55}
+.p14-world.s25-ready .p14-layout::before{opacity:.26}
+.p14-world.s37-ready .p25-card-traces{opacity:.25}
+.a17-world.s37-ready .a17-backdrop{opacity:.45}
+
+/* The explicit Focus mode stays even quieter, retaining the selected-state cue. */
+body.s41-studio-focus .work-world.s37-ready .s23-preview-decor,
+body.s41-studio-focus .sound-world.s24-ready .s24-technical-ring,
+body.s41-studio-focus .p14-world.s37-ready .p25-card-traces{
+  opacity:.06!important;
+}
+
+/* Laptops with limited vertical space: no extra numerals or crowded title rules. */
+@media(max-height:740px){
+  .work-world .work-title::after,
+  .sound-world .sound-title::after,
+  .p14-world .p14-title::after,
+  .a17-world .a17-title::after{
+    bottom:-10px;height:2px;width:80px;
+  }
+}
+@media(max-width:991px){
+  .work-world .work-title::before,
+  .sound-world .sound-title::before,
+  .p14-world .p14-title::before,
+  .a17-world .a17-title::before{content:none!important}
+  .work-world .work-title::after,
+  .sound-world .sound-title::after,
+  .p14-world .p14-title::after,
+  .a17-world .a17-title::after{bottom:-12px;width:76px;height:2px}
+  .work-world .work-intro,.sound-world .sound-description,
+  .p14-world .p14-intro,.a17-world .a17-lead{
+    line-height:1.65;max-width:100%;
+  }
+  .p14-world .p14-postcard,
+  .a17-world .a17-card{outline-offset:2px}
+}
+@media(max-width:600px){
+  .work-world .work-title,
+  .sound-world .sound-title,
+  .p14-world .p14-title,
+  .a17-world .a17-title{letter-spacing:-.075em}
+  .work-world .work-title::after,
+  .sound-world .sound-title::after,
+  .p14-world .p14-title::after,
+  .a17-world .a17-title::after{bottom:-9px;width:55px;height:2px;opacity:.75}
+  .work-world .work-preview{border:0}
+  .p14-world .p14-postcard,
+  .a17-world .a17-card{outline:0}
+  .work-world .work-intro,.sound-world .sound-description,
+  .p14-world .p14-intro,.a17-world .a17-lead{letter-spacing:0}
+}
+@media(prefers-contrast:more){
+  .work-world .work-title::before,
+  .sound-world .sound-title::before,
+  .p14-world .p14-title::before,
+  .a17-world .a17-title::before{content:none!important}
+  .work-world .work-intro{color:#20251f}
+  .sound-world .sound-description{color:#fff}
+  .p14-world .p14-intro{color:#212c24}
+  .a17-world .a17-lead{color:#fff}
+}
+@media(prefers-reduced-motion:reduce){
+  .work-world .work-project,
+  .sound-world .sound-mood,
+  .p14-world .p14-choice,
+  .a17-world .a17-mode{transition:none!important}
+}
