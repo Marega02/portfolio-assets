@@ -1,0 +1,99 @@
+/* HOTFIX 47.1 — HOME LINE COLLISIONS + PLACES HEADER
+   Surgical CSS overrides. No JS, navigation or GSAP changes. */
+
+/* HOME: keep one clean separator per editorial region, not multiple
+   competing lines from the header signature and Step 47 decoration. */
+@media(min-width:992px){
+ .world-hub.s40-ready.s32-ready .world-links{
+   border-top:0;
+   padding-top:clamp(14px,2vh,22px);
+ }
+ .world-hub.s40-ready.s32-ready .world-links::before{
+   top:-12px;
+   left:0;
+   background:#191b1b;
+   padding-right:14px;
+   z-index:1;
+ }
+ .world-hub.s40-ready.s32-ready .world-main::after{
+   border-top:0;
+   padding-top:0;
+   bottom:-4%;
+ }
+ .world-hub.s40-ready.s32-ready .world-links .world-link{
+   border-left:0;
+   padding-left:clamp(5px,.7vw,12px);
+ }
+}
+/* The World Index / connected signature rail stays visually separate
+   from HOME's main editorial heading and index. */
+.world-hub.s43-connected .world-top>.s43-rail{
+  opacity:.28;
+  bottom:-5px;
+}
+/* The heading already has its own registration rule: keep the Dossier
+   separator lower and lighter rather than stacking two heavy rules. */
+.world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+  width:clamp(76px,8vw,116px);
+  height:2px;
+  margin-top:clamp(11px,1.4vh,16px);
+}
+.world-hub.s40-ready.s31-ready .world-main>.s31-dossier{
+  border-top-color:rgba(237,226,211,.20);
+}
+
+/* PLACES: brand on left, BACK on right. Decorative signatures must
+   not occupy the header's middle lane or force a line wrap. */
+.p14-world .p14-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+  gap:clamp(10px,2vw,25px);
+  min-width:0;
+  isolation:isolate;
+  padding-bottom:clamp(12px,1.6vh,16px);
+}
+.p14-world .p14-top .p14-brand{
+  flex:1 1 auto;
+  min-width:0;
+  white-space:normal;
+  line-height:1.5;
+  max-width:calc(100% - 145px);
+  position:relative;
+  z-index:2;
+}
+.p14-world .p14-top .p14-back{
+  flex:0 0 auto;
+  position:relative;
+  z-index:3;
+  white-space:nowrap;
+  text-align:right;
+  min-height:40px;
+}
+.p14-world.s26-signed .p14-brand>.s26-signature{
+  margin-left:clamp(8px,1vw,15px);
+  padding-left:clamp(8px,1vw,15px);
+  gap:5px;
+}
+.p14-world.s26-signed .p14-brand .s26-signature-icon{
+  width:29px;height:29px;
+}
+.p14-world.s26-signed .p14-brand .s26-signature-type{
+  display:none;
+}
+/* Remove only the central decorative curve in PLACES' crowded header.
+   The same connected identity remains visible elsewhere in the site. */
+.p14-world.s43-connected .p14-top>.s43-signal,
+.p14-world.s43-connected .p14-top>.s43-rail{
+  display:none!important;
+}
+@media(max-width:700px){
+ .p14-world .p14-top .p14-brand{font-size:9px;letter-spacing:.07em;max-width:calc(100% - 105px)}
+ .p14-world .p14-top .p14-back{font-size:9px;letter-spacing:.05em}
+}
+@media(max-width:390px){
+ .p14-world .p14-top{gap:8px}
+ .p14-world .p14-top .p14-brand{font-size:8px;max-width:calc(100% - 92px)}
+ .p14-world .p14-top .p14-back{font-size:8px;letter-spacing:0}
+}
