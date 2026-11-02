@@ -1,0 +1,44 @@
+/* STEP 49 — INTUITIVE DETAILS / CALM INTERACTIONS
+   Progressive enhancement of existing controls. No layout or GSAP changes.
+   Hover affordances limited to devices that actually support hovering. */
+@media (hover:hover) and (pointer:fine) {
+ .work-world .work-project,
+ .sound-world .sound-mood,
+ .p14-world .p14-choice,
+ .a17-world .a17-mode,
+ .w19-root .w19-link {
+   cursor:pointer;
+ }
+ .work-world .work-project:not(.is-current):hover,
+ .sound-world .sound-mood:not(.is-current):hover,
+ .p14-world .p14-choice:not(.is-selected):hover {
+   background-color:rgba(130,135,115,.045);
+ }
+ .work-world .work-project:not(.is-current):hover .project-title,
+ .sound-world .sound-mood:not(.is-current):hover .sound-mood-name,
+ .p14-world .p14-choice:not(.is-selected):hover .p14-choice-name {
+   text-decoration:underline;
+   text-decoration-thickness:1px;
+   text-underline-offset:.22em;
+ }
+}
+.work-world .work-project:focus-visible,
+.sound-world .sound-mood:focus-visible,
+.p14-world .p14-choice:focus-visible,
+.a17-world .a17-mode:focus-visible,
+.w19-root .w19-link:focus-visible,
+.w19-root .w19-close:focus-visible,
+.p14-world .p14-back:focus-visible {
+ outline:2px solid currentColor;
+ outline-offset:4px;
+}
+.p14-world .p14-choice{touch-action:manipulation}
+@media(max-width:600px){
+ .p14-world .p14-choice{min-height:48px}
+ .p14-world .p14-back{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+ .work-world .work-project,
+ .sound-world .sound-mood,
+ .p14-world .p14-choice{transition:none!important}
+}
