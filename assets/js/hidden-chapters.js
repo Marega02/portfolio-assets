@@ -1,4 +1,4 @@
-/* STEP 34 — HIDDEN CHAPTERS. Optional, local editorial discovery panels. */
+/* STEP 34.2 — HIDDEN CHAPTERS. Enabled only in WORK, SOUND and ABOUT; PLACES removed. */
 (() => {
 const svg={
 work:'<svg viewBox="0 0 240 240" aria-hidden="true"><g class="s34-spin"><rect class="s34-line" x="43" y="43" width="154" height="154" transform="rotate(-12 120 120)"/><rect class="s34-thin" x="65" y="65" width="110" height="110"/><path class="s34-line" d="M43 120H197M120 43V197"/><circle class="s34-fill" cx="120" cy="120" r="8"/></g></svg>',
@@ -13,7 +13,7 @@ places:{title:"NOT JUST",second:"COORDINATES.",code:"03 / THE WANDERER",steps:[[
 about:{title:"MORE THAN",second:"A TITLE.",code:"04 / THE HUMAN",steps:[["THE MAKER","An interest in building interfaces that feel personal rather than merely functional.","NOTE / 01"],["THE LISTENER","Music feeds the visual imagination: rhythm, atmosphere, contrast, repetition.","NOTE / 02"],["THE EXPLORER","Travel and curiosity offer new ways of seeing, questioning and making things.","NOTE / 03"]]}
 };
 function init(){
-const specs=[["work",".work-world",".work-top",".work-back"],["sound",".sound-world",".sound-top",".sound-back"],["places",".p14-world",".p14-top",".p14-back"],["about",".a17-world",".a17-header",".a17-back"]];
+const specs=[["work",".work-world",".work-top",".work-back"],["sound",".sound-world",".sound-top",".sound-back"],["about",".a17-world",".a17-header",".a17-back"]];
 const roots=specs.map(s=>document.querySelector(s[1]));
 if(roots.some(x=>!x)||document.querySelector(".s34-overlay"))return;
 const triggerEntries=[];
