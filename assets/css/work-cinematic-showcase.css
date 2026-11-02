@@ -1,0 +1,73 @@
+/* STEP 50 — WORK / CINEMATIC SHOWCASE
+   Intentional photography-driven transitions using the existing three previews.
+   NO JS, new overlays in the DOM, extra controls, image downloads, layout moves
+   or changes to GSAP-owned preview frame transforms. */
+
+@media(min-width:992px) and (hover:hover) and (pointer:fine){
+  /* The screenshot reveals itself like a camera settling into the composition.
+     Animate the INNER IMAGE only. GSAP still owns parallax of its wrapper. */
+  .work-world.is-active .preview-visual.is-visible .preview-image{
+    transform-origin:50% 38%;
+    animation:s50-camera-settle 1050ms cubic-bezier(.17,.76,.22,1) both;
+    backface-visibility:hidden;
+  }
+
+  /* A single soft light pass follows a newly selected frame.
+     This pseudo-element is inside the image frame, never over the title or CTA. */
+  .work-world .preview-visual{isolation:isolate}
+  .work-world .preview-visual::after{
+    content:"";
+    position:absolute;inset:-15% auto -15% 0;
+    z-index:2;
+    width:42%;
+    background:linear-gradient(90deg,transparent,rgba(255,249,237,.17) 45%,rgba(255,255,255,.05) 65%,transparent);
+    opacity:0;
+    pointer-events:none;
+    transform:translate3d(-160%,0,0) skewX(-13deg);
+  }
+  .work-world.is-active .preview-visual.is-visible::after{
+    animation:s50-gallery-glint 950ms cubic-bezier(.2,.6,.2,1) 100ms both;
+  }
+
+  /* The selected project gets a refined gallery-line cue, not another label. */
+  .work-world.s23-ready .work-project.is-current{
+    border-top-color:#a56a4b;
+    box-shadow:inset 0 -1px 0 rgba(165,106,75,.14);
+  }
+  .work-world.s23-ready .work-project:not(.is-current):hover{
+    border-top-color:rgba(165,106,75,.65);
+  }
+}
+@keyframes s50-camera-settle{
+  0%{transform:scale(1.075);filter:saturate(.82) brightness(.93)}
+  50%{filter:saturate(.99) brightness(1)}
+  100%{transform:scale(1);filter:saturate(1) brightness(1)}
+}
+@keyframes s50-gallery-glint{
+  0%{opacity:0;transform:translate3d(-160%,0,0) skewX(-13deg)}
+  28%{opacity:.7}
+  73%{opacity:.35}
+  100%{opacity:0;transform:translate3d(340%,0,0) skewX(-13deg)}
+}
+
+/* Labels and original open-project CTA always remain above the photograph. */
+.work-world .preview-visuals{pointer-events:none}
+.work-world .case-open{z-index:10}
+
+/* Touch devices: leave the proven Webflow/GSAP gallery untouched. */
+@media(max-width:991px),(hover:none),(pointer:coarse){
+  .work-world .preview-visual.is-visible .preview-image{
+    animation:none!important;
+    filter:none!important;
+  }
+  .work-world .preview-visual::after{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .work-world .preview-visual.is-visible .preview-image{
+    animation:none!important;filter:none!important;transform:none!important;
+  }
+  .work-world .preview-visual::after{display:none!important}
+}
+@media(prefers-contrast:more){
+  .work-world .preview-visual::after{display:none!important}
+}
