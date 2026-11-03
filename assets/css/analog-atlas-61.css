@@ -1,0 +1,25 @@
+/* STEP 61 — ANALOG / ATLAS: scoped artwork only */
+.sound-world.s61-sound-ready .sound-record > .s61-groove-etch {
+  position:absolute; inset:5%; display:block; border-radius:50%;
+  z-index:1; opacity:.24; pointer-events:none;
+  background:
+    conic-gradient(from 30deg,transparent 0deg,rgba(255,243,220,.27) 29deg,transparent 59deg,transparent 174deg,rgba(255,243,220,.22) 208deg,transparent 238deg),
+    repeating-radial-gradient(circle at center,transparent 0px,transparent 5px,rgba(247,239,216,.15) 5.5px,transparent 6.2px,transparent 12px);
+  -webkit-mask-image:radial-gradient(circle at center,transparent 0 26%,#000 37% 97%,transparent 100%);
+  mask-image:radial-gradient(circle at center,transparent 0 26%,#000 37% 97%,transparent 100%);
+  mix-blend-mode:screen;
+}
+.sound-world.s61-sound-ready .sound-record > .sound-record-core {position:relative;z-index:2}
+.sound-world.s61-sound-ready .s24-current-spectrum {border-top-color:color-mix(in srgb,var(--sound-accent) 39%,transparent)}
+.p14-world.s61-places-ready .p14-postcard > .s61-exposure {
+  position:absolute;inset:0;z-index:3;display:block;pointer-events:none;user-select:none;opacity:0;
+  background:linear-gradient(105deg,transparent 12%,rgba(255,251,233,.13) 36%,rgba(255,248,229,.31) 47%,rgba(255,252,241,.14) 60%,transparent 86%);
+  mix-blend-mode:screen;
+}
+.p14-world.s61-places-ready .p14-card-top,
+.p14-world.s61-places-ready .p14-card-bottom {z-index:4}
+@media(max-width:700px){.sound-world.s61-sound-ready .sound-record > .s61-groove-etch{opacity:.18}}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .sound-world.s61-sound-ready .sound-record > .s61-groove-etch,
+  .p14-world.s61-places-ready .p14-postcard > .s61-exposure{display:none!important}
+}
