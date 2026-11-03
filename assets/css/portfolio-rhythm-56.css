@@ -1,0 +1,187 @@
+/* STEP 56 — SPATIAL RHYTHM / ONE PORTFOLIO
+   Scope: breathing room, quiet visual coherence and accessible motion.
+   No modifications to original GSAP targets, routes, media or case content.
+*/
+
+/* 01 — WORK: solve the old full-height grid plus oversized preview conflict.
+   Let the chapter itself scroll naturally and always finish with clear space. */
+@media (min-width: 992px) {
+  .work-world {
+    box-sizing: border-box;
+    grid-template-rows: auto auto auto;
+    align-content: start;
+    row-gap: clamp(17px, 2.25vh, 29px);
+    height: 100dvh;
+    min-height: 0;
+    padding: clamp(24px, 3.1vh, 38px) clamp(32px, 3.5vw, 60px)
+             clamp(72px, 9vh, 120px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+  .work-world .work-main {
+    padding: clamp(13px, 2.4vh, 30px) 0 clamp(4px, 1.2vh, 15px);
+  }
+  .work-world .work-showcase {
+    height: auto;
+    min-height: 0;
+    align-items: start;
+    padding-bottom: clamp(16px, 2.2vh, 28px);
+  }
+  .work-world .work-projects {
+    height: auto;
+    min-height: 0;
+    align-self: start;
+  }
+  .work-world .work-project {
+    flex: 0 0 auto;
+    min-height: clamp(118px, 13vh, 152px);
+  }
+  .work-world .work-preview {
+    position: relative;
+    top: auto;
+    height: clamp(430px, 51vh, 600px);
+    min-height: 430px;
+    align-self: start;
+  }
+}
+@media (min-width: 992px) and (max-height: 760px) {
+  .work-world .work-preview {
+    height: clamp(360px, 50vh, 440px);
+    min-height: 360px;
+  }
+  .work-world .work-title {
+    font-size: clamp(58px, min(7vw, 10vh), 106px);
+  }
+  .work-world .work-main {
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+}
+@media (max-width: 991px) {
+  .work-world {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    overscroll-behavior-y: contain;
+  }
+  .work-world .work-showcase {
+    padding-bottom: clamp(12px, 3vh, 27px);
+  }
+}
+@media (max-width: 600px) {
+  .work-world .work-main { padding-bottom: clamp(28px, 5vh, 48px); }
+  .work-world .work-preview { margin-bottom: 12px; }
+}
+
+/* 02 — A small, consistent animated signature appears beneath the chapter
+   header. This is a decorative child, never a new interaction target. */
+.world-hub .world-top,
+.work-world .work-top,
+.sound-world .sound-top,
+.p14-world .p14-top,
+.a17-world .a17-header { position: relative; }
+
+.s56-header-line {
+  position: absolute;
+  inset: auto auto -1px 0;
+  z-index: 5;
+  display: block;
+  width: clamp(65px, 9vw, 150px);
+  height: 2px;
+  background: var(--s56-line-color, #dfa98d);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.world-hub { --s56-line-color: #e1ae8a; }
+.work-world { --s56-line-color: #e1a58a; }
+.sound-world { --s56-line-color: var(--sound-accent, #d2a78f); }
+.p14-world { --s56-line-color: var(--p14-accent, #426c5e); }
+.a17-world { --s56-line-color: var(--a17-accent, #e9b28e); }
+.world-hub .s56-header-line,
+.work-world.is-active .s56-header-line,
+.sound-world.is-active .s56-header-line,
+.p14-world.is-active .s56-header-line,
+.a17-world.is-active .s56-header-line {
+  animation: s56-draw .78s cubic-bezier(.22,1,.36,1) .12s both;
+}
+@keyframes s56-draw {
+  from { transform: scaleX(0); opacity: .35; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+/* 03 — Sound: subtle hierarchy at the selection point, not a new
+   animation loop over the existing vinyl and spectrum. */
+.sound-world .sound-mood.is-current {
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--sound-accent, #d2a78f) 10%, transparent),
+    transparent 79%);
+}
+.sound-world .sound-bottom {
+  padding-top: clamp(16px, 2.3vh, 27px);
+  padding-bottom: clamp(15px, 3vh, 35px);
+}
+.sound-world .sound-description { text-wrap: pretty; }
+
+/* 04 — Places: let the illustration and the field note breathe.
+   No changes to place choice, animated scene transforms or journal. */
+.p14-world .p14-below {
+  margin-top: clamp(26px, 3vw, 43px);
+  padding-bottom: clamp(16px, 3vh, 36px);
+}
+.p14-world .p14-note { text-wrap: pretty; }
+
+/* 05 — About: finish the long editorial chapter intentionally.
+   Fine hover ink on the existing story entries. */
+.a17-world .a17-content {
+  padding-bottom: clamp(68px, 8vh, 110px);
+}
+.a17-world .a17-footer {
+  padding-top: clamp(28px, 4vh, 52px);
+}
+@media (hover:hover) and (pointer:fine) {
+  .a17-world .a18-entry:hover {
+    background: linear-gradient(90deg, rgba(233,178,142,.065), transparent 85%);
+  }
+}
+.a17-world .a17-lead,
+.a17-world .a18-deck,
+.a17-world .a18-entry-copy { text-wrap: pretty; }
+
+/* 06 — Continuity: captions and buttons keep one refined tactile language. */
+.world-hub .world-description { text-wrap: pretty; }
+.case-world .case-bottom {
+  padding-bottom: clamp(30px, 5vh, 70px);
+}
+.world-hub .world-link:focus-visible,
+.sound-world .sound-mood:focus-visible,
+.p14-world .p14-choice:focus-visible,
+.a17-world .a18-entry:focus-visible {
+  outline-offset: 5px;
+}
+
+/* On-scroll fade applies only to marked non-hero copy, and only when
+   JavaScript attached an IntersectionObserver. */
+.s56-reveal-ready {
+  opacity: 0;
+  transition: opacity .75s cubic-bezier(.22,1,.36,1);
+}
+.s56-reveal-ready.s56-visible { opacity: 1; }
+
+@media (max-width: 991px) {
+  .s56-header-line { width: 64px; height: 2px; }
+  .sound-world .sound-bottom { padding-bottom: 22px; }
+  .p14-world .p14-below { margin-top: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s56-header-line {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+  .s56-reveal-ready {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+@media (prefers-contrast: more) {
+  .s56-reveal-ready { opacity: 1 !important; }
+}
