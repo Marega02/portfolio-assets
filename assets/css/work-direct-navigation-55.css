@@ -1,0 +1,80 @@
+/* STEP 55 — WORK / DIRECT ENTRY + VISUAL REFINEMENT
+   Replaces only the redundant Explore CTA. The original click handler
+   stays alive for the existing case-study and GSAP transition scripts.
+*/
+
+/* The original button is only a programmatic navigation trigger now. */
+.work-world .work-preview .case-open,
+.work-world .work-preview .work-open-project {
+  display: none !important;
+}
+
+/* Clear affordance with no extra labels or buttons over photography. */
+.work-world .work-project,
+.work-world .work-preview {
+  cursor: pointer;
+}
+.work-world .work-preview {
+  transition: border-color .3s ease, outline-color .3s ease, box-shadow .3s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .work-world .work-preview:hover {
+    border-color: rgba(244,217,193,.44) !important;
+    outline-color: rgba(242,221,200,.28) !important;
+    box-shadow: 0 28px 74px rgba(0,0,0,.34);
+  }
+}
+.work-world .work-preview:focus-visible {
+  outline: 2px solid #e4b092 !important;
+  outline-offset: 6px !important;
+}
+.work-world .work-project:focus-visible {
+  outline: 2px solid #e4b092 !important;
+  outline-offset: 5px;
+}
+
+/* Give the editorial introduction and small metadata enough contrast. */
+.work-world .work-intro {
+  color: #c8c9c0 !important;
+  max-width: 620px;
+  text-wrap: pretty;
+}
+.work-world .project-category {
+  color: #aeb1a8;
+}
+.work-world .work-eyebrow {
+  letter-spacing: .18em;
+}
+
+/* Red House's brighter embedded photograph is deliberately more natural.
+   Remove the leftover desaturating filter from the older cover layer. */
+.work-world .work-preview .preview-visual:nth-child(1) .preview-image {
+  filter: saturate(1.045) contrast(1.015) brightness(1.105) !important;
+}
+.work-world .work-preview[data-theme="redhouse"] .preview-visuals::after {
+  opacity: .33;
+}
+.case-world[data-theme="redhouse"] .case-image {
+  filter: saturate(1.04) contrast(1.015) brightness(1.08) !important;
+}
+
+/* Comfortable long-form reading without changing case-study content. */
+.case-world .case-description,
+.case-world .case-direction,
+.case-world .case-development {
+  text-wrap: pretty;
+}
+.case-world .case-deck {
+  text-wrap: balance;
+}
+
+/* Hover animations are supplementary: keyboard and touch work without them. */
+@media (prefers-reduced-motion: reduce) {
+  .work-world .work-preview { transition: none !important; }
+}
+@media (prefers-contrast: more) {
+  .work-world .work-intro,
+  .work-world .project-category { color: #fff !important; }
+  .work-world .work-preview .preview-visual:nth-child(1) .preview-image,
+  .case-world[data-theme="redhouse"] .case-image { filter: none !important; }
+}
