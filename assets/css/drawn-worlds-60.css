@@ -1,0 +1,29 @@
+/* STEP 60 — CINEMATIC VECTOR REVEAL, WITH NO LAYOUT MUTATIONS
+   HOME vectors animate through the Web Animations API.
+   ABOUT's existing editorial sentence is masked *inside its own box*.
+   WORK, its images, footer and world transitions are intentionally untouched. */
+
+.a17-world .a18-sentence.s60-note-ready {
+  clip-path: inset(0 0 105% 0);
+  opacity: .65;
+  transition:
+    clip-path 1.05s cubic-bezier(.18,.88,.2,1),
+    opacity .83s ease;
+}
+.a17-world .a18-sentence.s60-note-ready.s60-note-visible {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+@media(prefers-reduced-motion:reduce) {
+  .a17-world .a18-sentence.s60-note-ready {
+    clip-path: none!important;
+    opacity: 1!important;
+    transition: none!important;
+  }
+}
+@media(prefers-contrast:more) {
+  .a17-world .a18-sentence.s60-note-ready {
+    clip-path: none!important;
+    opacity: 1!important;
+  }
+}
