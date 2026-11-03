@@ -1,0 +1,141 @@
+/* STEP 63 — FOUR SIGNATURES / ONE TRANSITION LANGUAGE
+   Additive art direction for the EXISTING s27 chapter gate.
+   Never touches scene/container transforms, gallery or Work layout.
+   No new fullscreen overlay, no network assets, no interaction handlers. */
+
+/* The existing sequence remains the sole transition overlay. */
+.s27-sequence.s63-ready {
+  --s63-trace: rgba(240,229,208,.32);
+}
+.s27-sequence.s63-ready .s63-motif {
+  position:absolute;
+  z-index:3;
+  top:50%;
+  right:clamp(30px,8vw,135px);
+  width:clamp(220px,29vw,465px);
+  aspect-ratio:1;
+  transform:translate3d(0,-50%,0);
+  pointer-events:none;
+  user-select:none;
+  color:var(--s27-accent);
+  opacity:0;
+}
+.s27-sequence.s63-ready .s63-motif svg {
+  display:none;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+}
+.s27-sequence.s63-ready[data-scene="work"] .s63-art-work,
+.s27-sequence.s63-ready[data-scene="sound"] .s63-art-sound,
+.s27-sequence.s63-ready[data-scene="places"] .s63-art-places,
+.s27-sequence.s63-ready[data-scene="about"] .s63-art-about {
+  display:block;
+}
+.s27-sequence.s63-ready.is-playing .s63-motif {
+  animation:s63-motif-reveal 1150ms cubic-bezier(.16,1,.3,1) both;
+}
+.s27-sequence.s63-ready.is-playing .s63-motif svg g > * {
+  stroke-dasharray:1450;
+  stroke-dashoffset:1450;
+  animation:s63-trace 1150ms cubic-bezier(.22,.72,.22,1) both;
+}
+.s27-sequence.s63-ready.is-playing .s63-motif svg g > :nth-child(2n) {
+  animation-delay:70ms;
+}
+.s27-sequence.s63-ready.is-playing .s63-motif svg g > :nth-child(3n) {
+  animation-delay:130ms;
+}
+.s27-sequence.s63-ready .s63-motif .s63-thin {
+  stroke-width:.8;
+  opacity:.6;
+}
+.s27-sequence.s63-ready .s63-motif .s63-heavy {
+  stroke-width:3;
+}
+@keyframes s63-trace {
+  0%,12%{stroke-dashoffset:1450;opacity:0}
+  42%{stroke-dashoffset:0;opacity:.85}
+  70%{stroke-dashoffset:0;opacity:.74}
+  100%{stroke-dashoffset:0;opacity:0}
+}
+@keyframes s63-motif-reveal {
+  0%,14%{opacity:0;transform:translate3d(22px,-46%,0) scale(.96)}
+  36%,54%{opacity:.48;transform:translate3d(0,-50%,0) scale(1)}
+  100%{opacity:0;transform:translate3d(-15px,-54%,0) scale(1.035)}
+}
+/* Each scene's existing shutter has a distinct material identity. */
+.s27-sequence.s63-ready .s27-gate::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.22;
+}
+.s27-sequence.s63-ready[data-scene="work"] .s27-gate::after {
+  background:
+    linear-gradient(90deg,rgba(247,230,205,.24) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(247,230,205,.15) 1px,transparent 1px);
+  background-size:86px 86px;
+}
+.s27-sequence.s63-ready[data-scene="sound"] .s27-gate::after {
+  background:repeating-radial-gradient(circle at 50% 50%,transparent 0 25px,rgba(222,239,213,.19) 26px,transparent 27px,transparent 47px);
+}
+.s27-sequence.s63-ready[data-scene="places"] .s27-gate::after {
+  background:repeating-radial-gradient(ellipse at 75% 30%,transparent 0 48px,rgba(193,230,211,.19) 49px,transparent 50px,transparent 92px);
+}
+.s27-sequence.s63-ready[data-scene="about"] .s27-gate::after {
+  background:
+    linear-gradient(135deg,transparent 42%,rgba(239,192,158,.18) 42.2%,transparent 42.4%),
+    linear-gradient(45deg,transparent 69%,rgba(239,192,158,.17) 69.2%,transparent 69.4%);
+}
+/* Scene-specific secondary visual rhythm, without changing the gate timing. */
+.s27-sequence.s63-ready[data-scene="sound"] .s27-scan {
+  width:2px;
+  box-shadow:0 0 25px rgba(185,212,170,.26);
+}
+.s27-sequence.s63-ready[data-scene="places"] .s27-beam {
+  background:linear-gradient(90deg,transparent,var(--s27-accent),transparent);
+}
+.s27-sequence.s63-ready[data-scene="about"] .s27-ghost {
+  -webkit-text-stroke-color:rgba(233,178,142,.20);
+}
+
+/* Going back HOME: existing paper artifact softly catches returning light.
+   No geometry changes, no new text; replayed for only 820ms. */
+.world-hub.s63-returning .s40-halo {
+  animation:s63-back-halo 820ms ease-out both;
+}
+.world-hub.s63-returning .s40-calibration {
+  animation:s63-back-calibration 820ms cubic-bezier(.18,.8,.3,1) both;
+}
+@keyframes s63-back-halo {
+  0%{opacity:.12;filter:brightness(.8)}
+  43%{opacity:1;filter:brightness(1.6)}
+  100%{opacity:.9;filter:brightness(1)}
+}
+@keyframes s63-back-calibration {
+  0%,15%{opacity:.12}
+  47%{opacity:.85}
+  100%{opacity:.62}
+}
+@media(max-width:991px) {
+  .s27-sequence.s63-ready .s63-motif {right:4%;width:min(38vw,315px)}
+}
+@media(max-width:760px) {
+  /* Typographic gate takes priority on smaller screens. */
+  .s27-sequence.s63-ready .s63-motif {display:none}
+  .s27-sequence.s63-ready .s27-gate::after {opacity:.12}
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more) {
+  .s27-sequence.s63-ready .s63-motif,
+  .s27-sequence.s63-ready .s27-gate::after {display:none!important}
+  .world-hub.s63-returning .s40-halo,
+  .world-hub.s63-returning .s40-calibration {animation:none!important}
+}
