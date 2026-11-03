@@ -1,4 +1,4 @@
-/* STEP 52.1 — WORK / ART-DIRECTED PHOTOGRAPHIC COVERS
+/* STEP 53 — WORK / ART-DIRECTED PHOTOGRAPHIC COVERS
    Replaces the earlier CSS background hack: REAL <img> sources are used,
    so the existing GSAP shared-image morph matches what visitors see.
    Only WORK is affected; no menus, case study content or page grids altered. */
@@ -70,14 +70,14 @@
   border-radius:0!important;
   box-shadow:none!important;
   transform:scale(1)!important;
-  filter:none!important;
+  filter:saturate(.88) contrast(1.055) brightness(.97)!important;
   will-change:auto;
   pointer-events:none;
   animation:none!important;
 }
 .work-world .preview-visual:nth-child(1) .preview-image{object-position:50% 50%}
-.work-world .preview-visual:nth-child(2) .preview-image{object-position:50% 50%}
-.work-world .preview-visual:nth-child(3) .preview-image{object-position:50% 61%}
+.work-world .preview-visual:nth-child(2) .preview-image{object-position:50% 55%}
+.work-world .preview-visual:nth-child(3) .preview-image{object-position:50% 49%}
 /* Gianni's photo is a close-cropped food editorial, not a counterfeit
    photograph claimed to have been taken at the actual restaurant. */
 .work-world .work-preview>.preview-title,
@@ -140,3 +140,10 @@
 @media(prefers-contrast:more){
   .work-world .work-preview .case-open{background:#111a15;color:#fff;border:2px solid #fff}
 }
+/* STEP 53 — cohesive image treatment; the project list, labels and navigation remain untouched. */
+.work-world .work-preview .preview-visuals::after{
+  content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+  display:block!important;
+  background:linear-gradient(to top,rgba(4,8,7,.23),transparent 35%);
+}
+@media(prefers-contrast:more){.work-world .work-preview .preview-visuals::after{display:none!important}}
