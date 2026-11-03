@@ -1,0 +1,53 @@
+/* STEP 54 — WORK / IMAGE AREA REBALANCE
+   A layout-only refinement of the approved Work gallery.
+   Leaves the project list, copy, transitions, image sources and GSAP untouched.
+*/
+
+@media (min-width: 992px) {
+  .work-world .work-showcase {
+    grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+    gap: clamp(20px, 3vw, 42px);
+    align-items: start;
+  }
+
+  .work-world .work-preview {
+    width: 100%;
+    height: clamp(500px, 62vh, 720px);
+    min-height: 500px;
+    margin-left: -8px;
+    max-width: none;
+  }
+
+  .work-world .work-preview .preview-visuals,
+  .work-world .work-preview .preview-visual {
+    height: 100%;
+  }
+
+  /* Keep photographic subjects in frame without distorting the images. */
+  .work-world .work-preview .preview-visual:nth-child(1) .preview-image {
+    object-fit: cover;
+    object-position: 58% 50%;
+  }
+  .work-world .work-preview .preview-visual:nth-child(2) .preview-image {
+    object-fit: cover;
+    object-position: 50% 55%;
+  }
+  .work-world .work-preview .preview-visual:nth-child(3) .preview-image {
+    object-fit: cover;
+    object-position: 50% 49%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .work-world .work-showcase {
+    grid-template-columns: minmax(0, .74fr) minmax(0, 1.26fr);
+  }
+  .work-world .work-preview {
+    height: clamp(540px, 66vh, 760px);
+  }
+}
+
+/* Preserve the existing, single-column experience on tablet and mobile. */
+@media (max-width: 991px) {
+  .work-world .work-preview { margin-left: 0; }
+}
