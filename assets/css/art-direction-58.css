@@ -1,0 +1,210 @@
+/* STEP 58 — QUIET EDITORIAL + RESPONSIVE MATERIAL LIGHT
+   A new restrained art direction, not another full-screen panel.
+   Preserves original chapter transforms, GSAP, image sources and navigation. */
+
+/* 01 / WORK — the actual end of the selected-work index.
+   The massive CTA has been intentionally removed, not merely hidden. */
+.work-world .s57-work-footer.s58-quiet-end {
+  position: relative;
+  display: block;
+  margin: clamp(40px,6vh,76px) 0 0;
+  padding: clamp(18px,2.5vw,31px) 0 0;
+  border-top: 1px solid rgba(240,229,211,.24);
+  background: transparent;
+  height: auto;
+  min-height: 0;
+}
+.work-world .s58-quiet-end .s57-footer-meta {
+  font-size: 9px;
+  line-height: 1.6;
+  letter-spacing: .16em;
+}
+.work-world .s58-end-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: clamp(29px,3.8vw,54px) 0 clamp(29px,3.8vw,54px);
+}
+.work-world .s58-end-description {
+  max-width: 500px;
+  margin: 0;
+  color: #c4c5ba;
+  font: 400 clamp(15px,1.25vw,19px)/1.65 Arial,Helvetica,sans-serif;
+  letter-spacing: -.018em;
+  text-wrap: pretty;
+}
+.work-world .s58-end-back {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(25px,4vw,55px);
+  min-height: 52px;
+  padding: 14px 20px;
+  border: 1px solid rgba(239,226,208,.48);
+  border-radius: 100px;
+  background: transparent;
+  color: #efe9df;
+  cursor: pointer;
+  font: 700 10px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing: .12em;
+  transition: background .28s ease, color .28s ease, border-color .28s ease;
+}
+.work-world .s58-end-back span:last-child {
+  font-size: 18px;
+  line-height: 1;
+  color: #e1a58a;
+  transition: transform .38s cubic-bezier(.2,.8,.2,1);
+}
+.work-world .s58-end-back:hover {
+  border-color: #e1a58a;
+  background: #e1a58a;
+  color: #1a1f1c;
+}
+.work-world .s58-end-back:hover span:last-child { transform: translate(3px,-3px);color:inherit; }
+.work-world .s58-end-back:focus-visible { outline: 2px solid #f2eee6; outline-offset: 5px; }
+.work-world .s58-quiet-end .s57-footer-bottom {
+  min-height: 57px;
+  padding: 17px 0 2px;
+  font-size: 9px;
+  line-height: 1.5;
+}
+.work-world .s58-footer-reveal {
+  opacity: 0;
+  transform: translate3d(0,13px,0);
+  transition: opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1);
+}
+.work-world .s58-footer-reveal.s58-in { opacity: 1; transform: translate3d(0,0,0); }
+
+/* 02 / WORK — photographic focus and restrained list interaction.
+   The halo is a new, non-interactive child: never changes row transforms. */
+.work-world .work-project { isolation: isolate; overflow: hidden; }
+.work-world .work-project > .s58-row-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    190px circle at var(--s58-x,25%) var(--s58-y,50%),
+    rgba(227,157,123,.15),transparent 78%
+  );
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .work-world .work-project:hover > .s58-row-glow { opacity: .9; }
+}
+.work-world .work-project.is-current > .s58-row-glow { opacity: .65; }
+.work-world .work-project .project-number {
+  transition: letter-spacing .32s ease, color .32s ease;
+}
+.work-world .work-project.is-current .project-number { letter-spacing: .25em; }
+.work-world .work-preview .s58-photo-sweep {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.work-world .work-preview .s58-photo-sweep::before {
+  content: "";
+  position: absolute;
+  height: 200%;
+  width: 18%;
+  top: -50%;
+  left: -44%;
+  transform: translateX(0) rotate(24deg);
+  background: linear-gradient(90deg,transparent,rgba(255,244,224,.14),transparent);
+  opacity: 0;
+  transition: left 1.15s cubic-bezier(.2,.8,.2,1),opacity .35s;
+}
+@media (hover:hover) and (pointer:fine) {
+  .work-world .work-preview:hover .s58-photo-sweep::before {
+    left: 132%;
+    opacity: 1;
+  }
+}
+/* Keep the existing photo, its click target and focus intact. */
+.work-world .work-preview:focus-visible { outline-color:#e1a58a!important; }
+
+/* 03 / THE FOUR WORLDS — light responds to physical pointer position,
+   with one rAF only while moving and absolutely no perpetual loop. */
+.s58-material-surface { isolation: isolate; }
+.s58-material-surface > .s58-light {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 38% 42% at var(--s58-x,50%) var(--s58-y,50%),
+    var(--s58-light-color,rgba(255,237,207,.13)) 0%,
+    transparent 100%
+  );
+  transition: opacity .45s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .s58-material-surface:hover > .s58-light { opacity: 1; }
+}
+.work-world .work-preview { --s58-light-color: rgba(255,234,204,.17); }
+.sound-world .sound-art { --s58-light-color: rgba(238,224,195,.11); }
+.p14-world .p14-postcard { --s58-light-color: rgba(244,241,203,.18); }
+.a17-world .a17-card { --s58-light-color: rgba(255,249,224,.15); }
+
+/* 04 / HOME — selection leaves a short physical signature at each link.
+   This decorative track does not change click handling or button geometry. */
+.world-hub .world-link { position: relative; }
+.world-hub .world-link > .s58-nav-trace {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,var(--s43-ink,#e1ae8a) 25%,var(--s43-ink,#e1ae8a) 75%,transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: .75;
+  pointer-events: none;
+  transition: transform .6s cubic-bezier(.16,1,.3,1);
+}
+.world-hub .world-link:hover > .s58-nav-trace,
+.world-hub .world-link:focus-visible > .s58-nav-trace { transform: scaleX(1); }
+
+/* 05 / ABOUT + PLACES + SOUND — sharper editorial selected states. */
+.a17-world .a18-entry.is-current .a18-entry-index {
+  color: var(--a17-accent);
+  letter-spacing: .2em;
+}
+.a17-world .a18-entry.is-current {
+  border-bottom-color: color-mix(in srgb,var(--a17-accent) 48%,transparent);
+}
+.p14-world .p14-choice.is-selected {
+  border-bottom-color: color-mix(in srgb,var(--p14-accent,#426c5e) 55%,transparent);
+}
+.sound-world .sound-mood.is-current {
+  border-bottom-color: color-mix(in srgb,var(--sound-accent,#d2a78f) 58%,transparent);
+}
+
+/* Responsive: the endnote never competes with the project photographs. */
+@media (max-width:700px) {
+  .work-world .s58-end-row { flex-direction: column; align-items: flex-start; gap: 22px; padding: 28px 0 32px; }
+  .work-world .s58-end-description { max-width: 460px; font-size: 15px; }
+  .work-world .s58-end-back { min-height: 48px; }
+  .work-world .s58-quiet-end .s57-footer-bottom { flex-direction: column; align-items: flex-start; gap: 9px; }
+  .work-world .s58-quiet-end .s57-footer-meta { gap: 8px; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-world .s58-footer-reveal { opacity: 1!important;transform: none!important; }
+  .s58-material-surface > .s58-light { display: none!important; }
+  .world-hub .world-link > .s58-nav-trace { transition: none!important; }
+  .work-world .s58-photo-sweep { display: none!important; }
+  .work-world .s58-end-back,.work-world .s58-end-back span:last-child { transition: none!important; }
+}
+@media (prefers-contrast: more) {
+  .s58-material-surface > .s58-light,
+  .work-world .work-project > .s58-row-glow { display:none!important; }
+  .work-world .s58-end-description { color:#fff; }
+}
