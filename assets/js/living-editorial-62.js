@@ -22,6 +22,9 @@
 
     const word = visual.querySelector(".a18-visual-word");
     const caption = visual.querySelector(".a18-visual-caption");
+    const heroItalic = about.querySelector(".a17-title-ital");
+    const heroRing = about.querySelector(".a17-card-circle");
+    const heroStamp = about.querySelector(".a17-card-stamp");
     let animations = [];
     let lastScene = "";
     let wasOpen = false;
@@ -49,10 +52,28 @@
       const key = visual.dataset.scene || "make";
       if (!["make","listen","wander"].includes(key)) return;
       if (wasOpen && key === lastScene) return;
+      const firstOpening = !wasOpen;
       lastScene = key;
       wasOpen = true;
       clearAnimations();
       if (!allowMotion()) return;
+
+      // The opening hero is also part of the narrative: only animate
+      // letterforms and opacity, never the original tilt/card layout.
+      if (firstOpening) {
+        run(heroItalic, [
+          {clipPath:"inset(0 100% 0 0)",opacity:.35},
+          {clipPath:"inset(0 0 0 0)",opacity:1}
+        ], 850, 270);
+        run(heroRing, [{opacity:0},{opacity:1}], 1000, 200);
+        run(heroStamp, [{opacity:0},{opacity:1}], 720, 420);
+      }
+
+      // The editorial graphic is lower in the chapter. Animate it only
+      // when actually visible, not while the visitor reads the hero.
+      const r = visual.getBoundingClientRect();
+      const viewport = about.getBoundingClientRect();
+      if (r.bottom < viewport.top || r.top > viewport.bottom) return;
 
       // A short, angled ink reflection—entirely behind original labels.
       run(pass, [
