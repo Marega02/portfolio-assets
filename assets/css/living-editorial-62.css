@@ -1,0 +1,73 @@
+/* STEP 62 — ABOUT / THE LIVING EDITORIAL
+   Scoped to the existing About story, cards and illustration.
+   Never changes parent layout, main heading dimensions, GSAP,
+   world navigation, footer, or Work/Places/Sound components. */
+
+/* A fleeting print-studio flash, positioned INSIDE the existing visual. */
+.a17-world .a18-visual > .s62-ink-pass {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  background:
+    linear-gradient(110deg,
+      transparent 12%,
+      rgba(255,248,228,.06) 30%,
+      rgba(255,245,220,.49) 47%,
+      rgba(255,248,228,.09) 63%,
+      transparent 83%);
+  mix-blend-mode: screen;
+}
+
+/* Keep the original visual's large word above the graphic effect. */
+.a17-world .a18-visual-head,
+.a17-world .a18-visual-foot { z-index: 3; }
+
+/* The editorial chapter list uses the existing selected state.
+   No added spacing, no new columns, no injected call-to-action. */
+.a17-world .a18-entry.is-current {
+  background: linear-gradient(90deg,
+    color-mix(in srgb,var(--a17-accent,#e9b28e) 9%,transparent),
+    transparent 85%);
+  border-bottom-color:
+    color-mix(in srgb,var(--a17-accent,#e9b28e) 55%,transparent);
+}
+.a17-world .a18-entry-index {
+  transition: color .32s ease, letter-spacing .42s ease;
+}
+.a17-world .a18-entry.is-current .a18-entry-index {
+  color: var(--a17-accent,#e9b28e);
+  letter-spacing: .22em;
+}
+.a17-world .a18-visual-word {
+  text-wrap: balance;
+}
+
+/* Text is only masked after JS successfully attaches an observer.
+   Existing interaction transforms on .a18-entry-heading are left intact. */
+@media (min-width: 901px) {
+  .a17-world .s62-reading-ready {
+    clip-path: inset(0 0 103% 0);
+    opacity: .28;
+    transition:
+      clip-path .95s cubic-bezier(.18,.86,.2,1),
+      opacity .62s ease;
+    transition-delay: var(--s62-delay,0ms);
+  }
+  .a17-world .s62-reading-ready.s62-reading-visible {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion:reduce), (prefers-contrast:more) {
+  .a17-world .s62-reading-ready {
+    clip-path: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .a17-world .a18-entry-index { transition:none !important; }
+  .a17-world .a18-visual > .s62-ink-pass { display:none !important; }
+}
