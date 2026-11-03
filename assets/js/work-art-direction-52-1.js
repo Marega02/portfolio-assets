@@ -1,4 +1,4 @@
-/* STEP 53 — WORK / VERIFIED EDITORIAL COVERS
+/* STEP 55 — WORK / BRIGHTER RED HOUSE EDITORIAL COVER
    Only updates existing cover image elements. No navigation, layout,
    event-handling or GSAP morph changes. Using one <img> source keeps
    the cover and project transition coherent.
@@ -7,7 +7,7 @@
   const base = "https://marega02.github.io/portfolio-assets/assets/images/";
   const covers = [
     {
-      url: base + "work-redhouse-52-1.svg",
+      url: base + "work-redhouse-55.svg",
       fallback: "",
       alt: "Red House Studio — fotografia del salone reale, con un taglio editoriale."
     },
