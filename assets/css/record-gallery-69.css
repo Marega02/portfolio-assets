@@ -1,0 +1,278 @@
+/* STEP 69 — SOUND / THE RECORD GALLERY
+   Deliberately larger art-direction evolution of Sound.
+   Builds three distinct visual stage designs BEHIND the existing vinyl.
+   Original mood controls, vinyl transform, archive, navigation and mobile
+   layout remain authoritative. No changes to Work, Home or About. */
+.sound-world.s69-ready {
+  --s69-hue: #e9b28e;
+  --s69-shadow: rgba(230,158,110,.18);
+  --s69-surface:#382b29;
+  --s69-secondary:#aa7970;
+  background-color:#191b1a;
+  background-image:
+    radial-gradient(ellipse 60% 70% at 76% 39%,var(--s69-shadow),transparent 74%),
+    radial-gradient(ellipse 60% 50% at 4% 90%,rgba(188,129,103,.055),transparent 78%);
+  transition:background-color .7s ease;
+}
+.sound-world.s69-ready[data-mood="hiphop"] {
+  --s69-hue:#c7cf98;
+  --s69-shadow:rgba(153,185,112,.16);
+  --s69-surface:#2b3730;
+  --s69-secondary:#89a894;
+}
+.sound-world.s69-ready[data-mood="alternative"] {
+  --s69-hue:#a8c5e2;
+  --s69-shadow:rgba(123,168,205,.19);
+  --s69-surface:#293849;
+  --s69-secondary:#829fc9;
+}
+.sound-world.s69-ready .sound-layout {
+  grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);
+  gap:clamp(22px,4vw,72px);
+}
+.sound-world.s69-ready .sound-copy {
+  z-index:4;
+}
+.sound-world.s69-ready .sound-title {
+  font-size:clamp(68px,8.4vw,151px);
+  letter-spacing:-.09em;
+}
+.sound-world.s69-ready .sound-title em {
+  color:var(--s69-hue);
+}
+.sound-world.s69-ready .sound-description {
+  max-width:420px;
+}
+.sound-world.s69-ready .sound-art {
+  height:clamp(390px,58vh,640px);
+  min-height:390px;
+  overflow:visible;
+  perspective:1200px;
+}
+/* Gallery panel stays within the existing art canvas; no overlay across
+   other sections or interference with the archive button. */
+.sound-world.s69-ready .sound-art > .s69-gallery {
+  position:absolute;
+  inset:0;
+  display:block;
+  z-index:0;
+  overflow:hidden;
+  isolation:isolate;
+  pointer-events:none;
+  border:1px solid color-mix(in srgb,var(--s69-hue) 27%,transparent);
+  background:var(--s69-surface);
+  box-shadow:0 44px 100px rgba(0,0,0,.30),
+             inset 0 0 0 10px rgba(5,10,8,.10);
+  transition:background-color .75s ease,border-color .6s ease;
+}
+.sound-world.s69-ready .s69-gallery::before {
+  content:"";
+  position:absolute;
+  inset:clamp(14px,2vw,30px);
+  border:1px solid rgba(248,236,212,.18);
+  z-index:8;
+  pointer-events:none;
+}
+.sound-world.s69-ready .s69-gallery::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:7;
+  opacity:.28;
+  background:repeating-linear-gradient(
+    0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px
+  );
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+.sound-world.s69-ready .s69-panel {
+  position:absolute;
+  inset:0;
+  display:block;
+  opacity:0;
+  visibility:hidden;
+  transform:translate3d(0,18px,0) scale(1.035);
+  transition:opacity .73s cubic-bezier(.17,.86,.23,1),
+             transform 1s cubic-bezier(.17,.86,.23,1),
+             visibility 0s linear .75s;
+  overflow:hidden;
+}
+.sound-world.s69-ready[data-mood="soul"] .s69-panel[data-s69-mood="soul"],
+.sound-world.s69-ready[data-mood="hiphop"] .s69-panel[data-s69-mood="hiphop"],
+.sound-world.s69-ready[data-mood="alternative"] .s69-panel[data-s69-mood="alternative"] {
+  opacity:1;
+  visibility:visible;
+  transform:translate3d(0,0,0) scale(1);
+  transition:opacity .8s ease,transform 1.08s cubic-bezier(.17,.86,.23,1),visibility 0s;
+}
+.sound-world.s69-ready .s69-panel svg {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+.sound-world.s69-ready .s69-panel[data-s69-mood="soul"] {
+  background:radial-gradient(ellipse at 65% 40%,#945c4a 0%,#47312e 49%,#221f1e 100%);
+}
+.sound-world.s69-ready .s69-panel[data-s69-mood="hiphop"] {
+  background:linear-gradient(140deg,#273b31 0%,#1e2828 52%,#404535 100%);
+}
+.sound-world.s69-ready .s69-panel[data-s69-mood="alternative"] {
+  background:radial-gradient(ellipse at 60% 45%,#52718b 0%,#2b394c 48%,#22272f 100%);
+}
+.sound-world.s69-ready .s69-panel .s69-artline {
+  fill:none;
+  stroke:var(--s69-hue);
+  stroke-width:1.4;
+  opacity:.7;
+}
+.sound-world.s69-ready .s69-panel .s69-hairline {
+  fill:none;
+  stroke:rgba(243,235,217,.37);
+  stroke-width:.65;
+}
+.sound-world.s69-ready .s69-panel .s69-solid {
+  fill:var(--s69-hue);
+  opacity:.1;
+}
+.sound-world.s69-ready .s69-panel .s69-glow {
+  fill:rgba(255,242,224,.08);
+}
+.sound-world.s69-ready .s69-panel[data-s69-mood="hiphop"] .s69-solid {opacity:.17}
+.sound-world.s69-ready .s69-panel[data-s69-mood="alternative"] .s69-artline {opacity:.5}
+/* An oversized, physical genre imprint behind the vinyl. */
+.sound-world.s69-ready .s69-panel-word {
+  position:absolute;
+  bottom:clamp(33px,4.5vw,66px);
+  left:clamp(18px,3vw,48px);
+  right:clamp(18px,3vw,48px);
+  display:block;
+  z-index:2;
+  color:rgba(247,237,218,.18);
+  font:750 clamp(65px,9.3vw,155px)/.74 Arial,Helvetica,sans-serif;
+  letter-spacing:-.115em;
+  text-transform:uppercase;
+  overflow-wrap:normal;
+  white-space:nowrap;
+  text-shadow:0 4px 34px rgba(0,0,0,.10);
+}
+.sound-world.s69-ready .s69-panel[data-s69-mood="alternative"] .s69-panel-word {
+  font-size:clamp(42px,6.4vw,98px);
+  letter-spacing:-.10em;
+}
+.sound-world.s69-ready .s69-gallery-meta {
+  position:absolute;
+  left:clamp(18px,3vw,47px);
+  right:clamp(18px,3vw,47px);
+  top:clamp(18px,2.8vw,42px);
+  z-index:9;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  color:#f4e9dc;
+  font:700 clamp(9px,.75vw,11px)/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.18em;
+  text-shadow:0 2px 12px rgba(10,12,11,.5);
+}
+.sound-world.s69-ready .s69-gallery-meta span:last-child {color:var(--s69-hue)}
+.sound-world.s69-ready .s69-gallery-bottom {
+  position:absolute;
+  bottom:clamp(18px,2.6vw,40px);
+  left:clamp(18px,3vw,47px);
+  right:clamp(18px,3vw,47px);
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  z-index:9;
+  color:rgba(248,236,216,.75);
+  font:650 9px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.13em;
+  text-shadow:0 2px 12px rgba(10,12,11,.5);
+}
+.sound-world.s69-ready .sound-art .sound-orbit {
+  z-index:3;
+  width:clamp(310px,40vw,520px);
+  border-color:rgba(255,242,222,.36);
+  box-shadow:0 0 0 14px rgba(255,239,211,.025),
+             0 0 0 35px rgba(255,239,211,.013);
+}
+.sound-world.s69-ready .sound-art .sound-record {
+  z-index:5;
+  width:clamp(285px,33vw,430px);
+  border-color:rgba(245,235,210,.25);
+  box-shadow:0 35px 85px rgba(0,0,0,.55),
+             0 0 0 14px rgba(17,23,20,.18),
+             inset 0 0 46px rgba(0,0,0,.39);
+}
+.sound-world.s69-ready .sound-art .s24-technical-ring {z-index:2}
+.sound-world.s69-ready .sound-art .s24-side-stamp {z-index:7;left:clamp(18px,2.2vw,31px);top:25%}
+.sound-world.s69-ready .sound-art .s24-counter {z-index:7;right:clamp(18px,2.6vw,35px);top:15%}
+.sound-world.s69-ready .sound-art .s24-counter strong {color:rgba(250,240,219,.09);-webkit-text-stroke:1px rgba(253,241,225,.4)}
+.sound-world.s69-ready .sound-art .sound-art-caption {z-index:9;right:clamp(18px,2.6vw,40px);bottom:clamp(55px,5vw,75px);color:rgba(250,244,233,.68)}
+/* Make the three existing genre selectors read as actual sleeve tabs. */
+.sound-world.s69-ready .sound-moods {gap:clamp(8px,1.35vw,23px);border-bottom:none}
+.sound-world.s69-ready .sound-mood {
+  min-height:116px;
+  padding:19px 17px 22px;
+  border:1px solid rgba(240,236,228,.20);
+  background:rgba(255,255,255,.015);
+  transition:background .4s ease,border-color .4s ease,box-shadow .4s ease;
+}
+.sound-world.s69-ready .sound-mood::before {display:none}
+.sound-world.s69-ready .sound-mood.is-current {
+  border-color:color-mix(in srgb,var(--s69-hue) 70%,transparent);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--s69-hue) 14%,transparent),rgba(255,255,255,.012));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--s69-hue) 13%,transparent);
+}
+.sound-world.s69-ready .sound-mood-name {font-size:clamp(21px,2.2vw,32px)}
+.sound-world.s69-ready .sound-mood.is-current .sound-mood-name {color:var(--s69-hue)}
+.sound-world.s69-ready .sound-mood.is-current .s68-rail::before {background:var(--s69-hue)}
+.sound-world.s69-ready .sound-bottom {margin-top:clamp(10px,1.7vh,24px)}
+/* Preserve the original one-column tablet/mobile design and keep
+   the graphic legible without encroaching on the controls. */
+@media(max-width:1100px) and (min-width:992px) {
+  .sound-world.s69-ready .sound-art {height:clamp(360px,48vh,495px);min-height:360px}
+  .sound-world.s69-ready .sound-art .sound-record {width:min(29vw,350px)}
+  .sound-world.s69-ready .sound-art .sound-orbit {width:min(37vw,420px)}
+}
+@media(max-width:991px) {
+  .sound-world.s69-ready .sound-layout {grid-template-columns:1fr;gap:35px}
+  .sound-world.s69-ready .sound-art {height:clamp(380px,55vw,580px);min-height:380px}
+  .sound-world.s69-ready .sound-art .sound-record {width:min(44vw,400px)}
+  .sound-world.s69-ready .sound-art .sound-orbit {width:min(53vw,470px)}
+  .sound-world.s69-ready .s69-panel-word {font-size:clamp(65px,12vw,132px)}
+}
+@media(max-width:600px) {
+  .sound-world.s69-ready .sound-title {font-size:clamp(52px,12vw,78px)}
+  .sound-world.s69-ready .sound-art {height:clamp(315px,95vw,450px);min-height:315px}
+  .sound-world.s69-ready .sound-art .sound-record {width:min(61vw,290px)}
+  .sound-world.s69-ready .sound-art .sound-orbit {width:min(74vw,355px)}
+  .sound-world.s69-ready .s69-panel-word {font-size:clamp(57px,16vw,95px);bottom:45px}
+  .sound-world.s69-ready .s69-panel[data-s69-mood="alternative"] .s69-panel-word {font-size:clamp(38px,10.2vw,65px)}
+  .sound-world.s69-ready .s69-gallery-meta {font-size:8px;letter-spacing:.12em}
+  .sound-world.s69-ready .s69-gallery-bottom {font-size:8px;letter-spacing:.09em}
+  .sound-world.s69-ready .s24-counter {display:none}
+  .sound-world.s69-ready .sound-art .sound-art-caption {right:18px;bottom:62px;font-size:8px}
+  .sound-world.s69-ready .sound-moods {grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .sound-world.s69-ready .sound-mood {min-height:96px;padding:13px 7px 18px;gap:9px}
+  .sound-world.s69-ready .sound-mood-name {font-size:clamp(14px,4vw,21px);overflow-wrap:anywhere}
+  .sound-world.s69-ready .sound-mood-index {font-size:9px}
+  .sound-world.s69-ready .sound-mood-arrow {display:none}
+}
+@media(max-width:365px) {
+  .sound-world.s69-ready .sound-mood-name {font-size:13px}
+  .sound-world.s69-ready .s69-gallery-bottom span:last-child {display:none}
+}
+/* Motion has a finite beginning and end. No perpetual rotation or audio. */
+@media(prefers-reduced-motion:reduce) {
+  .sound-world.s69-ready .s69-panel {transition:none!important;transform:none!important}
+  .sound-world.s69-ready .sound-art .sound-record,
+  .sound-world.s69-ready .sound-mood,
+  .sound-world.s69-ready {transition:none!important}
+}
+@media(prefers-contrast:more) {
+  .sound-world.s69-ready .s69-panel svg {opacity:.33}
+  .sound-world.s69-ready .s69-panel-word {color:#f5eee3;opacity:.45}
+  .sound-world.s69-ready .sound-mood.is-current {border-color:#fff}
+}
