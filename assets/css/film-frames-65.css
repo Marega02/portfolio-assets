@@ -1,0 +1,145 @@
+/* STEP 65 — THE FRAME LANGUAGE
+   A shared photographic treatment for WORK case studies and PLACES journal.
+   Decorative children inside existing media only: NO layout, image/GSAP
+   transform, navigational, footer, or scene changes. */
+
+.case-world.s65-ready { --s65-ink: var(--case-accent, #c78a73); }
+.p15-journal.s65-ready { --s65-ink: var(--p15-accent, #b8d8c6); }
+
+/* Single image frames: the artwork and its captions keep all their
+   current dimensions, zooms, fades and original click behaviour. */
+.case-world.s65-ready .case-visual,
+.case-world.s65-ready .chapter-media,
+.p15-journal.s65-ready .p15-hero-figure,
+.p15-journal.s65-ready .p15-shot-visual {
+  isolation: isolate;
+}
+.case-world.s65-ready .s65-film-frame,
+.p15-journal.s65-ready .s65-film-frame {
+  position: absolute;
+  inset: clamp(10px, 1.7vw, 22px);
+  z-index: 4;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  opacity: .52;
+  background:
+    linear-gradient(var(--s65-ink),var(--s65-ink)) left top / 29px 1px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) left top / 1px 29px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) right top / 29px 1px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) right top / 1px 29px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) left bottom / 29px 1px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) left bottom / 1px 29px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) right bottom / 29px 1px no-repeat,
+    linear-gradient(var(--s65-ink),var(--s65-ink)) right bottom / 1px 29px no-repeat;
+}
+.case-world.s65-ready .s65-film-frame::before,
+.p15-journal.s65-ready .s65-film-frame::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(243,236,218,.12);
+  pointer-events: none;
+}
+.case-world.s65-ready .s65-film-frame::after,
+.p15-journal.s65-ready .s65-film-frame::after {
+  content: "";
+  position: absolute;
+  width: clamp(20px,3vw,34px);
+  height: 2px;
+  top: -4px;
+  left: calc(50% - 16px);
+  background: var(--s65-ink);
+  opacity: .65;
+}
+/* The light acts on a separate child: never move the user’s photographs.
+   Captions and labels have priority over it. */
+.case-world.s65-ready .s65-film-light,
+.p15-journal.s65-ready .s65-film-light {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,250,232,.025) 24%,
+    rgba(255,246,221,.18) 43%,
+    rgba(255,246,221,.28) 51%,
+    rgba(255,246,221,.06) 66%,
+    transparent 84%
+  );
+  mix-blend-mode: screen;
+}
+/* The case hero already has a clip-path reveal; only its new light is
+   animated, never .case-visual or the .case-image itself. */
+.case-world.s65-ready .case-visual.s65-play > .s65-film-light,
+.case-world.s65-ready .chapter-media.s65-play > .s65-film-light {
+  animation: s65-exposure 1100ms cubic-bezier(.22,.77,.2,1) both;
+}
+.p15-journal.s65-ready .p15-hero-figure.s65-play > .s65-film-light,
+.p15-journal.s65-ready .p15-shot-visual.s65-play > .s65-film-light {
+  animation: s65-exposure 1250ms cubic-bezier(.22,.77,.2,1) both;
+}
+@keyframes s65-exposure {
+  0% { opacity:0;transform:translate3d(-110%,0,0); }
+  33% { opacity:.44; }
+  68% { opacity:.27; }
+  100% { opacity:0;transform:translate3d(110%,0,0); }
+}
+.case-world.s65-ready .s65-play > .s65-film-frame,
+.p15-journal.s65-ready .s65-play > .s65-film-frame {
+  animation: s65-register 850ms cubic-bezier(.18,.78,.25,1) both;
+}
+@keyframes s65-register {
+  0% { opacity:0; clip-path:inset(42% 42% 42% 42%); }
+  56% { opacity:.72; clip-path:inset(0 0 0 0); }
+  100% { opacity:.52; clip-path:inset(0 0 0 0); }
+}
+
+/* Editorial distinction: Work is warm and architectural; travel is
+   softer and uses its own country accent already provided by the site. */
+.case-world.s65-ready .s65-film-frame {
+  inset: clamp(12px,1.9vw,26px);
+}
+.p15-journal.s65-ready .s65-film-frame {
+  inset: clamp(11px,1.65vw,22px);
+  opacity: .45;
+}
+.p15-journal.s65-ready .p15-shot-visual .s65-film-frame {
+  opacity: .37;
+}
+.p15-journal.s65-ready .p15-shot-visual .s65-film-light {
+  background: linear-gradient(115deg,
+    transparent 0%,rgba(250,242,222,.05) 25%,
+    rgba(250,242,222,.22) 49%,
+    transparent 78%);
+}
+@media (max-width: 700px) {
+  .case-world.s65-ready .s65-film-frame,
+  .p15-journal.s65-ready .s65-film-frame {
+    inset: 11px;
+    opacity: .40;
+  }
+  .case-world.s65-ready .s65-film-frame::before,
+  .p15-journal.s65-ready .s65-film-frame::before { inset:5px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .case-world.s65-ready .s65-film-light,
+  .p15-journal.s65-ready .s65-film-light { display:none!important;animation:none!important; }
+  .case-world.s65-ready .s65-film-frame,
+  .p15-journal.s65-ready .s65-film-frame { animation:none!important;clip-path:none!important;opacity:.45!important; }
+}
+@media (prefers-contrast:more) {
+  .case-world.s65-ready .s65-film-frame,
+  .case-world.s65-ready .s65-film-light,
+  .p15-journal.s65-ready .s65-film-frame,
+  .p15-journal.s65-ready .s65-film-light { display:none!important; }
+}
+body.s41-studio-focus .case-world.s65-ready .s65-film-frame,
+body.s41-studio-focus .p15-journal.s65-ready .s65-film-frame { opacity:.16; }
+body.s41-studio-focus .case-world.s65-ready .s65-film-light,
+body.s41-studio-focus .p15-journal.s65-ready .s65-film-light { display:none; }
