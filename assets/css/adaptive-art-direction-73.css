@@ -1,0 +1,355 @@
+/* STEP 73 — ADAPTIVE ART DIRECTION / VISUAL REFINEMENT
+   Site-wide presentation audit of STEP 69–72.
+   Work / case studies / their navigation remain completely untouched.
+   Priorities: restore Places text contrast on the dark Atlas,
+   rebalance the poster, record gallery and identity card on smaller
+   screens, and protect keyboard focus. No new DOM, JS, or animation loops. */
+
+/* 01 — PLACES: Restore legibility lost when STEP 70 introduced dark
+   landscape backgrounds over STEP 14's original light-paper typography. */
+.p14-world.s70-ready {
+  color: #edf1e9;
+  color-scheme: dark;
+  --s73-text:#f1f0e8;
+  --s73-secondary:#c4cfc7;
+  --s73-line:rgba(222,240,222,.24);
+}
+.p14-world.s70-ready .p14-top,
+.p14-world.s70-ready .p14-footer {
+  color:var(--s73-secondary);
+  border-color:var(--s73-line);
+}
+.p14-world.s70-ready .p14-brand,
+.p14-world.s70-ready .p14-slash {color:var(--s73-text);}
+.p14-world.s70-ready .p14-back {color:var(--s73-text);}
+.p14-world.s70-ready .p14-back:hover {color:var(--s70-ink);}
+.p14-world.s70-ready .p14-title {
+  color:var(--s73-text)!important;
+  text-shadow:0 18px 45px rgba(0,0,0,.11);
+}
+.p14-world.s70-ready .p14-title em {color:var(--s70-ink);}
+.p14-world.s70-ready .p14-eyebrow,
+.p14-world.s70-ready .p14-hint,
+.p14-world.s70-ready .p14-below-index {color:var(--s70-ink);}
+.p14-world.s70-ready .p14-intro,
+.p14-world.s70-ready .p14-note {
+  color:var(--s73-secondary);
+  text-wrap:pretty;
+}
+.p14-world.s70-ready .p14-choice {
+  color:var(--s73-text);
+  border-color:var(--s73-line);
+  background:transparent;
+}
+.p14-world.s70-ready .p14-choice:last-child {
+  border-bottom-color:var(--s73-line);
+}
+.p14-world.s70-ready .p14-choice-name {
+  color:var(--s73-text);
+}
+.p14-world.s70-ready .p14-choice-number {
+  color:#c6d6cb;
+}
+.p14-world.s70-ready .p14-choice-arrow {
+  color:var(--s70-ink);
+}
+.p14-world.s70-ready .p14-choice:is(:hover,:focus-visible) {
+  border-top-color:var(--s70-ink);
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--s70-ink) 7%,transparent),
+    transparent 85%);
+}
+.p14-world.s70-ready .p14-choice:is(:hover,:focus-visible) .p14-choice-name,
+.p14-world.s70-ready .p14-choice.is-selected .p14-choice-name,
+.p14-world.s70-ready .p14-choice.is-selected .p14-choice-number {
+  color:var(--s70-ink);
+}
+.p14-world.s70-ready .p14-choice.is-selected {
+  border-top-color:var(--s70-ink);
+}
+.p14-world.s70-ready .p14-below {
+  border-color:var(--s73-line);
+  color:var(--s73-text);
+}
+.p14-world.s70-ready .p14-top,
+.p14-world.s70-ready .p14-selector,
+.p14-world.s70-ready .p14-layout {
+  min-width:0;
+}
+.p14-world.s70-ready .p14-back:focus-visible,
+.p14-world.s70-ready .p14-choice:focus-visible {
+  outline:2px solid var(--s70-ink);
+  outline-offset:4px;
+}
+/* Existing journal/overlay texts are deliberately NOT recoloured. */
+
+/* 02 — SOUND: the Record Gallery remains the hero, but its title,
+   top marks and controls retain enough air in shorter viewports. */
+.sound-world.s69-ready .sound-layout,
+.sound-world.s69-ready .sound-copy,
+.sound-world.s69-ready .sound-art {
+  min-width:0;
+}
+.sound-world.s69-ready .sound-art .s69-gallery {
+  border-color:color-mix(in srgb,var(--s69-hue) 35%,transparent);
+}
+.sound-world.s69-ready .sound-mood:focus-visible {
+  outline:2px solid var(--s69-hue);
+  outline-offset:4px;
+}
+.sound-world.s69-ready .sound-mood.is-current .sound-mood-index {
+  color:var(--s69-hue);
+}
+.sound-world.s69-ready .s69-gallery-meta,
+.sound-world.s69-ready .s69-gallery-bottom {
+  text-shadow:0 2px 8px rgba(0,0,0,.7);
+}
+
+/* 03 — HOME: the 4 posters share a consistent illustration window.
+   This is an optical change on internal art only, not on GSAP transforms. */
+.world-hub.s72-ready .s72-scene svg {
+  transform-origin:center center;
+}
+.world-hub.s72-ready .stage-sheet .s22-art {
+  background:rgba(246,236,215,.07);
+}
+.world-hub.s72-ready .s72-poster-code {
+  text-shadow:0 1px 4px rgba(241,231,213,.6);
+}
+.world-hub.s72-ready .world-link:focus-visible {
+  outline:2px solid var(--s72-accent);
+  outline-offset:5px;
+}
+
+/* 04 — ABOUT: help the identity card and editorial artwork read as a
+   paired set without adding another panel. Original tilt stays intact. */
+.a17-world.s71-ready .a17-card-wrap,
+.a17-world.s71-ready .a18-visual-wrap {
+  min-width:0;
+}
+.a17-world.s71-ready .s71-hero-legend {
+  text-shadow:0 1px 5px rgba(249,241,220,.25);
+}
+.a17-world.s71-ready .a17-mode:focus-visible {
+  outline:2px solid var(--a17-accent);
+  outline-offset:4px;
+}
+
+/* 05 — DESKTOP, SHORT VIEWPORT: favour reading and scrolling over
+   larger-than-visible displays; do not pin media inside the viewport. */
+@media(min-width:992px) and (max-height:800px) {
+  .sound-world.s69-ready .sound-art {
+    height:clamp(360px,51vh,470px);
+    min-height:350px;
+  }
+  .sound-world.s69-ready .sound-art .sound-record {
+    width:min(29vw,350px);
+  }
+  .sound-world.s69-ready .sound-art .sound-orbit {
+    width:min(36vw,410px);
+  }
+  .sound-world.s69-ready .sound-title {
+    font-size:clamp(64px,7.3vw,111px);
+  }
+  .p14-world.s70-ready .p14-postcard {
+    height:clamp(385px,54vh,510px);
+  }
+  .p14-world.s70-ready .p14-title {
+    font-size:clamp(54px,5.9vw,94px)!important;
+  }
+}
+
+/* 06 — TABLET: line-up of illustrations and reading blocks. */
+@media(min-width:601px) and (max-width:991px) {
+  .world-hub.s72-ready .world-stage {
+    max-width:490px;
+  }
+  .sound-world.s69-ready .sound-layout {
+    gap:clamp(24px,4.5vw,43px);
+  }
+  .sound-world.s69-ready .sound-art {
+    height:clamp(390px,62vw,560px);
+    min-height:390px;
+    width:min(100%,680px);
+    margin-inline:auto;
+  }
+  .sound-world.s69-ready .sound-art .sound-record {
+    width:min(49vw,370px);
+  }
+  .sound-world.s69-ready .sound-art .sound-orbit {
+    width:min(57vw,435px);
+  }
+  .p14-world.s70-ready .p14-display {
+    width:min(100%,670px);
+    padding-inline:15px;
+  }
+  .p14-world.s70-ready .p14-postcard {
+    height:clamp(420px,70vw,565px);
+  }
+  .a17-world.s71-ready .a17-card {
+    min-height:330px;
+  }
+}
+
+/* 07 — MOBILE: all four main images are substantial, but no image
+   should steal the space needed by surrounding controls and copy. */
+@media(max-width:600px) {
+  .world-hub.s72-ready .world-stage {
+    height:clamp(304px,92vw,359px);
+    margin-top:clamp(22px,5vw,33px);
+  }
+  .world-hub.s72-ready .stage-sheet {
+    top:9%;
+    left:10%;
+    width:76%;
+    height:79%;
+  }
+  .world-hub.s72-ready .stage-sheet .s22-art {
+    inset:16% 5% 18%;
+  }
+  .world-hub.s72-ready .stage-word {
+    font-size:clamp(37px,10.3vw,55px);
+  }
+  .world-hub.s72-ready .stage-caption {
+    max-width:145px;
+    font-size:10px;
+    line-height:1.45;
+  }
+  .sound-world.s69-ready .sound-layout {
+    gap:clamp(23px,6vw,35px);
+  }
+  .sound-world.s69-ready .sound-art {
+    height:clamp(315px,90vw,430px);
+    min-height:315px;
+    width:100%;
+    max-width:500px;
+    margin-inline:auto;
+  }
+  .sound-world.s69-ready .sound-art .sound-record {
+    width:min(59vw,285px);
+  }
+  .sound-world.s69-ready .sound-art .sound-orbit {
+    width:min(72vw,344px);
+  }
+  .sound-world.s69-ready .s69-gallery-meta,
+  .sound-world.s69-ready .s69-gallery-bottom {
+    gap:8px;
+    letter-spacing:.08em;
+  }
+  .sound-world.s69-ready .sound-mood {
+    min-width:0;
+    min-height:88px;
+  }
+  .sound-world.s69-ready .sound-mood-name {
+    line-height:1.14;
+  }
+  .p14-world.s70-ready .p14-title {
+    font-size:clamp(49px,11.5vw,75px)!important;
+    line-height:.94!important;
+  }
+  .p14-world.s70-ready .p14-intro {
+    max-width:460px;
+  }
+  .p14-world.s70-ready .p14-display {
+    width:100%;
+    max-width:530px;
+    padding-inline:8px;
+  }
+  .p14-world.s70-ready .p14-postcard {
+    height:clamp(320px,104vw,455px);
+  }
+  .p14-world.s70-ready .p14-choice {
+    min-height:56px;
+  }
+  .p14-world.s70-ready .p14-note {
+    font-size:13px;
+    line-height:1.65;
+  }
+  .a17-world.s71-ready .a17-card-wrap {
+    padding:clamp(9px,2vw,16px);
+    width:min(100%,510px);
+    margin-inline:auto;
+  }
+  .a17-world.s71-ready .a17-card {
+    min-height:320px;
+  }
+  .a17-world.s71-ready .s71-hero-legend {
+    font-size:8px;
+    letter-spacing:.09em;
+  }
+}
+
+/* 08 — VERY SMALL DEVICES: e.g. 320–375 px, keep captions and
+   selection controls from colliding with illustration edge labels. */
+@media(max-width:375px) {
+  .world-hub.s72-ready .stage-sheet {
+    padding:19px;
+  }
+  .world-hub.s72-ready .stage-word {
+    font-size:clamp(35px,10vw,42px);
+  }
+  .world-hub.s72-ready .s72-poster-code {
+    display:none;
+  }
+  .sound-world.s69-ready .sound-art {
+    height:315px;
+  }
+  .sound-world.s69-ready .s69-gallery-meta {
+    font-size:7px;
+    letter-spacing:.05em;
+  }
+  .sound-world.s69-ready .s69-gallery-bottom {
+    font-size:7px;
+  }
+  .sound-world.s69-ready .sound-mood {
+    padding-inline:6px;
+  }
+  .sound-world.s69-ready .sound-mood-name {
+    font-size:12.8px;
+  }
+  .p14-world.s70-ready .p14-top,
+  .p14-world.s70-ready .p14-footer {
+    font-size:8px;
+    letter-spacing:.08em;
+  }
+  .p14-world.s70-ready .p14-title {
+    font-size:clamp(46px,11vw,55px)!important;
+  }
+  .p14-world.s70-ready .p14-postcard {
+    height:320px;
+  }
+  .a17-world.s71-ready .s71-hero-legend span:last-child {
+    display:none;
+  }
+  .a17-world.s71-ready .s71-hero-legend {
+    bottom:49px;
+  }
+}
+
+/* 09 — TOUCH + MOTION + ACCESSIBILITY: no hover-only information
+   and no unbounded decoration animations. */
+@media(hover:none) {
+  .sound-world.s69-ready .sound-mood.is-current,
+  .p14-world.s70-ready .p14-choice.is-selected {
+    border-color:var(--s69-hue, var(--s70-ink));
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .world-hub.s72-ready .s72-scene,
+  .sound-world.s69-ready .s69-panel,
+  .p14-world.s70-ready .s70-worldview,
+  .a17-world.s71-ready .s71-hero-scene,
+  .a17-world.s71-ready .s71-plate-scene {
+    transition:none!important;
+  }
+}
+@media(prefers-contrast:more) {
+  .p14-world.s70-ready {
+    --s73-text:#fff;
+    --s73-secondary:#fff;
+    --s73-line:#fff;
+  }
+  .p14-world.s70-ready .p14-choice.is-selected {
+    border-width:2px;
+  }
+}
