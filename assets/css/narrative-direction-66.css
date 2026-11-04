@@ -1,0 +1,124 @@
+/* STEP 66 — NARRATIVE DIRECTION
+   The reading rhythm across existing Case Studies and Field Notes.
+   Does not alter navigation, hero dimensions, photos, GSAP/parallax,
+   grid structure, Work index or Chapter 36 score/reveal handlers. */
+
+.case-world.s66-ready {
+  --s66-accent:var(--case-accent,#c78a73);
+}
+.p15-journal.s66-ready {
+  --s66-accent:var(--p15-accent,#b8d8c6);
+}
+
+/* The new line sits inside the existing top border of each chapter.
+   The position:relative only provides an anchor, not a new layout. */
+.case-world.s66-ready .case-story,
+.case-world.s66-ready .case-chapter,
+.p15-journal.s66-ready .p15-story,
+.p15-journal.s66-ready .p15-gallery,
+.p15-journal.s66-ready .p15-outro {
+  position:relative;
+}
+
+.case-world.s66-ready .s66-reading-line,
+.p15-journal.s66-ready .s66-reading-line {
+  position:absolute;
+  z-index:5;
+  display:block;
+  top:0;
+  left:0;
+  width:min(27%,280px);
+  height:2px;
+  background:linear-gradient(90deg,var(--s66-accent),transparent 98%);
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  opacity:.9;
+  pointer-events:none;
+  user-select:none;
+  transition:transform 1s cubic-bezier(.16,1,.3,1);
+}
+.case-world.s66-ready .s66-reading-active > .s66-reading-line,
+.p15-journal.s66-ready .s66-reading-active > .s66-reading-line {
+  transform:scaleX(1);
+}
+.p15-journal.s66-ready .p15-story > .s66-reading-line,
+.p15-journal.s66-ready .p15-gallery > .s66-reading-line,
+.p15-journal.s66-ready .p15-outro > .s66-reading-line {
+  left:clamp(20px,5vw,80px);
+  width:min(29%,260px);
+}
+.case-world.s66-ready .case-chapter > .s66-reading-line {
+  left:clamp(26px,4vw,60px);
+}
+
+/* Chapter reading cues enrich the sections without moving text or media. */
+.case-world.s66-ready .case-story.s66-reading-active .case-small-label {
+  color:var(--s66-accent);
+}
+.p15-journal.s66-ready .p15-story.s66-reading-active .p15-section-label span:first-child,
+.p15-journal.s66-ready .p15-gallery.s66-reading-active .p15-section-label span:first-child {
+  color:var(--s66-accent);
+}
+
+/* Calm editorial typography and more deliberate paragraph rhythm. */
+.case-world.s66-ready .case-statement,
+.p15-journal.s66-ready .p15-story-title,
+.p15-journal.s66-ready .p15-outro-text {
+  text-wrap:balance;
+}
+.case-world.s66-ready .case-description,
+.p15-journal.s66-ready .p15-story-text,
+.p15-journal.s66-ready .p15-gallery-note {
+  text-wrap:pretty;
+}
+.p15-journal.s66-ready .p15-story-lead {
+  text-wrap:balance;
+}
+.p15-journal.s66-ready .p15-shot figcaption {
+  border-top:1px solid color-mix(in srgb,var(--s66-accent) 24%,transparent);
+}
+.case-world.s66-ready .chapter-topline {
+  border-bottom-color:color-mix(in srgb,var(--s66-accent) 36%,currentColor);
+}
+.p15-journal.s66-ready .p15-gallery-note {
+  border-left:1px solid color-mix(in srgb,var(--s66-accent) 60%,transparent);
+  padding-left:clamp(12px,1.5vw,22px);
+}
+/* The studio-focus reading toggle remains authoritative. */
+body.s41-studio-focus .case-world.s66-ready .s66-reading-line,
+body.s41-studio-focus .p15-journal.s66-ready .s66-reading-line {
+  opacity:.3;
+}
+/* On narrow displays avoid more lines competing with photographs/captions. */
+@media(max-width:700px) {
+  .case-world.s66-ready .s66-reading-line,
+  .p15-journal.s66-ready .s66-reading-line {
+    height:1px;
+    width:100px;
+  }
+  .case-world.s66-ready .case-chapter > .s66-reading-line {
+    left:18px;
+  }
+  .p15-journal.s66-ready .p15-story > .s66-reading-line,
+  .p15-journal.s66-ready .p15-gallery > .s66-reading-line,
+  .p15-journal.s66-ready .p15-outro > .s66-reading-line {
+    left:18px;
+  }
+  .p15-journal.s66-ready .p15-gallery-note {
+    padding-left:12px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .case-world.s66-ready .s66-reading-line,
+  .p15-journal.s66-ready .s66-reading-line {
+    transition:none!important;
+    transform:scaleX(1)!important;
+  }
+}
+@media(prefers-contrast:more) {
+  .case-world.s66-ready .s66-reading-line,
+  .p15-journal.s66-ready .s66-reading-line {
+    background:currentColor;
+    opacity:1;
+  }
+}
