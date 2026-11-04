@@ -1,0 +1,164 @@
+/* STEP 70 — PLACES / ATMOSPHERIC ATLAS
+   Three new full-bleed vector landscapes replace the old illustration
+   only after new artwork has successfully mounted. The original art
+   stays in DOM as the no-script fallback. No titles on the postcard. */
+.p14-world.s70-ready {
+  --s70-glow:rgba(98,195,173,.18);
+  --s70-paper:#40564d;
+  --s70-ink:#a6dfc3;
+  background-image:
+    radial-gradient(ellipse 57% 58% at 78% 44%,var(--s70-glow),transparent 79%),
+    linear-gradient(147deg,#1b3029,#101d1b 90%);
+  background-color:#10211d;
+}
+.p14-world.s70-ready[data-place="london"] {
+  --s70-glow:rgba(185,126,150,.18);
+  --s70-paper:#4a4251;
+  --s70-ink:#e4bac0;
+  background-image:
+    radial-gradient(ellipse 60% 57% at 77% 41%,var(--s70-glow),transparent 79%),
+    linear-gradient(150deg,#302c38,#171e29 90%);
+}
+.p14-world.s70-ready[data-place="kl"] {
+  --s70-glow:rgba(218,154,102,.18);
+  --s70-paper:#5a4b42;
+  --s70-ink:#f3c98f;
+  background-image:
+    radial-gradient(ellipse 63% 58% at 77% 42%,var(--s70-glow),transparent 77%),
+    linear-gradient(150deg,#2e3029,#17252a 90%);
+}
+.p14-world.s70-ready .p14-display {
+  position:relative;
+  isolation:isolate;
+  max-width:720px;
+}
+.p14-world.s70-ready .p14-display::before {
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  inset:-26px -32px 45px;
+  border:1px solid color-mix(in srgb,var(--s70-ink) 22%,transparent);
+  background:
+    linear-gradient(130deg,color-mix(in srgb,var(--s70-paper) 56%,#132421),transparent 84%),
+    radial-gradient(ellipse at 50% 40%,var(--s70-glow),transparent 73%);
+  box-shadow:0 36px 90px rgba(0,0,0,.16);
+  transition:border-color .75s ease,background-color .75s ease;
+}
+.p14-world.s70-ready .p14-paper,
+.p14-world.s70-ready.s25-ready .p14-paper {
+  background:var(--s70-paper);
+  transform:rotate(1.4deg) translate(8px,8px);
+  border:1px solid color-mix(in srgb,var(--s70-ink) 27%,transparent);
+}
+.p14-world.s70-ready .p14-postcard {
+  background:#172b28;
+  border-color:color-mix(in srgb,var(--s70-ink) 35%,transparent);
+  height:clamp(455px,58vh,660px);
+  transform:rotate(-.4deg);
+  outline:1px solid color-mix(in srgb,var(--s70-ink) 21%,transparent);
+  outline-offset:5px;
+  box-shadow:0 38px 90px rgba(0,0,0,.45);
+}
+.p14-world.s70-ready .p14-scenes {z-index:0;}
+.p14-world.s70-ready .p14-scenes > .p14-scene {opacity:0!important;visibility:hidden!important;}
+.p14-world.s70-ready .p14-scenes > .s70-worldview {
+  position:absolute;inset:0;z-index:1;
+  overflow:hidden;
+  opacity:0;visibility:hidden;
+  transform:scale(1.045);
+  transition:opacity .76s cubic-bezier(.21,.8,.2,1),transform 1.25s cubic-bezier(.16,1,.3,1),visibility 0s linear .8s;
+}
+.p14-world.s70-ready[data-place="soca"] .s70-worldview[data-s70-scene="soca"],
+.p14-world.s70-ready[data-place="london"] .s70-worldview[data-s70-scene="london"],
+.p14-world.s70-ready[data-place="kl"] .s70-worldview[data-s70-scene="kl"] {
+  opacity:1;visibility:visible;transform:scale(1);
+  transition:opacity .85s ease,transform 1.45s cubic-bezier(.16,1,.3,1),visibility 0s;
+}
+.p14-world.s70-ready .s70-worldview svg {
+  display:block;width:100%;height:100%;
+  overflow:hidden;
+}
+.p14-world.s70-ready .s70-mist,
+.p14-world.s70-ready .s70-reflection,
+.p14-world.s70-ready .s70-atmosphere {
+  transform-origin:center center;
+}
+.p14-world.s70-ready .p14-postcard-shade {
+  z-index:2;
+  background:linear-gradient(180deg,rgba(8,21,21,.04),transparent 48%,rgba(7,19,20,.15) 100%);
+}
+.p14-world.s70-ready .s70-art-code {
+  position:absolute;z-index:5;pointer-events:none;
+  top:clamp(15px,2vw,27px);
+  left:clamp(15px,2vw,27px);
+  color:rgba(245,246,229,.80);
+  font:700 clamp(8px,.8vw,10px)/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.17em;
+  text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.p14-world.s70-ready .s70-art-coord {
+  position:absolute;z-index:5;pointer-events:none;
+  bottom:clamp(13px,2vw,24px);
+  right:clamp(15px,2vw,27px);
+  color:rgba(245,246,229,.77);
+  font:600 clamp(8px,.8vw,10px)/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.13em;
+  text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.p14-world.s70-ready .p14-postcard .s70-art-code,
+.p14-world.s70-ready .p14-postcard .s70-art-coord {
+  opacity:.85;
+}
+.p14-world.s70-ready .p14-choice.is-selected {
+  border-top-color:var(--s70-ink);
+  background:linear-gradient(90deg,color-mix(in srgb,var(--s70-ink) 12%,transparent),transparent 80%);
+}
+.p14-world.s70-ready .p14-choice.is-selected .p14-choice-name,
+.p14-world.s70-ready .p14-choice.is-selected .p14-choice-number {color:var(--s70-ink)}
+.p14-world.s70-ready .p14-title em,
+.p14-world.s70-ready .p14-eyebrow,
+.p14-world.s70-ready .p25-coordinates {color:var(--s70-ink)}
+.p14-world.s70-ready .p14-below {border-top-color:color-mix(in srgb,var(--s70-ink) 31%,transparent)}
+/* The destinations get unique motion directions, but never endless loops.
+   One finite transition when each SVG becomes selected. */
+@media(prefers-reduced-motion:no-preference) {
+  .p14-world.s70-ready .s70-worldview[data-s70-scene="soca"].s70-arriving .s70-mist {
+    animation:s70-soca-fog 1.4s ease-out both;
+  }
+  .p14-world.s70-ready .s70-worldview[data-s70-scene="london"].s70-arriving .s70-reflection {
+    animation:s70-city-water 1.15s cubic-bezier(.2,.75,.2,1) both;
+  }
+  .p14-world.s70-ready .s70-worldview[data-s70-scene="kl"].s70-arriving .s70-atmosphere {
+    animation:s70-kl-haze 1.5s cubic-bezier(.16,1,.3,1) both;
+  }
+}
+@keyframes s70-soca-fog {
+  from{opacity:0;transform:translate3d(-38px,0,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes s70-city-water {
+  from{opacity:.3;transform:translate3d(0,20px,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes s70-kl-haze {
+  from{opacity:.25;transform:scale(1.08)}
+  to{opacity:1;transform:scale(1)}
+}
+@media(max-width:991px) {
+  .p14-world.s70-ready .p14-display {max-width:680px}
+  .p14-world.s70-ready .p14-postcard {height:clamp(420px,67vw,610px)}
+}
+@media(max-width:600px) {
+  .p14-world.s70-ready .p14-display::before {inset:-13px -7px 35px}
+  .p14-world.s70-ready .p14-postcard {height:clamp(325px,106vw,490px);transform:none}
+  .p14-world.s70-ready .p14-paper {transform:rotate(.7deg) translate(4px,4px)}
+  .p14-world.s70-ready .s70-art-code,.p14-world.s70-ready .s70-art-coord{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .p14-world.s70-ready .s70-worldview {transition:none!important;transform:none!important}
+  .p14-world.s70-ready .s70-arriving .s70-mist,
+  .p14-world.s70-ready .s70-arriving .s70-reflection,
+  .p14-world.s70-ready .s70-arriving .s70-atmosphere {animation:none!important}
+}
+@media(prefers-contrast:more) {
+  .p14-world.s70-ready .s70-art-code,.p14-world.s70-ready .s70-art-coord {color:#fff;text-shadow:0 1px 4px #000}
+  .p14-world.s70-ready .p14-postcard-shade {display:none}
+}
