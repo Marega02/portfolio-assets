@@ -1,0 +1,136 @@
+/* STEP 68 — INTERACTION CHOREOGRAPHY
+   Finite selection motion across Sound / Places / About.
+   Added signals are children of EXISTING buttons.
+   Never repositions the scene, card, images, text containers or footer.
+*/
+.sound-world.s68-ready { --s68-signal:var(--sound-accent,#d2a78f); }
+.p14-world.s68-ready { --s68-signal:var(--p14-accent,#426c5e); }
+.a17-world.s68-ready { --s68-signal:var(--a17-accent,#e9b28e); }
+
+.sound-world.s68-ready .sound-mood,
+.p14-world.s68-ready .p14-choice,
+.a17-world.s68-ready .a17-mode { position:relative; isolation:isolate; }
+
+/* The kinetic stroke is a separate non-interactive surface. */
+.sound-world.s68-ready .s68-rail,
+.p14-world.s68-ready .s68-rail,
+.a17-world.s68-ready .s68-rail {
+  position:absolute;
+  display:block;
+  pointer-events:none;
+  user-select:none;
+  z-index:1;
+  height:2px;
+  left:0;
+  right:0;
+  bottom:0;
+  overflow:hidden;
+  opacity:.85;
+}
+.sound-world.s68-ready .s68-rail::before,
+.p14-world.s68-ready .s68-rail::before,
+.a17-world.s68-ready .s68-rail::before {
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,var(--s68-signal),color-mix(in srgb,var(--s68-signal) 50%,transparent) 65%,transparent 100%);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .67s cubic-bezier(.17,.92,.22,1);
+}
+.sound-world.s68-ready .sound-mood.is-current .s68-rail::before,
+.p14-world.s68-ready .p14-choice.is-selected .s68-rail::before,
+.a17-world.s68-ready .a17-mode.is-selected .s68-rail::before {
+  transform:scaleX(1);
+}
+
+/* SOUND / studio frequency: a small set of etched frequency divisions. */
+.sound-world.s68-ready .sound-mood .s68-rail {
+  bottom:1px;
+  background:repeating-linear-gradient(90deg,transparent 0 11px,rgba(245,236,216,.09) 11px 12px);
+}
+.sound-world.s68-ready .sound-mood.is-current .s68-rail {
+  background:repeating-linear-gradient(90deg,transparent 0 11px,color-mix(in srgb,var(--s68-signal) 20%,transparent) 11px 12px);
+}
+.sound-world.s68-ready .sound-mood.is-current .sound-mood-index {
+  color:var(--s68-signal);
+}
+
+/* PLACES / plotting route: moving dot at the end of the mapping line. */
+.p14-world.s68-ready .p14-choice .s68-rail {
+  bottom:0;
+  height:2px;
+}
+.p14-world.s68-ready .p14-choice .s68-rail::after {
+  content:"";
+  position:absolute;
+  right:0;
+  top:0;
+  width:5px;
+  height:2px;
+  background:var(--s68-signal);
+  opacity:0;
+  transition:opacity .35s ease .36s;
+}
+.p14-world.s68-ready .p14-choice.is-selected .s68-rail::after {
+  opacity:1;
+}
+.p14-world.s68-ready .p14-choice.is-selected .p14-choice-number {
+  color:var(--s68-signal);
+  font-weight:700;
+}
+
+/* ABOUT / identity registration: a small inset ink strip.
+   The original filled selected state stays legible. */
+.a17-world.s68-ready .a17-mode .s68-rail {
+  left:0;
+  right:auto;
+  top:0;
+  bottom:0;
+  width:3px;
+  height:100%;
+  opacity:.9;
+}
+.a17-world.s68-ready .a17-mode .s68-rail::before {
+  background:var(--s68-signal);
+  transform:scaleY(0);
+  transform-origin:center top;
+  transition:transform .6s cubic-bezier(.17,.92,.22,1);
+}
+.a17-world.s68-ready .a17-mode.is-selected .s68-rail::before {transform:scaleY(1)}
+.a17-world.s68-ready .a17-mode.is-selected .s68-rail::before {
+  background:#243329;
+}
+.a17-world.s68-ready .a17-mode.is-selected {
+  box-shadow:inset 0 0 0 1px rgba(16,35,27,.095);
+}
+
+/* Gentle registration across all selection rows only:
+   the existing selection labels remain readable and unchanged. */
+.sound-world.s68-ready .sound-mood-name,
+.p14-world.s68-ready .p14-choice-name,
+.a17-world.s68-ready .a17-mode small {
+  -webkit-font-smoothing:antialiased;
+}
+@media(max-width:760px) {
+  .sound-world.s68-ready .s68-rail,
+  .p14-world.s68-ready .s68-rail {height:1px}
+  .a17-world.s68-ready .a17-mode .s68-rail {width:2px;height:100%}
+}
+@media(prefers-reduced-motion:reduce) {
+  .sound-world.s68-ready .s68-rail::before,
+  .p14-world.s68-ready .s68-rail::before,
+  .a17-world.s68-ready .s68-rail::before,
+  .p14-world.s68-ready .s68-rail::after {transition:none!important}
+}
+@media(prefers-contrast:more) {
+  .sound-world.s68-ready .s68-rail,
+  .p14-world.s68-ready .s68-rail,
+  .a17-world.s68-ready .s68-rail {opacity:1}
+  .sound-world.s68-ready .s68-rail::before,
+  .p14-world.s68-ready .s68-rail::before,
+  .a17-world.s68-ready .s68-rail::before {
+    background:currentColor;
+  }
+}
