@@ -1,0 +1,197 @@
+/* STEP 67 — CHAPTER IDENTITY / THE CREATIVE ATLAS
+   An editorial direction system for Sound, Places and About.
+   No new DOM or scripts; no GSAP targets, parent transforms, heights,
+   grids, footer changes, content replacement, or interaction layers.
+   Work and Home remain completely untouched. */
+
+/* Three existing hero compositions share a large archival folio.
+   Outline numbers sit BEHIND readable copy and primary artwork. */
+.sound-world.s67-chapter .sound-layout,
+.p14-world.s67-chapter .p14-layout,
+.a17-world.s67-chapter .a17-grid {
+  position:relative;
+  isolation:isolate;
+}
+.sound-world.s67-chapter .sound-layout::before,
+.p14-world.s67-chapter .p14-layout::before,
+.a17-world.s67-chapter .a17-grid::before {
+  display:block;
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  user-select:none;
+  font:800 clamp(205px,34vw,595px)/.75 Arial,Helvetica,sans-serif;
+  letter-spacing:-.13em;
+  color:transparent;
+  opacity:0;
+  -webkit-font-smoothing:antialiased;
+  transform:translate3d(0,20px,0);
+  transition:opacity .85s cubic-bezier(.17,1,.28,1),transform .95s cubic-bezier(.17,1,.28,1);
+}
+.sound-world.s67-chapter .sound-layout::before {
+  content:"02";
+  right:4%;
+  top:16%;
+  -webkit-text-stroke:1px rgba(219,231,212,.14);
+}
+.p14-world.s67-chapter .p14-layout::before {
+  content:"03";
+  right:4%;
+  top:15%;
+  -webkit-text-stroke:1px rgba(54,90,71,.19);
+}
+.a17-world.s67-chapter .a17-grid::before {
+  content:"04";
+  right:1%;
+  top:12%;
+  -webkit-text-stroke:1px rgba(235,201,179,.16);
+}
+.sound-world.s67-chapter.is-active .sound-layout::before,
+.p14-world.s67-chapter.is-active .p14-layout::before,
+.a17-world.s67-chapter.is-active .a17-grid::before {
+  opacity:1;
+  transform:translate3d(0,0,0);
+}
+/* Selection-aware folio tints: each environment gets a real identity.
+   Palettes use the same state attributes as the original controls. */
+.sound-world.s67-chapter[data-mood="hiphop"] .sound-layout::before {
+  -webkit-text-stroke-color:rgba(186,209,174,.18);
+}
+.sound-world.s67-chapter[data-mood="alternative"] .sound-layout::before {
+  -webkit-text-stroke-color:rgba(171,196,223,.18);
+}
+.p14-world.s67-chapter[data-place="london"] .p14-layout::before {
+  -webkit-text-stroke-color:rgba(130,91,100,.16);
+}
+.p14-world.s67-chapter[data-place="kl"] .p14-layout::before {
+  -webkit-text-stroke-color:rgba(150,101,68,.15);
+}
+.a17-world.s67-chapter[data-mode="listen"] .a17-grid::before {
+  -webkit-text-stroke-color:rgba(193,171,223,.18);
+}
+.a17-world.s67-chapter[data-mode="wander"] .a17-grid::before {
+  -webkit-text-stroke-color:rgba(163,209,188,.17);
+}
+
+/* One consistent editorial flourish: a delicate short line emerging
+   below the existing italic word, not adding vertical height. */
+.sound-world.s67-chapter .sound-title em,
+.p14-world.s67-chapter .p14-title em {
+  position:relative;
+}
+.sound-world.s67-chapter .sound-title em::after,
+.p14-world.s67-chapter .p14-title em::after {
+  content:"";
+  display:block;
+  position:absolute;
+  left:0;
+  bottom:-12px;
+  width:clamp(60px,7vw,108px);
+  height:2px;
+  background:currentColor;
+  opacity:.68;
+  pointer-events:none;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .85s cubic-bezier(.19,1,.3,1);
+}
+.sound-world.s67-chapter.is-active .sound-title em::after,
+.p14-world.s67-chapter.is-active .p14-title em::after {
+  transform:scaleX(1);
+}
+
+/* Refine the physical, tactile look of the existing surfaces without
+   painting over the photographs, labels or illustrated objects. */
+.sound-world.s67-chapter .sound-record {
+  border-color:color-mix(in srgb,var(--sound-accent) 24%,#464c45);
+  box-shadow:
+    0 29px 78px rgba(0,0,0,.40),
+    inset 0 0 40px rgba(0,0,0,.39),
+    0 0 0 1px rgba(243,237,219,.025);
+}
+.sound-world.s67-chapter .sound-orbit {
+  border-color:color-mix(in srgb,var(--sound-accent) 35%,transparent);
+}
+.sound-world.s67-chapter .sound-mood.is-current .sound-mood-index {
+  color:var(--sound-accent);
+}
+.sound-world.s67-chapter .sound-bottom {
+  border-top-color:color-mix(in srgb,var(--sound-accent) 29%,#414741);
+}
+.p14-world.s67-chapter .p14-postcard {
+  box-shadow:0 32px 78px rgba(48,47,38,.22),0 0 0 1px rgba(49,62,52,.11);
+}
+.p14-world.s67-chapter .p14-choice.is-selected .p14-choice-number {
+  color:var(--p14-accent);
+  font-weight:700;
+}
+.p14-world.s67-chapter .p14-choice.is-selected {
+  background:linear-gradient(90deg,color-mix(in srgb,var(--p14-accent) 7%,transparent),transparent 78%);
+}
+.p14-world.s67-chapter .p14-footer {
+  border-top-color:color-mix(in srgb,var(--p14-accent) 31%,#bdb8ab);
+}
+.a17-world.s67-chapter .a17-card {
+  box-shadow:0 41px 105px rgba(0,0,0,.40),0 0 0 1px rgba(243,235,218,.045);
+}
+.a17-world.s67-chapter .a17-indexbar-dot {
+  background:var(--a17-accent);
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--a17-accent) 12%,transparent);
+}
+.a17-world.s67-chapter .a17-facts {
+  border-top-color:color-mix(in srgb,var(--a17-accent) 35%,transparent);
+}
+
+/* Type refinements are optical only—no font-size / line-height changes. */
+.sound-world.s67-chapter .sound-description,
+.p14-world.s67-chapter .p14-intro,
+.a17-world.s67-chapter .a17-lead {
+  text-wrap:pretty;
+}
+.sound-world.s67-chapter .sound-title,
+.p14-world.s67-chapter .p14-title,
+.a17-world.s67-chapter .a17-title {
+  text-wrap:balance;
+}
+
+/* Smaller screens prioritize existing content and clean responsive flow. */
+@media(max-width:991px) {
+  .sound-world.s67-chapter .sound-layout::before,
+  .p14-world.s67-chapter .p14-layout::before,
+  .a17-world.s67-chapter .a17-grid::before {
+    font-size:clamp(170px,32vw,340px);
+    top:18%;
+    right:2%;
+  }
+}
+@media(max-width:760px) {
+  .sound-world.s67-chapter .sound-layout::before,
+  .p14-world.s67-chapter .p14-layout::before,
+  .a17-world.s67-chapter .a17-grid::before {display:none}
+  .sound-world.s67-chapter .sound-title em::after,
+  .p14-world.s67-chapter .p14-title em::after {
+    width:55px;
+    height:1px;
+    bottom:-9px;
+  }
+}
+/* No animation for motion-sensitive or high-contrast visitors. */
+@media(prefers-reduced-motion:reduce) {
+  .sound-world.s67-chapter .sound-layout::before,
+  .p14-world.s67-chapter .p14-layout::before,
+  .a17-world.s67-chapter .a17-grid::before,
+  .sound-world.s67-chapter .sound-title em::after,
+  .p14-world.s67-chapter .p14-title em::after {
+    transition:none!important;
+    transform:none!important;
+  }
+  .sound-world.s67-chapter .sound-title em::after,
+  .p14-world.s67-chapter .p14-title em::after {
+    transform:scaleX(1)!important;
+  }
+}
+@media(prefers-contrast:more) {
+  .sound-world.s67-chapter .sound-layout::before,
+  .p14-world.s67-chapter .p14-layout::before,
+  .a17-world.s67-chapter .a17-grid::before {display:none!important}
+}
