@@ -8,6 +8,7 @@
 .work-world.s78-ready .work-preview[data-theme="soca"] {--s78-ink:#a8d5c1}
 .work-world.s78-ready .work-preview[data-theme="gianni"] {--s78-ink:#e3bc85}
 /* Editorial project index: unobtrusive and consistent with the film. */
+.work-world.s78-ready .work-project { position:relative; }
 .work-world.s78-ready .work-project .s78-row-rule {
   position:absolute;
   display:block;
