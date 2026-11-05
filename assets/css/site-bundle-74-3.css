@@ -1,0 +1,2251 @@
+/* STEP 74 — CSS BUNDLE 3 OF 4 (27–39) */
+
+/* SOURCE assets/css/quiet-frame.css */
+/* STEP 44 — THE QUIET FRAME / MATERIAL RESPONSE
+   A restrained physical-light interaction on five existing hero artworks.
+   No new media, typography panels, endless animation, GSAP edits or new controls.
+   The layers stay behind foreground copy and are pointer transparent. */
+
+.s44-material{
+  --s44-x:50%;
+  --s44-y:45%;
+  position:absolute;
+  inset:0;
+  display:block;
+  z-index:1;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none!important;
+  user-select:none;
+  transform:translateZ(0);
+  transition:opacity .65s cubic-bezier(.16,1,.3,1),visibility 0s linear .65s;
+  will-change:auto;
+}
+.s44-material.is-s44-lit{
+  opacity:1;
+  visibility:visible;
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),visibility 0s;
+}
+/* Fine secondary imprint beneath the surface light.
+   This contains no text, so nothing obscures existing copy. */
+.s44-material::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(
+    112deg,
+    transparent 0,
+    transparent 13px,
+    rgba(255,255,255,.025) 14px,
+    transparent 16px
+  );
+  opacity:.34;
+}
+.world-hub.s44-ready .stage-sheet>.s44-material{
+  z-index:4;
+  background:
+    radial-gradient(ellipse 43% 49% at var(--s44-x) var(--s44-y),
+      rgba(255,255,246,.41),rgba(255,246,227,.11) 45%,transparent 82%),
+    linear-gradient(112deg,transparent 26%,rgba(255,254,246,.10) 49%,transparent 76%);
+  mix-blend-mode:screen;
+}
+/* On HOME the central overline, title and caption remain above the light. */
+.world-hub.s44-ready .stage-sheet>.stage-overline,
+.world-hub.s44-ready .stage-sheet>.stage-word,
+.world-hub.s44-ready .stage-sheet>.stage-caption{
+  position:relative;z-index:5;
+}
+.work-world.s44-ready .work-preview>.s44-material{
+  z-index:1;
+  background:
+    radial-gradient(ellipse 46% 62% at var(--s44-x) var(--s44-y),
+      rgba(255,244,225,.36) 0%,rgba(255,229,204,.10) 39%,transparent 83%),
+    linear-gradient(134deg,rgba(255,255,255,.06),transparent 61%);
+  mix-blend-mode:soft-light;
+}
+.work-world.s44-ready .work-preview>.preview-kicker,
+.work-world.s44-ready .work-preview>.preview-title,
+.work-world.s44-ready .work-preview>.preview-footer{
+  position:absolute;z-index:4;
+}
+/* Vinyl is a physical disc: tight specular highlight, no overlay on label text. */
+.sound-world.s44-ready .sound-record>.s44-material{
+  z-index:1;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse 19% 55% at var(--s44-x) var(--s44-y),
+      rgba(255,255,243,.47) 0%,rgba(255,255,255,.12) 37%,transparent 75%),
+    radial-gradient(ellipse 72% 47% at var(--s44-x) var(--s44-y),
+      rgba(176,211,181,.13),transparent 85%);
+  mix-blend-mode:screen;
+}
+.sound-world.s44-ready .sound-record>.sound-record-core{z-index:2}
+/* Matte postcard paper: quiet warm bounce, preserved title readability. */
+.p14-world.s44-ready .p14-postcard>.s44-material{
+  z-index:2;
+  background:
+    radial-gradient(ellipse 50% 61% at var(--s44-x) var(--s44-y),
+      rgba(255,244,221,.38) 0%,rgba(255,244,221,.10) 38%,transparent 79%);
+  mix-blend-mode:soft-light;
+}
+.p14-world.s44-ready .p14-postcard>.p14-card-top,
+.p14-world.s44-ready .p14-postcard>.p14-card-bottom{
+  z-index:4;
+}
+.p14-world.s44-ready .p14-postcard>.p14-postcard-shade{z-index:1}
+/* Identity card: soft iridescent sheen, no extra three-dimensional transform. */
+.a17-world.s44-ready .a17-card>.s44-material{
+  z-index:1;
+  background:
+    radial-gradient(ellipse 53% 50% at var(--s44-x) var(--s44-y),
+      rgba(255,255,245,.40),rgba(226,248,230,.13) 40%,transparent 80%),
+    conic-gradient(from 55deg at var(--s44-x) var(--s44-y),
+      transparent 0deg,rgba(244,197,169,.12) 48deg,
+      transparent 104deg,rgba(181,221,205,.08) 210deg,transparent 300deg);
+  mix-blend-mode:screen;
+}
+.a17-world.s44-ready .a17-card>.a17-card-head,
+.a17-world.s44-ready .a17-card>.a17-card-bottom,
+.a17-world.s44-ready .a17-card>.a17-card-stamp{z-index:4}
+.a17-world.s44-ready .a17-card>.a17-card-art{z-index:3}
+/* Respect the existing viewer's explicit request for quiet. */
+body.s41-studio-focus .s44-material{opacity:0!important;visibility:hidden!important}
+@media(max-width:991px),(hover:none),(pointer:coarse){
+ .s44-material{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .s44-material{display:none!important;transition:none!important}
+}
+@media(prefers-contrast:more){
+ .s44-material{display:none!important}
+}
+
+
+/* SOURCE assets/css/opening-spread.css */
+/* STEP 47 — THE OPENING SPREAD / FIRST IMPRESSION
+   A decisive ART-BOOK layout intervention on the existing home.
+   CSS ONLY: no JS, new DOM elements, observers, requestAnimationFrame or GSAP changes.
+   Original stage rotations, title animation, Live Dossier and links remain intact. */
+
+/* A consistent chromatic editorial system follows the selected universe. */
+.world-hub.s40-ready.s32-ready{
+  --s47-accent:#dfaa83;
+  --s47-folio:"01";
+  --s47-paper:rgba(221,178,140,.11);
+  --s47-line:rgba(227,200,168,.34);
+}
+.world-hub.s40-ready.s32-ready[data-s40-scene="sound"]{
+  --s47-accent:#bad5b4;--s47-folio:"02";
+  --s47-paper:rgba(153,198,160,.11);--s47-line:rgba(180,222,184,.30);
+}
+.world-hub.s40-ready.s32-ready[data-s40-scene="places"]{
+  --s47-accent:#b4d1df;--s47-folio:"03";
+  --s47-paper:rgba(143,189,205,.12);--s47-line:rgba(180,216,226,.30);
+}
+.world-hub.s40-ready.s32-ready[data-s40-scene="about"]{
+  --s47-accent:#eab3a4;--s47-folio:"04";
+  --s47-paper:rgba(214,161,149,.11);--s47-line:rgba(237,190,179,.31);
+}
+
+/* Desktop: the main artwork becomes the second page of an exhibition spread.
+   Pseudo-elements lie BEHIND the artwork and all interactive content. */
+@media(min-width:1150px) and (min-height:720px){
+  .world-hub.s40-ready.s32-ready .world-main{
+    position:relative;
+    isolation:isolate;
+  }
+  .world-hub.s40-ready.s32-ready .world-main::before{
+    content:"";position:absolute;
+    z-index:0;pointer-events:none;user-select:none;
+    inset:-7% -2% -7% 52%;
+    background:
+      linear-gradient(142deg,rgba(255,255,255,.025),transparent 54%),
+      radial-gradient(ellipse 60% 61% at 49% 45%,var(--s47-paper),transparent 88%);
+    border-top:1px solid var(--s47-line);
+    border-right:1px solid color-mix(in srgb,var(--s47-line) 45%,transparent);
+    border-bottom:1px solid var(--s47-line);
+    clip-path:polygon(10% 0%,100% 0%,100% 100%,0% 100%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{
+    content:"LM / " var(--s47-folio) "    —    THE OPENING SPREAD";
+    position:absolute;z-index:0;pointer-events:none;user-select:none;
+    right:1%;bottom:-6%;max-width:40%;
+    color:var(--s47-accent);opacity:.75;
+    font:700 9px/1.4 monospace;letter-spacing:.20em;
+    white-space:nowrap;text-align:right;
+    border-top:1px solid var(--s47-line);
+    padding-top:12px;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-title{
+    max-width:58%;
+    font-size:clamp(73px,7.6vw,132px);
+    line-height:.86;
+    letter-spacing:-.093em;
+    color:#f5f0e8;
+    text-shadow:none;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-subtitle{
+    max-width:400px;
+    color:#e0ddd2;
+    font-size:clamp(13px,1.04vw,16px);
+    line-height:1.74;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.s31-dossier{
+    max-width:min(425px,42%);
+    margin-top:clamp(18px,2.6vh,28px);
+    border-top-color:var(--s47-line);
+  }
+  .world-hub.s40-ready.s32-ready .world-stage{
+    right:0.5%;width:min(41vw,530px);
+    height:clamp(390px,39vw,475px);
+  }
+  .world-hub.s40-ready.s32-ready .s32-ghost{
+    opacity:.42;
+    right:-1%;
+    -webkit-text-stroke:1px rgba(244,235,220,.16);
+  }
+  .world-hub.s40-ready.s32-ready .s40-calibration{opacity:.28}
+  .world-hub.s40-ready.s32-ready .s40-halo{opacity:.63}
+}
+/* A more ambitious poster silhouette without modifying its GSAP transform. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .stage-sheet{
+    border:1px solid rgba(35,53,42,.55);
+    box-shadow:0 5px 0 rgba(13,23,16,.16),
+      13px 17px 0 -8px rgba(235,224,203,.12),
+      0 46px 115px rgba(0,0,0,.36);
+  }
+  .world-hub.s40-ready.s32-ready .stage-sheet-back{
+    border-color:color-mix(in srgb,var(--s47-accent) 33%,transparent);
+    box-shadow:0 20px 52px rgba(0,0,0,.20);
+  }
+  .world-hub.s40-ready.s32-ready .stage-overline{
+    letter-spacing:.21em;
+    color:#1a2d21;
+  }
+  .world-hub.s40-ready.s32-ready .stage-word{
+    color:#14281b;
+    text-shadow:0 1px 0 rgba(255,255,255,.65),0 0 15px var(--paper);
+  }
+  .world-hub.s40-ready.s32-ready .stage-caption{
+    color:#1c3325;line-height:1.53;
+  }
+}
+
+/* A crisp editorial eyebrow and a legible reading rail. */
+.world-hub.s40-ready.s32-ready .world-main>.world-eyebrow{
+  letter-spacing:.24em;
+  color:var(--s47-accent);
+}
+.world-hub.s40-ready.s32-ready .world-main>.world-eyebrow::before{
+  width:34px;background:var(--s47-accent);
+}
+.world-hub.s40-ready.s32-ready .world-main>.world-title .s32-title-highlight{
+  color:var(--s47-accent);
+  text-shadow:0 13px 40px color-mix(in srgb,var(--s47-accent) 8%,transparent);
+}
+.world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+  background:linear-gradient(90deg,var(--s47-accent) 0 55%,transparent 55% 63%,var(--s47-accent) 63% 100%);
+  height:3px;
+  width:clamp(90px,11vw,156px);
+  box-shadow:none;
+}
+
+/* Existing Live Dossier gains a coherent editorial spine, no new controls. */
+.world-hub.s40-ready.s31-ready .world-main>.s31-dossier{
+  border-top:1px solid var(--s47-line);
+}
+.world-hub.s40-ready.s31-ready .s31-head{
+  color:#c8cbc1;
+}
+.world-hub.s40-ready.s31-ready .s31-headline{
+  font-weight:650;
+  letter-spacing:-.075em;
+}
+.world-hub.s40-ready.s31-ready .s31-actions{
+  border-top-color:var(--s47-line);
+}
+.world-hub.s40-ready.s31-ready .s31-enter{
+  border-color:var(--s47-line);
+  min-height:44px;
+}
+
+/* Navigation below the spread reads as a curated exhibition index.
+   Original columns, links, click handlers and focus behaviour are preserved. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .world-links{
+    position:relative;
+    padding-top:clamp(15px,2.2vh,26px);
+    border-top:1px solid rgba(237,226,211,.22);
+  }
+  .world-hub.s40-ready.s32-ready .world-links::before{
+    content:"FOUR WORLDS   /   ONE CREATIVE UNIVERSE";
+    position:absolute;z-index:0;pointer-events:none;
+    left:0;top:-20px;
+    color:#bdbeb6;
+    font:700 9px/1.2 monospace;letter-spacing:.16em;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link{
+    min-width:0;
+    padding-left:clamp(10px,1.1vw,20px);
+    padding-right:clamp(9px,1vw,18px);
+    border-left:1px solid rgba(232,222,208,.14);
+    background:linear-gradient(150deg,rgba(240,231,210,.014),transparent 67%);
+    transition:border-color .3s ease,background-color .3s ease;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link.is-s31-current{
+    border-left-color:var(--s47-accent);
+    background:linear-gradient(140deg,color-mix(in srgb,var(--s47-accent) 7%,transparent),transparent 76%);
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link::after{
+    content:"";position:absolute;pointer-events:none;
+    right:clamp(9px,1vw,16px);top:clamp(13px,1.8vh,23px);
+    width:6px;height:6px;border-radius:50%;
+    background:var(--s47-accent);opacity:0;
+    box-shadow:0 0 0 5px color-mix(in srgb,var(--s47-accent) 13%,transparent);
+    transition:opacity .26s;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-link.is-s31-current::after,
+  .world-hub.s40-ready.s32-ready .world-links .world-link:hover::after,
+  .world-hub.s40-ready.s32-ready .world-links .world-link:focus-visible::after{
+    opacity:1;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-index{
+    color:var(--s47-accent);
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-name{
+    color:#f4efe5;
+  }
+  .world-hub.s40-ready.s32-ready .world-links .world-description{
+    color:#c7c5bb;
+    line-height:1.55;
+  }
+}
+/* Short displays don't get additional decoration or compression risks. */
+@media(min-width:992px) and (max-height:780px){
+  .world-hub.s40-ready.s32-ready .world-main>.world-title{
+    font-size:clamp(66px,6.6vw,105px);
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.s31-dossier{
+    margin-top:10px;
+  }
+  .world-hub.s40-ready.s32-ready .world-stage{
+    height:clamp(315px,36vw,424px);
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{display:none}
+}
+@media(max-width:991px){
+  /* Preserve the tested tablet/mobile flow entirely. */
+  .world-hub.s40-ready.s32-ready .world-main::before,
+  .world-hub.s40-ready.s32-ready .world-main::after,
+  .world-hub.s40-ready.s32-ready .world-links::before,
+  .world-hub.s40-ready.s32-ready .world-links .world-link::after{
+    content:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-eyebrow{
+    letter-spacing:.13em;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-eyebrow::before{width:19px}
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    height:2px;width:76px;margin-top:13px;
+  }
+  .world-hub.s40-ready.s31-ready .world-main>.s31-dossier{
+    max-width:min(100%,650px);width:100%;
+  }
+}
+@media(max-width:600px){
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    width:61px;height:2px;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-subtitle{line-height:1.65}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.s40-ready.s32-ready .world-links .world-link,
+  .world-hub.s40-ready.s32-ready .world-links .world-link::after{
+    transition:none!important;
+  }
+}
+@media(prefers-contrast:more){
+  .world-hub.s40-ready.s32-ready .world-main>.world-title,
+  .world-hub.s40-ready.s32-ready .world-links .world-name{color:#fff}
+  .world-hub.s40-ready.s32-ready .world-links .world-description{color:#eee}
+  .world-hub.s40-ready.s32-ready .world-main::before{background:transparent}
+}
+
+
+
+/* SOURCE assets/css/home-lines-47-2.css */
+/* STEP 47.2 — PRESERVED HOME HOTFIX
+   Maintains the approved HOME layout, without affecting other worlds.
+   CSS only. Original GSAP, selected states and click handlers unchanged. */
+
+/* HOME — The Opening Spread already has a title rule and a Dossier divider.
+   Remove the additional frame borders, folio rule and navigation separator
+   that were competing with those existing lines. */
+@media(min-width:992px){
+  .world-hub.s40-ready.s32-ready .world-main::before{
+    border:0;
+    box-shadow:none;
+    clip-path:none;
+    background:radial-gradient(ellipse 60% 61% at 50% 45%,var(--s47-paper),transparent 82%);
+    opacity:.65;
+  }
+  .world-hub.s40-ready.s32-ready .world-main::after{
+    content:none!important;
+    display:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-links{
+    border-top:0;
+    padding-top:clamp(8px,1.5vh,17px);
+  }
+  .world-hub.s40-ready.s32-ready .world-links::before{
+    content:none!important;
+    display:none!important;
+  }
+  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
+    background:var(--s47-accent);
+    width:clamp(78px,8vw,118px);
+    height:2px;
+  }
+}
+/* The persistent Connected Line can remain; its extra rail duplicates
+   the existing HOME header separators. */
+.world-hub.s43-connected .world-top>.s43-rail{display:none!important}
+.world-hub.s40-ready .s40-calibration{opacity:.21}
+.world-hub.s40-ready .world-stage::before{opacity:.36}
+
+
+@media(prefers-reduced-motion:reduce){
+  .world-hub.s40-ready.s32-ready .world-links .world-link{transition:none!important}
+}
+
+
+
+/* SOURCE assets/css/places-rebalance-47-5.css */
+/* PLACES REBALANCE 47.5 — ROOMIER SPACING
+   Restore a deliberate Atlas layout without modifying HOME, WORK, SOUND,
+   ABOUT or the separate Travel Journal. No JavaScript, new media, or transforms
+   on the animated Places world/root. Applied last after existing styles. */
+
+/* PANEL AND SCROLL: content must be allowed to grow past short viewport heights.
+   A fixed 100dvh panel stays the scroll container for the existing JS. */
+.p14-world{
+  --p14-ui-gap:clamp(27px,3.3vw,48px);
+  height:100dvh;
+  min-height:0;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding:clamp(27px,3.1vw,48px) clamp(32px,4.5vw,78px);
+  gap:clamp(23px,2.7vh,36px);
+  background-color:#e9e5dc;
+}
+/* Clean atlas masthead: leave only the original brand and BACK action.
+   Remove additive signatures from the most congested horizontal strip. */
+.p14-world .p14-top{
+  position:relative;
+  z-index:6;
+  display:flex;
+  flex-flow:row nowrap;
+  align-items:center;
+  justify-content:space-between;
+  flex:0 0 auto;
+  min-width:0;
+  width:100%;
+  min-height:48px;
+  gap:16px;
+  padding:0 0 13px;
+  border-bottom:1px solid rgba(63,77,65,.30);
+  font:700 10px/1.45 Arial,Helvetica,sans-serif;
+  letter-spacing:.10em;
+}
+.p14-world .p14-top .p14-brand{
+  display:inline-block;
+  position:relative;
+  z-index:2;
+  flex:0 1 auto;
+  min-width:0;
+  max-width:100%;
+  font:700 10px/1.45 Arial,Helvetica,sans-serif;
+  letter-spacing:.10em;
+  overflow-wrap:normal;
+  white-space:normal;
+}
+.p14-world .p14-top .p14-back{
+  position:relative;
+  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex:0 0 auto;
+  width:auto;
+  min-height:44px;
+  padding:8px 0 8px 13px;
+  border:0;
+  background:transparent;
+  white-space:nowrap;
+  font:700 10px/1.35 Arial,Helvetica,sans-serif;
+  letter-spacing:.10em;
+  color:#384238;
+}
+.p14-world .p14-top .p14-back:hover{color:var(--p14-accent)}
+.p14-world .p14-top .p14-back:focus-visible{outline:2px solid var(--p14-accent);outline-offset:3px}
+.p14-world .p14-top .s26-signature,
+.p14-world .p14-top .s43-signal,
+.p14-world .p14-top .s43-rail{
+  display:none!important;
+}
+.p14-world.s26-signed>.s26-spine{display:none!important}
+
+/* THE MASTER GRID: a deliberate two-column art direction.
+   Do not force the content into a too-short flex row. */
+.p14-world .p14-layout{
+  display:grid;
+  grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);
+  gap:clamp(42px,5.4vw,92px);
+  width:100%;
+  max-width:1390px;
+  min-height:0;
+  flex:1 0 auto;
+  align-items:center;
+  margin:0 auto;
+  padding:clamp(19px,3vh,35px) 0 clamp(25px,3.5vh,48px);
+  isolation:isolate;
+}
+.p14-world.s25-ready .p14-layout::before{display:none}
+.p14-world .p14-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:0;
+  min-width:0;
+  width:100%;
+  padding:0;
+}
+.p14-world .p14-eyebrow{
+  font:700 10px/1.45 Arial,Helvetica,sans-serif;
+  letter-spacing:.16em;
+  color:var(--p14-accent);
+}
+.p14-world .p14-title{
+  position:relative;
+  margin:clamp(16px,2vh,25px) 0 clamp(19px,2.3vh,28px)!important;
+  max-width:100%;
+  font:650 clamp(60px,6.1vw,99px)/.91 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.085em!important;
+  color:#282d29!important;
+  text-wrap:balance;
+}
+.p14-world .p14-title em{
+  display:block;
+  margin-top:clamp(9px,1.2vh,14px);
+  font:italic 400 .78em/1 Georgia,"Times New Roman",serif;
+  letter-spacing:-.07em;
+  color:var(--p14-accent);
+}
+.p14-world .p14-title::before,
+.p14-world .p14-title::after{content:none!important;display:none!important}
+.p14-world .p14-intro{
+  width:100%;
+  max-width:455px;
+  margin:0 0 clamp(24px,3.3vh,41px);
+  color:#555b53;
+  font:400 clamp(14px,1.12vw,17px)/1.68 Arial,Helvetica,sans-serif;
+  letter-spacing:0;
+}
+.p14-world .p14-selector{
+  width:100%;
+  max-width:540px;
+  flex:0 0 auto;
+}
+.p14-world .p14-choice{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) 20px;
+  gap:clamp(11px,1.5vw,19px);
+  align-items:center;
+  min-height:64px;
+  padding:15px 14px 15px 17px;
+  background:transparent;
+}
+.p14-world .p14-choice-name{
+  font:600 clamp(19px,1.95vw,27px)/1.15 Arial,Helvetica,sans-serif;
+  letter-spacing:-.048em;
+}
+.p14-world .p14-choice.is-selected .p14-choice-name{
+  transform:translateX(4px);
+}
+.p14-world .p14-hint{
+  margin-top:13px;
+  color:#6e7569;
+  font:700 9px/1.5 Arial,Helvetica,sans-serif;
+  letter-spacing:.09em;
+}
+/* Keep the route ledger, but make it a compact footnote—not another hero. */
+.p14-world.s25-ready .p25-ledger{
+  width:100%;
+  max-width:540px;
+  margin-top:clamp(20px,3vh,29px);
+  padding-top:14px;
+  border-top:1px solid rgba(66,85,65,.26);
+}
+.p14-world.s25-ready .p25-ledger-heading{
+  font-size:9px;
+  line-height:1.45;
+  letter-spacing:.065em;
+}
+.p14-world.s25-ready .p25-map{
+  height:60px;
+  margin-top:9px;
+}
+.p14-world.s25-ready .p25-ledger-bottom{
+  padding-top:8px;
+  font-size:9px;
+  line-height:1.35;
+}
+
+/* ARTWORK: the postcard is an intentional image rather than a tilted stack
+   of layers. Retain all scene transitions and its underlying SVG art. */
+.p14-world .p14-display{
+  position:relative;
+  width:100%;
+  max-width:640px;
+  min-width:0;
+  margin:0 auto;
+  padding:9px 13px 0 0;
+  isolation:isolate;
+}
+.p14-world .p14-paper{
+  inset:15px 0 73px 16px;
+  transform:rotate(1deg);
+  background:#d8cfbd;
+  box-shadow:7px 10px 25px rgba(56,50,41,.11);
+}
+.p14-world .p14-postcard{
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  height:clamp(420px,52vh,595px);
+  min-height:0;
+  transform:rotate(-.65deg);
+  outline:1px solid rgba(46,66,52,.2);
+  outline-offset:4px;
+  box-shadow:0 21px 55px rgba(45,48,38,.19);
+}
+.p14-world .p14-card-top{
+  top:clamp(25px,2.6vw,37px);
+  left:clamp(23px,2.6vw,37px);
+  right:clamp(23px,2.6vw,37px);
+  z-index:20;
+  font-size:10px;
+}
+.p14-world .p14-card-bottom{
+  bottom:clamp(29px,3.8vw,48px);
+  left:clamp(23px,2.6vw,37px);
+  right:clamp(23px,2.6vw,37px);
+  z-index:20;
+}
+.p14-world .p14-card-title{
+  font:650 clamp(38px,4.25vw,64px)/.97 Arial,Helvetica,sans-serif;
+  letter-spacing:-.066em;
+  text-shadow:0 3px 14px rgba(0,0,0,.54);
+}
+.p14-world.s25-ready .p25-card-traces{opacity:.20}
+.p14-world.s25-ready .p25-card-side{display:none!important}
+.p14-world.s25-ready .p25-stamp{
+  top:43%;
+  right:2px;
+  width:72px;
+  height:72px;
+  gap:4px;
+}
+/* Keep the Step 45 finale, but leave the image headline and field notes open. */
+.p14-world.s45-ready .p14-postcard>.s45-plaque{
+  top:90px!important;
+  right:16px!important;
+  width:156px;
+  max-width:43%;
+  padding:9px;
+  gap:7px;
+}
+.p14-world .p14-below{
+  display:grid;
+  grid-template-columns:minmax(90px,.35fr) minmax(0,1fr);
+  align-items:start;
+  gap:13px;
+  margin-top:23px;
+  padding-top:15px;
+  border-top:1px solid rgba(61,75,62,.23);
+}
+.p14-world .p14-below-index{
+  font:700 9px/1.5 monospace;
+  letter-spacing:.06em;
+}
+.p14-world .p14-note{
+  max-width:370px;
+  color:#555b53;
+  font:400 13px/1.55 Arial,Helvetica,sans-serif;
+}
+/* Footer belongs after all content, not partially behind a taller copy
+   column or a tall postcard. */
+.p14-world .p14-footer{
+  flex:0 0 auto;
+  display:flex;
+  flex-flow:row wrap;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  min-height:39px;
+  gap:12px;
+  margin:0;
+  padding-top:13px;
+  border-top:1px solid rgba(63,77,65,.30);
+  color:#676e65;
+  font:700 9px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:.10em;
+}
+
+/* Tablet: let the atlas breathe as a single continuous scroll.
+   No forced viewport-fitting or overlaying columns. */
+@media(max-width:991px){
+  .p14-world{
+    padding:clamp(25px,3.6vw,38px);
+    gap:18px;
+  }
+  .p14-world .p14-layout{
+    grid-template-columns:minmax(0,1fr);
+    max-width:670px;
+    gap:clamp(32px,4.5vw,52px);
+    flex:0 0 auto;
+    align-items:start;
+    padding:12px 0 20px;
+  }
+  .p14-world .p14-title{
+    font-size:clamp(64px,9.5vw,91px)!important;
+    margin:18px 0 20px!important;
+  }
+  .p14-world .p14-intro{margin-bottom:25px}
+  .p14-world .p14-display{
+    width:100%;
+    max-width:650px;
+    padding:10px 12px 0 0;
+  }
+  .p14-world .p14-postcard{
+    height:clamp(390px,70vw,575px);
+  }
+  .p14-world.s25-ready .p25-stamp{width:65px;height:65px}
+  .p14-world .p14-footer{margin:0}
+}
+
+/* Mobile: large but readable heading, no decorative text competing with
+   the postcard. Header remains one simple brand/BACK row. */
+@media(max-width:600px){
+  .p14-world{
+    padding:24px clamp(20px,5.5vw,27px) 34px;
+    gap:21px;
+  }
+  .p14-world .p14-top{
+    min-height:44px;
+    gap:9px;
+    padding:0 0 11px;
+  }
+  .p14-world .p14-top .p14-brand{
+    font-size:clamp(8px,2.5vw,10px);
+    letter-spacing:.05em;
+  }
+  .p14-world .p14-top .p14-back{
+    padding:7px 0 7px 5px;
+    font-size:clamp(8px,2.45vw,10px);
+    letter-spacing:.02em;
+  }
+  .p14-world .p14-layout{gap:33px;padding:8px 0 19px}
+  .p14-world .p14-eyebrow{font-size:9px}
+  .p14-world .p14-title{
+    font-size:clamp(51px,12.3vw,73px)!important;
+    line-height:.94!important;
+    margin:17px 0 20px!important;
+  }
+  .p14-world .p14-intro{font-size:14px;line-height:1.62;margin-bottom:21px}
+  .p14-world .p14-choice{
+    min-height:59px;
+    grid-template-columns:25px minmax(0,1fr) 17px;
+    gap:9px;
+    padding:14px 8px 14px 12px;
+  }
+  .p14-world .p14-choice-name{font-size:clamp(19px,5.6vw,24px)}
+  .p14-world.s25-ready .p25-ledger{margin-top:18px}
+  .p14-world.s25-ready .p25-ledger-heading{font-size:8px;letter-spacing:.025em}
+  .p14-world.s25-ready .p25-map{height:64px}
+  .p14-world .p14-display{padding:6px 9px 0 0}
+  .p14-world .p14-paper{inset:11px 0 61px 11px;transform:rotate(.8deg)}
+  .p14-world .p14-postcard{
+    height:clamp(315px,107vw,450px);
+    min-height:0;
+    transform:rotate(-.35deg);
+  }
+  .p14-world .p14-card-title{font-size:clamp(36px,9vw,53px)}
+  .p14-world .p14-below{
+    grid-template-columns:1fr;gap:7px;
+    margin-top:20px;padding-top:12px;
+  }
+  .p14-world .p14-footer{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    font-size:9px;
+  }
+  .p14-world.s45-ready .p14-postcard>.s45-plaque{display:none!important}
+}
+@media(max-width:360px){
+  .p14-world .p14-top .p14-brand{font-size:7.9px;letter-spacing:0}
+  .p14-world .p14-top .p14-back{font-size:7.9px;letter-spacing:0}
+  .p14-world .p14-title{font-size:clamp(47px,12.2vw,54px)!important}
+  .p14-world .p14-card-title{font-size:35px}
+}
+@media(prefers-reduced-motion:reduce){
+  .p14-world .p14-paper,.p14-world .p14-postcard{
+    transition:none!important;
+  }
+}
+
+
+/* PLACES 47.4 — PRECISE THREE-COLUMN MASTHEAD
+   Original brand, the existing usable SECRET CHAPTER button and BACK
+   occupy three discrete grid lanes. No centered Connected Line collision. */
+@media(min-width:701px){
+  .p14-world .p14-top{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) max-content minmax(0,1fr);
+    align-items:center;
+    column-gap:clamp(13px,2.5vw,38px);
+  }
+  .p14-world .p14-top>.p14-brand{
+    grid-column:1;
+    justify-self:start;
+    max-width:100%;
+  }
+  .p14-world .p14-top>.s34-trigger{
+    grid-column:2;
+    justify-self:center;
+    align-self:center;
+    position:relative;
+    z-index:5;
+    margin:0;
+    min-height:40px;
+    white-space:nowrap;
+    background:rgba(233,229,220,.93);
+    border-color:rgba(66,108,94,.32);
+  }
+  .p14-world .p14-top>.p14-back{
+    grid-column:3;
+    justify-self:end;
+    align-self:center;
+    white-space:nowrap;
+  }
+}
+@media(max-width:700px){
+  .p14-world .p14-top{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) max-content;
+    align-items:center;
+    column-gap:10px;
+    row-gap:8px;
+    padding-bottom:12px;
+  }
+  .p14-world .p14-top>.p14-brand{
+    grid-column:1;grid-row:1;
+    justify-self:start;
+  }
+  .p14-world .p14-top>.p14-back{
+    grid-column:2;grid-row:1;
+    justify-self:end;
+  }
+  .p14-world .p14-top>.s34-trigger{
+    grid-column:1 / -1;grid-row:2;
+    justify-self:start;
+    min-height:36px;
+    padding:7px 11px;
+    font-size:8px;
+    margin:0;
+    position:relative;
+    z-index:5;
+    background:rgba(233,229,220,.93);
+  }
+}
+/* EDITORIAL FIELD NOTE: balanced caption below, not a loose Arial sentence.
+   Leave its index in the left column on desktop, stack on mobile. */
+.p14-world .p14-below{
+  position:relative;
+  z-index:3;
+  display:grid;
+  grid-template-columns:minmax(98px,.31fr) minmax(0,1fr);
+  align-items:start;
+  gap:clamp(12px,1.4vw,22px);
+  width:100%;
+  margin-top:clamp(22px,2.8vh,30px);
+  padding:17px 2px 7px;
+  border-top:1px solid rgba(62,85,65,.27);
+}
+.p14-world .p14-below-index{
+  padding-top:4px;
+  font:700 9px/1.4 "Courier New",monospace;
+  letter-spacing:.05em;
+  color:var(--p14-accent);
+}
+.p14-world .p14-note{
+  display:block;
+  margin:0;
+  padding:0;
+  width:100%;
+  max-width:440px;
+  color:#3c5145;
+  font:italic 400 clamp(15px,1.05vw,18px)/1.58 Georgia,"Times New Roman",serif;
+  letter-spacing:.004em;
+  overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+/* Structural footer must follow the taller of the two columns, never paint
+   over the postcard note or the atlas route. */
+.p14-world .p14-layout{
+  height:auto;
+  min-height:min-content;
+  flex:1 0 auto;
+  overflow:visible;
+}
+.p14-world .p14-footer{
+  position:relative;
+  z-index:1;
+  flex:0 0 auto;
+  clear:both;
+  margin-top:clamp(12px,2vh,24px);
+}
+@media(max-width:700px){
+  .p14-world .p14-below{
+    grid-template-columns:minmax(0,1fr);
+    gap:7px;
+    margin-top:20px;
+    padding-top:13px;
+  }
+  .p14-world .p14-note{
+    font-size:15px;
+    line-height:1.6;
+  }
+}
+
+
+
+/* SOURCE assets/css/intuitive-details.css */
+/* STEP 49 — INTUITIVE DETAILS / CALM INTERACTIONS
+   Progressive enhancement of existing controls. No layout or GSAP changes.
+   Hover affordances limited to devices that actually support hovering. */
+@media (hover:hover) and (pointer:fine) {
+ .work-world .work-project,
+ .sound-world .sound-mood,
+ .p14-world .p14-choice,
+ .a17-world .a17-mode,
+ .w19-root .w19-link {
+   cursor:pointer;
+ }
+ .work-world .work-project:not(.is-current):hover,
+ .sound-world .sound-mood:not(.is-current):hover,
+ .p14-world .p14-choice:not(.is-selected):hover {
+   background-color:rgba(130,135,115,.045);
+ }
+ .work-world .work-project:not(.is-current):hover .project-title,
+ .sound-world .sound-mood:not(.is-current):hover .sound-mood-name,
+ .p14-world .p14-choice:not(.is-selected):hover .p14-choice-name {
+   text-decoration:underline;
+   text-decoration-thickness:1px;
+   text-underline-offset:.22em;
+ }
+}
+.work-world .work-project:focus-visible,
+.sound-world .sound-mood:focus-visible,
+.p14-world .p14-choice:focus-visible,
+.a17-world .a17-mode:focus-visible,
+.w19-root .w19-link:focus-visible,
+.w19-root .w19-close:focus-visible,
+.p14-world .p14-back:focus-visible {
+ outline:2px solid currentColor;
+ outline-offset:4px;
+}
+.p14-world .p14-choice{touch-action:manipulation}
+@media(max-width:600px){
+ .p14-world .p14-choice{min-height:48px}
+ .p14-world .p14-back{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+ .work-world .work-project,
+ .sound-world .sound-mood,
+ .p14-world .p14-choice{transition:none!important}
+}
+
+
+
+/* SOURCE assets/css/work-cinematic-showcase.css */
+/* STEP 50 — WORK / CINEMATIC SHOWCASE
+   Intentional photography-driven transitions using the existing three previews.
+   NO JS, new overlays in the DOM, extra controls, image downloads, layout moves
+   or changes to GSAP-owned preview frame transforms. */
+
+@media(min-width:992px) and (hover:hover) and (pointer:fine){
+  /* The screenshot reveals itself like a camera settling into the composition.
+     Animate the INNER IMAGE only. GSAP still owns parallax of its wrapper. */
+  .work-world.is-active .preview-visual.is-visible .preview-image{
+    transform-origin:50% 38%;
+    animation:s50-camera-settle 1050ms cubic-bezier(.17,.76,.22,1) both;
+    backface-visibility:hidden;
+  }
+
+  /* A single soft light pass follows a newly selected frame.
+     This pseudo-element is inside the image frame, never over the title or CTA. */
+  .work-world .preview-visual{isolation:isolate}
+  .work-world .preview-visual::after{
+    content:"";
+    position:absolute;inset:-15% auto -15% 0;
+    z-index:2;
+    width:42%;
+    background:linear-gradient(90deg,transparent,rgba(255,249,237,.17) 45%,rgba(255,255,255,.05) 65%,transparent);
+    opacity:0;
+    pointer-events:none;
+    transform:translate3d(-160%,0,0) skewX(-13deg);
+  }
+  .work-world.is-active .preview-visual.is-visible::after{
+    animation:s50-gallery-glint 950ms cubic-bezier(.2,.6,.2,1) 100ms both;
+  }
+
+  /* The selected project gets a refined gallery-line cue, not another label. */
+  .work-world.s23-ready .work-project.is-current{
+    border-top-color:#a56a4b;
+    box-shadow:inset 0 -1px 0 rgba(165,106,75,.14);
+  }
+  .work-world.s23-ready .work-project:not(.is-current):hover{
+    border-top-color:rgba(165,106,75,.65);
+  }
+}
+@keyframes s50-camera-settle{
+  0%{transform:scale(1.075);filter:saturate(.82) brightness(.93)}
+  50%{filter:saturate(.99) brightness(1)}
+  100%{transform:scale(1);filter:saturate(1) brightness(1)}
+}
+@keyframes s50-gallery-glint{
+  0%{opacity:0;transform:translate3d(-160%,0,0) skewX(-13deg)}
+  28%{opacity:.7}
+  73%{opacity:.35}
+  100%{opacity:0;transform:translate3d(340%,0,0) skewX(-13deg)}
+}
+
+/* Labels and original open-project CTA always remain above the photograph. */
+.work-world .preview-visuals{pointer-events:none}
+.work-world .case-open{z-index:10}
+
+/* Touch devices: leave the proven Webflow/GSAP gallery untouched. */
+@media(max-width:991px),(hover:none),(pointer:coarse){
+  .work-world .preview-visual.is-visible .preview-image{
+    animation:none!important;
+    filter:none!important;
+  }
+  .work-world .preview-visual::after{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .work-world .preview-visual.is-visible .preview-image{
+    animation:none!important;filter:none!important;transform:none!important;
+  }
+  .work-world .preview-visual::after{display:none!important}
+}
+@media(prefers-contrast:more){
+  .work-world .preview-visual::after{display:none!important}
+}
+
+
+/* SOURCE assets/css/unified-worlds-51-1.css */
+/* STEP 51.1 — ONE VISUAL LANGUAGE / WORK + PLACES
+   NEW CREATIVE DIRECTION: warm ink gallery + midnight green atlas.
+   An opt-in CSS skin. It never changes GSAP transforms, navigation,
+   the case-study page, Travel Journal or HOME/SOUND/ABOUT.
+   References existing HTML, SVG and images only; no new files/assets. */
+
+/* ======================================================
+   01 / WORK — A DARK PHOTOGRAPHIC GALLERY
+   ====================================================== */
+.work-world,
+.work-world.s23-ready,
+.work-world.s37-ready {
+  --s51-accent:#e1a58a;
+  --s51-paper:#f2eee6;
+  --s51-muted:#b8beb4;
+  --s51-line:rgba(235,230,216,.19);
+  --s23-ink:#f2eee6;
+  --s23-accent:#e1a58a;
+  --s23-grid:rgba(226,227,218,.065);
+  --s26-color:#e1a58a;
+  --s26-bg:#191e1c;
+  --s26-faint:rgba(242,231,218,.23);
+  color:var(--s51-paper);
+  background-color:#1a1f1d;
+  background-image:
+    radial-gradient(ellipse 49% 56% at 80% 34%,rgba(164,97,78,.16),transparent 78%),
+    radial-gradient(ellipse 49% 51% at 10% 92%,rgba(78,101,81,.095),transparent 85%),
+    linear-gradient(140deg,#1c211e,#151a18);
+}
+.work-world .work-top {
+  min-height:62px;
+  padding-bottom:15px;
+  border-bottom:1px solid var(--s51-line);
+  color:var(--s51-paper);
+}
+.work-world .work-brand {
+  color:#ede7dc;
+  font:700 10px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:.15em;
+}
+.work-world .work-back {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:10px 15px;
+  border:1px solid rgba(234,228,214,.30);
+  border-radius:100px;
+  background:rgba(242,236,224,.035);
+  color:var(--s51-paper);
+  font:700 10px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:.09em;
+  text-decoration:none;
+}
+.work-world .work-back:hover,
+.work-world .work-back:focus-visible {
+  background:var(--s51-paper);
+  border-color:var(--s51-paper);
+  color:#171b19;
+  opacity:1;
+}
+.work-world.s23-ready .s23-top-edition {
+  color:var(--s51-muted);
+  font-size:9px;
+  letter-spacing:.13em;
+}
+.work-world .work-main {
+  padding:clamp(22px,3.7vh,46px) 0 clamp(26px,4.3vh,50px);
+}
+.work-world .work-eyebrow {
+  font:700 10px/1.5 Arial,Helvetica,sans-serif;
+  color:var(--s51-accent);
+  letter-spacing:.20em;
+}
+.work-world .work-title {
+  max-width:100%;
+  margin:clamp(12px,1.8vh,22px) 0 clamp(15px,2.3vh,25px);
+  color:var(--s51-paper);
+  font:600 clamp(66px,7.8vw,126px)/.87 Arial,Helvetica,sans-serif;
+  letter-spacing:-.09em;
+  text-wrap:balance;
+}
+.work-world .work-title::before,
+.work-world .work-title::after{display:none!important}
+.work-world .work-intro {
+  max-width:520px;
+  color:#c9ccc3;
+  font:400 clamp(15px,1.22vw,18px)/1.65 Arial,Helvetica,sans-serif;
+  letter-spacing:0;
+  margin:0;
+}
+.work-world.s23-ready .work-main::before {
+  background-image:linear-gradient(90deg,rgba(245,228,199,.045) 1px,transparent 1px);
+  opacity:.48;
+}
+.work-world.s23-ready .s23-hero-index{
+  -webkit-text-stroke:1px rgba(236,224,204,.10);
+  opacity:.55;
+}
+.work-world .work-showcase{
+  gap:clamp(34px,5.2vw,86px);
+  grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  min-width:0;
+  align-items:stretch;
+}
+.work-world .work-projects{min-width:0}
+.work-world.s23-ready .work-project,
+.work-world .work-project{
+  min-height:clamp(108px,14vh,149px);
+  padding:clamp(19px,2.5vh,25px) 45px clamp(18px,2.4vh,24px) 14px;
+  border-top:1px solid rgba(238,231,213,.25);
+  color:var(--s51-paper);
+  background:transparent;
+}
+.work-world .work-project:last-child{border-bottom-color:rgba(238,231,213,.25)}
+.work-world .project-number,
+.work-world.s23-ready .project-number{
+  color:#b5a99e;
+  font:700 10px/1.4 monospace;
+}
+.work-world .project-title,
+.work-world.s23-ready .project-title{
+  color:#f0ebe3;
+  font:500 clamp(24px,2.5vw,39px)/1.09 Arial,Helvetica,sans-serif;
+  letter-spacing:-.055em;
+}
+.work-world .project-category,
+.work-world.s23-ready .project-category{
+  color:#b9bbb0;
+  font-size:10px;
+  letter-spacing:.10em;
+}
+.work-world.s23-ready .work-project.is-current,
+.work-world .work-project.is-current{
+  background:linear-gradient(90deg,rgba(225,165,138,.125),rgba(225,165,138,.015) 70%,transparent);
+  border-top-color:var(--s51-accent);
+  box-shadow:none;
+}
+.work-world.s23-ready .work-project::before{background:var(--s51-accent)}
+.work-world .work-project.is-current .project-number,
+.work-world .work-project.is-current .project-title,
+.work-world .work-project.is-current::after {
+  color:var(--s51-accent);
+}
+.work-world.s23-ready .work-project:hover,
+.work-world.s23-ready .work-project:focus-within {
+  background:linear-gradient(90deg,rgba(225,165,138,.10),transparent 86%);
+}
+.work-world .work-project:focus-visible{outline-color:var(--s51-accent)}
+.work-world.s23-ready .work-preview,
+.work-world .work-preview{
+  outline:1px solid rgba(233,216,197,.22);
+  outline-offset:6px;
+  border:1px solid rgba(240,227,210,.20);
+  box-shadow:0 26px 70px rgba(0,0,0,.30);
+}
+.work-world.s23-ready .s23-preview-decor{opacity:.20}
+.work-world .preview-visual{
+  border-color:#e6ddd0;
+  box-shadow:0 25px 65px rgba(0,0,0,.32);
+}
+.work-world .preview-title,
+.work-world .preview-kicker,
+.work-world .preview-footer{color:inherit}
+.work-world .case-open{
+  border-color:rgba(255,255,255,.70);
+  background:rgba(19,24,20,.24);
+  color:#fff;
+}
+.work-world .case-open:hover{background:rgba(243,235,223,.92);color:#1c231e}
+/* No layout transform is applied to .work-world or .work-preview. */
+
+/* ======================================================
+   02 / PLACES — A DEEP GREEN, CINEMATIC PERSONAL ATLAS
+   ====================================================== */
+.p14-world,
+.p14-world.s25-ready,
+.p14-world.s37-ready{
+  --p14-accent:#a8d4bc;
+  --s51-accent:#a8d4bc;
+  --s51-paper:#f0eee5;
+  --s51-muted:#b6c4b7;
+  --s51-line:rgba(224,232,217,.23);
+  --s26-color:#a8d4bc;
+  --s26-bg:#17231f;
+  --s26-faint:rgba(224,235,217,.22);
+  background-color:#16231e;
+  color:var(--s51-paper);
+  background-image:
+    radial-gradient(ellipse 50% 54% at 81% 39%,rgba(71,139,102,.17),transparent 79%),
+    radial-gradient(ellipse 44% 55% at 5% 87%,rgba(40,105,85,.13),transparent 76%),
+    linear-gradient(150deg,#1b2b23,#13211b);
+}
+.p14-world[data-place="london"]{--p14-accent:#dfafa9;--s51-accent:#dfafa9}
+.p14-world[data-place="kl"]{--p14-accent:#e6c596;--s51-accent:#e6c596}
+.p14-world .p14-top{
+  min-height:63px;
+  padding:0 0 15px;
+  border-bottom:1px solid var(--s51-line);
+  color:var(--s51-paper);
+}
+.p14-world .p14-top .p14-brand,
+.p14-world .p14-brand{
+  color:#eee9dd;
+  font:700 10px/1.45 Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+}
+.p14-world .p14-slash{color:var(--p14-accent)}
+.p14-world .p14-top .p14-back{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;
+  padding:10px 15px;
+  border:1px solid rgba(234,231,214,.31);
+  border-radius:100px;
+  background:rgba(241,238,225,.04);
+  color:#eee9dd;
+  font:700 10px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+}
+.p14-world .p14-top .p14-back:hover,
+.p14-world .p14-top .p14-back:focus-visible {
+  border-color:var(--s51-paper);
+  background:var(--s51-paper);
+  color:#18261f;
+}
+.p14-world .p14-layout{
+  grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  max-width:1440px;
+  gap:clamp(38px,5vw,90px);
+  padding:clamp(24px,3.4vh,42px) 0 clamp(26px,3.8vh,45px);
+  align-items:center;
+}
+.p14-world .p14-copy{min-width:0}
+.p14-world .p14-eyebrow{
+  color:var(--p14-accent);
+  font:700 10px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:.2em;
+}
+.p14-world .p14-title{
+  max-width:100%;
+  margin:clamp(16px,2.2vh,27px) 0 clamp(17px,2.4vh,27px)!important;
+  color:var(--s51-paper)!important;
+  font:600 clamp(61px,6.7vw,110px)/.90 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.085em!important;
+  text-wrap:balance;
+}
+.p14-world .p14-title em{
+  color:var(--p14-accent);
+  font:italic 400 .75em/.98 Georgia,"Times New Roman",serif;
+  letter-spacing:-.064em;
+  margin-top:clamp(6px,1.1vh,13px);
+}
+.p14-world .p14-intro,
+.p14-world.s25-ready .p14-intro{
+  max-width:480px;
+  margin:0 0 clamp(20px,3vh,35px);
+  color:#c7d2c7;
+  font:400 clamp(15px,1.24vw,18px)/1.68 Arial,Helvetica,sans-serif;
+  letter-spacing:0;
+}
+.p14-world .p14-selector{width:100%;max-width:540px}
+.p14-world .p14-choice{
+  min-height:clamp(65px,8.5vh,80px);
+  padding:clamp(15px,2vh,19px) 13px clamp(15px,2vh,19px) 13px;
+  border-top:1px solid var(--s51-line);
+  background:transparent;
+  color:var(--s51-paper);
+}
+.p14-world .p14-choice:last-child{border-bottom:1px solid var(--s51-line)}
+.p14-world .p14-choice-number{
+  color:#9caa9e;
+  font:700 10px/1.4 monospace;
+}
+.p14-world .p14-choice-name{
+  color:#e7ece3;
+  font:500 clamp(22px,2.25vw,34px)/1.1 Arial,Helvetica,sans-serif;
+  letter-spacing:-.055em;
+}
+.p14-world .p14-choice-arrow{color:var(--p14-accent)}
+.p14-world .p14-choice.is-selected{
+  background:linear-gradient(90deg,color-mix(in srgb,var(--p14-accent) 13%,transparent),transparent 90%);
+  border-top-color:var(--p14-accent);
+}
+.p14-world .p14-choice.is-selected .p14-choice-number,
+.p14-world .p14-choice.is-selected .p14-choice-name{
+  color:var(--p14-accent);
+}
+.p14-world .p14-choice:not(.is-selected):hover{
+  background:rgba(240,236,221,.055);
+}
+.p14-world .p14-hint{
+  margin-top:17px;
+  color:#b6c2b7;
+  font:700 9px/1.5 Arial,Helvetica,sans-serif;
+  letter-spacing:.10em;
+}
+.p14-world.s25-ready .p25-ledger{
+  margin-top:clamp(18px,2.5vh,30px);
+  padding-top:14px;
+  border-top:1px solid var(--s51-line);
+}
+.p14-world.s25-ready .p25-ledger-heading,
+.p14-world.s25-ready .p25-ledger-bottom,
+.p14-world.s25-ready .p25-route-note{color:#c1cbc0}
+.p14-world.s25-ready .p25-ledger-heading strong,
+.p14-world.s25-ready .p25-coordinates{color:var(--p14-accent)}
+.p14-world.s25-ready .p25-map{
+  border:1px solid rgba(213,229,209,.30);
+  background:rgba(240,244,230,.045);
+}
+.p14-world.s25-ready .p25-map::before{
+  background-image:linear-gradient(90deg,rgba(234,237,223,.07) 1px,transparent 1px);
+}
+.p14-world.s25-ready .p25-route-path{stroke:#9eb3a4}
+.p14-world.s25-ready .p25-route-dot{
+  fill:#1b2b23;
+  stroke:#aec2b0;
+}
+.p14-world.s25-ready .p25-route-pin text{fill:#afc0b3}
+.p14-world.s25-ready .p25-route-pin.is-current text{fill:var(--p14-accent)}
+.p14-world .p14-display{
+  width:100%;
+  max-width:650px;
+  padding:10px 18px 0 0;
+}
+.p14-world .p14-paper{
+  background:#5b6b59;
+  box-shadow:12px 18px 36px rgba(0,0,0,.22);
+}
+.p14-world .p14-postcard{
+  height:clamp(430px,55vh,630px);
+  outline:1px solid rgba(218,224,209,.35);
+  outline-offset:5px;
+  box-shadow:0 26px 75px rgba(0,0,0,.40);
+}
+.p14-world .p14-below{
+  border-top:1px solid var(--s51-line);
+  padding-top:17px;
+  margin-top:clamp(22px,3vh,35px);
+}
+.p14-world .p14-below-index{color:var(--p14-accent)}
+.p14-world .p14-note,
+.p14-world.s25-ready .p14-note{
+  color:#d5e0d2;
+  font:italic 400 clamp(15px,1.1vw,18px)/1.65 Georgia,"Times New Roman",serif;
+  max-width:465px;
+}
+.p14-world .p14-footer{
+  border-top:1px solid var(--s51-line);
+  color:#aebfb1;
+  margin-top:clamp(14px,1.7vh,22px);
+}
+.p14-world.s25-ready .p25-stamp{
+  background:rgba(235,230,212,.95);
+  color:#314338;
+}
+
+/* ======================================================
+   GLOBAL FIT — respect already tested mobile layouts
+   ====================================================== */
+@media(min-width:992px) and (max-height:790px){
+ .work-world .work-main{padding:15px 0 20px}
+ .work-world .work-title{font-size:clamp(59px,6.7vw,105px);margin:10px 0 15px}
+ .work-world .work-intro{font-size:15px;line-height:1.45}
+ .work-world .work-project{min-height:102px;padding-top:15px;padding-bottom:15px}
+ .p14-world .p14-layout{padding:14px 0 23px;align-items:start}
+ .p14-world .p14-title{font-size:clamp(55px,5.75vw,86px)!important}
+ .p14-world .p14-postcard{height:clamp(380px,49vh,510px)}
+}
+@media(max-width:991px){
+ .work-world{padding:25px clamp(24px,3.8vw,40px) 34px}
+ .work-world .work-main{padding:clamp(43px,7vh,74px) 0 32px}
+ .work-world .work-title{font-size:clamp(61px,9.2vw,105px)}
+ .work-world .work-showcase{
+   grid-template-columns:minmax(0,1fr);
+   gap:29px;
+ }
+ .work-world .work-preview{min-height:0}
+ .p14-world{padding:26px clamp(23px,3.9vw,40px) 36px}
+ .p14-world .p14-layout{
+   grid-template-columns:minmax(0,1fr);
+   gap:clamp(32px,5vw,54px);
+   max-width:740px;
+   padding:18px 0 26px;
+   align-items:start;
+ }
+ .p14-world .p14-title{font-size:clamp(65px,9.4vw,94px)!important}
+ .p14-world .p14-postcard{height:clamp(400px,65vw,580px)}
+ .p14-world .p14-display{max-width:670px}
+}
+@media(max-width:600px){
+ .work-world{padding:24px 21px 31px}
+ .work-world .work-top{gap:10px}
+ .work-world .work-brand{font-size:9px;letter-spacing:.06em}
+ .work-world .work-back{min-height:40px;font-size:9px;padding:9px 11px}
+ .work-world .work-main{padding:39px 0 31px}
+ .work-world .work-title{
+   font-size:clamp(53px,12.3vw,78px);
+   line-height:.93;
+ }
+ .work-world .work-intro{font-size:15px;line-height:1.62}
+ .work-world .work-project{min-height:109px;padding:19px 42px 19px 12px}
+ .work-world .project-title{font-size:clamp(23px,6vw,31px)}
+ .work-world .work-preview{outline-offset:3px}
+ .p14-world{padding:24px 20px 34px;gap:22px}
+ .p14-world .p14-top{min-height:52px}
+ .p14-world .p14-top .p14-brand{font-size:8.6px;letter-spacing:.05em}
+ .p14-world .p14-top .p14-back{
+   min-height:40px;padding:9px 11px;font-size:9px;
+ }
+ .p14-world .p14-layout{padding:18px 0 30px;gap:34px}
+ .p14-world .p14-title{
+   font-size:clamp(51px,12.3vw,76px)!important;
+   line-height:.96!important;
+   margin:19px 0 23px!important;
+ }
+ .p14-world .p14-intro{font-size:15px;line-height:1.62}
+ .p14-world .p14-choice{min-height:62px;padding:14px 11px}
+ .p14-world .p14-choice-name{font-size:clamp(19px,5.7vw,26px)}
+ .p14-world .p14-postcard{height:clamp(340px,105vw,470px)}
+ .p14-world .p14-display{padding-right:10px}
+ .p14-world .p14-note{font-size:15px;line-height:1.58}
+}
+@media(max-width:360px){
+ .work-world .work-brand{font-size:8px}
+ .work-world .work-title{font-size:clamp(49px,12vw,58px)}
+ .p14-world .p14-top .p14-brand{font-size:7.8px}
+ .p14-world .p14-top .p14-back{font-size:8px}
+ .p14-world .p14-title{font-size:clamp(47px,12.1vw,59px)!important}
+}
+@media(prefers-contrast:more){
+ .work-world .work-intro,.p14-world .p14-intro{color:#fff!important}
+ .work-world .project-category,.p14-world .p14-note{color:#fff!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .work-world .work-project,.p14-world .p14-choice{transition:none!important}
+}
+
+/* ==========================================================
+   STEP 51.1 — USER FEEDBACK: PHOTO FIRST / QUIET POSTCARD
+   A deliberate adjustment, without adding UI or JS.
+   ========================================================== */
+
+/* WORK: smaller headline, stronger balance between index and photograph. */
+@media(min-width:992px){
+  .work-world .work-title{
+    font-size:clamp(54px,6.25vw,98px);
+    line-height:.91;
+    letter-spacing:-.077em;
+    margin:clamp(8px,1.5vh,16px) 0 clamp(13px,2vh,21px);
+  }
+  .work-world .work-main{
+    padding:clamp(16px,2.6vh,30px) 0 clamp(17px,2.7vh,32px);
+  }
+  .work-world .work-showcase{
+    grid-template-columns:minmax(0,.77fr) minmax(0,1.23fr);
+    gap:clamp(27px,3.1vw,55px);
+  }
+  .work-world .work-preview{
+    min-height:390px;
+    height:clamp(405px,54vh,550px);
+  }
+}
+/* In the original composition the actual screenshot only occupied 76%.
+   Give it the visual priority, without modifying the GSAP frame transform. */
+.work-world .work-preview .preview-visual{
+  top:11%;
+  left:5%;
+  width:90%;
+  height:78%;
+  border-width:6px;
+  border-color:rgba(247,242,232,.92);
+  box-shadow:0 19px 50px rgba(0,0,0,.30),0 2px 9px rgba(0,0,0,.14);
+}
+.work-world .work-preview::after{opacity:.34}
+/* No repeat of project name/category on top of its screenshot.
+   The project list already gives this information and remains accessible. */
+.work-world .work-preview>.preview-title,
+.work-world .work-preview>.preview-footer,
+.work-world .work-preview>.preview-kicker,
+.work-world .work-preview>.preview-mark{
+  display:none!important;
+}
+.work-world .work-preview .case-open{
+  top:clamp(15px,2vw,23px);
+  right:clamp(15px,2vw,23px);
+  z-index:15;
+  background:rgba(16,22,19,.78);
+  border-color:rgba(250,245,235,.72);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+.work-world .work-preview .case-open:hover{
+  background:#f2eee5;
+  color:#17201a;
+}
+@media(min-width:992px) and (max-height:790px){
+  .work-world .work-title{font-size:clamp(51px,5.8vw,80px)}
+  .work-world .work-preview{height:clamp(335px,48vh,440px);min-height:330px}
+}
+@media(max-width:991px){
+  .work-world .work-title{
+    font-size:clamp(58px,8.1vw,87px);
+    letter-spacing:-.076em;
+  }
+  .work-world .work-preview .preview-visual{
+    top:10%;left:6%;width:88%;height:80%;border-width:5px;
+  }
+}
+@media(max-width:600px){
+  .work-world .work-title{
+    font-size:clamp(47px,10vw,65px);
+    line-height:.95;
+  }
+  .work-world .work-preview .preview-visual{
+    top:10%;left:4%;width:92%;height:80%;border-width:4px;
+  }
+  .work-world .work-preview .case-open{
+    top:10px;right:10px;padding:10px 12px;
+  }
+}
+
+/* PLACES: an atmospheric, limited-palette print rather than a colorful
+   illustration with oversized labels placed on top of the artwork. */
+.p14-world .p14-postcard{
+  background:#1c332b;
+  border:1px solid rgba(223,231,216,.23);
+  border-radius:2px;
+  transform:rotate(-.3deg);
+  box-shadow:0 26px 72px rgba(0,0,0,.35);
+}
+.p14-world .p14-paper{
+  background:#506554;
+  border-color:rgba(222,233,211,.20);
+}
+.p14-world.s25-ready .p14-paper{background:#405548}
+.p14-world .p14-scene[data-scene="soca"] svg{
+  filter:saturate(.65) contrast(1.11) brightness(.78);
+}
+.p14-world .p14-scene[data-scene="london"] svg{
+  filter:saturate(.63) contrast(1.12) brightness(.78);
+}
+.p14-world .p14-scene[data-scene="kl"] svg{
+  filter:saturate(.66) contrast(1.12) brightness(.80);
+}
+.p14-world .p14-postcard-shade{
+  background:
+    radial-gradient(ellipse 70% 60% at 72% 17%,rgba(244,241,213,.12),transparent 77%),
+    linear-gradient(180deg,rgba(8,25,18,.11) 0%,transparent 43%,rgba(5,15,12,.39) 100%);
+}
+.p14-world.s25-ready .p14-postcard::after{
+  opacity:.18;
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0,rgba(16,26,21,.06) 1px,transparent 3px);
+}
+/* The selected destination and the field note are already outside the
+   artwork; removing text on the print gives the landscape breathing room. */
+.p14-world .p14-card-top,
+.p14-world .p14-card-bottom,
+.p14-world.s25-ready .p25-stamp,
+.p14-world.s25-ready .p25-card-traces,
+.p14-world.s25-ready .p25-card-side{
+  display:none!important;
+}
+.p14-world .p14-below{
+  grid-template-columns:minmax(96px,.28fr) minmax(0,1fr);
+  align-items:baseline;
+  border-top:1px solid rgba(225,236,220,.19);
+}
+.p14-world .p14-note{
+  max-width:450px;
+  font:italic 400 clamp(16px,1.15vw,19px)/1.59 Georgia,"Times New Roman",serif;
+  color:#e2e9dd;
+}
+@media(max-width:600px){
+  .p14-world .p14-postcard{transform:none}
+  .p14-world .p14-below{grid-template-columns:minmax(0,1fr);gap:7px}
+  .p14-world .p14-note{font-size:16px}
+}
+@media(prefers-contrast:more){
+  .p14-world .p14-scene svg{filter:none!important}
+  .p14-world .p14-note{color:#fff!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .p14-world .p14-postcard{transition:none!important}
+  .work-world .work-preview .preview-visual{transition:none!important}
+}
+
+
+
+/* SOURCE assets/css/work-art-direction-52-1.css */
+/* STEP 53 — WORK / ART-DIRECTED PHOTOGRAPHIC COVERS
+   Replaces the earlier CSS background hack: REAL <img> sources are used,
+   so the existing GSAP shared-image morph matches what visitors see.
+   Only WORK is affected; no menus, case study content or page grids altered. */
+
+.work-world .work-preview{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:0;
+  border:1px solid rgba(236,220,201,.22);
+  outline:1px solid rgba(236,220,201,.13);
+  outline-offset:5px;
+  border-radius:2px;
+  background:#18201b!important;
+  box-shadow:0 26px 70px rgba(0,0,0,.28);
+}
+.work-world .work-preview[data-theme="redhouse"]{background:#241d19!important}
+.work-world .work-preview[data-theme="soca"]{background:#11241d!important}
+.work-world .work-preview[data-theme="gianni"]{background:#211c16!important}
+.work-world .work-preview::before,
+.work-world .work-preview::after{display:none!important;content:none!important}
+.work-world .preview-visuals{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:0!important;
+  pointer-events:none!important;
+  isolation:isolate;
+}
+.work-world .preview-visuals>.preview-visual{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  outline:none!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  transform:none!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  pointer-events:none!important;
+}
+.work-world .preview-visual::before,
+.work-world .preview-visual::after{
+  content:none!important;
+  display:none!important;
+  animation:none!important;
+  background:none!important;
+}
+.work-world .work-preview .preview-visual .preview-image{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center center;
+  opacity:1!important;
+  visibility:visible!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  transform:scale(1)!important;
+  filter:saturate(.88) contrast(1.055) brightness(.97)!important;
+  will-change:auto;
+  pointer-events:none;
+  animation:none!important;
+}
+.work-world .preview-visual:nth-child(1) .preview-image{object-position:50% 50%}
+.work-world .preview-visual:nth-child(2) .preview-image{object-position:50% 55%}
+.work-world .preview-visual:nth-child(3) .preview-image{object-position:50% 49%}
+/* Gianni's photo is a close-cropped food editorial, not a counterfeit
+   photograph claimed to have been taken at the actual restaurant. */
+.work-world .work-preview>.preview-title,
+.work-world .work-preview>.preview-footer,
+.work-world .work-preview>.preview-kicker,
+.work-world .work-preview>.preview-mark,
+.work-world .work-preview>.s23-preview-decor{display:none!important}
+/* Keep exactly one intuitive action, away from the important photo detail. */
+.work-world .work-preview .case-open,
+.work-world .work-preview .work-open-project{
+  position:absolute;
+  top:auto!important;
+  bottom:clamp(16px,2.1vw,27px)!important;
+  right:clamp(16px,2.1vw,27px)!important;
+  z-index:25!important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 17px;
+  min-height:44px;
+  border:1px solid rgba(246,238,224,.65);
+  border-radius:2px;
+  background:rgba(13,20,16,.78);
+  color:#f8f4ea;
+  font:700 10px/1.2 Arial,Helvetica,sans-serif;
+  letter-spacing:.09em;
+  box-shadow:0 8px 23px rgba(0,0,0,.18);
+  text-decoration:none;
+  cursor:pointer;
+  pointer-events:auto!important;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.work-world .work-preview .case-open:hover,
+.work-world .work-preview .case-open:focus-visible,
+.work-world .work-preview .work-open-project:hover,
+.work-world .work-preview .work-open-project:focus-visible{
+  background:#f1eadc;
+  border-color:#f1eadc;
+  color:#17211b;
+}
+@media(min-width:992px){
+  .work-world .work-preview{height:clamp(400px,54vh,555px);min-height:380px}
+}
+@media(max-width:991px){
+  .work-world .work-preview .case-open,
+  .work-world .work-preview .work-open-project{bottom:16px!important;right:16px!important}
+}
+@media(max-width:600px){
+  .work-world .work-preview{outline-offset:2px}
+  .work-world .work-preview .case-open,
+  .work-world .work-preview .work-open-project{
+    bottom:11px!important;right:11px!important;padding:11px 13px;font-size:9px
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .work-world .preview-visual .preview-image{animation:none!important;transition:none!important}
+}
+@media(prefers-contrast:more){
+  .work-world .work-preview .case-open{background:#111a15;color:#fff;border:2px solid #fff}
+}
+/* STEP 53 — cohesive image treatment; the project list, labels and navigation remain untouched. */
+.work-world .work-preview .preview-visuals::after{
+  content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+  display:block!important;
+  background:linear-gradient(to top,rgba(4,8,7,.23),transparent 35%);
+}
+@media(prefers-contrast:more){.work-world .work-preview .preview-visuals::after{display:none!important}}
+
+
+
+/* SOURCE assets/css/work-media-rebalance-54.css */
+/* STEP 54 — WORK / IMAGE AREA REBALANCE
+   A layout-only refinement of the approved Work gallery.
+   Leaves the project list, copy, transitions, image sources and GSAP untouched.
+*/
+
+@media (min-width: 992px) {
+  .work-world .work-showcase {
+    grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+    gap: clamp(20px, 3vw, 42px);
+    align-items: start;
+  }
+
+  .work-world .work-preview {
+    width: 100%;
+    height: clamp(500px, 62vh, 720px);
+    min-height: 500px;
+    margin-left: -8px;
+    max-width: none;
+  }
+
+  .work-world .work-preview .preview-visuals,
+  .work-world .work-preview .preview-visual {
+    height: 100%;
+  }
+
+  /* Keep photographic subjects in frame without distorting the images. */
+  .work-world .work-preview .preview-visual:nth-child(1) .preview-image {
+    object-fit: cover;
+    object-position: 58% 50%;
+  }
+  .work-world .work-preview .preview-visual:nth-child(2) .preview-image {
+    object-fit: cover;
+    object-position: 50% 55%;
+  }
+  .work-world .work-preview .preview-visual:nth-child(3) .preview-image {
+    object-fit: cover;
+    object-position: 50% 49%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .work-world .work-showcase {
+    grid-template-columns: minmax(0, .74fr) minmax(0, 1.26fr);
+  }
+  .work-world .work-preview {
+    height: clamp(540px, 66vh, 760px);
+  }
+}
+
+/* Preserve the existing, single-column experience on tablet and mobile. */
+@media (max-width: 991px) {
+  .work-world .work-preview { margin-left: 0; }
+}
+
+
+
+/* SOURCE assets/css/work-direct-navigation-55.css */
+/* STEP 55 — WORK / DIRECT ENTRY + VISUAL REFINEMENT
+   Replaces only the redundant Explore CTA. The original click handler
+   stays alive for the existing case-study and GSAP transition scripts.
+*/
+
+/* The original button is only a programmatic navigation trigger now. */
+.work-world .work-preview .case-open,
+.work-world .work-preview .work-open-project {
+  display: none !important;
+}
+
+/* Clear affordance with no extra labels or buttons over photography. */
+.work-world .work-project,
+.work-world .work-preview {
+  cursor: pointer;
+}
+.work-world .work-preview {
+  transition: border-color .3s ease, outline-color .3s ease, box-shadow .3s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .work-world .work-preview:hover {
+    border-color: rgba(244,217,193,.44) !important;
+    outline-color: rgba(242,221,200,.28) !important;
+    box-shadow: 0 28px 74px rgba(0,0,0,.34);
+  }
+}
+.work-world .work-preview:focus-visible {
+  outline: 2px solid #e4b092 !important;
+  outline-offset: 6px !important;
+}
+.work-world .work-project:focus-visible {
+  outline: 2px solid #e4b092 !important;
+  outline-offset: 5px;
+}
+
+/* Give the editorial introduction and small metadata enough contrast. */
+.work-world .work-intro {
+  color: #c8c9c0 !important;
+  max-width: 620px;
+  text-wrap: pretty;
+}
+.work-world .project-category {
+  color: #aeb1a8;
+}
+.work-world .work-eyebrow {
+  letter-spacing: .18em;
+}
+
+/* Red House's brighter embedded photograph is deliberately more natural.
+   Remove the leftover desaturating filter from the older cover layer. */
+.work-world .work-preview .preview-visual:nth-child(1) .preview-image {
+  filter: saturate(1.045) contrast(1.015) brightness(1.105) !important;
+}
+.work-world .work-preview[data-theme="redhouse"] .preview-visuals::after {
+  opacity: .33;
+}
+.case-world[data-theme="redhouse"] .case-image {
+  filter: saturate(1.04) contrast(1.015) brightness(1.08) !important;
+}
+
+/* Comfortable long-form reading without changing case-study content. */
+.case-world .case-description,
+.case-world .case-direction,
+.case-world .case-development {
+  text-wrap: pretty;
+}
+.case-world .case-deck {
+  text-wrap: balance;
+}
+
+/* Hover animations are supplementary: keyboard and touch work without them. */
+@media (prefers-reduced-motion: reduce) {
+  .work-world .work-preview { transition: none !important; }
+}
+@media (prefers-contrast: more) {
+  .work-world .work-intro,
+  .work-world .project-category { color: #fff !important; }
+  .work-world .work-preview .preview-visual:nth-child(1) .preview-image,
+  .case-world[data-theme="redhouse"] .case-image { filter: none !important; }
+}
+
+
+
+/* SOURCE assets/css/portfolio-rhythm-56.css */
+/* STEP 56 — SPATIAL RHYTHM / ONE PORTFOLIO
+   Scope: breathing room, quiet visual coherence and accessible motion.
+   No modifications to original GSAP targets, routes, media or case content.
+*/
+
+/* 01 — WORK: solve the old full-height grid plus oversized preview conflict.
+   Let the chapter itself scroll naturally and always finish with clear space. */
+@media (min-width: 992px) {
+  .work-world {
+    box-sizing: border-box;
+    grid-template-rows: auto auto auto;
+    align-content: start;
+    row-gap: clamp(17px, 2.25vh, 29px);
+    height: 100dvh;
+    min-height: 0;
+    padding: clamp(24px, 3.1vh, 38px) clamp(32px, 3.5vw, 60px)
+             clamp(72px, 9vh, 120px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+  .work-world .work-main {
+    padding: clamp(13px, 2.4vh, 30px) 0 clamp(4px, 1.2vh, 15px);
+  }
+  .work-world .work-showcase {
+    height: auto;
+    min-height: 0;
+    align-items: start;
+    padding-bottom: clamp(16px, 2.2vh, 28px);
+  }
+  .work-world .work-projects {
+    height: auto;
+    min-height: 0;
+    align-self: start;
+  }
+  .work-world .work-project {
+    flex: 0 0 auto;
+    min-height: clamp(118px, 13vh, 152px);
+  }
+  .work-world .work-preview {
+    position: relative;
+    top: auto;
+    height: clamp(430px, 51vh, 600px);
+    min-height: 430px;
+    align-self: start;
+  }
+}
+@media (min-width: 992px) and (max-height: 760px) {
+  .work-world .work-preview {
+    height: clamp(360px, 50vh, 440px);
+    min-height: 360px;
+  }
+  .work-world .work-title {
+    font-size: clamp(58px, min(7vw, 10vh), 106px);
+  }
+  .work-world .work-main {
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+}
+@media (max-width: 991px) {
+  .work-world {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    overscroll-behavior-y: contain;
+  }
+  .work-world .work-showcase {
+    padding-bottom: clamp(12px, 3vh, 27px);
+  }
+}
+@media (max-width: 600px) {
+  .work-world .work-main { padding-bottom: clamp(28px, 5vh, 48px); }
+  .work-world .work-preview { margin-bottom: 12px; }
+}
+
+/* 02 — A small, consistent animated signature appears beneath the chapter
+   header. This is a decorative child, never a new interaction target. */
+.world-hub .world-top,
+.work-world .work-top,
+.sound-world .sound-top,
+.p14-world .p14-top,
+.a17-world .a17-header { position: relative; }
+
+.s56-header-line {
+  position: absolute;
+  inset: auto auto -1px 0;
+  z-index: 5;
+  display: block;
+  width: clamp(65px, 9vw, 150px);
+  height: 2px;
+  background: var(--s56-line-color, #dfa98d);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.world-hub { --s56-line-color: #e1ae8a; }
+.work-world { --s56-line-color: #e1a58a; }
+.sound-world { --s56-line-color: var(--sound-accent, #d2a78f); }
+.p14-world { --s56-line-color: var(--p14-accent, #426c5e); }
+.a17-world { --s56-line-color: var(--a17-accent, #e9b28e); }
+.world-hub .s56-header-line,
+.work-world.is-active .s56-header-line,
+.sound-world.is-active .s56-header-line,
+.p14-world.is-active .s56-header-line,
+.a17-world.is-active .s56-header-line {
+  animation: s56-draw .78s cubic-bezier(.22,1,.36,1) .12s both;
+}
+@keyframes s56-draw {
+  from { transform: scaleX(0); opacity: .35; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+/* 03 — Sound: subtle hierarchy at the selection point, not a new
+   animation loop over the existing vinyl and spectrum. */
+.sound-world .sound-mood.is-current {
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--sound-accent, #d2a78f) 10%, transparent),
+    transparent 79%);
+}
+.sound-world .sound-bottom {
+  padding-top: clamp(16px, 2.3vh, 27px);
+  padding-bottom: clamp(15px, 3vh, 35px);
+}
+.sound-world .sound-description { text-wrap: pretty; }
+
+/* 04 — Places: let the illustration and the field note breathe.
+   No changes to place choice, animated scene transforms or journal. */
+.p14-world .p14-below {
+  margin-top: clamp(26px, 3vw, 43px);
+  padding-bottom: clamp(16px, 3vh, 36px);
+}
+.p14-world .p14-note { text-wrap: pretty; }
+
+/* 05 — About: finish the long editorial chapter intentionally.
+   Fine hover ink on the existing story entries. */
+.a17-world .a17-content {
+  padding-bottom: clamp(68px, 8vh, 110px);
+}
+.a17-world .a17-footer {
+  padding-top: clamp(28px, 4vh, 52px);
+}
+@media (hover:hover) and (pointer:fine) {
+  .a17-world .a18-entry:hover {
+    background: linear-gradient(90deg, rgba(233,178,142,.065), transparent 85%);
+  }
+}
+.a17-world .a17-lead,
+.a17-world .a18-deck,
+.a17-world .a18-entry-copy { text-wrap: pretty; }
+
+/* 06 — Continuity: captions and buttons keep one refined tactile language. */
+.world-hub .world-description { text-wrap: pretty; }
+.case-world .case-bottom {
+  padding-bottom: clamp(30px, 5vh, 70px);
+}
+.world-hub .world-link:focus-visible,
+.sound-world .sound-mood:focus-visible,
+.p14-world .p14-choice:focus-visible,
+.a17-world .a18-entry:focus-visible {
+  outline-offset: 5px;
+}
+
+/* On-scroll fade applies only to marked non-hero copy, and only when
+   JavaScript attached an IntersectionObserver. */
+.s56-reveal-ready {
+  opacity: 0;
+  transition: opacity .75s cubic-bezier(.22,1,.36,1);
+}
+.s56-reveal-ready.s56-visible { opacity: 1; }
+
+@media (max-width: 991px) {
+  .s56-header-line { width: 64px; height: 2px; }
+  .sound-world .sound-bottom { padding-bottom: 22px; }
+  .p14-world .p14-below { margin-top: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s56-header-line {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+  .s56-reveal-ready {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+@media (prefers-contrast: more) {
+  .s56-reveal-ready { opacity: 1 !important; }
+}
+
+
+
+/* SOURCE assets/css/precision-motion-59.css */
+/* STEP 59 — MICRO-MOTION, NEVER LAYOUT
+   Explicitly avoids changing display, position, dimensions, transforms
+   of world containers, galleries, photographs or GSAP targets.
+   No new DOM nodes, no JavaScript and no overlay layers. */
+
+/* WORK: selected project gains a concise editorial accent rather than a new panel. */
+@media (hover:hover) and (pointer:fine) {
+  .work-world .work-project {
+    transition: background-color .32s ease, border-color .32s ease !important;
+  }
+  .work-world .work-project .project-number {
+    transition: color .35s ease, letter-spacing .45s cubic-bezier(.16,1,.3,1);
+  }
+  .work-world .work-project:hover .project-number {
+    letter-spacing: .23em;
+    color: var(--s51-accent, #e1a58a);
+  }
+  .work-world .work-preview {
+    transition: border-color .3s ease, outline-color .3s ease, box-shadow .45s ease !important;
+  }
+  .work-world .work-preview:hover {
+    border-color: rgba(234,189,162,.62);
+    outline-color: rgba(234,189,162,.31);
+    box-shadow: 0 30px 82px rgba(0,0,0,.40);
+  }
+}
+
+/* HOME: hover typography receives a soft tonal change, nothing moves. */
+@media (hover:hover) and (pointer:fine) {
+  .world-hub .world-link .world-name {
+    transition: color .38s ease, text-shadow .38s ease;
+  }
+  .world-hub .world-link:hover .world-name,
+  .world-hub .world-link:focus-visible .world-name {
+    text-shadow: 0 0 22px rgba(233,182,149,.16);
+  }
+}
+
+/* SOUND: use existing selection outline and accent instead of adding graphics. */
+@media (hover:hover) and (pointer:fine) {
+  .sound-world .sound-mood {
+    transition: background-color .3s ease,border-color .3s ease, color .3s ease;
+  }
+  .sound-world .sound-mood:hover {
+    border-color: var(--sound-accent,#d2a78f);
+  }
+}
+
+/* PLACES: clarify selection without disturbing the rotating postcard. */
+@media (hover:hover) and (pointer:fine) {
+  .p14-world .p14-choice {
+    transition: border-color .3s ease,background-color .3s ease,color .3s ease;
+  }
+  .p14-world .p14-choice:hover {
+    border-color: var(--p14-accent,#80b29c);
+  }
+}
+
+/* ABOUT: small selected-item ink refinement, original card tilt untouched. */
+.a17-world .a18-entry.is-current .a18-entry-index {
+  color: var(--a17-accent,#e9b28e);
+}
+@media (hover:hover) and (pointer:fine) {
+  .a17-world .a18-entry {
+    transition: background-color .35s ease,border-color .35s ease;
+  }
+  .a17-world .a18-entry:hover {
+    border-bottom-color: var(--a17-accent,#e9b28e);
+  }
+}
+
+/* All enhancements are optional and disappear for reduced motion. */
+@media (prefers-reduced-motion:reduce) {
+  .world-hub .world-link .world-name,
+  .work-world .work-project,
+  .work-world .work-project .project-number,
+  .work-world .work-preview,
+  .sound-world .sound-mood,
+  .p14-world .p14-choice,
+  .a17-world .a18-entry {
+    transition: none !important;
+  }
+}
+
+
+
+/* SOURCE assets/css/drawn-worlds-60.css */
+/* STEP 60 — CINEMATIC VECTOR REVEAL, WITH NO LAYOUT MUTATIONS
+   HOME vectors animate through the Web Animations API.
+   ABOUT's existing editorial sentence is masked *inside its own box*.
+   WORK, its images, footer and world transitions are intentionally untouched. */
+
+.a17-world .a18-sentence.s60-note-ready {
+  clip-path: inset(0 0 105% 0);
+  opacity: .65;
+  transition:
+    clip-path 1.05s cubic-bezier(.18,.88,.2,1),
+    opacity .83s ease;
+}
+.a17-world .a18-sentence.s60-note-ready.s60-note-visible {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+@media(prefers-reduced-motion:reduce) {
+  .a17-world .a18-sentence.s60-note-ready {
+    clip-path: none!important;
+    opacity: 1!important;
+    transition: none!important;
+  }
+}
+@media(prefers-contrast:more) {
+  .a17-world .a18-sentence.s60-note-ready {
+    clip-path: none!important;
+    opacity: 1!important;
+  }
+}
