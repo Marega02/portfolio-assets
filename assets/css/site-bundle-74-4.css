@@ -2753,3 +2753,199 @@ body.s41-studio-focus .p15-journal.s66-ready .s66-reading-line {
   .world-hub.s77-ready .world-stage > .s77-home-afterimage{display:none!important;animation:none!important}
 }
 
+
+/* SOURCE assets/css/connected-frames-78.css */
+/* PHASE 78 — WORK / CONNECTED FRAMES
+   A shared-element film language built AROUND the existing STEP 10 GSAP
+   image morph. No new page, no duplicate morph, no images replaced,
+   no copy over photography, no changes to the Work grid or footer. */
+.work-world.s78-ready {
+  --s78-ink:#dfad91;
+}
+.work-world.s78-ready .work-preview[data-theme="soca"] {--s78-ink:#a8d5c1}
+.work-world.s78-ready .work-preview[data-theme="gianni"] {--s78-ink:#e3bc85}
+/* Editorial project index: unobtrusive and consistent with the film. */
+.work-world.s78-ready .work-project { position:relative; }
+.work-world.s78-ready .work-project .s78-row-rule {
+  position:absolute;
+  display:block;
+  pointer-events:none!important;
+  user-select:none;
+  right:clamp(10px,1.2vw,21px);
+  top:50%;
+  height:clamp(23px,3vw,43px);
+  width:2px;
+  background:#e8ab86;
+  transform:translate3d(0,-50%,0) scaleY(0);
+  transform-origin:center top;
+  opacity:0;
+  transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .4s ease;
+}
+.work-world.s78-ready .work-project.is-current > .s78-row-rule{
+  opacity:1;
+  transform:translate3d(0,-50%,0) scaleY(1);
+}
+.work-world.s78-ready .work-preview > .s78-return-signal {
+  position:absolute;
+  z-index:8;
+  inset:clamp(13px,1.5vw,22px);
+  pointer-events:none!important;
+  display:block;
+  border:1px solid rgba(239,225,204,.17);
+  opacity:0;
+  background:
+   linear-gradient(currentColor,currentColor) left top/31px 2px no-repeat,
+   linear-gradient(currentColor,currentColor) left top/2px 31px no-repeat,
+   linear-gradient(currentColor,currentColor) right bottom/31px 2px no-repeat,
+   linear-gradient(currentColor,currentColor) right bottom/2px 31px no-repeat;
+  color:var(--s78-ink);
+}
+.work-world.s78-ready .work-preview.s78-returning > .s78-return-signal {
+  animation:s78-return-frame 840ms cubic-bezier(.18,1,.3,1) both;
+}
+@keyframes s78-return-frame{
+  0%{opacity:0;clip-path:inset(42% 42% 42% 42%)}
+  35%{opacity:.95;clip-path:inset(0)}
+  70%{opacity:.55;clip-path:inset(0)}
+  100%{opacity:0;clip-path:inset(0)}
+}
+/* Existing photo-copy already travels to target via STEP 10 GSAP.
+   We enhance ONLY the internal decorative pixels of the same frame. */
+.project-morph-frame.s78-morph {
+  --s78-ink:#e0ae91;
+  isolation:isolate;
+}
+.project-morph-frame.s78-morph[data-s78-theme="soca"]{--s78-ink:#acd2c1}
+.project-morph-frame.s78-morph[data-s78-theme="gianni"]{--s78-ink:#e5b785}
+.project-morph-frame.s78-morph::before{
+  content:"";
+  position:absolute;
+  inset:clamp(8px,1.2vw,18px);
+  border:1px solid color-mix(in srgb,var(--s78-ink) 83%,transparent);
+  box-shadow:inset 0 0 0 1px rgba(250,238,223,.09);
+  z-index:3;
+  pointer-events:none;
+  animation:s78-morph-trace 1050ms cubic-bezier(.18,.7,.22,1) both;
+}
+@keyframes s78-morph-trace{
+  0%{opacity:.1;clip-path:inset(0 49% 0 49%)}
+  32%{opacity:.9;clip-path:inset(0 0 0 0)}
+  78%{opacity:.60;clip-path:inset(0)}
+  100%{opacity:0;clip-path:inset(0)}
+}
+.project-morph-frame.s78-morph > .s78-morph-light {
+  position:absolute;
+  z-index:2;
+  inset:0;
+  pointer-events:none!important;
+  display:block;
+  background:linear-gradient(115deg,
+    transparent 22%,rgba(255,255,255,.03) 38%,
+    color-mix(in srgb,var(--s78-ink) 39%,transparent) 49%,
+    rgba(255,255,255,.19) 52%,transparent 73%);
+  transform:translate3d(-110%,0,0);
+  animation:s78-morph-light 1030ms cubic-bezier(.2,.72,.2,1) both;
+}
+@keyframes s78-morph-light{
+  0%,9%{opacity:0;transform:translate3d(-110%,0,0)}
+  40%{opacity:.72}
+  78%{opacity:.44}
+  100%{opacity:0;transform:translate3d(110%,0,0)}
+}
+.project-morph-frame.s78-morph > .s78-morph-rail{
+  position:absolute;
+  z-index:3;
+  left:0;right:0;bottom:0;height:3px;
+  transform-origin:left center;
+  transform:scaleX(0);
+  background:var(--s78-ink);
+  box-shadow:0 0 20px color-mix(in srgb,var(--s78-ink) 55%,transparent);
+  pointer-events:none;
+  animation:s78-morph-rail 1050ms ease both;
+}
+@keyframes s78-morph-rail{
+  0%{transform:scaleX(0);opacity:0}
+  34%{transform:scaleX(.45);opacity:1}
+  80%{transform:scaleX(1);opacity:.85}
+  100%{transform:scaleX(1);opacity:0}
+}
+/* Arrival is a spatial response AROUND the existing case hero,
+   not another translucent surface over the project photo. */
+.case-world.s78-ready .case-hero {
+  position:relative;
+  isolation:isolate;
+}
+.case-world.s78-ready .case-hero::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0 -4vw;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 45% 65% at 79% 43%,
+      color-mix(in srgb,var(--case-accent) 23%,transparent),transparent 74%),
+    linear-gradient(95deg,transparent 0 43%,
+      color-mix(in srgb,var(--case-accent) 6%,transparent) 57%,transparent 90%);
+  opacity:0;
+}
+.case-world.s78-ready.s78-arriving .case-hero::before {
+  animation:s78-case-atmosphere 1450ms cubic-bezier(.18,.9,.2,1) both;
+}
+@keyframes s78-case-atmosphere{
+  0%{opacity:0;filter:blur(26px)}
+  40%{opacity:.85;filter:blur(0)}
+  100%{opacity:.48;filter:blur(0)}
+}
+/* Accented chapter strip beneath existing eyebrow, never on the photo. */
+.case-world.s78-ready .case-index {
+  position:relative;
+  padding-bottom:clamp(10px,1.2vw,18px);
+}
+.case-world.s78-ready .case-index::after {
+  content:"";
+  position:absolute;
+  bottom:0;left:0;
+  width:clamp(70px,9vw,143px);
+  height:2px;
+  transform-origin:left center;
+  transform:scaleX(0);
+  background:linear-gradient(90deg,var(--case-accent),transparent);
+}
+.case-world.s78-ready.s78-arriving .case-index::after {
+  animation:s78-case-index 850ms cubic-bezier(.16,1,.3,1) 180ms both;
+}
+@keyframes s78-case-index{
+  from{transform:scaleX(0);opacity:0}
+  to{transform:scaleX(1);opacity:.86}
+}
+.case-world.s78-ready.s78-settled .case-index::after{
+  transform:scaleX(1);
+  opacity:.86;
+}
+/* Project photography retains its actual image and original clipping.
+   The existing Step 77 glare is suppressed just for this project hero
+   to avoid a double flash competing with the connected transition. */
+.case-world.s78-ready .case-visual > .s77-optical-sweep,
+.case-world.s78-ready .case-visual > .s77-register {display:none!important}
+/* Mobile stays the original scene slide; the composition responds with
+   one tasteful ambient cue, no floating clone or extra navigation layer. */
+@media(max-width:991px) {
+  .case-world.s78-ready .case-hero::before {inset:0 -14px}
+  .case-world.s78-ready .case-index {padding-bottom:10px}
+  .case-world.s78-ready .case-index::after{width:90px;height:1px}
+  .work-world.s78-ready .work-project .s78-row-rule{right:8px;width:2px;height:27px}
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more) {
+  .project-morph-frame.s78-morph::before,
+  .project-morph-frame.s78-morph > .s78-morph-light,
+  .project-morph-frame.s78-morph > .s78-morph-rail,
+  .case-world.s78-ready .case-hero::before,
+  .work-world.s78-ready .work-preview > .s78-return-signal {
+    display:none!important;animation:none!important
+  }
+  .case-world.s78-ready .case-index::after {
+    animation:none!important;transform:scaleX(1)!important;opacity:1
+  }
+  .work-world.s78-ready .work-project .s78-row-rule{transition:none!important}
+}
+
