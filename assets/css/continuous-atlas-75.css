@@ -1,0 +1,105 @@
+/* STEP 75 — CONTINUOUS ATLAS / TRAVEL JOURNAL
+   The existing trip stories now inherit the new Places landscapes.
+   Same pages/photographs/controls and original gallery dimensions. */
+
+.p15-journal.s75-ready {
+  --s75-haze:rgba(94,166,143,.13);
+  --s75-ink:#cae6d2;
+  background:
+    radial-gradient(ellipse 55% 42% at 85% 22%,var(--s75-haze),transparent 88%),
+    #171c1a;
+}
+.p15-journal.s75-ready[data-place="london"] {
+  --s75-haze:rgba(197,128,151,.13);
+  --s75-ink:#edc2c6;
+}
+.p15-journal.s75-ready[data-place="kl"] {
+  --s75-haze:rgba(221,166,105,.15);
+  --s75-ink:#f0d29e;
+}
+.p15-journal.s75-ready .p15-hero {
+  background:
+    radial-gradient(ellipse 62% 72% at 85% 47%,var(--s75-haze),transparent 85%);
+}
+.p15-journal.s75-ready .p15-hero-figure {
+  border:1px solid color-mix(in srgb,var(--s75-ink) 40%,transparent);
+  outline:1px solid color-mix(in srgb,var(--s75-ink) 18%,transparent);
+  outline-offset:7px;
+  background:var(--p15-tint);
+  box-shadow:0 43px 115px rgba(0,0,0,.42);
+}
+.p15-journal.s75-ready .p15-hero-visual {
+  overflow:hidden;
+}
+.p15-journal.s75-ready .p15-hero-visual svg {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.p15-journal.s75-ready .p15-hero-figure::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(145deg,rgba(244,240,220,.10),transparent 47%);
+  mix-blend-mode:screen;
+}
+.p15-journal.s75-ready .p15-hero-frame-top,
+.p15-journal.s75-ready .p15-hero-frame-bottom {
+  text-shadow:0 2px 13px rgba(6,15,15,.68);
+}
+.p15-journal.s75-ready .p15-shot-visual {
+  border:1px solid color-mix(in srgb,var(--s75-ink) 31%,transparent);
+  background:var(--p15-tint);
+  box-shadow:0 22px 63px rgba(0,0,0,.23);
+}
+.p15-journal.s75-ready .p15-shot-a .p15-fallback svg {
+  object-fit:cover;
+  transform:scale(1.08) translate3d(-1%,0,0);
+}
+.p15-journal.s75-ready .p15-shot-b .p15-fallback svg {
+  object-fit:cover;
+  transform:scale(1.4) translate3d(-6%,-2%,0);
+}
+.p15-journal.s75-ready .p15-story-title em,
+.p15-journal.s75-ready .p15-kicker,
+.p15-journal.s75-ready .p15-location {
+  color:var(--s75-ink);
+}
+.p15-journal.s75-ready .p15-gallery {
+  background:
+    radial-gradient(ellipse 65% 50% at 10% 25%,var(--s75-haze),transparent 84%),
+    #202823;
+}
+.p15-journal.s75-ready .p15-shot figcaption {
+  color:#d0d9d0;
+  border-top:1px solid color-mix(in srgb,var(--s75-ink) 27%,transparent);
+}
+/* The illustrated hero appears with a finite light transition; photographs
+   remain untouched if a photo URL is present. */
+.p15-journal.s75-ready .p15-hero-figure.s75-arriving .p15-hero-visual {
+  animation:s75-atlas-arrival 980ms cubic-bezier(.16,.83,.28,1) both;
+}
+@keyframes s75-atlas-arrival {
+  from {opacity:.28;clip-path:inset(0 100% 0 0)}
+  to {opacity:1;clip-path:inset(0 0 0 0)}
+}
+@media(max-width:600px) {
+  .p15-journal.s75-ready .p15-hero-figure {outline-offset:3px}
+  .p15-journal.s75-ready .p15-hero {gap:clamp(32px,9vw,52px)}
+  .p15-journal.s75-ready .p15-shot-a .p15-fallback svg {transform:scale(1.05)}
+  .p15-journal.s75-ready .p15-shot-b .p15-fallback svg {transform:scale(1.25) translateX(-2%)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .p15-journal.s75-ready .p15-hero-figure.s75-arriving .p15-hero-visual {
+    animation:none!important;
+    clip-path:none!important;
+  }
+}
+@media(prefers-contrast:more) {
+  .p15-journal.s75-ready .p15-hero-figure::before {display:none}
+  .p15-journal.s75-ready .p15-hero-figure,
+  .p15-journal.s75-ready .p15-shot-visual {border:2px solid currentColor}
+}
