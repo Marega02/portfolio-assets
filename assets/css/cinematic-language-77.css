@@ -193,3 +193,34 @@
   .s77-hero-stage > .s77-register,
   .s77-hero-stage > .s77-optical-sweep {display:none!important;animation:none!important}
 }
+
+
+/* 04 — HOME RETURN: a short, restrained afterimage on the EXISTING poster.
+   The original Step 63 return event is our trigger. */
+.world-hub.s77-ready .world-stage > .s77-home-afterimage{
+  position:absolute;
+  inset:2%;
+  z-index:0;
+  display:block;
+  opacity:0;
+  pointer-events:none!important;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 50%,transparent 29%,
+      color-mix(in srgb,var(--s72-accent,#efb089) 25%,transparent) 44%,
+      transparent 62%),
+    radial-gradient(ellipse at 50% 50%,transparent 58%,
+      color-mix(in srgb,var(--s72-accent,#efb089) 16%,transparent) 59%,
+      transparent 77%);
+}
+.world-hub.s77-ready.s63-returning .world-stage > .s77-home-afterimage{
+  animation:s77-return-image 800ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s77-return-image{
+  0%{opacity:0;transform:scale(.74)}
+  37%{opacity:.8;transform:scale(.95)}
+  100%{opacity:0;transform:scale(1.22)}
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .world-hub.s77-ready .world-stage > .s77-home-afterimage{display:none!important;animation:none!important}
+}
