@@ -1,0 +1,176 @@
+/* PHASE 80 — SOUND / CONNECTED FREQUENCIES
+   Designed around the existing STEP 12 vinyl and STEP 13 archive.
+   No replacing elements, navigation, album content or sound playback.
+   The flight is a pointer-free, short-lived replica, not a second page. */
+
+.sound-world.s80-ready{
+  --s80-accent:var(--s69-hue,var(--sound-accent,#d2a78f));
+}
+.sound-world.s80-ready .sound-art{
+  --s80-halo:color-mix(in srgb,var(--s80-accent) 24%,transparent);
+}
+.sound-world.s80-ready .sound-record{
+  outline:1px solid color-mix(in srgb,var(--s80-accent) 24%,transparent);
+  outline-offset:clamp(6px,.8vw,12px);
+}
+.sound-world.s80-ready .sound-enter-archive{
+  position:relative;
+  isolation:isolate;
+}
+.sound-world.s80-ready .sound-enter-archive:focus-visible{
+  outline:2px solid var(--s80-accent);
+  outline-offset:5px;
+}
+.sound-world.s80-ready .sound-archive{
+  --s80-archive-accent:#b77f66;
+}
+.sound-world.s80-ready .sound-archive:has(.sa-art--hiphop){
+  --s80-archive-accent:#839b82;
+}
+.sound-world.s80-ready .sound-archive:has(.sa-art--alternative){
+  --s80-archive-accent:#869cbd;
+}
+.sound-world.s80-ready .sound-archive .sa-art{
+  position:relative;
+  isolation:isolate;
+}
+.sound-world.s80-ready .sound-archive .sa-art > .s80-archive-frame{
+  position:absolute;
+  inset:clamp(12px,2vw,27px);
+  z-index:3;
+  display:block;
+  pointer-events:none;
+  opacity:.48;
+  border:1px solid rgba(249,239,218,.25);
+  background:
+    linear-gradient(var(--s80-archive-accent),var(--s80-archive-accent)) left top/30px 2px no-repeat,
+    linear-gradient(var(--s80-archive-accent),var(--s80-archive-accent)) left top/2px 30px no-repeat,
+    linear-gradient(var(--s80-archive-accent),var(--s80-archive-accent)) right bottom/30px 2px no-repeat,
+    linear-gradient(var(--s80-archive-accent),var(--s80-archive-accent)) right bottom/2px 30px no-repeat;
+}
+.sound-world.s80-ready .sound-archive .sa-art > .s80-archive-sweep{
+  position:absolute;
+  z-index:3;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.sound-world.s80-ready .sound-archive .sa-art > .s80-archive-sweep::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  display:block;
+  opacity:0;
+  transform:translateX(-115%);
+  background:linear-gradient(105deg,
+    transparent 24%,
+    rgba(255,250,235,.04) 41%,
+    color-mix(in srgb,var(--s80-archive-accent) 34%,transparent) 51%,
+    rgba(255,250,235,.14) 55%,
+    transparent 76%);
+  mix-blend-mode:screen;
+}
+.sound-world.s80-ready .sa-art.s80-record-change > .s80-archive-sweep::before{
+  animation:s80-sleeve-change 820ms cubic-bezier(.22,.78,.2,1) both;
+}
+.sound-world.s80-ready .sa-art.s80-record-change > .s80-archive-frame{
+  animation:s80-sleeve-registration 820ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s80-sleeve-change{
+  0%{opacity:0;transform:translateX(-115%)}
+  38%{opacity:.62}
+  90%{opacity:.28}
+  100%{opacity:0;transform:translateX(115%)}
+}
+@keyframes s80-sleeve-registration{
+  0%{opacity:0;clip-path:inset(42% 42% 42% 42%)}
+  52%{opacity:.8;clip-path:inset(0)}
+  100%{opacity:.48;clip-path:inset(0)}
+}
+/* A single temporary flight from the existing vinyl to the existing sleeve.
+   Its size and position are interpolated in JS; no page positions change. */
+.s80-shared-vinyl{
+  --s80-flight:#ddb38f;
+  position:fixed;
+  z-index:4300;
+  box-sizing:border-box;
+  overflow:hidden;
+  display:block;
+  pointer-events:none!important;
+  user-select:none;
+  isolation:isolate;
+  left:0;top:0;
+  width:1px;height:1px;
+  border-radius:50%;
+  border:1px solid rgba(251,244,227,.5);
+  background:
+    radial-gradient(circle at 43% 31%,rgba(250,247,233,.20),transparent 37%),
+    repeating-radial-gradient(circle at center,#161e1b 0,#2a322c 2px,#101715 4px,#26302a 6px);
+  box-shadow:0 28px 84px rgba(0,0,0,.46),inset 0 0 33px rgba(0,0,0,.4);
+  will-change:left,top,width,height,border-radius,opacity;
+  transform:translateZ(0);
+}
+.s80-shared-vinyl[data-s80-mood="hiphop"]{--s80-flight:#b6cca2}
+.s80-shared-vinyl[data-s80-mood="alternative"]{--s80-flight:#aac6df}
+.s80-shared-vinyl > .s80-flight-grooves{
+  position:absolute;
+  inset:5%;
+  pointer-events:none;
+  border-radius:50%;
+  border:1px solid rgba(255,250,234,.3);
+  box-shadow:
+    inset 0 0 0 10px rgba(255,255,255,.014),
+    inset 0 0 0 22px rgba(255,255,255,.018),
+    inset 0 0 0 36px rgba(255,255,255,.012),
+    inset 0 0 0 51px rgba(255,255,255,.025);
+}
+.s80-shared-vinyl > .s80-flight-core{
+  position:absolute;
+  display:grid;
+  place-items:center;
+  left:34%;top:34%;
+  width:32%;height:32%;
+  border-radius:50%;
+  background:var(--s80-flight);
+  color:#23312b;
+  font:italic 700 clamp(12px,2vw,29px)/1 Georgia,serif;
+  letter-spacing:-.07em;
+  box-shadow:0 0 0 2px rgba(0,0,0,.18);
+}
+.s80-shared-vinyl > .s80-flight-core::after{
+  content:"";position:absolute;width:5px;height:5px;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#23312b;border-radius:50%;
+}
+.s80-shared-vinyl > .s80-flight-outline{
+  position:absolute;
+  inset:clamp(9px,1.6vw,21px);
+  border:1px solid var(--s80-flight);
+  opacity:.58;
+  pointer-events:none;
+}
+.s80-shared-vinyl > .s80-flight-serial{
+  position:absolute;
+  bottom:clamp(12px,2vw,29px);
+  right:clamp(13px,2vw,29px);
+  color:#f8eee0;
+  font:700 9px/1.2 ui-monospace,Consolas,monospace;
+  letter-spacing:.18em;
+  opacity:.82;
+  text-shadow:0 1px 4px #101616;
+}
+@media(max-width:991px){
+  .s80-shared-vinyl{display:none!important}
+  .sound-world.s80-ready .sound-archive .sa-art > .s80-archive-frame{
+    inset:12px;
+  }
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .s80-shared-vinyl{display:none!important}
+  .sound-world.s80-ready .sa-art.s80-record-change > .s80-archive-sweep::before{
+    animation:none!important;
+  }
+  .sound-world.s80-ready .sa-art.s80-record-change > .s80-archive-frame{
+    animation:none!important;
+  }
+}
