@@ -1,0 +1,162 @@
+/* PHASE 81 — ABOUT / LIVING IDENTITY
+   Vector geometry morph: construction grid -> sound rings -> map contours.
+   Non-interactive decoration inside existing STEP 71 hero and editorial art.
+   Original controls, card tilt, focus, text, layouts and old art remain. */
+.a17-world.s81-ready {
+  --s81-accent:#af6a56;
+  --s81-geometry:#29534b;
+  --s81-halo:rgba(177,102,81,.14);
+}
+.a17-world.s81-ready[data-mode="listen"]{
+  --s81-accent:#9365a4;
+  --s81-geometry:#303e66;
+  --s81-halo:rgba(149,106,189,.16);
+}
+.a17-world.s81-ready[data-mode="wander"]{
+  --s81-accent:#377f67;
+  --s81-geometry:#21574e;
+  --s81-halo:rgba(75,158,125,.16);
+}
+.a17-world.s81-ready .a17-card > .s81-morph-layer {
+  position:absolute;
+  inset:0;
+  z-index:2; /* behind original LM monogram, labels and stamps */
+  overflow:hidden;
+  pointer-events:none!important;
+  isolation:isolate;
+  color:var(--s81-geometry);
+}
+.a17-world.s81-ready .a18-visual > .s81-morph-layer {
+  position:absolute;
+  inset:0;
+  z-index:2; /* under existing editorial word / caption */
+  overflow:hidden;
+  pointer-events:none!important;
+  isolation:isolate;
+  color:#284d48;
+}
+.a17-world.s81-ready .s81-morph-layer svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  pointer-events:none;
+  overflow:hidden;
+}
+.a17-world.s81-ready .s81-morph-layer .s81-form{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.46;
+  vector-effect:non-scaling-stroke;
+}
+.a17-world.s81-ready .s81-morph-layer .s81-form:nth-child(2){
+  stroke-width:1.15;
+  opacity:.38;
+}
+.a17-world.s81-ready .s81-morph-layer .s81-form:nth-child(3){
+  stroke-width:.9;
+  opacity:.32;
+}
+.a17-world.s81-ready .s81-morph-layer .s81-trail{
+  fill:none;
+  stroke:var(--s81-accent);
+  stroke-width:4.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.76;
+  vector-effect:non-scaling-stroke;
+}
+.a17-world.s81-ready .a18-visual .s81-morph-layer .s81-trail{
+  stroke:var(--s71-ink,#254840);
+}
+.a17-world.s81-ready .s81-morph-layer .s81-dot{
+  fill:var(--s81-accent);
+  stroke:rgba(247,238,218,.56);
+  stroke-width:1;
+  opacity:.76;
+}
+.a17-world.s81-ready .s81-morph-layer .s81-ring{
+  fill:none;
+  stroke:var(--s81-accent);
+  stroke-width:1;
+  opacity:.55;
+}
+.a17-world.s81-ready .a18-visual .s81-morph-layer{
+  opacity:.78;
+}
+.a17-world.s81-ready .a18-visual[data-scene="listen"] .s81-morph-layer{
+  color:#39466c;
+}
+.a17-world.s81-ready .a18-visual[data-scene="wander"] .s81-morph-layer{
+  color:#285949;
+}
+/* The original editorial illustrations remain visible; the geometry
+   reads as an elegant precision layer, not a new panel on top. */
+.a17-world.s81-ready .s81-morph-layer::after{
+  content:"";
+  position:absolute;inset:0;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(111deg,
+    transparent 28%,rgba(255,255,255,.025) 43%,
+    rgba(255,255,255,.12) 50%,transparent 65%);
+  transform:translateX(-105%);
+}
+.a17-world.s81-ready .s81-morph-layer.s81-in-motion::after{
+  animation:s81-identity-light 1080ms cubic-bezier(.17,.82,.22,1) both;
+}
+@keyframes s81-identity-light {
+  0%,15%{opacity:0;transform:translateX(-105%)}
+  48%{opacity:.75}
+  100%{opacity:0;transform:translateX(105%)}
+}
+.a17-world.s81-ready .a17-card.s81-monogram-shift .a17-card-monogram {
+  animation:s81-monogram-settle 870ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s81-monogram-settle{
+  0%{opacity:.8;filter:blur(2px);transform:translate3d(-.09em,11px,0) scale(.96)}
+  58%{opacity:1;filter:blur(0);transform:translate3d(-.09em,-3px,0) scale(1.015)}
+  100%{opacity:1;filter:blur(0);transform:translate3d(-.09em,0,0) scale(1)}
+}
+/* Small chapter markers mirror the geometry's three states.
+   They never sit on top of existing text or create another CTA. */
+.a17-world.s81-ready .s81-morph-layer .s81-coordinates {
+  position:absolute;
+  right:clamp(15px,2.7vw,36px);
+  top:clamp(55px,7vw,92px);
+  color:var(--s81-geometry);
+  font:700 8px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.13em;
+  opacity:.56;
+  pointer-events:none;
+}
+.a17-world.s81-ready .a18-visual .s81-coordinates{
+  top:18%;
+  right:clamp(15px,2vw,27px);
+  color:#203d3c;
+  opacity:.48;
+}
+@media(max-width:760px){
+  .a17-world.s81-ready .s81-morph-layer .s81-form{stroke-width:1.2;opacity:.4}
+  .a17-world.s81-ready .s81-morph-layer .s81-trail{stroke-width:3}
+  .a17-world.s81-ready .s81-morph-layer .s81-coordinates{top:63px;font-size:7px}
+  .a17-world.s81-ready .a18-visual .s81-morph-layer{opacity:.64}
+}
+@media(max-width:420px){
+  .a17-world.s81-ready .a17-card > .s81-morph-layer{opacity:.77}
+  .a17-world.s81-ready .a18-visual .s81-coordinates{display:none}
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .a17-world.s81-ready .s81-morph-layer.s81-in-motion::after{
+    animation:none!important;
+  }
+  .a17-world.s81-ready .a17-card.s81-monogram-shift .a17-card-monogram{
+    animation:none!important;
+  }
+  .a17-world.s81-ready .s81-morph-layer .s81-form{opacity:.26}
+  .a17-world.s81-ready .s81-morph-layer .s81-trail{opacity:.55}
+}
