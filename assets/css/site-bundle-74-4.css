@@ -2949,3 +2949,132 @@ body.s41-studio-focus .p15-journal.s66-ready .s66-reading-line {
   .work-world.s78-ready .work-project .s78-row-rule{transition:none!important}
 }
 
+
+/* SOURCE assets/css/connected-atlas-79.css */
+/* PHASE 79 — CONNECTED ATLAS
+   Reuses the STEP 70 landscapes and the STEP 75 journal hero.
+   Motion affects ONLY a temporary image copy and the journal opacity.
+   All existing journal content, navigation, focus, scrollbar and photographs
+   stay under the original controllers. */
+.p14-world.s79-ready { --s79-key:var(--s70-ink,#a6dfc3); }
+.p14-world.s79-ready .p14-postcard > .s79-return-mark {
+  position:absolute;inset:clamp(12px,1.65vw,24px);
+  z-index:7;pointer-events:none!important;
+  display:block;opacity:0;
+  color:var(--s79-key);
+  border:1px solid color-mix(in srgb,var(--s79-key) 70%,transparent);
+  background:
+    linear-gradient(currentColor,currentColor) left top/32px 2px no-repeat,
+    linear-gradient(currentColor,currentColor) left top/2px 32px no-repeat,
+    linear-gradient(currentColor,currentColor) right bottom/32px 2px no-repeat,
+    linear-gradient(currentColor,currentColor) right bottom/2px 32px no-repeat;
+}
+.p14-world.s79-ready .p14-postcard.s79-just-returned > .s79-return-mark{
+  animation:s79-return-mark 920ms cubic-bezier(.17,.85,.25,1) both;
+}
+@keyframes s79-return-mark{
+  0%{opacity:0;clip-path:inset(45% 45% 45% 45%)}
+  35%{opacity:.85;clip-path:inset(0)}
+  80%{opacity:.65;clip-path:inset(0)}
+  100%{opacity:0;clip-path:inset(0)}
+}
+/* The actual postcard/journal imagery are never repositioned.
+   This modifier disables the journal's slide ONLY during a successful
+   desktop shared-image bridge. Animation restores the normal style. */
+@media(min-width:992px) {
+  .p15-journal.s79-bridge-open.is-open,
+  .p15-journal.s79-bridge-close {
+    transform:translate3d(0,0,0)!important;
+    transition:none!important;
+  }
+  .p15-journal.s79-bridge-open.is-open{
+    opacity:0;
+  }
+  .p15-journal.s79-bridge-close {
+    opacity:0;
+    visibility:visible!important;
+    pointer-events:none!important;
+  }
+  .p15-journal.s79-hide-hero .p15-hero-visual {
+    visibility:hidden!important;
+  }
+}
+/* THE IMAGE HAS ITS OWN MOVEMENT: fixed overlay, pointer-free.
+   It uses the existing illustration, NOT a stock photo or screenshot. */
+.s79-shared-frame {
+  --s79-frame:#b6d9c5;
+  position:fixed;
+  z-index:3200;
+  left:0;top:0;
+  box-sizing:border-box;
+  overflow:hidden;
+  pointer-events:none!important;
+  isolation:isolate;
+  background:#24443d;
+  border:1px solid color-mix(in srgb,var(--s79-frame) 65%,transparent);
+  box-shadow:0 28px 90px rgba(0,0,0,.38);
+  will-change:top,left,width,height;
+}
+.s79-shared-frame[data-s79-place="london"]{
+  --s79-frame:#e6b8c3;
+  background:#4a4150;
+}
+.s79-shared-frame[data-s79-place="kl"]{
+  --s79-frame:#f4c993;
+  background:#384d4a;
+}
+.s79-shared-frame > svg {
+  display:block;
+  width:100%;
+  height:100%;
+}
+.s79-shared-frame::before {
+  content:"";
+  position:absolute;inset:clamp(10px,1.5vw,23px);
+  z-index:2;pointer-events:none;
+  border:1px solid color-mix(in srgb,var(--s79-frame) 70%,transparent);
+  background:
+   linear-gradient(var(--s79-frame),var(--s79-frame)) left top/25px 2px no-repeat,
+   linear-gradient(var(--s79-frame),var(--s79-frame)) left top/2px 25px no-repeat,
+   linear-gradient(var(--s79-frame),var(--s79-frame)) right bottom/25px 2px no-repeat,
+   linear-gradient(var(--s79-frame),var(--s79-frame)) right bottom/2px 25px no-repeat;
+  animation:s79-frame-trace 1020ms cubic-bezier(.18,.8,.2,1) both;
+}
+.s79-shared-frame::after {
+  content:"";
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(110deg,
+    transparent 23%,rgba(255,255,255,.025) 35%,
+    color-mix(in srgb,var(--s79-frame) 25%,transparent) 49%,
+    rgba(255,255,255,.20) 53%,transparent 70%);
+  transform:translate3d(-110%,0,0);
+  animation:s79-image-light 1050ms cubic-bezier(.19,.75,.22,1) both;
+  pointer-events:none;
+}
+@keyframes s79-frame-trace {
+  0%{opacity:.2;clip-path:inset(0 49% 0 49%)}
+  40%{opacity:.85;clip-path:inset(0)}
+  82%{opacity:.62;clip-path:inset(0)}
+  100%{opacity:0;clip-path:inset(0)}
+}
+@keyframes s79-image-light {
+  0%,12%{opacity:0;transform:translate3d(-110%,0,0)}
+  48%{opacity:.52}
+  100%{opacity:0;transform:translate3d(110%,0,0)}
+}
+/* STEP 77 already paints a brief light on journal entry. The shared
+   image now owns that cue, preventing a double flash. */
+.p15-journal.s79-bridge-open .p15-hero-figure > .s77-optical-sweep,
+.p15-journal.s79-bridge-open .p15-hero-figure > .s77-register,
+.p15-journal.s79-bridge-close .p15-hero-figure > .s77-optical-sweep,
+.p15-journal.s79-bridge-close .p15-hero-figure > .s77-register{
+  display:none!important;
+}
+@media(max-width:991px) {
+  .s79-shared-frame {display:none!important}
+  .p14-world.s79-ready .p14-postcard > .s79-return-mark {inset:12px}
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more) {
+  .s79-shared-frame {display:none!important}
+  .p14-world.s79-ready .p14-postcard > .s79-return-mark {animation:none!important;display:none!important}
+}
