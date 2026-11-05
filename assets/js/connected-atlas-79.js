@@ -199,6 +199,9 @@
     const observer=new MutationObserver(()=>{
       const opened=journal.classList.contains("is-open");
       if(lastOpen&&!opened){
+        // Escape or rapid close while an opening bridge is in flight:
+        // immediately release the hidden hero and the temporary frame.
+        if(journal.classList.contains("s79-bridge-open"))clear();
         returned();
       }
       lastOpen=opened;
