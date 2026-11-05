@@ -179,7 +179,7 @@
     }
     function syncTo(slot,key,animate,parent){
       if(!STATES[key])return;
-      if(slot.target===key&&!slot.tween)return;
+      // Always settle geometry when opening/closing or motion is disabled.\n      if(slot.target===key&&!slot.tween && animate)return;
       cancel(slot);
       const from=copy(slot.current),to=STATES[key];
       slot.target=key;
