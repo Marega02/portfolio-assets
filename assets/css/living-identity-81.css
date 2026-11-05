@@ -85,14 +85,30 @@
   stroke-width:1;
   opacity:.55;
 }
+.a17-world.s81-ready .a18-visual{
+  --s81-plate-accent:#a36252;
+  --s81-plate-ink:#284d48;
+}
+.a17-world.s81-ready .a18-visual[data-scene="listen"]{
+  --s81-plate-accent:#805e9d;
+  --s81-plate-ink:#39466c;
+}
+.a17-world.s81-ready .a18-visual[data-scene="wander"]{
+  --s81-plate-accent:#3c866c;
+  --s81-plate-ink:#285949;
+}
 .a17-world.s81-ready .a18-visual .s81-morph-layer{
   opacity:.78;
+  color:var(--s81-plate-ink);
 }
-.a17-world.s81-ready .a18-visual[data-scene="listen"] .s81-morph-layer{
-  color:#39466c;
+.a17-world.s81-ready .a18-visual .s81-trail{
+  stroke:var(--s81-plate-accent);
 }
-.a17-world.s81-ready .a18-visual[data-scene="wander"] .s81-morph-layer{
-  color:#285949;
+.a17-world.s81-ready .a18-visual .s81-dot{
+  fill:var(--s81-plate-accent);
+}
+.a17-world.s81-ready .a18-visual .s81-ring{
+  stroke:var(--s81-plate-accent);
 }
 /* The original editorial illustrations remain visible; the geometry
    reads as an elegant precision layer, not a new panel on top. */
