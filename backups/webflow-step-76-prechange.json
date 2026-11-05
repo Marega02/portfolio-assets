@@ -1,0 +1,8 @@
+{
+  "description": "Step 76: restore original Webflow freeform code and previous GitHub bundle commit SHA if needed.",
+  "siteId": "6adce03b89b49e519149623e",
+  "head": "<!-- PHASE 74 — PERFORMANCE BUNDLE: 52 ORIGINAL CSS FILES IN FOUR ORDERED GROUPS -->\n<link rel=\"preconnect\" href=\"https://marega02.github.io\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-1.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-2.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-3.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-4.css?v=75.1\">\n",
+  "footer": "<!-- PHASE 74 — 40 ORIGINAL JS FILES IN FOUR ORDERED GROUPS -->\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-1.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-2.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-3.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-4.js?v=75.1\"></script>\n",
+  "cssBundleBefore": "bb9978e28c2c77a41052a82c1b50b1b5a72e0ae0",
+  "jsBundleBefore": "135a50283442ef6316d9cb7ac1be50048e74b04a"
+}
