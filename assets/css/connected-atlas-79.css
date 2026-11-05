@@ -111,8 +111,10 @@
 }
 /* STEP 77 already paints a brief light on journal entry. The shared
    image now owns that cue, preventing a double flash. */
-.p15-journal.s79-ready .p15-hero-figure > .s77-optical-sweep,
-.p15-journal.s79-ready .p15-hero-figure > .s77-register{
+.p15-journal.s79-bridge-open .p15-hero-figure > .s77-optical-sweep,
+.p15-journal.s79-bridge-open .p15-hero-figure > .s77-register,
+.p15-journal.s79-bridge-close .p15-hero-figure > .s77-optical-sweep,
+.p15-journal.s79-bridge-close .p15-hero-figure > .s77-register{
   display:none!important;
 }
 @media(max-width:991px) {
