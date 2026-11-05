@@ -101,18 +101,21 @@
   pointer-events:none!important;
   user-select:none;
   inset:0;
-  opacity:0;
   overflow:hidden;
-  background:
-    linear-gradient(112deg,
-      transparent 0%,
-      rgba(255,255,255,.025) 36%,
-      color-mix(in srgb,var(--s77-color) 35%,transparent) 48%,
-      rgba(255,255,255,.16) 51%,
-      rgba(255,255,255,.025) 60%,
-      transparent 75%);
-  transform:translate3d(-110%,0,0);
   mix-blend-mode:screen;
+}
+.s77-hero-stage > .s77-optical-sweep::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  display:block;
+  opacity:0;
+  background:linear-gradient(112deg,
+    transparent 0%,rgba(255,255,255,.025) 36%,
+    color-mix(in srgb,var(--s77-color) 35%,transparent) 48%,
+    rgba(255,255,255,.16) 51%,rgba(255,255,255,.025) 60%,
+    transparent 75%);
+  transform:translate3d(-110%,0,0);
 }
 .s77-hero-stage > .s77-register {
   position:absolute;
@@ -137,7 +140,7 @@
   content:"";position:absolute;left:50%;top:0;width:35px;height:2px;
   transform:translateX(-50%);background:var(--s77-color);
 }
-.s77-hero-stage.s77-is-cutting > .s77-optical-sweep{
+ .s77-hero-stage.s77-is-cutting > .s77-optical-sweep::before{
   animation:s77-film-sweep 940ms cubic-bezier(.18,.76,.2,1) both;
 }
 .s77-hero-stage.s77-is-cutting > .s77-register{
@@ -180,7 +183,7 @@
     border-width:1px;
     opacity:0;
   }
-  .s77-hero-stage.s77-is-cutting > .s77-optical-sweep{
+   .s77-hero-stage.s77-is-cutting > .s77-optical-sweep::before{
     animation-duration:650ms;
   }
   .s77-hero-stage.s77-is-cutting > .s77-register{
