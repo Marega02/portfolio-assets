@@ -17,6 +17,10 @@
          !s.querySelector(".s86-slide-content .world-link"))||
        hub.dataset.s87Ready==="1")return;
 
+    // Preflight every native chapter link before any reparenting.
+    if(slides.some(slide=>!slide.querySelector(".world-link .world-description") ||
+      !slide.querySelector(".world-link .s86-enter")))return;
+
     const types={
       work:{
         subtitle:"Selected websites, built with character and intention.",
