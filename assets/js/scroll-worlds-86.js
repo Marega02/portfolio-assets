@@ -39,7 +39,7 @@
             ${Array.from({length:27},(_,i)=>'<path d="M'+(i*68)+' 0V1000"/>').join("")}
             ${Array.from({length:18},(_,i)=>'<path d="M0 '+(i*65)+'H1600"/>').join("")}
           </g>
-          <g transform="translate(677 116) rotate(-10 395 390)">
+          <g class="s86-browser" transform="translate(677 116) rotate(-10 395 390)">
             <rect x="18" y="38" width="810" height="714" rx="16" fill="#000" opacity=".35" filter="url(#s86workshadow)"/>
             <rect x="0" y="0" width="810" height="714" rx="10" fill="#e0d6c5" stroke="#f4dac3" stroke-width="3"/>
             <rect x="0" y="0" width="810" height="56" rx="10" fill="#31493e"/>
@@ -87,7 +87,7 @@
           <rect width="1600" height="1000" fill="url(#s86soundbg)"/>
           <ellipse cx="1120" cy="455" rx="590" ry="590" fill="url(#s86soundhalo)"/>
           <path d="M0 745H1600M0 753H1600" stroke="#d5dfc0" stroke-width="2" opacity=".18"/>
-          <g transform="translate(0 0)">
+          <g class="s86-vinyl" transform="translate(0 0)">
             <circle cx="1120" cy="488" r="506" fill="#13231f" opacity=".84" stroke="#7c9683" stroke-width="3"/>
             <circle cx="1120" cy="488" r="480" fill="url(#s86soundvinyl)" stroke="#9ab69a" stroke-width="4"/>
             ${grooves}
@@ -121,10 +121,10 @@
           </defs>
           <rect width="1600" height="1000" fill="url(#s86placesky)"/>
           <circle cx="1281" cy="205" r="380" fill="url(#s86placesun)"/>
-          <path d="M0 596L151 392 302 470 484 236 642 367 799 138 983 379 1110 264 1304 420 1480 299 1600 445V1000H0Z" fill="#c9d8c9"/>
+          <path class="s86-mountains" d="M0 596L151 392 302 470 484 236 642 367 799 138 983 379 1110 264 1304 420 1480 299 1600 445V1000H0Z" fill="#c9d8c9"/>
           <path d="M0 650L194 456 346 543 523 309 668 472 819 235 1007 496 1130 369 1315 534 1488 404 1600 523V1000H0Z" fill="#8db0a2"/>
           <path d="M762 299L819 235 881 324 827 298 811 280 793 313Z" fill="#f0eede" opacity=".82"/>
-          <path d="M0 717L213 560 382 686 550 470 712 648 856 416 1057 654 1210 492 1400 692 1600 558V1000H0Z" fill="#4b8480"/>
+          <path class="s86-foreground" d="M0 717L213 560 382 686 550 470 712 648 856 416 1057 654 1210 492 1400 692 1600 558V1000H0Z" fill="#4b8480"/>
           <path d="M0 834L232 669 417 763 594 625 808 779 970 594 1142 747 1375 625 1600 758V1000H0Z" fill="#285f60"/>
           <path d="M0 909L204 773 407 877 596 730 773 853 961 720 1140 857 1401 759 1600 853V1000H0Z" fill="#184748"/>
           <path d="M1000 583C910 690 1203 677 1031 802S758 901 827 1080H1381C1360 966 1160 885 1316 812S1437 683 1307 600Z" fill="#0f4853" opacity=".45"/>
@@ -133,7 +133,7 @@
           <g fill="#153f40">
             ${[60,160,275,425,1400,1510].map((x,i)=>'<path d="M'+x+' 1010L'+(x+28)+' '+(550+(i%3)*40)+' '+(x+42)+' '+(775+(i%2)*35)+' '+(x+65)+' '+(688+(i%2)*53)+' '+(x+51)+' 1010Z"/>').join("")}
           </g>
-          <path d="M838 995Q936 893 1025 839T1263 650" stroke="#f0e8bb" stroke-width="4" fill="none" stroke-dasharray="10 17" opacity=".88"/>
+          <path class="s86-route" d="M838 995Q936 893 1025 839T1263 650" stroke="#f0e8bb" stroke-width="4" fill="none" stroke-dasharray="10 17" opacity=".88"/>
           <circle cx="1263" cy="650" r="17" fill="#f0eac9" stroke="#2e7870" stroke-width="6"/>
           <text x="703" y="951" fill="#e4f0de" opacity=".6" font-family="monospace" font-size="16" letter-spacing="6">SOČA VALLEY / STORIES ON THE MOVE</text>
         </svg>`;
@@ -149,7 +149,7 @@
             ${Array.from({length:13},(_,i)=>'<path d="M'+(630+i*91)+' 0V1000"/>').join("")}
             ${Array.from({length:10},(_,i)=>'<path d="M550 '+(i*115)+'H1600"/>').join("")}
           </g>
-          <g fill="none" stroke="#ecd6c4" stroke-width="3">
+          <g class="s86-orbits" fill="none" stroke="#ecd6c4" stroke-width="3">
             <circle cx="1117" cy="481" r="406" opacity=".38"/>
             <circle cx="1117" cy="481" r="339" opacity=".23"/>
             <ellipse cx="1117" cy="481" rx="490" ry="207" transform="rotate(-31 1117 481)" opacity=".8"/>
@@ -157,8 +157,8 @@
             <ellipse cx="1117" cy="481" rx="445" ry="133" transform="rotate(47 1117 481)" opacity=".45"/>
           </g>
           <path d="M810 265L1042 114 1265 245 1460 118 1514 450 1300 719 953 791 757 568Z" fill="#e2b499" opacity=".13"/>
-          <text x="755" y="663" font-family="Georgia,serif" font-style="italic" font-size="470" fill="#f4d3b4" opacity=".78" letter-spacing="-35">L</text>
-          <text x="1062" y="736" font-family="Georgia,serif" font-style="italic" font-size="448" fill="#eac1a8" opacity=".85" letter-spacing="-35">M</text>
+          <text class="s86-monogram" x="755" y="663" font-family="Georgia,serif" font-style="italic" font-size="470" fill="#f4d3b4" opacity=".78" letter-spacing="-35">L</text>
+          <text class="s86-monogram" x="1062" y="736" font-family="Georgia,serif" font-style="italic" font-size="448" fill="#eac1a8" opacity=".85" letter-spacing="-35">M</text>
           <circle cx="1117" cy="481" r="24" fill="#f4dabf" stroke="#7e5557" stroke-width="8"/>
           <g fill="none" stroke="#f9dec8" stroke-width="3" opacity=".72">
             <path d="M648 181H738M693 136V226M1450 760H1559M1504 705V815M651 865H1516"/>
