@@ -32,7 +32,7 @@
       {root:".a17-world",open:"is-active",identity:"data-mode",
         beats:[
           {anchor:".a17-curiosity",text:[]},
-          {anchor:".a18-story",text:[".a18-sentence"]}
+          {anchor:".a18-story",text:[]}
         ]},
       {root:".sound-world",open:"is-active",identity:"data-mood",
         beats:[{anchor:".sound-bottom",text:[]}]},
