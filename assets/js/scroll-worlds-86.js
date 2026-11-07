@@ -12,6 +12,8 @@
     const links=[...(oldLinks?.children||[])].filter(el=>el.classList?.contains("world-link"));
     if(!hub||!oldLinks||!oldTop||links.length!==4||hub.dataset.s86Ready==="1")return;
 
+    // Build only when all four existing destinations are present.
+    if([".work-world",".sound-world",".p14-world",".a17-world"].some(sel=>!document.querySelector(sel)))return;
     const names=["work","sound","places","about"];
     const descriptions={
       work:["01 / THE THINGS I BUILD","Explore selected work"],
@@ -324,12 +326,12 @@
       highlight(i);
     }));
 
-    slides[0].classList.add("is-s86-visible");
-    // activate only after all content, links and observer are ready
+    // Activate only after the four original links are mounted.
+    // Two frames give the first scene a real cinematic entrance.
     hub.appendChild(experience);
     hub.dataset.s86Ready="1";
     hub.classList.add("s86-ready");
-    highlight(0);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>highlight(0)));
   }
   if(document.readyState==="loading")
     document.addEventListener("DOMContentLoaded",init,{once:true});
