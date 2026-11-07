@@ -472,3 +472,88 @@
   .world-hub.s86-ready .s86-visual::after{background:rgba(0,0,0,.72)}
   .world-hub.s86-ready .s86-slide .world-link .world-name{color:#fff!important}
 }
+
+
+/* FOUR MOTION SIGNATURES — finite scene-specific choreography.
+   Original artwork only; no full-screen interaction blockers. */
+.world-hub.s86-ready .s86-browser,
+.world-hub.s86-ready .s86-mountains,
+.world-hub.s86-ready .s86-foreground,
+.world-hub.s86-ready .s86-route,
+.world-hub.s86-ready .s86-orbits,
+.world-hub.s86-ready .s86-monogram{
+  transform-box:fill-box;
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="work"].is-s86-visible .s86-browser{
+  animation:s86-browser-arrival 1350ms cubic-bezier(.17,1,.3,1) both;
+}
+@keyframes s86-browser-arrival{
+  0%{opacity:.26;clip-path:inset(0 0 93% 0)}
+  45%{opacity:1}
+  100%{opacity:1;clip-path:inset(0)}
+}
+.world-hub.s86-ready .s86-vinyl{
+  transform-origin:69.9% 48.8%;
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="sound"].is-s86-visible .s86-vinyl{
+  animation:s86-record-arrival 1900ms cubic-bezier(.16,.82,.26,1) both;
+}
+@keyframes s86-record-arrival{
+  0%{opacity:.6;transform:rotate(-21deg) scale(.88)}
+  64%{opacity:1;transform:rotate(2deg) scale(1.015)}
+  100%{opacity:1;transform:rotate(0) scale(1)}
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="places"].is-s86-visible .s86-mountains{
+  animation:s86-valley-arrival 1550ms cubic-bezier(.16,1,.3,1) both;
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="places"].is-s86-visible .s86-foreground{
+  animation:s86-valley-arrival 1350ms cubic-bezier(.16,1,.3,1) 120ms both;
+}
+@keyframes s86-valley-arrival{
+  0%{opacity:.38;transform:translate3d(0,37px,0)}
+  100%{opacity:1;transform:translate3d(0,0,0)}
+}
+.world-hub.s86-ready .s86-route{
+  stroke-dasharray:790;
+  stroke-dashoffset:790;
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="places"].is-s86-visible .s86-route{
+  animation:s86-route-draw 1750ms cubic-bezier(.18,.8,.25,1) 120ms both;
+}
+@keyframes s86-route-draw{
+  0%,11%{stroke-dashoffset:790;opacity:.12}
+  100%{stroke-dashoffset:0;opacity:1}
+}
+.world-hub.s86-ready .s86-orbits{
+  transform-origin:center center;
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="about"].is-s86-visible .s86-orbits{
+  animation:s86-orbit-arrival 1600ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s86-orbit-arrival{
+  0%{opacity:.2;transform:rotate(-16deg) scale(.85)}
+  100%{opacity:1;transform:rotate(0deg) scale(1)}
+}
+.world-hub.s86-ready .s86-slide[data-s86-scene="about"].is-s86-visible .s86-monogram{
+  animation:s86-letterpress 1200ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s86-letterpress{
+  0%{opacity:.1;filter:blur(8px)}
+  100%{opacity:1;filter:blur(0)}
+}
+/* Prevent optional scene presentation from touching the source navigation. */
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .world-hub.s86-ready .s86-slide .s86-browser,
+  .world-hub.s86-ready .s86-slide .s86-vinyl,
+  .world-hub.s86-ready .s86-slide .s86-mountains,
+  .world-hub.s86-ready .s86-slide .s86-foreground,
+  .world-hub.s86-ready .s86-slide .s86-route,
+  .world-hub.s86-ready .s86-slide .s86-orbits,
+  .world-hub.s86-ready .s86-slide .s86-monogram{
+    animation:none!important;
+    filter:none!important;
+    opacity:1!important;
+    transform:none!important;
+    stroke-dashoffset:0!important;
+  }
+}
