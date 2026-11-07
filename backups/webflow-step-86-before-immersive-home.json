@@ -1,0 +1,10 @@
+{
+  "description": "COMPLETE PRE-86 HOME REDESIGN ROLLBACK: Original Site Freeform head/footer and exact fourth CSS/JS file blob SHA. All original GitHub CSS and JS files retained.",
+  "siteId": "6adce03b89b49e519149623e",
+  "head": "<!-- PHASE 74 — PERFORMANCE BUNDLE: 52 ORIGINAL CSS FILES IN FOUR ORDERED GROUPS -->\n<link rel=\"preconnect\" href=\"https://marega02.github.io\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-1.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-2.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-3.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-4.css?v=85.1\">\n",
+  "footer": "<!-- PHASE 74 — 40 ORIGINAL JS FILES IN FOUR ORDERED GROUPS -->\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-1.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-2.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-3.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-4.js?v=85.1\"></script>\n",
+  "cssBundleSha": "b227c9dba4f379ce1502be4da8bbcb7154d25b93",
+  "jsBundleSha": "3b7b0bb2a5f41912f15fc4a4423818034d6376cb",
+  "oldVersion": "85.1",
+  "newPhase": "86"
+}
