@@ -1,0 +1,99 @@
+/* PHASE 83 — CHAPTER SCORE / TYPOGRAPHIC CHOREOGRAPHY
+   A single entrance score for Work, Sound, Places and About.
+   Source worlds and GSAP movement stay untouched. Only transient
+   clip-path/opacity on existing editorial type via the companion JS.
+   Tiny segmented stroke anchors each chapter's existing eyebrow. */
+
+.work-world.s83-ready {--s83-accent:#ad7958;--s83-soft:rgba(173,121,88,.45)}
+.sound-world.s83-ready {--s83-accent:var(--sound-accent,#d2a78f);--s83-soft:rgba(210,167,143,.36)}
+.p14-world.s83-ready {--s83-accent:var(--s70-ink,#a6dfc3);--s83-soft:rgba(166,223,195,.4)}
+.a17-world.s83-ready {--s83-accent:var(--a17-accent,#e9b28e);--s83-soft:rgba(233,178,142,.42)}
+
+/* This 4-beat typographic registration never changes layout,
+   size, spacing, positioning or transforms of the actual text. */
+.work-world.s83-ready .work-eyebrow,
+.sound-world.s83-ready .sound-index,
+.p14-world.s83-ready .p14-eyebrow,
+.a17-world.s83-ready .a17-eyebrow {
+  position:relative;
+}
+.work-world.s83-ready .work-eyebrow::after,
+.sound-world.s83-ready .sound-index::after,
+.p14-world.s83-ready .p14-eyebrow::after,
+.a17-world.s83-ready .a17-eyebrow::after {
+  content:"";
+  position:absolute;
+  width:91px;
+  height:2px;
+  left:0;
+  bottom:-11px;
+  display:block;
+  pointer-events:none!important;
+  background:repeating-linear-gradient(90deg,
+    var(--s83-accent) 0 16px,transparent 16px 23px);
+  opacity:0;
+  transform-origin:left center;
+  transform:scaleX(0);
+}
+.work-world.s83-ready.s83-opening .work-eyebrow::after,
+.sound-world.s83-ready.s83-opening .sound-index::after,
+.p14-world.s83-ready.s83-opening .p14-eyebrow::after,
+.a17-world.s83-ready.s83-opening .a17-eyebrow::after {
+  animation:s83-four-beats 1170ms cubic-bezier(.16,.9,.22,1) both;
+}
+@keyframes s83-four-beats {
+  0%,14%{opacity:0;transform:scaleX(0)}
+  28%{opacity:1;transform:scaleX(.23)}
+  44%{opacity:1;transform:scaleX(.49)}
+  63%{opacity:1;transform:scaleX(.76)}
+  87%,100%{opacity:.72;transform:scaleX(1)}
+}
+.work-world.s83-ready.s83-settled .work-eyebrow::after,
+.sound-world.s83-ready.s83-settled .sound-index::after,
+.p14-world.s83-ready.s83-settled .p14-eyebrow::after,
+.a17-world.s83-ready.s83-settled .a17-eyebrow::after {
+  opacity:.72;
+  transform:scaleX(1);
+}
+
+/* Editorial micro-registration also signals the selected chapter in
+   the Home's existing film poster after return; no extra overlay. */
+.world-hub.s72-ready.s63-returning .s72-poster-mark i.is-s72-lit {
+  animation:s83-home-register 830ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes s83-home-register {
+  0%{opacity:.14;transform:scaleX(.25)}
+  55%{opacity:1;transform:scaleX(1.35)}
+  100%{opacity:.9;transform:scaleX(1)}
+}
+/* The selected label/row still responds immediately to hover and focus.
+   None of these treatments dims focusable controls or intercepts clicks. */
+.work-world.s83-ready .work-back:focus-visible,
+.sound-world.s83-ready .sound-back:focus-visible,
+.p14-world.s83-ready .p14-back:focus-visible,
+.a17-world.s83-ready .a17-back:focus-visible {
+  outline-offset:5px;
+}
+/* Avoid a premature line interfering with eyebrow on very narrow screens. */
+@media(max-width:600px) {
+  .work-world.s83-ready .work-eyebrow::after,
+  .sound-world.s83-ready .sound-index::after,
+  .p14-world.s83-ready .p14-eyebrow::after,
+  .a17-world.s83-ready .a17-eyebrow::after {
+    bottom:-8px;height:1px;width:67px;
+    background:repeating-linear-gradient(90deg,var(--s83-accent) 0 12px,transparent 12px 18px);
+  }
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more) {
+  .work-world.s83-ready .work-eyebrow::after,
+  .sound-world.s83-ready .sound-index::after,
+  .p14-world.s83-ready .p14-eyebrow::after,
+  .a17-world.s83-ready .a17-eyebrow::after {
+    animation:none!important;
+    transform:scaleX(1)!important;
+    opacity:.8!important;
+  }
+  .world-hub.s72-ready.s63-returning .s72-poster-mark i.is-s72-lit {
+    animation:none!important;
+  }
+}
