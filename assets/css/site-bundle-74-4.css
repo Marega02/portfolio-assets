@@ -5130,3 +5130,184 @@ body.s41-studio-focus .s84-beat > .s84-score{opacity:.25}
   }
 }
 
+
+/* SOURCE assets/css/living-scenes-88.css */
+/* PHASE 88 — LIVING SCENES / SCROLL-DIRECTED ART
+   Depth inside the original 4 SVG compositions, not a new route,
+   screen, Enter button, or overlay on top of the headlines.
+   Fully additive to Phase 86 + Phase 87; inert until s88-ready.
+*/
+.world-hub.s86-ready.s87-ready.s88-ready .s88-depth-layer{
+  transform-box:fill-box;
+  transform-origin:center center;
+  transform:
+    translate3d(var(--s88-x,0px),var(--s88-y,0px),0)
+    rotate(var(--s88-r,0deg))
+    scale(var(--s88-s,1));
+  will-change:auto;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide.is-s86-visible .s88-depth-layer{
+  will-change:transform;
+}
+/* Drawing on the same canvas as the original illustration; it always
+   sits BEHIND the dark legibility gradient and never accepts input. */
+.world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic{
+  position:absolute;
+  inset:0;
+  display:block;
+  z-index:0;
+  isolation:isolate;
+  overflow:hidden;
+  pointer-events:none!important;
+  color:var(--s86-color);
+  opacity:.58;
+  transform:translate3d(0,var(--s88-ornament-y,0px),0);
+  transform-origin:50% 50%;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic svg{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic .s88-etch{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+  opacity:.75;
+  stroke-dasharray:100;
+  stroke-dashoffset:var(--s88-draw,0);
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic .s88-wire{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.15;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+  opacity:.39;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic .s88-point{
+  fill:currentColor;
+  stroke:#f5eddd;
+  stroke-width:1;
+  opacity:.62;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic .s88-spot{
+  fill:currentColor;
+  opacity:.045;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide[data-s86-scene="work"] .s88-kinetic{opacity:.6}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide[data-s86-scene="sound"] .s88-kinetic{opacity:.53}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide[data-s86-scene="places"] .s88-kinetic{opacity:.69}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide[data-s86-scene="about"] .s88-kinetic{opacity:.58}
+/* Keep the graphic extension separate from the photo's own
+   first-appearance keyframes: scroll only moves the outer wrapper. */
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide .s86-artwork svg .s88-depth-layer{
+  transition:none!important;
+}
+/* A fleeting color seam during the physical scroll between worlds.
+   It is not a gate, does not delay scrolling, and never blocks clicks. */
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes{
+  position:absolute;
+  z-index:3;
+  inset:0;
+  overflow:hidden;
+  display:block;
+  pointer-events:none!important;
+  user-select:none;
+  opacity:var(--s88-bridge-alpha,0);
+  color:var(--s88-bridge-color,#d8b59b);
+  transform:translate3d(var(--s88-bridge-x,-24%),0,0);
+  mix-blend-mode:screen;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes::before{
+  content:"";
+  position:absolute;
+  top:-15%;bottom:-15%;
+  left:38%;
+  width:clamp(160px,26vw,490px);
+  transform:skewX(-19deg);
+  background:linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb,currentColor 10%,transparent) 32%,
+    color-mix(in srgb,currentColor 31%,transparent) 50%,
+    color-mix(in srgb,currentColor 10%,transparent) 66%,
+    transparent
+  );
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes::after{
+  content:"";
+  position:absolute;
+  left:calc(42% + clamp(44px,13vw,210px));
+  height:100%;
+  width:1px;
+  background:linear-gradient(0deg,transparent,currentColor 32%,currentColor 69%,transparent);
+  opacity:.23;
+  transform:skewX(-19deg);
+}
+/* A very subtle next-chapter notation appears only during a transition,
+   never an alternate entry point. */
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-label{
+  position:absolute;
+  z-index:7;
+  right:clamp(34px,7vw,120px);
+  bottom:clamp(95px,14vh,190px);
+  pointer-events:none!important;
+  opacity:var(--s88-label-opacity,0);
+  display:flex;
+  align-items:center;
+  gap:15px;
+  color:#f5eddf;
+  font:650 10px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  text-shadow:0 2px 12px rgba(0,0,0,.6);
+  transform:translate3d(0,var(--s88-label-y,8px),0);
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-label::before{
+  content:"";
+  display:block;
+  width:clamp(29px,4vw,58px);
+  height:1px;
+  background:var(--s88-bridge-color,#d8b59b);
+}
+/* The Home image composition used to be too far right on small phones.
+   Make the actual illustrated subject visible, leaving the title in
+   the dark gradient at the bottom. No changes to the slide's layout. */
+@media(max-width:480px){
+  .world-hub.s86-ready.s87-ready.s88-ready .s86-slide .s86-artwork{
+    inset:-6% -22% -8% -104%!important;
+  }
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes,
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-label{
+    display:none!important;
+  }
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic{
+    opacity:.32!important;
+  }
+}
+@media(min-width:481px) and (max-width:860px){
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-label{display:none}
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes{
+    opacity:calc(var(--s88-bridge-alpha,0) * .45);
+  }
+}
+@media(max-height:660px){
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-label{display:none}
+}
+/* Screen motion accessibility and high contrast are absolute limits:
+   original SVGs and original single links remain fully visible. */
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-depth-layer{
+    transform:none!important;
+    will-change:auto!important;
+  }
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes,
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-label,
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic{
+    display:none!important;
+  }
+}
+
