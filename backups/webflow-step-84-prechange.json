@@ -1,0 +1,8 @@
+{
+  "siteId": "6adce03b89b49e519149623e",
+  "description": "Restore these exact Webflow head/footer refs and GitHub bundle blob SHAs to revert Phase 84",
+  "head": "<!-- PHASE 74 — PERFORMANCE BUNDLE: 52 ORIGINAL CSS FILES IN FOUR ORDERED GROUPS -->\n<link rel=\"preconnect\" href=\"https://marega02.github.io\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-1.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-2.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-3.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-4.css?v=83.1\">\n",
+  "footer": "<!-- PHASE 74 — 40 ORIGINAL JS FILES IN FOUR ORDERED GROUPS -->\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-1.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-2.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-3.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-4.js?v=83.1\"></script>\n",
+  "cssBundleSHA": "4a913792cecf566f2074a2817987bc10793e341f",
+  "jsBundleSHA": "2d63753bd96cb567be89adc4e21889dd60f1e1e8"
+}
