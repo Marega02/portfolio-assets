@@ -1,0 +1,294 @@
+/* PHASE 87 — ATMOSPHERIC DEPTH / HOME DIRECTOR'S CUT
+   The Phase 86 one-action scroll experience stays intact.
+   A single passive scroll-driven camera moves behind titles and real links.
+   Each scene has its own light, composition, image entrance and story label.
+   Never intercept wheel/touch, never move world roots or alter navigation. */
+
+/* 01 — AN IMAGE THAT HAS DEPTH, NOT A STATIC BACKDROP. */
+.world-hub.s86-ready.s87-ready .s86-visual{isolation:isolate}
+.world-hub.s86-ready.s87-ready .s87-camera{
+  position:absolute;
+  inset:-2%;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none!important;
+  transform:translate3d(
+    var(--s87-pointer-x,0px),
+    calc(var(--s87-scroll-y,0px) + var(--s87-pointer-y,0px)),
+    0
+  ) scale(var(--s87-scale,1.035));
+  transform-origin:50% 50%;
+  backface-visibility:hidden;
+}
+.world-hub.s86-ready.s87-ready .s87-camera > .s86-artwork{
+  position:absolute;
+  inset:-3%;
+}
+.world-hub.s86-ready.s87-ready .s86-slide.is-s86-visible .s87-camera{
+  will-change:transform;
+}
+/* An editorial light surrounds the subject, but never obscures copy. */
+.world-hub.s86-ready.s87-ready .s87-atmosphere{
+  position:absolute;inset:0;
+  z-index:1;
+  pointer-events:none!important;
+  isolation:isolate;
+  opacity:.78;
+  transition:opacity 900ms ease;
+}
+.world-hub.s86-ready.s87-ready .s86-slide.is-s86-visible .s87-atmosphere{opacity:1}
+.world-hub.s86-ready.s87-ready .s87-atmosphere::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 41vw 44vh at var(--s87-glow-x,75%) var(--s87-glow-y,43%),
+       color-mix(in srgb,var(--s86-color) 21%,transparent) 0%,transparent 78%),
+    radial-gradient(ellipse 50vw 48vh at 69% 70%,
+       color-mix(in srgb,var(--s86-color) 11%,transparent),transparent 79%);
+  mix-blend-mode:screen;
+  opacity:.65;
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="work"] .s87-atmosphere{
+  background:
+    linear-gradient(155deg,transparent 28%,rgba(250,226,184,.052) 42%,transparent 53%),
+    repeating-linear-gradient(90deg,transparent 0 70px,rgba(221,240,221,.018) 71px 72px,transparent 73px 141px);
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="sound"] .s87-atmosphere{
+  background:
+    radial-gradient(circle at 71% 49%,transparent 0 25%,
+      rgba(242,236,204,.047) 27%,transparent 37%),
+    linear-gradient(108deg,transparent 35%,rgba(242,247,206,.055) 59%,transparent 75%);
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="places"] .s87-atmosphere{
+  background:
+    linear-gradient(0deg,rgba(159,231,216,.13),transparent 36%),
+    radial-gradient(ellipse at 67% 18%,rgba(255,250,211,.19),transparent 57%);
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="about"] .s87-atmosphere{
+  background:
+    radial-gradient(ellipse at 70% 41%,rgba(255,220,193,.1),transparent 59%),
+    linear-gradient(121deg,transparent 54%,rgba(232,187,175,.07),transparent 79%);
+}
+/* Narrow photographic edge lighting never touches interactive text. */
+.world-hub.s86-ready.s87-ready .s87-exposure{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none!important;
+  display:block;
+  opacity:0;
+  background:linear-gradient(103deg,
+    transparent 0%,transparent 29%,
+    rgba(255,244,224,.04) 43%,
+    color-mix(in srgb,var(--s86-color) 18%,transparent) 49%,
+    rgba(255,250,236,.12) 52%,
+    transparent 64%,transparent 100%);
+  transform:translate3d(-42%,0,0);
+  mix-blend-mode:screen;
+}
+.world-hub.s86-ready.s87-ready .s86-slide.is-s86-visible .s87-exposure{
+  animation:s87-print-through 1330ms cubic-bezier(.16,.83,.26,1) both;
+}
+@keyframes s87-print-through{
+  0%,9%{opacity:0;transform:translate3d(-46%,0,0)}
+  39%{opacity:.62}
+  75%{opacity:.29}
+  100%{opacity:0;transform:translate3d(45%,0,0)}
+}
+
+/* 02 — THE TYPOGRAPHY HAS AN EDITORIAL ENTRANCE, NOT A FADE ONLY.
+   The title is still inside its ONE original link. */
+.world-hub.s86-ready.s87-ready .s86-slide .world-link .world-name{
+  text-wrap:nowrap;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.world-hub.s86-ready.s87-ready .s86-slide.is-s86-visible .world-link .world-name{
+  animation:s87-title-engrave 1120ms cubic-bezier(.17,.87,.28,1) both;
+}
+@keyframes s87-title-engrave{
+  0%{clip-path:inset(100% 0 0 0);filter:blur(7px)}
+  27%{filter:blur(3px)}
+  100%{clip-path:inset(0 0 0 0);filter:blur(0)}
+}
+.world-hub.s86-ready.s87-ready .s86-slide .world-link .world-description{
+  max-width:clamp(290px,30vw,475px);
+  line-height:1.58!important;
+  color:#e8e5d9!important;
+  text-wrap:pretty;
+}
+.world-hub.s86-ready.s87-ready .s86-enter{
+  position:relative;
+  align-items:center;
+  padding-bottom:17px;
+  border-bottom:0;
+  font-size:clamp(10px,.8vw,12px);
+  color:#faf4e8;
+}
+.world-hub.s86-ready.s87-ready .s86-enter::after{
+  content:"";
+  position:absolute;
+  height:1px;
+  bottom:1px;
+  left:0;
+  right:0;
+  background:var(--s86-color);
+  transform-origin:left center;
+  transform:scaleX(.54);
+  opacity:.85;
+  transition:transform .55s cubic-bezier(.16,1,.3,1);
+}
+.world-hub.s86-ready.s87-ready .s86-slide .world-link:hover .s86-enter::after,
+.world-hub.s86-ready.s87-ready .s86-slide .world-link:focus-visible .s86-enter::after{
+  transform:scaleX(1);
+}
+.world-hub.s86-ready.s87-ready .s86-enter .s86-enter-arrow{
+  font-size:27px;
+  margin-left:clamp(5px,1.2vw,19px);
+}
+
+/* 03 — ONE SMALL ARTWORK CAPTION, LIKE A GALLERY LABEL.
+   Its text is information, not another way to enter. */
+.world-hub.s86-ready.s87-ready .s87-gallery-mark{
+  position:absolute;
+  z-index:3;
+  right:clamp(40px,6vw,115px);
+  top:clamp(140px,26vh,300px);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+  text-align:right;
+  pointer-events:none!important;
+  user-select:none;
+  color:#f1eadc;
+  opacity:0;
+  transform:translate3d(19px,0,0);
+  transition:opacity 750ms cubic-bezier(.16,1,.3,1),
+             transform 1000ms cubic-bezier(.16,1,.3,1);
+}
+.world-hub.s86-ready.s87-ready .s86-slide.is-s86-visible .s87-gallery-mark{
+  opacity:.85;transform:translate3d(0,0,0);
+}
+.world-hub.s86-ready.s87-ready .s87-gallery-mark::before{
+  content:"";
+  display:block;
+  height:1px;
+  width:clamp(40px,5vw,84px);
+  background:var(--s86-color);
+  margin-bottom:6px;
+  opacity:.7;
+}
+.world-hub.s86-ready.s87-ready .s87-gallery-mark-index{
+  color:var(--s86-color);
+  font:700 11px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.23em;
+}
+.world-hub.s86-ready.s87-ready .s87-gallery-mark-main{
+  font:600 clamp(10px,.77vw,12px)/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  max-width:290px;
+}
+.world-hub.s86-ready.s87-ready .s87-gallery-mark-secondary{
+  font:400 clamp(10px,.76vw,12px)/1.5 Arial,Helvetica,sans-serif;
+  letter-spacing:.025em;
+  opacity:.7;
+  max-width:290px;
+}
+
+/* 04 — CHAPTER RAIL INDICATES WHICH SCENE IS CURRENT.
+   Not a second navigation menu; click only the large title. */
+.world-hub.s86-ready.s87-ready .s86-corner i{
+  position:relative;
+  transition:background-color .5s ease,opacity .5s ease,transform .5s ease;
+}
+.world-hub.s86-ready.s87-ready .s87-rail-name{
+  position:absolute;
+  right:clamp(19px,2vw,33px);
+  top:50%;
+  transform:translate3d(8px,-50%,0);
+  opacity:0;
+  visibility:hidden;
+  color:#faf3e7;
+  font:650 9px/1.2 ui-monospace,Consolas,monospace;
+  letter-spacing:.16em;
+  text-align:right;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:transform .45s ease,opacity .45s ease,visibility .45s ease;
+}
+.world-hub.s86-ready.s87-ready .s86-corner i.is-current .s87-rail-name{
+  transform:translate3d(0,-50%,0);
+  opacity:.9;
+  visibility:visible;
+}
+
+/* 05 — GIVE EACH ART FORM ITS OWN MATERIAL BEHAVIOUR. */
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="work"] .s86-browser{
+  filter:drop-shadow(0 25px 45px rgba(9,16,14,.31));
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="sound"] .s86-vinyl{
+  filter:drop-shadow(0 16px 39px rgba(0,0,0,.3));
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="places"] .s86-foreground{
+  filter:drop-shadow(0 -8px 20px rgba(11,43,44,.17));
+}
+.world-hub.s86-ready.s87-ready .s86-slide[data-s86-scene="about"] .s86-orbits{
+  filter:drop-shadow(0 0 10px rgba(245,205,178,.22));
+}
+
+/* 06 — RESPONSIVE: GIVE ARTWORK SPACE, NOT ADDITIONAL INFO. */
+@media(max-width:1100px){
+  .world-hub.s86-ready.s87-ready .s87-gallery-mark{display:none}
+  .world-hub.s86-ready.s87-ready .s87-rail-name{display:none}
+}
+@media(max-width:860px){
+  .world-hub.s86-ready.s87-ready .s87-atmosphere::before{
+    background:radial-gradient(ellipse 75vw 42vh at 72% 39%,
+      color-mix(in srgb,var(--s86-color) 13%,transparent),transparent 76%);
+  }
+  .world-hub.s86-ready.s87-ready .s86-slide .world-link .world-description{
+    max-width:390px;
+  }
+  .world-hub.s86-ready.s87-ready .s86-enter{padding-bottom:13px}
+}
+@media(max-width:480px){
+  .world-hub.s86-ready.s87-ready .s86-slide .world-link .world-name{
+    text-wrap:nowrap;
+  }
+  .world-hub.s86-ready.s87-ready .s86-slide .world-link .world-description{
+    max-width:275px;
+    font-size:13.6px!important;
+    line-height:1.5!important;
+  }
+  .world-hub.s86-ready.s87-ready .s86-slide-content{
+    bottom:clamp(107px,14vh,160px);
+  }
+  .world-hub.s86-ready.s87-ready .s87-atmosphere{opacity:.42}
+  .world-hub.s86-ready.s87-ready .s87-exposure{display:none}
+}
+/* Short screens favor content over any optical decoration. */
+@media(max-height:665px){
+  .world-hub.s86-ready.s87-ready .s86-enter{margin-top:15px}
+  .world-hub.s86-ready.s87-ready .s86-eyebrow{margin-bottom:12px}
+  .world-hub.s86-ready.s87-ready .s87-gallery-mark{display:none}
+}
+/* Never animate the title or camera when motion is reduced. */
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .world-hub.s86-ready.s87-ready .s87-camera{
+    transform:none!important;
+    will-change:auto!important;
+  }
+  .world-hub.s86-ready.s87-ready .s87-atmosphere{display:none!important}
+  .world-hub.s86-ready.s87-ready .s87-exposure{display:none!important}
+  .world-hub.s86-ready.s87-ready .s86-slide .world-link .world-name{
+    animation:none!important;
+    filter:none!important;
+    clip-path:none!important;
+  }
+  .world-hub.s86-ready.s87-ready .s87-gallery-mark{
+    opacity:1!important;transform:none!important;transition:none!important;
+  }
+}
