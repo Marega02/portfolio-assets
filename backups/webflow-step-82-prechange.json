@@ -1,0 +1,8 @@
+{
+  "description": "Phase 82 backup — restore this CSS/JS code and original bundle GitHub revision to undo",
+  "siteId": "6adce03b89b49e519149623e",
+  "head": "<!-- PHASE 74 — PERFORMANCE BUNDLE: 52 ORIGINAL CSS FILES IN FOUR ORDERED GROUPS -->\n<link rel=\"preconnect\" href=\"https://marega02.github.io\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-1.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-2.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-3.css?v=74.1\">\n<link rel=\"stylesheet\" href=\"https://marega02.github.io/portfolio-assets/assets/css/site-bundle-74-4.css?v=81.1\">\n",
+  "footer": "<!-- PHASE 74 — 40 ORIGINAL JS FILES IN FOUR ORDERED GROUPS -->\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-1.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-2.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-3.js?v=74.1\"></script>\n<script src=\"https://marega02.github.io/portfolio-assets/assets/js/site-bundle-74-4.js?v=81.1\"></script>\n",
+  "cssSHA": "1ba879d3be526082d82b324305206c149f262966",
+  "jsSHA": "6d44d73f54d4849ca94940191981f1ee0e90ed9f"
+}
