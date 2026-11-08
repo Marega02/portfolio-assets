@@ -134,3 +134,20 @@
     transform:none!important;
   }
 }
+
+/* PHASE 91 — Native wheel/touch responsiveness; keyboard controls still
+   request smooth scrolling explicitly in their own event handler. */
+.world-hub.s86-ready .s86-scroll{
+  scroll-behavior:auto!important;
+}
+/* An adaptive low-power state keeps the illustrations and single chapter link
+   but skips optional material gleams and secondary entrance animations. */
+.world-hub.s90-lite .s89-art-glint{
+  display:none!important;
+  animation:none!important;
+}
+.world-hub.s90-lite .s89-object .s89-reveal{
+  opacity:1!important;
+  filter:none!important;
+  animation:none!important;
+}
