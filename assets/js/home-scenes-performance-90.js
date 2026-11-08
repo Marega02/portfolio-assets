@@ -212,6 +212,7 @@
       if(!queued)queued=requestAnimationFrame(render);
     }
     function onPreference(){
+      hub.classList.toggle("s90-lite",lowPower());
       if(!running()){
         if(queued)cancelAnimationFrame(queued);
         queued=0;
@@ -225,6 +226,7 @@
     contrast.addEventListener?.("change",onPreference);
     tablet.addEventListener?.("change",onPreference);
     coarse.addEventListener?.("change",onPreference);
+    hub.classList.toggle("s90-lite",lowPower());
     hub.dataset.s88Ready="1";
     hub.classList.add("s88-ready");
     schedule();
