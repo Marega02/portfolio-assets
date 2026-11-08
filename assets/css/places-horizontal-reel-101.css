@@ -1,0 +1,248 @@
+/* PHASE 101 — PLACES / HORIZONTAL 3D REEL
+   Six small photographic objects along ONE gently curved horizontal row.
+   Preserves the blue atmospheric world and chrome sculpture from Phase 100.
+   No new rendering engine, 3D orbit rotation or permanent animation loop.
+*/
+.world-hub.fi92-ready.fi95-ready .fi95-item[hidden]{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-cluster{
+  width:min(1180px,100%)!important;
+  min-height:330px!important;
+  height:100%!important;
+  overflow:visible!important;
+  perspective:1500px!important;
+  transform-style:preserve-3d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-cluster::before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-cluster::after,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-cluster-spine{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:320px!important;
+  max-width:1160px!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+  transform-style:preserve-3d!important;
+  perspective:1400px!important;
+  touch-action:pan-y;
+  cursor:grab;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage:before{
+  content:"";
+  position:absolute;z-index:0;
+  width:91%;height:80%;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 42% 45% at 50% 50%,rgba(183,212,246,.19),transparent 95%),
+    radial-gradient(ellipse 64% 60% at 50% 51%,rgba(18,29,102,.18),transparent 87%);
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage.fi100-dragging{
+  cursor:grabbing;
+  touch-action:none;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-world{
+  pointer-events:none!important;
+  overflow:visible!important;
+  transform-style:preserve-3d!important;
+  perspective:1400px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-world .fi100-axis{
+  width:85%!important;height:48%!important;
+  top:51%!important;
+  transform:translate(-50%,-50%) rotate(-5deg)!important;
+  border-color:rgba(229,238,253,.12)!important;
+  border-radius:50%;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-world .fi100-axis:before{
+  inset:10% 4%;
+  border-color:rgba(234,241,250,.075)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-rotor{
+  position:absolute!important;
+  top:52%!important;left:50%!important;
+  width:0!important;height:0!important;
+  pointer-events:auto!important;
+  transform:translate3d(0,0,0);
+  transform-style:preserve-3d!important;
+  transition:transform .58s cubic-bezier(.16,.83,.24,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage.fi100-dragging .fi101-rotor{
+  transition:none!important;
+}
+/* Chrome nucleus stays in the background, no longer blocking the images. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-sculpture{
+  width:126px!important;height:126px!important;
+  transform:translate3d(-50%,-50%,-170px) scale(.9)!important;
+  opacity:.64;
+  box-shadow:inset -16px -16px 25px rgba(4,9,52,.4),0 10px 20px rgba(3,8,54,.12)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-sculpture .fi100-sculpture-mark{
+  font-size:28px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-sculpture .fi100-metal-loop{
+  border-width:6px!important;
+}
+
+/* A six-panel ribbon, not six items scattered across a globe.
+   At 1440px: ~155px widths and ~170px spacing, all six in view.
+   Outer panels turn inward; middle pair advances slightly forward. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi100-photo.fi101-photo{
+  --fi101-x:0px;
+  --fi101-z:0px;
+  --fi101-ry:0deg;
+  --fi101-width:clamp(116px,10.7vw,153px);
+  display:flex!important;
+  position:absolute!important;
+  top:0!important;left:0!important;
+  right:auto!important;bottom:auto!important;
+  width:var(--fi101-width)!important;
+  min-width:0!important;
+  flex:0 0 var(--fi101-width)!important;
+  margin:0!important;padding:0!important;
+  transform-origin:50% 45%!important;
+  transform:
+    translate3d(calc(-50% + var(--fi101-x)), -50%, var(--fi101-z))
+    rotateY(var(--fi101-ry))!important;
+  backface-visibility:visible!important;
+  -webkit-backface-visibility:visible!important;
+  transition:transform .42s cubic-bezier(.18,.86,.24,1)!important;
+  z-index:3!important;
+  cursor:grab!important;
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo:is(:hover,:focus-visible,.fi95-selected){
+  transform:
+    translate3d(calc(-50% + var(--fi101-x)), -50%, var(--fi101-z))
+    rotateY(var(--fi101-ry))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo.fi101-active{
+  z-index:8!important;
+  transform:
+    translate3d(calc(-50% + var(--fi101-x)),calc(-50% - 10px),calc(var(--fi101-z) + 24px))
+    rotateY(0deg) scale(1.055)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage.fi100-dragging .fi95-item.fi101-photo{
+  transition:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-frame{
+  display:block!important;
+  width:100%!important;
+  height:clamp(154px,23.5vh,210px)!important;
+  border-radius:3px!important;
+  background:#203c5b!important;
+  border:1px solid rgba(235,245,253,.48)!important;
+  box-shadow:11px 19px 26px rgba(1,7,44,.29),0 0 0 1px rgba(228,236,246,.08)!important;
+  overflow:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-active .fi95-item-frame{
+  border-color:rgba(255,252,243,.88)!important;
+  box-shadow:11px 22px 33px rgba(2,7,41,.42),0 0 0 2px rgba(219,237,253,.13)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-frame:before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-frame:after{
+  border-radius:3px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-image,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-image img{
+  width:100%!important;height:100%!important;
+  border-radius:3px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-image img{
+  object-fit:cover!important;
+  filter:saturate(.88) contrast(1.03)!important;
+  transition:transform .4s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo.fi101-active .fi95-item-image img{
+  filter:saturate(1) contrast(1.04)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-meta{
+  align-items:center!important;
+  text-align:center!important;
+  margin:10px 0 0!important;
+  gap:5px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-meta strong{
+  color:#f3f4f9!important;
+  font:700 clamp(11px,1.02vw,14px)/1.12 Arial,sans-serif!important;
+  letter-spacing:-.015em!important;
+  text-align:center!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-meta small{
+  color:#ced8f0!important;
+  font:600 8px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.085em!important;
+  text-align:center!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-open{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-instruction{
+  position:absolute!important;
+  left:0!important;right:0!important;
+  z-index:9!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi100-scene-meta{top:9px!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-instruction{bottom:7px!important}
+
+/* On smaller screens the same line can be explored horizontally;
+   we don't shrink six images into unreadable postage stamps. */
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-cluster{
+    width:100%!important;overflow:hidden!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage{
+    min-height:290px!important;
+    overflow:hidden!important;
+    touch-action:pan-y;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-world{
+    overflow:visible!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo{
+    --fi101-width:clamp(112px,18vw,143px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-frame{
+    height:clamp(150px,23vh,196px)!important;
+  }
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-level-title h2{
+    font-size:clamp(40px,10vw,56px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-stage{
+    min-height:275px!important;perspective:980px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-world{
+    perspective:980px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo{
+    --fi101-width:clamp(111px,35vw,137px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo .fi95-item-frame{
+    height:clamp(143px,24vh,177px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-sculpture{
+    width:85px!important;height:85px!important;
+    opacity:.45;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi100-scene-meta,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-instruction{
+    font-size:7px!important;letter-spacing:.08em!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi101-rotor,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi101-row-on .fi95-item.fi101-photo{
+    transition:none!important;
+  }
+}
