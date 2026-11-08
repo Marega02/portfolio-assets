@@ -64,6 +64,7 @@
            w<=790?clamp(w*.15,112,145):
            clamp(window.innerWidth*.118,126,174);
       stage.style.setProperty("--fi101-step",slot.toFixed(1)+"px");
+      cards.forEach((node,i)=>node.style.setProperty("--fi101-x",((i-2.5)*slot).toFixed(1)+"px"));
       applyTransform();
     }
     function applyTransform(){
@@ -164,7 +165,7 @@
       pointerEnd();
       cards.forEach(node=>{
         node.classList.remove("fi100-photo","fi101-photo","fi101-active");
-        for(const key of ["--fi101-i","--fi101-ry","--fi101-z"])node.style.removeProperty(key);
+        for(const key of ["--fi101-i","--fi101-x","--fi101-ry","--fi101-z"])node.style.removeProperty(key);
         cluster.appendChild(node);
       });
       stage.remove();stage=null;strip=null;
