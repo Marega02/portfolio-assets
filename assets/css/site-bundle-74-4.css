@@ -5424,3 +5424,142 @@ body.s41-studio-focus .s84-beat > .s84-score{opacity:.25}
   .world-hub.s89-ready .s89-art-glint{display:none!important;animation:none!important}
 }
 
+
+/* SOURCE assets/css/fluid-motion-90.css */
+/* PHASE 90 — FLUID MOTION / PERFORMANCE REFACTOR
+   Same Home, same single original link and scroll-to-explore behavior.
+   SVG and text remain intact. Two RAF pipelines become one (JS).
+   Avoid per-frame blur/drop-shadow on full-screen SVG groups.
+   Low-power / touch screens keep native scroll with static layered art. */
+
+/* Material filters on giant nested SVGs caused expensive rasterization.
+   Preserve native colors and depth but reduce full-canvas repaints. */
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s86-artwork,
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s86-slide.is-s86-visible .s86-artwork{
+  filter:none!important;
+  transition:opacity .78s cubic-bezier(.16,1,.3,1),
+             transform .98s cubic-bezier(.16,1,.3,1)!important;
+  will-change:auto!important;
+}
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s86-browser,
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s86-vinyl,
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s86-foreground,
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s86-orbits,
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready .s89-sound-label{
+  filter:none!important;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s87-atmosphere::before,
+.world-hub.s86-ready.s87-ready.s88-ready .s87-exposure,
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes{
+  mix-blend-mode:normal!important;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-grain{
+  mix-blend-mode:normal!important;
+  opacity:.07!important;
+}
+/* Only the scene currently visible is allowed a compositor hint. */
+.world-hub.s86-ready.s87-ready.s88-ready .s87-camera{will-change:auto!important}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide.is-s86-visible .s87-camera{
+  will-change:transform!important;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-depth-layer{will-change:auto!important}
+.world-hub.s86-ready.s87-ready.s88-ready .s86-slide.is-s86-visible .s88-depth-layer{
+  will-change:transform!important;
+}
+
+/* Keep the editorial reveal without running blur over every SVG label. */
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready
+  .s86-slide.is-s86-visible .s89-object .s89-reveal{
+  animation:s90-material-settle .68s ease-out both;
+  filter:none!important;
+}
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready
+  .s86-slide.is-s86-visible .s89-object .s89-reveal:nth-child(even){
+  animation-delay:.09s;
+}
+@keyframes s90-material-settle{
+  from{opacity:0}
+  to{opacity:1}
+}
+/* The primary title still enters with confidence, but no blur
+   or clip-path repaint of a 200px text glyph. */
+.world-hub.s86-ready.s87-ready.s88-ready.s89-ready
+  .s86-slide.is-s86-visible .world-link .world-name{
+  animation:s90-title-appear .74s cubic-bezier(.16,1,.3,1) both;
+  filter:none!important;
+  clip-path:none!important;
+}
+@keyframes s90-title-appear{
+  from{opacity:.35}
+  to{opacity:1}
+}
+/* Previous full-width optical wipe now only changes opacity at
+   chapter boundaries, not its gradient origin on every scroll event. */
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes{
+  transition:opacity .2s linear!important;
+}
+.world-hub.s86-ready.s87-ready.s88-ready .s88-between-label{
+  transition:opacity .2s ease!important;
+}
+/* The small running scroll hint is a visual cue, not critical motion. */
+@media(max-width:991px),(pointer:coarse){
+  .world-hub.s86-ready.s87-ready.s88-ready .s87-camera{
+    transform:none!important;
+    will-change:auto!important;
+  }
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-depth-layer{
+    transform:none!important;
+    will-change:auto!important;
+  }
+  .world-hub.s86-ready.s87-ready.s88-ready .s87-atmosphere,
+  .world-hub.s86-ready.s87-ready.s88-ready .s87-exposure,
+  .world-hub.s86-ready.s87-ready.s88-ready .s86-grain,
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-kinetic,
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-scenes,
+  .world-hub.s86-ready.s87-ready.s88-ready .s88-between-label{
+    display:none!important;
+  }
+  .world-hub.s86-ready .s86-slide .s86-artwork{
+    transition:opacity .55s ease,transform .7s ease!important;
+  }
+  .world-hub.s86-ready .s86-scroll-hint::before{
+    animation:none!important;
+    opacity:.78;
+    transform:scaleY(.7);
+  }
+  .world-hub.s86-ready .s86-slide.is-s86-visible .s86-browser,
+  .world-hub.s86-ready .s86-slide.is-s86-visible .s86-vinyl,
+  .world-hub.s86-ready .s86-slide.is-s86-visible .s86-mountains,
+  .world-hub.s86-ready .s86-slide.is-s86-visible .s86-foreground,
+  .world-hub.s86-ready .s86-slide.is-s86-visible .s86-orbits{
+    animation:none!important;
+    filter:none!important;
+  }
+  .world-hub.s86-ready.s87-ready.s88-ready.s89-ready
+    .s86-slide.is-s86-visible .s89-object .s89-reveal{
+    animation:none!important;opacity:1!important;
+  }
+}
+/* Browser save-data and low-memory flag uses the same visual fallback. */
+.world-hub.s90-lite .s87-camera,
+.world-hub.s90-lite .s88-depth-layer{
+  transform:none!important;will-change:auto!important;
+}
+.world-hub.s90-lite .s87-atmosphere,
+.world-hub.s90-lite .s87-exposure,
+.world-hub.s90-lite .s86-grain,
+.world-hub.s90-lite .s88-kinetic,
+.world-hub.s90-lite .s88-between-scenes,
+.world-hub.s90-lite .s88-between-label{
+  display:none!important;
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  .world-hub.s86-ready .s86-slide.is-s86-visible .world-link .world-name,
+  .world-hub.s86-ready .s86-slide.is-s86-visible .s89-object .s89-reveal{
+    animation:none!important;opacity:1!important;
+  }
+  .world-hub.s86-ready .s87-camera,.world-hub.s86-ready .s88-depth-layer{
+    transform:none!important;
+  }
+}
+
