@@ -1,0 +1,311 @@
+/* PHASE 98 / PLACES — SIX IMAGE CLOUD (K95-inspired spatial study)
+   Six actual destinations, all visibly arranged along a 3D orbital
+   perimeter: Soča, London, Kuala Lumpur, Kyoto, Iceland and Marrakech.
+   NO click destinations. NO animation loop. Work/Sound/About unchanged. */
+
+/* Important: the original shared gallery now allocates six reusable
+   elements. Hide the extras in all non-Places chapters. */
+.world-hub.fi92-ready.fi95-ready .fi95-level:not([data-category="places"]) .fi95-item[hidden],
+.world-hub.fi92-ready.fi95-ready .fi95-level .fi95-item[hidden]{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"]{
+  background:
+    radial-gradient(ellipse 48% 57% at 52% 54%,rgba(57,112,137,.19),transparent 85%),
+    linear-gradient(165deg,#0d1c2a,#070d17 60%,#03080e 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"]::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(184,218,229,.032) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,218,229,.032) 1px,transparent 1px);
+  background-size:56px 56px;
+  background-position:center;
+  opacity:.32;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-title h2{
+  font-size:clamp(40px,5.8vw,78px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-caption{
+  font-size:9px!important;
+}
+/* A truly circular composition, not three centred ovals nor a 2x3 grid. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster{
+  position:relative!important;
+  display:block!important;
+  width:min(1120px,95%)!important;
+  height:100%!important;
+  min-height:400px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  perspective:1400px!important;
+  transform-style:preserve-3d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::before{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;top:50%!important;
+  width:min(780px,87%)!important;height:75%!important;
+  border:1px solid rgba(173,210,225,.09)!important;
+  border-radius:50%!important;
+  background:transparent!important;
+  box-shadow:0 0 0 1px rgba(173,210,225,.015)!important;
+  transform:translate(-50%,-50%) rotate(-17deg)!important;
+  pointer-events:none!important;z-index:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::after{
+  content:""!important;
+  position:absolute!important;pointer-events:none!important;
+  left:50%!important;top:50%!important;
+  width:min(420px,53%)!important;height:65%!important;
+  border:1px solid rgba(166,208,219,.095)!important;
+  border-radius:50%!important;
+  background:radial-gradient(ellipse 60% 56% at 42% 38%,rgba(92,138,152,.14),rgba(14,34,47,.06) 57%,transparent 81%)!important;
+  transform:translate(-50%,-50%) rotateY(54deg) rotate(13deg)!important;
+  box-shadow:none!important;
+  z-index:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster-spine{
+  position:absolute!important;pointer-events:none!important;
+  top:50%!important;left:18%!important;right:18%!important;
+  width:auto!important;height:1px!important;
+  background:linear-gradient(90deg,transparent,rgba(148,201,221,.17),transparent)!important;
+  transform:rotate(-13deg)!important;
+  z-index:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster-spine::after{
+  content:"";position:absolute;
+  width:15px;height:15px;top:50%;left:50%;
+  border:1px solid rgba(223,234,230,.36);
+  border-radius:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 30% 25%,rgba(208,225,228,.32),rgba(26,57,70,.18));
+  box-shadow:0 0 18px rgba(109,166,182,.11);
+}
+/* Individual cards have unequal size, tilt, and Z-depth so they
+   belong to the same invisible volume. Positions go CLOCKWISE.
+   Shared CSS variables make the arc easy to refine later. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+  --pl98-x:50%;
+  --pl98-y:50%;
+  --pl98-z:0px;
+  --pl98-ry:0deg;
+  --pl98-rx:0deg;
+  --pl98-rz:0deg;
+  --pl98-size:clamp(145px,16vw,210px);
+  display:flex!important;
+  position:absolute!important;
+  left:var(--pl98-x)!important;
+  top:var(--pl98-y)!important;
+  right:auto!important;bottom:auto!important;
+  width:var(--pl98-size)!important;
+  min-width:0!important;
+  flex:none!important;
+  margin:0!important;padding:0!important;
+  align-items:stretch!important;
+  background:transparent!important;
+  cursor:default!important;
+  backface-visibility:hidden;
+  transform-origin:50% 47%!important;
+  transform:translate3d(-50%,-50%,var(--pl98-z)) rotateY(var(--pl98-ry)) rotateX(var(--pl98-rx)) rotateZ(var(--pl98-rz))!important;
+  transition:transform .48s cubic-bezier(.16,.85,.22,1),opacity .3s ease!important;
+}
+/* Soča — far left */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-0{
+  --pl98-x:15%;--pl98-y:46%;--pl98-z:-60px;
+  --pl98-ry:36deg;--pl98-rx:-8deg;--pl98-rz:-7deg;
+  --pl98-size:clamp(145px,15vw,198px);z-index:3!important;
+}
+/* London — upper arc */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-1{
+  --pl98-x:37%;--pl98-y:29%;--pl98-z:20px;
+  --pl98-ry:16deg;--pl98-rx:6deg;--pl98-rz:-4deg;
+  --pl98-size:clamp(150px,15.8vw,204px);z-index:5!important;
+}
+/* Kuala Lumpur — upper right */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-2{
+  --pl98-x:70%;--pl98-y:31%;--pl98-z:-16px;
+  --pl98-ry:-22deg;--pl98-rx:7deg;--pl98-rz:6deg;
+  --pl98-size:clamp(150px,16vw,209px);z-index:4!important;
+}
+/* Kyoto — far right */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-3{
+  --pl98-x:86%;--pl98-y:61%;--pl98-z:-56px;
+  --pl98-ry:-37deg;--pl98-rx:-7deg;--pl98-rz:8deg;
+  --pl98-size:clamp(143px,15vw,197px);z-index:3!important;
+}
+/* Iceland — lower front */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-4{
+  --pl98-x:59%;--pl98-y:72%;--pl98-z:63px;
+  --pl98-ry:-8deg;--pl98-rx:-8deg;--pl98-rz:3deg;
+  --pl98-size:clamp(153px,16.3vw,214px);z-index:7!important;
+}
+/* Marrakech — lower left */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-5{
+  --pl98-x:26%;--pl98-y:73%;--pl98-z:12px;
+  --pl98-ry:26deg;--pl98-rx:-5deg;--pl98-rz:-5deg;
+  --pl98-size:clamp(144px,15.5vw,201px);z-index:6!important;
+}
+/* Hover is visual only. No click target or opening animation. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item.fi95-selected:not(:hover){
+  transform:translate3d(-50%,-50%,var(--pl98-z)) rotateY(var(--pl98-ry)) rotateX(var(--pl98-rx)) rotateZ(var(--pl98-rz))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item:hover{
+  z-index:20!important;
+  transform:translate3d(-50%,calc(-50% - 10px),135px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.075)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item[aria-disabled="true"]{
+  cursor:default!important;
+}
+/* Real photographs, light borders; the CIRCULAR element is their spatial
+   arrangement rather than the shape of their image masks. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame{
+  display:block!important;
+  width:100%!important;height:clamp(175px,26vh,260px)!important;
+  border:1px solid rgba(221,233,229,.40)!important;
+  border-radius:6px!important;
+  overflow:hidden!important;
+  background:#23404a!important;
+  box-shadow:13px 23px 37px rgba(0,0,0,.42),0 0 0 3px rgba(222,232,229,.025)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame::before{
+  border-radius:inherit!important;
+  background:linear-gradient(110deg,rgba(241,244,237,.13),transparent 34%,transparent 82%,rgba(4,15,23,.21))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame::after{
+  border-radius:inherit!important;
+  background:linear-gradient(180deg,rgba(10,16,22,.13),transparent 35%,rgba(7,15,23,.18))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-image,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-image img{
+  border-radius:inherit!important;
+  display:block!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-image img{
+  width:100%!important;height:100%!important;
+  object-fit:cover!important;object-position:50% 50%!important;
+  filter:saturate(.91) contrast(1.05)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta{
+  align-items:center!important;
+  text-align:center!important;
+  gap:4px!important;
+  margin:9px 0 0!important;
+  max-width:100%!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta strong{
+  max-width:100%!important;
+  font:700 clamp(14px,1.38vw,19px)/1.1 Arial,sans-serif!important;
+  color:#f0eee6!important;
+  letter-spacing:-.03em!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta small{
+  font:600 9px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.1em!important;color:#a7bdc0!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-open{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-index{
+  top:11px!important;left:13px!important;font-size:10px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-caption{
+  color:#9bbcc3!important;
+}
+@media(max-width:900px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster{
+    width:100%!important;min-height:380px!important;
+    perspective:900px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+    --pl98-size:clamp(112px,18vw,160px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame{
+    height:clamp(140px,25vh,205px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta strong{
+    font-size:clamp(12px,1.6vw,16px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-0{--pl98-x:13%;--pl98-y:45%}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-3{--pl98-x:87%;--pl98-y:59%}
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-title h2{
+    font-size:clamp(38px,10vw,58px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-caption{
+    font-size:8px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster{
+    position:relative!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:375px!important;
+    display:block!important;
+    overflow:visible!important;
+    padding:0!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::before{
+    width:100%!important;height:69%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::after{
+    width:77%!important;height:63%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+    --pl98-size:clamp(92px,27vw,127px);
+    transform:translate3d(-50%,-50%,0px) rotateZ(var(--pl98-rz))!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item.fi95-selected:not(:hover){
+    transform:translate3d(-50%,-50%,0px) rotateZ(var(--pl98-rz))!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item:hover{
+    transform:translate3d(-50%,-53%,0) rotateZ(0deg) scale(1.03)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame{
+    height:clamp(113px,20vh,170px)!important;
+    border-radius:4px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta{
+    margin:6px 0 0!important;gap:2px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta strong{
+    font-size:clamp(10px,2.8vw,13px)!important;
+    line-height:1.12!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta small{
+    font-size:7px!important;
+  }
+  /* Six stations distributed around a compact circle on phones. */
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-0{
+    --pl98-x:17%;--pl98-y:40%;--pl98-rz:-8deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-1{
+    --pl98-x:43%;--pl98-y:24%;--pl98-rz:-3deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-2{
+    --pl98-x:77%;--pl98-y:36%;--pl98-rz:5deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-3{
+    --pl98-x:81%;--pl98-y:67%;--pl98-rz:7deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-4{
+    --pl98-x:51%;--pl98-y:78%;--pl98-rz:2deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-5{
+    --pl98-x:20%;--pl98-y:69%;--pl98-rz:-5deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-foot{
+    font-size:8px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+    transition:none!important;
+  }
+}
