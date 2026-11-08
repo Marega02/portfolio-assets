@@ -832,6 +832,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   openButton.addEventListener("click", () => {
 
+    // PHASE 93: orbital project entry bypasses the obsolete Work-to-case
+    // image morph; the native case-study controller remains authoritative.
+    if (document.body.classList.contains("fi93-case-route")) return;
+
     // Manteniamo l'animazione originale su mobile
     if (!desktop.matches) return;
 
