@@ -373,53 +373,6 @@ body.s41-studio-focus .s44-material{opacity:0!important;visibility:hidden!import
 
 
 
-/* SOURCE assets/css/home-lines-47-2.css */
-/* STEP 47.2 — PRESERVED HOME HOTFIX
-   Maintains the approved HOME layout, without affecting other worlds.
-   CSS only. Original GSAP, selected states and click handlers unchanged. */
-
-/* HOME — The Opening Spread already has a title rule and a Dossier divider.
-   Remove the additional frame borders, folio rule and navigation separator
-   that were competing with those existing lines. */
-@media(min-width:992px){
-  .world-hub.s40-ready.s32-ready .world-main::before{
-    border:0;
-    box-shadow:none;
-    clip-path:none;
-    background:radial-gradient(ellipse 60% 61% at 50% 45%,var(--s47-paper),transparent 82%);
-    opacity:.65;
-  }
-  .world-hub.s40-ready.s32-ready .world-main::after{
-    content:none!important;
-    display:none!important;
-  }
-  .world-hub.s40-ready.s32-ready .world-links{
-    border-top:0;
-    padding-top:clamp(8px,1.5vh,17px);
-  }
-  .world-hub.s40-ready.s32-ready .world-links::before{
-    content:none!important;
-    display:none!important;
-  }
-  .world-hub.s40-ready.s32-ready .world-main>.world-title::after{
-    background:var(--s47-accent);
-    width:clamp(78px,8vw,118px);
-    height:2px;
-  }
-}
-/* The persistent Connected Line can remain; its extra rail duplicates
-   the existing HOME header separators. */
-.world-hub.s43-connected .world-top>.s43-rail{display:none!important}
-.world-hub.s40-ready .s40-calibration{opacity:.21}
-.world-hub.s40-ready .world-stage::before{opacity:.36}
-
-
-@media(prefers-reduced-motion:reduce){
-  .world-hub.s40-ready.s32-ready .world-links .world-link{transition:none!important}
-}
-
-
-
 /* SOURCE assets/css/places-rebalance-47-5.css */
 /* PLACES REBALANCE 47.5 — ROOMIER SPACING
    Restore a deliberate Atlas layout without modifying HOME, WORK, SOUND,
@@ -2219,33 +2172,3 @@ body.s41-studio-focus .s44-material{opacity:0!important;visibility:hidden!import
 
 
 
-/* SOURCE assets/css/drawn-worlds-60.css */
-/* STEP 60 — CINEMATIC VECTOR REVEAL, WITH NO LAYOUT MUTATIONS
-   HOME vectors animate through the Web Animations API.
-   ABOUT's existing editorial sentence is masked *inside its own box*.
-   WORK, its images, footer and world transitions are intentionally untouched. */
-
-.a17-world .a18-sentence.s60-note-ready {
-  clip-path: inset(0 0 105% 0);
-  opacity: .65;
-  transition:
-    clip-path 1.05s cubic-bezier(.18,.88,.2,1),
-    opacity .83s ease;
-}
-.a17-world .a18-sentence.s60-note-ready.s60-note-visible {
-  clip-path: inset(0 0 0 0);
-  opacity: 1;
-}
-@media(prefers-reduced-motion:reduce) {
-  .a17-world .a18-sentence.s60-note-ready {
-    clip-path: none!important;
-    opacity: 1!important;
-    transition: none!important;
-  }
-}
-@media(prefers-contrast:more) {
-  .a17-world .a18-sentence.s60-note-ready {
-    clip-path: none!important;
-    opacity: 1!important;
-  }
-}
