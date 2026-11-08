@@ -134,7 +134,8 @@
     if(camera.some(node=>!node))return;
     const tablet=window.matchMedia("(max-width: 991px)");
     const coarse=window.matchMedia("(pointer: coarse)");
-    const lowPower=()=>
+    let adaptiveLite=false;
+    const lowPower=()=>adaptiveLite||
       tablet.matches||coarse.matches||
       Boolean(navigator.connection?.saveData)||
       (typeof navigator.deviceMemory==="number" && navigator.deviceMemory<4);
@@ -219,7 +220,35 @@
         if(dirty)reset();
       }else schedule();
     }
-    scroll.addEventListener("scroll",schedule,{passive:true});
+    // PHASE 91 — One short real-scroll frame-rate check, no permanent monitoring.
+    // If a device genuinely struggles, retain navigation and artwork
+    // while disabling the optional layered parallax through s90-lite.
+    let sampled=false;
+    function sampleScrollPerformance(){
+      if(sampled||!running())return;
+      sampled=true;
+      let started=0,last=0,frames=0,slowFrames=0;
+      function measure(t){
+        if(!running()||!scroll.isConnected)return;
+        if(!started){started=t;last=t;}
+        else {
+          frames++;
+          if(t-last>38)slowFrames++;
+          last=t;
+        }
+        if(t-started<1100){requestAnimationFrame(measure);return;}
+        const fps=frames*1000/Math.max(1,t-started);
+        if(frames>=12&&fps<44&&slowFrames>=8){
+          adaptiveLite=true;
+          onPreference();
+        }
+      }
+      requestAnimationFrame(measure);
+    }
+    scroll.addEventListener("scroll",()=>{
+      schedule();
+      sampleScrollPerformance();
+    },{passive:true});
     window.addEventListener("resize",onPreference,{passive:true});
     document.addEventListener("visibilitychange",onPreference);
     reduced.addEventListener?.("change",onPreference);
