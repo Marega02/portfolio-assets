@@ -1,0 +1,365 @@
+/* PHASE 100 — PLACES / KINETIC SPHERE
+   K95's core browsing idea, not its exact artwork: project photographs
+   occupy the surface of a real CSS 3D orbit and can be explored by
+   dragging or scrolling. Blue perspective grid + original chrome-inspired
+   gyroscope. Only Places. No WebGL, no infinite animation. */
+
+/* The six elements are shared with the other 3-item chapters.
+   Their hidden attribute MUST outrank the shared display:flex!important. */
+.world-hub.fi92-ready.fi95-ready .fi95-item[hidden]{
+  display:none!important;
+}
+
+/* Direction: intense blue depth rather than a generic dark gradient. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on{
+  position:absolute!important;
+  isolation:isolate!important;
+  background:
+    radial-gradient(ellipse 64% 70% at 50% 50%,rgba(36,76,217,.88) 0%,rgba(22,42,145,.82) 43%,transparent 84%),
+    linear-gradient(126deg,#071348 0%,#12268b 47%,#040c2e 100%)!important;
+  color:#faf9f1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on::before{
+  content:""!important;display:block!important;
+  position:absolute!important;inset:0!important;
+  z-index:0!important;pointer-events:none!important;
+  opacity:.46!important;
+  background-image:
+    linear-gradient(rgba(187,213,251,.19) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(187,213,251,.19) 1px,transparent 1px)!important;
+  background-size:clamp(32px,4.7vw,65px) clamp(32px,4.7vw,65px)!important;
+  background-position:center center!important;
+  mask-image:radial-gradient(ellipse at center,#000 38%,rgba(0,0,0,.44) 76%,transparent 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-head,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-title,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-foot{
+  position:relative;z-index:3;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-title{
+  padding:1px 0 0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-title h2{
+  font-size:clamp(40px,6vw,80px)!important;
+  color:#f4f5fb!important;
+  text-shadow:0 2px 20px rgba(7,16,86,.18);
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-caption,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-number,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-sign{
+  color:#c2d7f6!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-foot{
+  color:#c6d5f4!important;
+  border-color:rgba(229,238,255,.25)!important;
+}
+
+/* This is now a spatial viewport, not a static 6-point diagram. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-cluster{
+  display:block!important;
+  position:relative!important;
+  width:min(1180px,100%)!important;
+  min-height:380px!important;
+  height:100%!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  transform-style:preserve-3d!important;
+  perspective:1450px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-cluster::before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-cluster::after,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-cluster-spine{
+  display:none!important;content:none!important;
+}
+
+/* The central interactive stage */
+.world-hub.fi92-ready.fi95-ready .fi100-stage{
+  --fi100-radius:315px;
+  position:relative!important;z-index:2;
+  width:100%;height:100%;
+  min-height:380px;
+  overflow:visible!important;
+  perspective:1450px;
+  transform-style:preserve-3d;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  cursor:grab;
+  outline:none;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-stage.fi100-dragging{
+  cursor:grabbing;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-stage:focus-visible{
+  outline:1px solid rgba(236,238,255,.65);
+  outline-offset:-10px;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-world{
+  position:absolute;inset:0;
+  perspective:1450px;
+  transform-style:preserve-3d;
+  pointer-events:none;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-axis{
+  position:absolute;
+  width:min(650px,70%);height:min(430px,79%);
+  left:50%;top:50%;
+  transform:translate(-50%,-50%) rotate(-18deg);
+  border-radius:50%;
+  border:1px solid rgba(220,235,255,.10);
+  box-shadow:0 0 0 1px rgba(255,255,255,.015);
+  pointer-events:none;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-axis::before{
+  content:"";position:absolute;inset:11% 19%;
+  border:1px dashed rgba(214,230,255,.09);
+  border-radius:50%;
+  transform:rotate(48deg);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-rotor{
+  position:absolute;top:50%;left:50%;
+  width:0;height:0;
+  transform-style:preserve-3d!important;
+  transform:rotateX(-8deg) rotateY(-24deg);
+  transition:transform .58s cubic-bezier(.2,.75,.25,1);
+  pointer-events:auto;
+  will-change:transform;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-stage.fi100-dragging .fi100-rotor{
+  transition:none!important;
+}
+
+/* Actual longitudes: 0,60,120,180,240,300 degrees.
+   Each photograph faces out from the surface of ONE sphere. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo{
+  --fi100-az:0deg;
+  --fi100-lat:0deg;
+  --fi100-card-width:clamp(140px,17vw,208px);
+  position:absolute!important;
+  top:0!important;left:0!important;
+  right:auto!important;bottom:auto!important;
+  width:var(--fi100-card-width)!important;
+  min-width:0!important;
+  display:flex!important;
+  flex:0 0 var(--fi100-card-width)!important;
+  padding:0!important;margin:0!important;
+  transform-origin:50% 50%!important;
+  transform:
+    translate3d(-50%,-50%,0)
+    rotateY(var(--fi100-az))
+    rotateX(var(--fi100-lat))
+    translateZ(var(--fi100-radius))!important;
+  transition:none!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+  cursor:grab!important;
+  pointer-events:auto!important;
+  will-change:auto;
+  z-index:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo:is(.fi95-selected,:hover,:focus-visible){
+  /* No jumping out of the sphere on hover; preserve its actual geometry. */
+  transform:
+    translate3d(-50%,-50%,0)
+    rotateY(var(--fi100-az))
+    rotateX(var(--fi100-lat))
+    translateZ(var(--fi100-radius))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-frame{
+  display:block!important;
+  width:100%!important;
+  height:clamp(184px,26vh,262px)!important;
+  border-radius:3px!important;
+  overflow:hidden!important;
+  background:#1a2d49!important;
+  border:1px solid rgba(243,246,249,.51)!important;
+  box-shadow:12px 17px 26px rgba(3,7,46,.4),0 0 0 1px rgba(221,240,255,.06)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-frame:before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-frame:after{
+  border-radius:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-image,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-image img{
+  width:100%!important;height:100%!important;border-radius:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-image img{
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:saturate(.94) contrast(1.04)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-meta{
+  margin:9px 0 0!important;
+  align-items:center!important;
+  text-align:center!important;
+  gap:4px!important;
+  white-space:normal!important;
+  text-shadow:0 2px 10px rgba(2,5,32,.58);
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-meta strong{
+  font:750 clamp(13px,1.4vw,18px)/1.06 Arial,sans-serif!important;
+  color:#fffdf6!important;
+  letter-spacing:-.035em!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-meta small{
+  font:650 9px/1.2 ui-monospace,Consolas,monospace!important;
+  color:#dae1ff!important;
+  letter-spacing:.10em!important;
+  text-align:center!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-open{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo[aria-disabled="true"]{
+  cursor:grab!important;
+}
+
+/* Original chrome-like sculptural gyroscope. Uses plain borders and
+   gradients, NOT a costly continuously spinning 3D model. */
+.world-hub.fi92-ready.fi95-ready .fi100-sculpture{
+  --fi100-roll:0deg;--fi100-tilt:0deg;
+  position:absolute;left:0;top:0;
+  width:clamp(140px,15vw,198px);
+  height:clamp(140px,15vw,198px);
+  display:grid;place-items:center;
+  border-radius:50%;
+  transform:translate3d(-50%,-50%,0) rotateY(var(--fi100-roll)) rotateX(var(--fi100-tilt));
+  transform-style:preserve-3d;
+  background:radial-gradient(circle at 28% 19%,rgba(250,251,255,.48),rgba(139,165,191,.16) 28%,rgba(9,20,83,.58) 70%,rgba(4,11,58,.4));
+  border:1px solid rgba(228,236,248,.28);
+  box-shadow:inset -19px -22px 27px rgba(2,9,61,.53),inset 8px 9px 18px rgba(241,246,255,.11),9px 20px 35px rgba(3,11,68,.38);
+  pointer-events:none;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-sculpture-halo{
+  position:absolute;inset:-13%;border-radius:50%;
+  border:1px solid rgba(221,236,252,.22);
+  transform:rotateX(68deg) rotateZ(22deg);
+  box-shadow:0 0 13px rgba(193,222,244,.06);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-metal-loop{
+  position:absolute;
+  left:50%;top:50%;
+  width:92%;height:92%;
+  border-radius:50%;
+  border:clamp(6px,.77vw,11px) solid #a7b6ca;
+  border-top-color:#f5f8fc;
+  border-left-color:#e5ecf4;
+  border-right-color:#596f91;
+  border-bottom-color:#344868;
+  box-shadow:0 2px 7px rgba(5,10,54,.35),inset 0 1px 3px rgba(245,251,255,.34);
+  transform-style:preserve-3d;
+}
+.world-hub.fi92-ready.fi95-ready .fi100-metal-loop-0{
+  transform:translate(-50%,-50%) rotateX(76deg) rotateY(10deg);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-metal-loop-1{
+  transform:translate(-50%,-50%) rotateX(63deg) rotateY(49deg);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-metal-loop-2{
+  transform:translate(-50%,-50%) rotateX(83deg) rotateY(101deg);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-metal-loop-3{
+  transform:translate(-50%,-50%) rotateX(66deg) rotateY(146deg);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-metal-loop-4{
+  transform:translate(-50%,-50%) rotateX(72deg) rotateY(198deg);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-sculpture-mark{
+  position:relative;z-index:3;
+  color:#faf9f8;
+  font:750 clamp(26px,3.3vw,46px)/1 Arial,sans-serif;
+  letter-spacing:-.09em;
+  text-shadow:0 1px 9px rgba(8,19,83,.43);
+  transform:translateZ(37px);
+}
+
+/* Small labels close to the experience, not paragraphs on top of images. */
+.world-hub.fi92-ready.fi95-ready .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi100-instruction{
+  position:absolute;
+  left:0;right:0;
+  z-index:3;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;
+  pointer-events:none;
+  color:#d1ddfc;
+  font:650 9px/1.3 ui-monospace,Consolas,monospace;
+  letter-spacing:.17em;
+  text-shadow:0 1px 4px rgba(4,11,86,.4);
+}
+.world-hub.fi92-ready.fi95-ready .fi100-scene-meta{top:8px}
+.world-hub.fi92-ready.fi95-ready .fi100-instruction{bottom:6px}
+.world-hub.fi92-ready.fi95-ready .fi100-instruction b{
+  display:inline-block;
+  margin:0 5px;
+  color:#f4f9ff;
+  font:400 15px/1 Arial,sans-serif;
+}
+
+/* Tablet keeps the full rotatable 3D sphere. */
+@media(max-width:850px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-title h2{
+    font-size:clamp(40px,8vw,65px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-cluster{
+    width:100%!important;min-height:310px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo{
+    --fi100-card-width:clamp(127px,22vw,168px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-frame{
+    height:clamp(160px,25vh,212px)!important;
+  }
+}
+/* Unlike the static ring, the mobile layout is ALSO a 3D globe.
+   Touch swipes rotate it in place, with smaller lightweight cards. */
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on{
+    padding:0 14px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-level-title h2{
+    font-size:clamp(38px,10vw,56px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-cluster{
+    display:block!important;
+    width:100%!important;min-height:290px!important;
+    height:100%!important;
+    overflow:visible!important;padding:0!important;
+    perspective:950px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi100-stage{
+    min-height:290px!important;
+    perspective:950px;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi100-world{
+    perspective:950px;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo{
+    --fi100-card-width:clamp(103px,30vw,136px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on .fi95-item.fi100-photo .fi95-item-frame{
+    height:clamp(137px,23vh,179px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi100-sculpture{
+    width:112px;height:112px;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi100-sculpture-mark{
+    font-size:28px;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi100-scene-meta,
+  .world-hub.fi92-ready.fi95-ready .fi100-instruction{
+    font-size:7px;letter-spacing:.1em;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi100-scene-meta{top:3px}
+  .world-hub.fi92-ready.fi95-ready .fi100-instruction{bottom:3px}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi100-rotor{
+    transition:none!important;
+  }
+}
