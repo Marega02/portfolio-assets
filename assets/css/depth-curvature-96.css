@@ -1,0 +1,227 @@
+/* PHASE 96 — DEPTH & CURVATURE / NO EXTRA ANIMATION ENGINE
+   Refines Phase 95 without replacing its navigation or scroll controller:
+   (1) tighter, more tactile photographic reel
+   (2) deeper static atmospheric backgrounds
+   (3) three close cards arranged on a spherical 3D arc.
+   Transform-only interaction; no timers, WebGL, blur filters, or rAF loops. */
+
+/* A deeper yet quiet photographic environment. The highlights and
+   tiny stars are background gradients: no extra images or scripts. */
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-home{
+  background:
+    radial-gradient(circle at 11% 19%,rgba(206,219,220,.48) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 88% 25%,rgba(228,219,200,.33) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 23% 80%,rgba(191,213,225,.3) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 76% 77%,rgba(214,216,212,.32) 0 1px,transparent 1.6px),
+    radial-gradient(ellipse 60% 66% at 52% 48%,rgba(63,76,81,.36),transparent 70%),
+    radial-gradient(ellipse 94% 100% at 50% 50%,#1d2226 0%,#0f1318 59%,#06080c 100%)!important;
+}
+/* Depth lives BEHIND the photographs, never over the words or links. */
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-gallery-wrap::before{
+  content:"";
+  position:absolute;z-index:0;pointer-events:none;
+  width:min(1130px,93vw);height:min(82vh,800px);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(ellipse 47% 60% at 50% 45%,rgba(121,141,143,.15),transparent 88%),
+    radial-gradient(ellipse 70% 52% at 50% 68%,rgba(10,11,14,.34),transparent 82%);
+}
+/* Tighter like a photographic reel: almost touching, with more visible
+   expansion when the user selects or hovers one slice. */
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-gallery{
+  width:min(965px,88vw)!important;
+  height:min(68vh,670px)!important;
+  gap:clamp(2px,.35vw,5px)!important;
+  padding:0 3px!important;
+  perspective:1040px!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel{
+  height:91%!important;
+  border:1px solid rgba(227,220,208,.10);
+  border-radius:2px;
+  transition:flex-grow .52s cubic-bezier(.19,.85,.23,1),
+    transform .52s cubic-bezier(.19,.85,.23,1),
+    border-color .2s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel:nth-child(1){
+  transform:rotateY(24deg) translate3d(7px,6px,-26px);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel:nth-child(2){
+  transform:rotateY(8deg) translate3d(3px,-1px,-8px);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel:nth-child(3){
+  transform:rotateY(-8deg) translate3d(-3px,-1px,-8px);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel:nth-child(4){
+  transform:rotateY(-24deg) translate3d(-7px,6px,-26px);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel.fi95-current,
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel:is(:hover,:focus-within){
+  flex-grow:2.45!important;
+  z-index:9;
+  transform:translate3d(0,-10px,90px) rotateY(0deg) scale(1.065)!important;
+  border-color:rgba(255,249,238,.55)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel.fi95-current .fi95-cover{
+  filter:grayscale(.14) contrast(1.05) brightness(.93)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-gallery .fi95-panel:not(.fi95-current) .fi95-cover{
+  filter:grayscale(.68) contrast(1.03) brightness(.72)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel .world-link .world-name{
+  font-size:clamp(19px,2.15vw,28px)!important;
+}
+
+/* Lower levels: a larger sense of empty space OUTSIDE the group,
+   with the three selectable surfaces almost touching INSIDE it. */
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-level{
+  background:
+    radial-gradient(circle at 15% 29%,rgba(208,226,231,.35) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 85% 76%,rgba(206,216,212,.28) 0 1px,transparent 1.7px),
+    radial-gradient(ellipse 46% 49% at 49% 52%,rgba(53,90,104,.29),transparent 88%),
+    radial-gradient(ellipse 94% 94% at 50% 48%,#19222a 0%,#0b1118 70%,#06080e 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-level::before{
+  content:"";
+  position:absolute;z-index:0;pointer-events:none;
+  top:16%;left:50%;
+  width:min(1050px,89vw);height:min(69vh,650px);
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at center,rgba(106,138,145,.13),transparent 72%);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-level-head,
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-level-title,
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-level-foot{
+  position:relative;z-index:2;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster{
+  width:min(930px,83vw)!important;
+  gap:0!important;
+  perspective:900px!important;
+  transform-style:preserve-3d!important;
+  overflow:visible!important;
+}
+/* The implied globe is not an object to render in JS. A faint spherical
+   volume and two elliptical latitudes establish curvature behind images. */
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster::before{
+  width:93%;height:77%;top:44%;left:50%;
+  transform:translate(-50%,-50%) rotate(-11deg);
+  border:1px solid rgba(196,218,225,.17)!important;
+  box-shadow:inset 0 0 0 1px rgba(216,231,229,.025);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster::after{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  width:clamp(270px,30vw,440px);height:clamp(270px,30vw,440px);
+  left:50%;top:44%;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 32% 21%,rgba(89,122,129,.25),rgba(42,68,78,.15) 38%,rgba(16,30,40,.11) 66%,transparent 78%);
+  border:1px solid rgba(177,213,220,.065);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster-spine{
+  top:45%;left:4%;right:4%;
+  background:linear-gradient(90deg,transparent,rgba(190,218,222,.14) 19%,rgba(216,232,230,.33) 50%,rgba(190,218,222,.14) 81%,transparent);
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item{
+  --fi95-w:clamp(205px,24vw,312px);
+  margin-left:calc(-1 * clamp(8px,1.2vw,18px))!important;
+  margin-right:calc(-1 * clamp(8px,1.2vw,18px))!important;
+  transition:transform .52s cubic-bezier(.19,.85,.23,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-0{
+  --y:21px;--z:-26px;--ry:36deg;--rz:-5deg;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-1{
+  --y:-11px;--z:82px;--ry:0deg;--rz:0deg;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-2{
+  --y:21px;--z:-26px;--ry:-36deg;--rz:5deg;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item.fi95-selected,
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item:is(:hover,:focus-visible){
+  z-index:10!important;
+  transform:translate3d(0,-25px,132px) rotateY(0deg) rotateZ(0deg) scale(1.055)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-frame{
+  height:clamp(275px,43vh,425px)!important;
+  border-radius:26px 26px 34px 34px!important;
+  box-shadow:12px 24px 42px rgba(0,0,0,.45);
+  border-color:rgba(232,235,224,.28)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-frame::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(94deg,rgba(222,235,230,.13),transparent 16%,transparent 84%,rgba(5,16,23,.28));
+  border-radius:inherit;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-image{
+  border-radius:inherit;
+}
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-image img{
+  border-radius:inherit;
+}
+/* The focal card gains a curved-lens edge, the side fragments turn
+   inward like three meridians of one invisible globe. */
+.world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item.fi95-selected .fi95-item-frame{
+  border-color:rgba(240,235,220,.49)!important;
+}
+
+/* Small devices: keep current swipe navigation and avoid perspective
+   transforms that could make touch targets overlap or hard to reach. */
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-gallery{
+    width:100%!important;
+    height:min(70vh,630px)!important;
+    gap:5px!important;
+    padding:0 12vw 0 6vw!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel.fi95-current,
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel:is(:hover,:focus-within){
+    flex:0 0 min(67vw,365px)!important;
+    width:min(67vw,365px)!important;
+    height:82%!important;
+    transform:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster{
+    width:100%!important;
+    gap:6px!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item{
+    --fi95-w:clamp(145px,28vw,250px);
+    margin:0!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-frame{
+    height:clamp(250px,38vh,365px)!important;
+    border-radius:18px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster::after{
+    width:clamp(160px,36vw,290px);height:clamp(160px,36vw,290px);
+  }
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-cluster{
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    gap:8px!important;
+    padding:13px 15vw 13px 7vw!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item,
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item.fi95-selected,
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item:is(:hover,:focus-visible){
+    --fi95-w:min(62vw,260px);
+    flex:0 0 var(--fi95-w)!important;
+    transform:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item-frame{
+    height:clamp(262px,45vh,402px)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready.fi96-ready .fi95-item{
+    transition:none!important;
+  }
+}
