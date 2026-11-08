@@ -16,23 +16,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 ;
 
 
-/* SOURCE assets/js/four-fold-cover.js */
-/* STEP 40 — FOUR-FOLD COVER | visual-only coordination */
-(()=>{function init(){const hub=document.querySelector(".world-hub"),stage=hub?.querySelector(".world-stage"),sheet=stage?.querySelector(".stage-sheet");if(!hub||!stage||!sheet||hub.classList.contains("s40-ready"))return;
-const halo=document.createElement("span");halo.className="s40-halo";halo.setAttribute("aria-hidden","true");const calib=document.createElement("span");calib.className="s40-calibration";calib.setAttribute("aria-hidden","true");stage.prepend(halo,calib);
-const marks=document.createElement("span");marks.className="s40-cropmarks";marks.setAttribute("aria-hidden","true");const wipe=document.createElement("span");wipe.className="s40-ink-wipe";wipe.setAttribute("aria-hidden","true");sheet.append(marks,wipe);
-const stamp=document.createElement("span");stamp.className="s40-imprint";stamp.setAttribute("aria-hidden","true");stamp.textContent="LM® / PRESS STUDY";
-const notes=document.createElement("span");notes.className="s40-side-notes";notes.setAttribute("aria-hidden","true");notes.innerHTML="<span>ARCHIVE / 004</span><strong>ED. 040</strong>";
-const edition=document.createElement("div");edition.className="s40-edition";edition.setAttribute("aria-hidden","true");edition.innerHTML='<span>FOUR FOLDS / ONE WORLD</span><span class="s40-edition-ticks"><i></i><i></i><i></i><i></i></span><strong class="s40-edition-number">01/04</strong>';
-stage.append(stamp,notes,edition);
-const scenes=["work","sound","places","about"],ticks=[...edition.querySelectorAll("i")],number=edition.querySelector(".s40-edition-number");
-let active="",timer=0;
-function sync(){const raw=hub.dataset.s31Scene||hub.dataset.s22Scene||"work";const key=scenes.includes(raw)?raw:"work";if(active===key)return;const old=active;active=key;hub.dataset.s40Scene=key;const i=scenes.indexOf(key);number.textContent=String(i+1).padStart(2,"0")+"/04";ticks.forEach((t,n)=>t.classList.toggle("is-current",n===i));if(old&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){wipe.classList.remove("is-flashing");void wipe.offsetWidth;wipe.classList.add("is-flashing");clearTimeout(timer);timer=setTimeout(()=>wipe.classList.remove("is-flashing"),750)}}
-new MutationObserver(sync).observe(hub,{attributes:true,attributeFilter:["data-s31-scene","data-s22-scene"]});sync();hub.classList.add("s40-ready");}
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();
-;
-
-
 /* SOURCE assets/js/editorial-focus.js */
 /* STEP 41 — EDITORIAL FOCUS
    Optional in-page reading treatment, available from the World Index.
@@ -608,110 +591,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
   }
 })();
 
-;
-
-
-/* SOURCE assets/js/drawn-worlds-60.js */
-/* STEP 60 — DRAWN WORLDS
-   The four existing HOME poster illustrations draw themselves as the
-   user explores the navigation. ABOUT's large editorial sentence gets
-   a one-shot reveal. No added UI, no parent transforms, no GSAP edits.
-*/
-(() => {
-  function init() {
-    const hub = document.querySelector(".world-hub");
-    const board = hub?.querySelector(".s22-art");
-    const about = document.querySelector(".a17-world");
-    const note = about?.querySelector(".a18-sentence");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const names = ["work", "sound", "places", "about"];
-
-    if (hub && board && !hub.dataset.s60Drawn) {
-      hub.dataset.s60Drawn = "1";
-      let previous = "";
-      let animations = [];
-      const clear = () => {
-        animations.forEach(anim => {
-          try { anim.cancel(); } catch (_) {}
-        });
-        animations = [];
-      };
-      function draw() {
-        const key = hub.dataset.s22Scene || hub.dataset.s31Scene || "work";
-        if (!names.includes(key) || key === previous) return;
-        previous = key;
-        clear();
-        if (reduced.matches || !("animate" in Element.prototype)) return;
-        const frame = [...board.querySelectorAll(".s22-frame")].find(
-          el => el.dataset.scene === key
-        );
-        if (!frame) return;
-        const shapes = [...frame.querySelectorAll(
-          "path, rect, circle, ellipse, line, polyline, polygon"
-        )].filter(el => {
-          const stroke = getComputedStyle(el).stroke;
-          return stroke && stroke !== "none" &&
-            typeof el.getTotalLength === "function";
-        }).slice(0, 26);
-        let i = 0;
-        for (const el of shapes) {
-          let length = 0;
-          try { length = el.getTotalLength(); } catch (_) { continue; }
-          if (length < 8 || !Number.isFinite(length)) continue;
-          const total = Math.ceil(length) + 2;
-          const delay = Math.min(280, i++ * 26);
-          const anim = el.animate([
-            {strokeDasharray: total + " " + total, strokeDashoffset: total},
-            {strokeDasharray: total + " " + total, strokeDashoffset: 0}
-          ], {
-            duration: 680 + Math.min(i, 8) * 45,
-            delay,
-            easing: "cubic-bezier(.22,.72,.21,1)",
-            fill: "backwards"
-          });
-          animations.push(anim);
-        }
-      }
-      const watcher = new MutationObserver(draw);
-      watcher.observe(hub, {
-        attributes: true,
-        attributeFilter: ["data-s22-scene", "data-s31-scene"]
-      });
-      // Allow the original poster setup/entrance to settle first.
-      requestAnimationFrame(() => requestAnimationFrame(draw));
-      reduced.addEventListener?.("change", () => {
-        if (reduced.matches) clear();
-        else { previous = ""; draw(); }
-      });
-    }
-
-    if (about && note && !note.dataset.s60NoteReady && !reduced.matches &&
-        "IntersectionObserver" in window) {
-      note.dataset.s60NoteReady = "1";
-      const observer = new IntersectionObserver(entries => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          note.classList.add("s60-note-visible");
-          observer.disconnect();
-          break;
-        }
-      }, {root: about, threshold: .09, rootMargin: "0px 0px -5% 0px"});
-      note.classList.add("s60-note-ready");
-      observer.observe(note);
-      // If the user changes their motion preference, release the masking.
-      reduced.addEventListener?.("change", () => {
-        if (reduced.matches) {
-          note.classList.add("s60-note-visible");
-          observer.disconnect();
-        }
-      }, {once:true});
-    }
-  }
-
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init, {once:true});
-  else init();
-})();
 ;
 
 
