@@ -48,9 +48,14 @@
       places:{
         label:"PLACES",detail:"AN ORBITAL STUDY / VISUAL TEST",cover:photo("8920813"),accent:"#b6d8cb",
         items:[
+          // Original three Places: keep them intact.
+          {name:"SOČA VALLEY",sub:"SLOVENIA",value:"soca",src:photo("8920813")},
+          {name:"LONDON",sub:"UNITED KINGDOM",value:"london",src:photo("9713161")},
+          {name:"KUALA LUMPUR",sub:"MALAYSIA",value:"kl",src:photo("33146871")},
+          // Three additional visual-only samples to test the spherical layout.
           {name:"KYOTO",sub:"JAPAN",value:"kyoto-demo",src:photo("35500214")},
-          {name:"ICELAND",sub:"NORDIC LANDSCAPES",value:"iceland-demo",src:photo("15883754")},
-          {name:"MARRAKECH",sub:"MOROCCO",value:"marrakech-demo",src:photo("32013555")}
+          {name:"ICELAND",sub:"NORDIC LANDSCAPES",value:"iceland-demo",src:photo("10050561")},
+          {name:"MARRAKECH",sub:"MOROCCO",value:"marrakech-demo",src:photo("35816389")}
         ]
       },
       about:{
@@ -136,7 +141,7 @@
         '<h2>WORK</h2>'+
         '<span class="fi95-level-caption">PROJECTS & EXPERIMENTS</span>'+
       '</div>'+
-      '<div class="fi95-cluster" role="group" aria-label="Select from three items">'+
+      '<div class="fi95-cluster" role="group" aria-label="Selected chapter items">'+
         '<span class="fi95-cluster-spine" aria-hidden="true"></span>'+
       '</div>'+
       '<footer class="fi95-level-foot">'+
@@ -148,7 +153,7 @@
     const levelNumber=chapter.querySelector(".fi95-level-number");
     const levelCaption=chapter.querySelector(".fi95-level-caption");
     const moduleButtons=[];
-    for(let i=0;i<3;i++){
+    for(let i=0;i<6;i++){
       const button=document.createElement("button");
       button.type="button";
       button.className="fi95-item fi95-item-"+i;
@@ -174,7 +179,8 @@
     function pick(index){
       selected=index;
       moduleButtons.forEach((button,i)=>button.classList.toggle("fi95-selected",i===index));
-      chapter.querySelector(".fi95-selection-count").textContent="0"+(index+1)+" / 03";
+      const count=category==="places"?6:3;
+      chapter.querySelector(".fi95-selection-count").textContent="0"+(index+1)+" / 0"+count;
     }
     function renderLevel(key,index=0){
       const data=meta[key];
@@ -183,8 +189,15 @@
       levelTitle.textContent=data.label;
       levelNumber.textContent="0"+(keys.indexOf(key)+1)+" / 04";
       levelCaption.textContent=data.detail;
+      cluster.setAttribute("aria-label",key==="places"?
+        "Six destinations in a spherical visual study":"Select from three items");
       moduleButtons.forEach((button,i)=>{
         const item=data.items[i];
+        // Only Places displays six. Work, Sound and About keep their three
+        // original elements and exactly the same navigation.
+        button.hidden=!item;
+        button.setAttribute("aria-hidden",String(!item));
+        if(!item){button.tabIndex=-1;return;}
         // Places is currently a visual-only layout experiment.
         // Keep the other worlds' original interactive navigation untouched.
         const decorative=key==="places";
@@ -205,7 +218,7 @@
         button.classList.remove("fi95-image-fallback");
       });
       chapter.querySelector(".fi95-level-foot span:first-child").textContent=
-        key==="places"?"ORBITAL COMPOSITION / VISUAL TEST":"THREE SELECTED FRAGMENTS";
+        key==="places"?"SIX PLACES / SPATIAL EXPERIMENT — NO LINKS":"THREE SELECTED FRAGMENTS";
       pick(index);
     }
     function openLevel(key,index=0){
@@ -342,7 +355,7 @@
     }
     function openDestination(index){
       if(!category||caseOwned||sceneOwned)return;
-      // Static prototype: no clicks, no opening the old Places world.
+      // Six Places samples are strictly visual: no click navigation.
       if(category==="places")return;
       pick(index);
       if(category==="work")openWork(index);
