@@ -50,7 +50,7 @@
         items:[
           {name:"SOČA VALLEY",sub:"SLOVENIA",value:"soca",src:photo("8920813")},
           {name:"LONDON",sub:"UNITED KINGDOM",value:"london",src:photo("9713161")},
-          {name:"KUALA LUMPUR",sub:"MALAYSIA",value:"kl",src:photo("2387873")}
+          {name:"KUALA LUMPUR",sub:"MALAYSIA",value:"kl",src:photo("33146871")}
         ]
       },
       about:{
@@ -79,8 +79,8 @@
         '<div class="fi95-gallery" role="group" aria-label="Explore four portfolio chapters"></div>'+
       '</div>'+
       '<footer class="fi95-home-foot">'+
-        '<span class="fi95-current">02 / 04</span>'+
-        '<span class="fi95-current-title">SOUND</span>'+
+        '<span class="fi95-current">01 / 04</span>'+
+        '<span class="fi95-current-title">WORK</span>'+
         '<span class="fi95-home-hint">SCROLL TO EXPLORE <i> · </i> CLICK TO ENTER</span>'+
       '</footer>';
     const gallery=home.querySelector(".fi95-gallery");
@@ -377,7 +377,7 @@
     },true);
 
     hub.append(home,chapter);
-    focusCard(1);
+    focusCard(0);
     hub.dataset.fi95Ready="1";
     hub.classList.add("fi95-ready");
   }
