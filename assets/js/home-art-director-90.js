@@ -103,6 +103,7 @@
       });
     }
     const hint=experience.querySelector(".s86-scroll-hint");
+    const cameras=slides.map(slide=>slide.querySelector(".s87-camera"));
     let index=0;
     function syncScene(){
       const key=hub.dataset.s86Scene||"work";
