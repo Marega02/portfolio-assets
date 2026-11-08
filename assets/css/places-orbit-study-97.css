@@ -1,0 +1,238 @@
+/* PHASE 97 — PLACES / ORBIT STUDY
+   Visual-only experiment. Three photographs anchored to the surface
+   of one imaginary sphere: Kyoto, Iceland, Marrakech.
+   No click/open, no scroll listeners, no perpetual motion or WebGL.
+   These rules apply ONLY to the lower PLACES level. */
+
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"]{
+  --fi97-glow:#a9c8c7;
+  background:
+    radial-gradient(circle at 13% 21%,rgba(222,229,231,.40) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 83% 76%,rgba(220,224,218,.31) 0 1px,transparent 1.6px),
+    radial-gradient(ellipse 55% 55% at 50% 50%,rgba(40,80,89,.24),transparent 84%),
+    radial-gradient(ellipse 90% 95% at 50% 47%,#17232b 0%,#0b121a 68%,#070b11 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-caption{
+  color:#9bb6b5!important;
+  letter-spacing:.18em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-foot{
+  color:#93aaa9!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster{
+  display:block!important;
+  position:relative!important;
+  width:min(1100px,92%)!important;
+  min-height:380px!important;
+  height:100%!important;
+  padding:0!important;
+  margin:auto!important;
+  overflow:visible!important;
+  isolation:isolate;
+  perspective:1250px!important;
+  transform-style:preserve-3d!important;
+}
+/* A very fine elliptical meridian suggests a sphere without depicting a
+   large literal object. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  width:min(850px,93%)!important;
+  height:min(460px,78%)!important;
+  left:50%!important;
+  top:48%!important;
+  border-radius:50%!important;
+  border:1px solid rgba(183,216,217,.12)!important;
+  background:none!important;
+  box-shadow:none!important;
+  transform:translate(-50%,-50%) rotate(-18deg)!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  left:50%!important;top:47%!important;
+  width:min(620px,69%)!important;height:min(360px,63%)!important;
+  border-radius:50%!important;
+  transform:translate(-50%,-50%) rotate(22deg)!important;
+  background:radial-gradient(ellipse at center,rgba(77,119,125,.13),transparent 72%)!important;
+  border:1px dashed rgba(194,218,215,.09)!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster-spine{
+  z-index:0!important;
+  top:49%!important;
+  left:12%!important;right:12%!important;
+  height:1px!important;
+  background:linear-gradient(90deg,transparent,rgba(157,198,204,.16),rgba(209,224,217,.21),rgba(157,198,204,.16),transparent)!important;
+  transform:rotate(-6deg)!important;
+}
+/* Three independent portrait plaques, closer together and wrapped around
+   the same curved volume. Central Iceland lives toward the viewer. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+  --fi97-size:clamp(195px,23vw,294px);
+  --fi97-x:50%;
+  --fi97-y:50%;
+  --fi97-depth:0px;
+  --fi97-ry:0deg;
+  --fi97-rx:0deg;
+  --fi97-rz:0deg;
+  display:flex!important;
+  position:absolute!important;
+  width:var(--fi97-size)!important;
+  min-width:0!important;
+  flex:none!important;
+  top:var(--fi97-y)!important;
+  left:var(--fi97-x)!important;
+  right:auto!important;
+  bottom:auto!important;
+  padding:0!important;
+  margin:0!important;
+  cursor:default!important;
+  pointer-events:auto!important;
+  backface-visibility:hidden;
+  transform-origin:50% 45%!important;
+  transform:translate3d(-50%,-50%,var(--fi97-depth)) rotateY(var(--fi97-ry)) rotateX(var(--fi97-rx)) rotateZ(var(--fi97-rz))!important;
+  transition:transform .55s cubic-bezier(.19,.83,.26,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-0{
+  --fi97-x:28%;--fi97-y:56%;--fi97-depth:-30px;
+  --fi97-ry:37deg;--fi97-rx:-5deg;--fi97-rz:-7deg;
+  z-index:2!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-1{
+  --fi97-x:50%;--fi97-y:39%;--fi97-depth:110px;
+  --fi97-ry:0deg;--fi97-rx:4deg;--fi97-rz:0deg;
+  z-index:5!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-2{
+  --fi97-x:72%;--fi97-y:56%;--fi97-depth:-30px;
+  --fi97-ry:-37deg;--fi97-rx:-5deg;--fi97-rz:7deg;
+  z-index:3!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item.fi95-selected:not(:hover):not(:focus-visible){
+  transform:translate3d(-50%,-50%,var(--fi97-depth)) rotateY(var(--fi97-ry)) rotateX(var(--fi97-rx)) rotateZ(var(--fi97-rz))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item:hover{
+  z-index:12!important;
+  transform:translate3d(-50%,calc(-50% - 13px),160px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.055)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame{
+  width:100%!important;
+  height:clamp(280px,43vh,420px)!important;
+  overflow:hidden!important;
+  border-radius:50% 50% 46% 46% / 41% 41% 43% 43%!important;
+  background:#263a40!important;
+  border:1px solid rgba(221,233,226,.44)!important;
+  box-shadow:13px 31px 45px rgba(0,0,0,.42),0 0 0 5px rgba(196,217,213,.025)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame::before{
+  border-radius:inherit!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame::after{
+  border-radius:inherit!important;
+  background:linear-gradient(163deg,rgba(218,237,230,.15),transparent 33%,rgba(9,22,31,.29))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-image,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-image img{
+  width:100%!important;height:100%!important;
+  border-radius:inherit!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-image img{
+  object-fit:cover!important;
+  object-position:center 48%!important;
+  filter:saturate(.9) contrast(1.045)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta{
+  align-items:center!important;
+  text-align:center!important;
+  gap:6px!important;
+  margin:14px 0 0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta strong{
+  color:#f1f0e9!important;
+  font:700 clamp(20px,1.9vw,27px)/1 Arial,sans-serif!important;
+  letter-spacing:-.045em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta small{
+  color:#a4bdb8!important;
+  font-size:10px!important;
+  letter-spacing:.18em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-open{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item:focus-visible{
+  outline:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item[aria-disabled="true"]{
+  cursor:default!important;
+}
+/* Tablet: maintain the spherical arc at a smaller scale. */
+@media(max-width:850px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster{
+    width:100%!important;min-height:360px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+    --fi97-size:clamp(145px,25vw,218px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame{
+    height:clamp(230px,36vh,340px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-0{--fi97-x:25%;--fi97-y:54%;--fi97-ry:23deg}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-1{--fi97-x:50%;--fi97-y:39%;--fi97-depth:75px}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-2{--fi97-x:75%;--fi97-y:54%;--fi97-ry:-23deg}
+}
+/* Mobile: short oval medallions arranged around the central point, with
+   no horizontal-scrolling collision or hidden touch targets. */
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster{
+    display:block!important;overflow:visible!important;
+    padding:0!important;
+    min-height:400px!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::before{
+    width:96%!important;height:68%!important;top:45%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-cluster::after{
+    width:80%!important;height:63%!important;top:45%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+    --fi97-size:clamp(108px,32vw,162px);
+    transform:translate3d(-50%,-50%,0) rotateZ(var(--fi97-rz))!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item.fi95-selected:not(:hover){
+    transform:translate3d(-50%,-50%,0) rotateZ(var(--fi97-rz))!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item:hover{
+    transform:translate3d(-50%,-53%,0) rotateZ(0deg) scale(1.025)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-frame{
+    height:clamp(152px,26vh,238px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-0{
+    --fi97-x:24%;--fi97-y:61%;--fi97-rz:-9deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-1{
+    --fi97-x:50%;--fi97-y:30%;--fi97-rz:0deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-2{
+    --fi97-x:76%;--fi97-y:61%;--fi97-rz:9deg;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta strong{
+    font-size:clamp(14px,3.8vw,18px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item-meta small{
+    font-size:8px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-item{
+    transition:none!important;
+  }
+}
