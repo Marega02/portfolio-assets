@@ -3878,13 +3878,11 @@
 })();
 ;
 
-/* SOURCE assets/js/atmospheric-home-87.js */
-/* PHASE 87 — ATMOSPHERIC DEPTH / HOME DIRECTOR'S CUT
-   A second, art-directed layer for the successful Phase 86 Home.
-   One scroll listener (passive and rAF-throttled), one optional pointer
-   listener for fine pointers, and the existing scene attribute.
-   Original Webflow links stay where Phase 86 put them. Navigation and
-   every world controller remain untouched. */
+/* SOURCE assets/js/home-art-director-90.js */
+/* PHASE 90 — OPTIMIZED ART DIRECTOR (REPLACES PHASE 87 JS)
+   Retains original camera, editorial art direction and copy, but removes
+   the additional scroll/resize/pointer animation loop. The optimized
+   Phase 88 coordinator becomes the sole input/update loop. */
 (() => {
   function init(){
     const hub=document.querySelector(".world-hub.s86-ready");
@@ -3925,8 +3923,6 @@
       }
     };
 
-    const cameras=[];
-    const ambientLayers=[];
     for(let i=0;i<slides.length;i++){
       const slide=slides[i],key=keyOrder[i],data=types[key];
       const visual=slide.querySelector(".s86-visual");
@@ -3942,13 +3938,11 @@
       camera.setAttribute("aria-hidden","true");
       art.before(camera);
       camera.appendChild(art);
-      cameras.push(camera);
 
       const ambient=document.createElement("div");
       ambient.className="s87-atmosphere";
       ambient.setAttribute("aria-hidden","true");
       visual.appendChild(ambient);
-      ambientLayers.push(ambient);
 
       const exposure=document.createElement("span");
       exposure.className="s87-exposure";
@@ -3989,13 +3983,7 @@
         tick.appendChild(name);
       });
     }
-    const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
-    const contrast=window.matchMedia("(prefers-contrast: more)");
-    const precise=window.matchMedia("(hover:hover) and (pointer:fine)");
     const hint=experience.querySelector(".s86-scroll-hint");
-    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-    const enabled=()=>!hub.inert&&!document.hidden&&!reduced.matches&&!contrast.matches;
-
     let index=0;
     function syncScene(){
       const key=hub.dataset.s86Scene||"work";
@@ -4013,79 +4001,13 @@
       attributeFilter:["data-s86-scene"]
     });
 
-    let scrollFrame=0;
-    function updateScroll(){
-      scrollFrame=0;
-      if(!enabled())return;
-      const height=Math.max(1,scroll.clientHeight);
-      const position=scroll.scrollTop/height;
-      for(let i=0;i<4;i++){
-        const delta=position-i;
-        if(Math.abs(delta)>1.45)continue;
-        // Scroll drives the camera while the original SVG's
-        // independent entrance animation remains unmodified.
-        const y=clamp(-delta*49,-58,58);
-        const scale=(1.034+Math.min(1,Math.abs(delta))*.046).toFixed(4);
-        cameras[i].style.setProperty("--s87-scroll-y",y.toFixed(1)+"px");
-        cameras[i].style.setProperty("--s87-scale",scale);
-      }
-    }
-    function scheduleScroll(){
-      if(!scrollFrame)scrollFrame=requestAnimationFrame(updateScroll);
-    }
-    scroll.addEventListener("scroll",scheduleScroll,{passive:true});
-
-    let pointerFrame=0;
-    let px=0,py=0;
-    function updatePointer(){
-      pointerFrame=0;
-      if(!enabled()||!precise.matches)return;
-      const width=Math.max(1,experience.clientWidth);
-      const height=Math.max(1,experience.clientHeight);
-      const nx=clamp(px/width,0,1),ny=clamp(py/height,0,1);
-      // Optical camera follows the hand by just 10–14px, not a
-      // dizzying 3D tilt. Content and links never move with it.
-      const cx=(nx-.5)*20;
-      const cy=(ny-.5)*14;
-      cameras[index].style.setProperty("--s87-pointer-x",cx.toFixed(1)+"px");
-      cameras[index].style.setProperty("--s87-pointer-y",cy.toFixed(1)+"px");
-      ambientLayers[index].style.setProperty("--s87-glow-x",(40+nx*52).toFixed(1)+"%");
-      ambientLayers[index].style.setProperty("--s87-glow-y",(20+ny*58).toFixed(1)+"%");
-    }
-    experience.addEventListener("pointermove",event=>{
-      if(!enabled()||!precise.matches)return;
-      px=event.clientX;py=event.clientY;
-      if(!pointerFrame)pointerFrame=requestAnimationFrame(updatePointer);
-    },{passive:true});
-    experience.addEventListener("pointerleave",()=>{
-      const current=cameras[index];
-      if(current){
-        current.style.setProperty("--s87-pointer-x","0px");
-        current.style.setProperty("--s87-pointer-y","0px");
-      }
-    });
-    function quiet(){
-      if(!enabled()){
-        if(scrollFrame)cancelAnimationFrame(scrollFrame);
-        if(pointerFrame)cancelAnimationFrame(pointerFrame);
-        scrollFrame=0;pointerFrame=0;
-        for(const camera of cameras){
-          camera.style.removeProperty("--s87-scroll-y");
-          camera.style.removeProperty("--s87-scale");
-          camera.style.removeProperty("--s87-pointer-x");
-          camera.style.removeProperty("--s87-pointer-y");
-        }
-      }else scheduleScroll();
-    }
-    document.addEventListener("visibilitychange",quiet);
-    reduced.addEventListener?.("change",quiet);
-    contrast.addEventListener?.("change",quiet);
-    window.addEventListener("resize",scheduleScroll,{passive:true});
-
+    // PHASE 90 PERFORMANCE: the scroll and pointer controllers that
+    // used to live here have been removed. Scene identity and original
+    // captions are still handled here. A SINGLE scroll coordinator runs
+    // after the phase-88 SVG structure has been mounted.
     hub.dataset.s87Ready="1";
     hub.classList.add("s87-ready");
     syncScene();
-    scheduleScroll();
   }
   if(document.readyState==="loading")
     document.addEventListener("DOMContentLoaded",init,{once:true});
@@ -4093,8 +4015,8 @@
 })();
 ;
 
-/* SOURCE assets/js/living-scenes-88.js */
-/* PHASE 88 — LIVING SCENES
+/* SOURCE assets/js/home-scenes-performance-90.js */
+/* PHASE 90 — OPTIMIZED LIVING SCENES (REPLACES PHASE 88 JS)
    Finite scroll-position direction inside Phase 86 SVG artwork.
    Original navigation and Phase 87 camera remain authoritative. */
 (() => {
@@ -4112,7 +4034,6 @@
     const NS="http://www.w3.org/2000/svg";
     const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
     const contrast=window.matchMedia("(prefers-contrast: more)");
-    const narrow=window.matchMedia("(max-width: 600px)");
     const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
     const canMove=()=>!reduced.matches&&!contrast.matches&&!document.hidden&&!hub.inert;
     const palette=["#e7ab7e","#c5dd9c","#bcdbcd","#e5b9a2"];
@@ -4224,11 +4145,33 @@
     label.setAttribute("aria-hidden","true");
     experience.append(bridge,label);
 
-    let queued=0;
+    // PHASE 90: one passive scroll coordinator for the Phase 87 camera,
+    // the Phase 88 SVG depth planes and a simplified chapter separator.
+    // No mousemove loop and no full-screen gradient repaint per pixel.
+    const camera=slides.map(slide=>slide.querySelector(".s87-camera"));
+    if(camera.some(node=>!node))return;
+    const tablet=window.matchMedia("(max-width: 991px)");
+    const coarse=window.matchMedia("(pointer: coarse)");
+    const lowPower=()=>
+      tablet.matches||coarse.matches||
+      Boolean(navigator.connection?.saveData)||
+      (typeof navigator.deviceMemory==="number" && navigator.deviceMemory<4);
+    const running=()=>canMove()&&!lowPower();
+
+    let queued=0,lastPosition=-10,bridgeActive=false,dirty=false;
     function reset(){
+      dirty=false;
+      lastPosition=-10;
+      bridgeActive=false;
       experience.style.setProperty("--s88-bridge-alpha","0");
       experience.style.setProperty("--s88-label-opacity","0");
       label.textContent="";
+      for(const node of camera){
+        node.style.removeProperty("--s87-scroll-y");
+        node.style.removeProperty("--s87-scale");
+        node.style.removeProperty("--s87-pointer-x");
+        node.style.removeProperty("--s87-pointer-y");
+      }
       for(const group of depth){
         for(const {shell} of group){
           for(const key of ["--s88-x","--s88-y","--s88-r","--s88-s"])
@@ -4242,41 +4185,66 @@
     }
     function render(){
       queued=0;
-      if(!canMove()){reset();return}
-      const progress=clamp(scroll.scrollTop/Math.max(1,scroll.clientHeight),0,3);
-      const mobile=narrow.matches?.52:1;
+      if(!running()){if(dirty)reset();return}
+      const position=clamp(scroll.scrollTop/Math.max(1,scroll.clientHeight),0,3);
+      if(Math.abs(position-lastPosition)<.004)return;
+      lastPosition=position;
+      dirty=true;
+
+      // Update only the visible scene and its immediate neighbor.
+      // Every write is restricted to a composited transform:
+      // we no longer re-rasterize the SVG linework while scrolling.
       for(let i=0;i<4;i++){
-        const offset=progress-i;
-        if(Math.abs(offset)>1.25)continue;
-        const opacity=clamp(1-Math.abs(offset),0,1);
+        const delta=position-i;
+        if(Math.abs(delta)>1.01)continue;
+        const distance=Math.abs(delta);
+        camera[i].style.setProperty("--s87-scroll-y",(-delta*24).toFixed(1)+"px");
+        camera[i].style.setProperty("--s87-scale",(1.012+Math.min(distance,1)*.018).toFixed(3));
         for(const {shell,settings} of depth[i]){
-          shell.style.setProperty("--s88-x",(offset*settings.x*mobile).toFixed(1)+"px");
-          shell.style.setProperty("--s88-y",(offset*settings.y*mobile).toFixed(1)+"px");
-          shell.style.setProperty("--s88-r",(offset*settings.angle*mobile).toFixed(2)+"deg");
-          shell.style.setProperty("--s88-s",(1+settings.zoom*Math.abs(offset)*mobile).toFixed(4));
+          shell.style.setProperty("--s88-x",(delta*settings.x*.46).toFixed(1)+"px");
+          shell.style.setProperty("--s88-y",(delta*settings.y*.46).toFixed(1)+"px");
+          shell.style.setProperty("--s88-r",(delta*settings.angle*.46).toFixed(2)+"deg");
+          shell.style.setProperty("--s88-s",(1+settings.zoom*distance*.46).toFixed(4));
         }
-        ornaments[i].style.setProperty("--s88-draw",(100*(1-opacity)).toFixed(1));
-        ornaments[i].style.setProperty("--s88-ornament-y",(offset*48*mobile).toFixed(1)+"px");
       }
-      const section=Math.min(2,Math.floor(progress));
-      const fraction=progress-section;
-      const peak=clamp((Math.sin(Math.PI*fraction)-.2)/.8,0,1);
-      experience.style.setProperty("--s88-bridge-color",palette[Math.min(3,section+1)]);
-      experience.style.setProperty("--s88-bridge-alpha",(peak*.28).toFixed(3));
-      experience.style.setProperty("--s88-bridge-x",(-28+fraction*55).toFixed(2)+"%");
-      experience.style.setProperty("--s88-label-opacity",(peak*.64).toFixed(3));
-      experience.style.setProperty("--s88-label-y",((1-peak)*9).toFixed(1)+"px");
-      label.textContent=peak>.01?"NEXT / "+keys[Math.min(3,section+1)].toUpperCase():"";
+
+      // A one-shot optical chapter seam, toggled a few times per
+      // journey instead of recalculating full-screen gradients per frame.
+      const section=Math.min(2,Math.floor(position));
+      const fraction=position-section;
+      const between=position<2.99 && fraction>.28 && fraction<.72;
+      if(between!==bridgeActive){
+        bridgeActive=between;
+        experience.style.setProperty("--s88-bridge-alpha",between?".13":"0");
+        experience.style.setProperty("--s88-label-opacity",between?".6":"0");
+        if(between){
+          experience.style.setProperty("--s88-bridge-color",palette[section+1]);
+          experience.style.setProperty("--s88-bridge-x","0%");
+          experience.style.setProperty("--s88-label-y","0px");
+          label.textContent="NEXT / "+keys[section+1].toUpperCase();
+        } else label.textContent="";
+      }
     }
-    function schedule(){if(!queued)queued=requestAnimationFrame(render)}
+    function schedule(){
+      if(!running())return;
+      if(!queued)queued=requestAnimationFrame(render);
+    }
+    function onPreference(){
+      hub.classList.toggle("s90-lite",lowPower());
+      if(!running()){
+        if(queued)cancelAnimationFrame(queued);
+        queued=0;
+        if(dirty)reset();
+      }else schedule();
+    }
     scroll.addEventListener("scroll",schedule,{passive:true});
-    window.addEventListener("resize",schedule,{passive:true});
-    document.addEventListener("visibilitychange",()=>{
-      if(document.hidden){if(queued)cancelAnimationFrame(queued);queued=0;reset()}
-      else schedule();
-    });
-    reduced.addEventListener?.("change",()=>{if(reduced.matches)reset();else schedule()});
-    contrast.addEventListener?.("change",()=>{if(contrast.matches)reset();else schedule()});
+    window.addEventListener("resize",onPreference,{passive:true});
+    document.addEventListener("visibilitychange",onPreference);
+    reduced.addEventListener?.("change",onPreference);
+    contrast.addEventListener?.("change",onPreference);
+    tablet.addEventListener?.("change",onPreference);
+    coarse.addEventListener?.("change",onPreference);
+    hub.classList.toggle("s90-lite",lowPower());
     hub.dataset.s88Ready="1";
     hub.classList.add("s88-ready");
     schedule();
