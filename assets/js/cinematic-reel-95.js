@@ -46,11 +46,11 @@
         ]
       },
       places:{
-        label:"PLACES",detail:"TRAVEL & MEMORIES",cover:photo("8920813"),accent:"#b6d8cb",
+        label:"PLACES",detail:"AN ORBITAL STUDY / VISUAL TEST",cover:photo("8920813"),accent:"#b6d8cb",
         items:[
-          {name:"SOČA VALLEY",sub:"SLOVENIA",value:"soca",src:photo("8920813")},
-          {name:"LONDON",sub:"UNITED KINGDOM",value:"london",src:photo("9713161")},
-          {name:"KUALA LUMPUR",sub:"MALAYSIA",value:"kl",src:photo("33146871")}
+          {name:"KYOTO",sub:"JAPAN",value:"kyoto-demo",src:photo("35500214")},
+          {name:"ICELAND",sub:"NORDIC LANDSCAPES",value:"iceland-demo",src:photo("15883754")},
+          {name:"MARRAKECH",sub:"MOROCCO",value:"marrakech-demo",src:photo("32013555")}
         ]
       },
       about:{
@@ -185,7 +185,12 @@
       levelCaption.textContent=data.detail;
       moduleButtons.forEach((button,i)=>{
         const item=data.items[i];
-        button.setAttribute("aria-label","Open "+item.name);
+        // Places is currently a visual-only layout experiment.
+        // Keep the other worlds' original interactive navigation untouched.
+        const decorative=key==="places";
+        button.setAttribute("aria-label",decorative?"Visual study: "+item.name:"Open "+item.name);
+        button.setAttribute("aria-disabled",String(decorative));
+        button.tabIndex=decorative?-1:0;
         button.querySelector("strong").textContent=item.name;
         button.querySelector("small").textContent=item.sub;
         const frame=button.querySelector(".fi95-item-image");
@@ -199,6 +204,8 @@
         frame.append(image);
         button.classList.remove("fi95-image-fallback");
       });
+      chapter.querySelector(".fi95-level-foot span:first-child").textContent=
+        key==="places"?"ORBITAL COMPOSITION / VISUAL TEST":"THREE SELECTED FRAGMENTS";
       pick(index);
     }
     function openLevel(key,index=0){
@@ -212,7 +219,10 @@
       hub.classList.add("fi95-level-open");
       const wait=reduced.matches?0:580;
       window.setTimeout(()=>{
-        if(category===key&&!sceneOwned&&!caseOwned)moduleButtons[index]?.focus({preventScroll:true});
+        if(category===key&&!sceneOwned&&!caseOwned){
+          const focusTarget=key==="places"?chapter.querySelector(".fi95-back"):moduleButtons[index];
+          focusTarget?.focus({preventScroll:true});
+        }
       },wait);
     }
     function closeLevel(){
@@ -332,6 +342,8 @@
     }
     function openDestination(index){
       if(!category||caseOwned||sceneOwned)return;
+      // Static prototype: no clicks, no opening the old Places world.
+      if(category==="places")return;
       pick(index);
       if(category==="work")openWork(index);
       else openNative(category,index);
