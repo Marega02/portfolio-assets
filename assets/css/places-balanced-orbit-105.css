@@ -1,0 +1,240 @@
+/* PHASE 105 — PLACES / BALANCED CLOSE 3D ORBIT
+   Visual rule: 1 full front face, 2 foreshortened side faces,
+   3 rear faces hidden. Six unchanged Places photos. The cylinder
+   advances exactly 60deg per wheel / keyboard movement.
+   Only Places. No WebGL or continuous animations. */
+.world-hub.fi92-ready.fi95-ready .fi95-item[hidden]{display:none!important;}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-cluster{
+  width:min(1100px,100%)!important;
+  height:100%!important;
+  min-height:340px!important;
+  display:block!important;
+  position:relative!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  perspective:none!important;
+  transform-style:preserve-3d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-cluster::before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-cluster::after,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-cluster-spine{
+  display:none!important;
+  content:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage{
+  --fi102-radius:178px;
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:340px!important;
+  overflow:visible!important;
+  perspective:none!important;
+  transform-style:preserve-3d!important;
+  touch-action:none!important;
+  cursor:grab!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage.fi102-dragging{
+  cursor:grabbing!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+  position:absolute!important;
+  inset:0!important;
+  overflow:visible!important;
+  perspective:900px!important;
+  transform-style:preserve-3d!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-rotor{
+  position:absolute!important;
+  top:50%!important;left:50%!important;
+  width:0!important;height:0!important;
+  transform-origin:0 0!important;
+  transform-style:preserve-3d!important;
+  transition:transform .66s cubic-bezier(.2,.8,.2,1)!important;
+  backface-visibility:visible!important;
+  pointer-events:auto!important;
+  will-change:transform;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage.fi102-dragging .fi102-rotor{
+  transition:none!important;
+}
+/* This is only a subtle spatial anchor. The images are the focus. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-axis{
+  position:absolute!important;
+  width:min(420px,63%)!important;
+  height:min(220px,54%)!important;
+  left:50%!important;top:52%!important;
+  transform:translate(-50%,-50%) rotate(-2deg)!important;
+  border-radius:50%!important;
+  border:1px solid rgba(226,236,255,.14)!important;
+  box-shadow:0 0 0 1px rgba(232,240,255,.025)!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-sculpture{
+  width:clamp(84px,7vw,105px)!important;
+  height:clamp(84px,7vw,105px)!important;
+  transform:translate3d(-50%,-50%,-120px)!important;
+  opacity:.39!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-sculpture .fi100-metal-loop{
+  border-width:5px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-sculpture .fi100-sculpture-mark{
+  font-size:27px!important;
+}
+/* Each face belongs to a true 6-sided circular ring in 3D:
+     rotateY(0,60,120,180,240,300) translateZ(radius).
+   Backface culling hides the three faces behind the cylinder.
+   One perspective plane and correct transform order preserve real curvature. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi100-photo.fi102-photo{
+  --fi102-angle:0deg;
+  --fi102-card-width:clamp(116px,9.5vw,136px);
+  position:absolute!important;
+  display:flex!important;
+  top:0!important;
+  left:0!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:var(--fi102-card-width)!important;
+  min-width:0!important;
+  flex:0 0 var(--fi102-card-width)!important;
+  margin:0!important;
+  padding:0!important;
+  transform-origin:50% 50%!important;
+  transform:
+    translate3d(-50%,-50%,0)
+    rotateY(var(--fi102-angle))
+    translateZ(var(--fi102-radius))!important;
+  transform-style:flat!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+  transition:none!important;
+  z-index:auto!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  cursor:grab!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi100-photo.fi102-photo:is(:hover,:focus-visible,.fi95-selected,.fi102-front,.fi102-side){
+  transform:
+    translate3d(-50%,-50%,0)
+    rotateY(var(--fi102-angle))
+    translateZ(var(--fi102-radius))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame{
+  display:block!important;
+  width:100%!important;
+  height:clamp(138px,19vh,167px)!important;
+  background:#1b3651!important;
+  border-radius:4px!important;
+  border:1px solid rgba(245,248,255,.51)!important;
+  box-shadow:11px 23px 28px rgba(3,8,44,.38)!important;
+  overflow:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame:before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame:after{
+  border-radius:4px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-image,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-image img{
+  width:100%!important;
+  height:100%!important;
+  border-radius:4px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-image img{
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:saturate(.93) contrast(1.02)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta{
+  align-items:center!important;
+  text-align:center!important;
+  gap:4px!important;
+  margin:10px 0 0!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta strong{
+  color:#faf8f3!important;
+  font:750 clamp(12px,1.1vw,15px)/1.1 Arial,sans-serif!important;
+  text-align:center!important;
+  letter-spacing:-.03em!important;
+  white-space:normal!important;
+  text-shadow:0 2px 9px rgba(2,9,46,.55);
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta small{
+  color:#dce5ff!important;
+  font:650 9px/1.15 ui-monospace,Consolas,monospace!important;
+  text-align:center!important;
+  letter-spacing:.085em!important;
+  white-space:normal!important;
+  text-shadow:0 2px 6px rgba(2,9,46,.35);
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-open{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi102-instruction{
+  z-index:10!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi100-scene-meta{
+  top:12px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi102-instruction{
+  bottom:10px!important;
+}
+/* Preserve the dramatic blue 3D space from phase 100. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on{
+  background:
+    radial-gradient(ellipse 66% 72% at 50% 52%,rgba(29,72,207,.84),rgba(20,41,135,.63) 43%,transparent 83%),
+    linear-gradient(125deg,#071644,#122c8c 49%,#040d2d)!important;
+}
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-cluster{
+    width:100%!important;
+    min-height:300px!important;
+    overflow:visible!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage{
+    min-height:300px!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+    perspective:760px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi100-photo.fi102-photo{
+    --fi102-card-width:clamp(106px,17vw,124px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame{
+    height:clamp(127px,19vh,153px)!important;
+  }
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-cluster,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage{
+    min-height:275px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi100-photo.fi102-photo{
+    --fi102-card-width:clamp(95px,28vw,112px);
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame{
+    height:clamp(120px,18vh,139px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-sculpture{
+    width:84px!important;height:84px!important;
+    opacity:.35!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi100-scene-meta,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi102-instruction{
+    font-size:7px!important;letter-spacing:.07em!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-rotor{
+    transition:none!important;
+  }
+}
