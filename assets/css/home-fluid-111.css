@@ -1,0 +1,143 @@
+/* PHASE 111 — A LIGHTER HOME
+   Editorial, responsive and stable. Four original Webflow category links
+   remain active. GPU transform-only hover instead of animating the grid
+   track sizes on every mouse movement. Restores original vertical
+   category reveal with a slightly quicker, cleaner timing.
+*/
+
+/* Old "World Index" from the Webflow site is no longer displayed.
+   The linked native targets remain present for real navigation. */
+.world-hub .world-index,
+.world-hub .fi92-edition,
+.world-hub .fi92-intro-mark,
+.world-hub .fi92-footer{
+  display:none!important;
+}
+/* All four photos remain full-strength; no grayscale or disappearing
+   frame, even when selection switches during repeated pointer movements. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  transition:none!important;
+  perspective:none!important;
+  gap:clamp(8px,.78vw,12px)!important;
+}
+@media(min-width:791px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home[data-active="work"] .fi95-gallery,
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home[data-active="sound"] .fi95-gallery,
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home[data-active="places"] .fi95-gallery,
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home[data-active="about"] .fi95-gallery{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]{
+  overflow:hidden!important;
+  opacity:1!important;visibility:visible!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  transform-origin:center 55%!important;
+  transition:transform .235s cubic-bezier(.2,.8,.2,1),
+    border-color .235s ease,box-shadow .235s ease!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.18)!important;
+  border:1px solid rgba(242,239,225,.26)!important;
+  border-radius:2px!important;
+  backface-visibility:visible!important;
+}
+@media(min-width:791px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(.fi95-current,:hover,:focus-within){
+    transform:translate3d(0,-5px,0) scale(1.085)!important;
+    border-color:rgba(247,242,222,.76)!important;
+    box-shadow:0 19px 36px rgba(0,0,0,.27)!important;
+    z-index:9!important;
+  }
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-photo-wrap{
+  transform:none!important;
+  transition:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-image-overlay{
+  opacity:1!important;
+  background:linear-gradient(180deg,rgba(3,6,7,.10),transparent 28%,rgba(1,4,5,.04) 51%,rgba(2,4,5,.68) 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-panel-text{
+  bottom:clamp(16px,2.35vw,29px)!important;
+  left:clamp(13px,1.1vw,19px)!important;
+  transition:transform .23s cubic-bezier(.2,.8,.2,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,:focus-within,.fi95-current) .fi95-panel-text{
+  transform:translate3d(0,-4px,0)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-panel-num{
+  font:650 10px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.1em!important;
+  color:#f9f6ec!important;
+  opacity:.85!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi108-panel-desc{
+  letter-spacing:.075em!important;
+  color:#f0e8df!important;
+  opacity:.82!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .world-name{
+  font-weight:750!important;
+  letter-spacing:-.048em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-intro{
+  top:clamp(13px,3.4vh,35px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-intro h1{
+  font-size:clamp(25px,3.25vw,46px)!important;
+  letter-spacing:-.075em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-rail-bottom{
+  color:#bdbeb6!important;
+  letter-spacing:.14em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-current-title{
+  color:#e1d8cb!important;
+  font-size:12px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home{
+  background:
+    radial-gradient(ellipse 58% 58% at 51% 45%,rgba(75,82,76,.19),transparent 82%),
+    linear-gradient(136deg,#161919 0%,#111315 57%,#0c0e11 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-home-foot{
+  border-top:1px solid rgba(221,220,211,.15)!important;
+}
+/* The distinctive upward/downward transition remains. A modestly shorter
+   duration makes the entrance feel natural and free of sluggishness. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home{
+  transition:transform .39s cubic-bezier(.28,.78,.26,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level{
+  transition:transform .39s cubic-bezier(.28,.78,.26,1),
+    visibility 0s linear .39s!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-level{
+  transition:transform .39s cubic-bezier(.28,.78,.26,1),
+    visibility 0s!important;
+}
+@media(max-width:790px){
+  /* Swipe layouts remain horizontal; fixed-size panels preserve touch. */
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+    grid-template-columns:none!important;
+    display:flex!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category],
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within){
+    transform:none!important;
+    border-color:rgba(241,237,222,.33)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-intro h1{
+    font-size:clamp(20px,5vw,33px)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home,
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready .fi95-level{
+    transition:none!important;
+  }
+}
