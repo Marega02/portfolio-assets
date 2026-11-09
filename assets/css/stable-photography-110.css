@@ -1,0 +1,152 @@
+/* PHASE 110 — STABLE HOME PHOTOGRAPHS / SHARP PLACES
+   Permanent photos are painted on the Home CARD surface itself (not only
+   the hidden preload image or conditional photo-wrap). Hover can't remove
+   them. Places keeps the exact working 3D orbit of phases 105–109.
+*/
+
+/* HOME — keep the image on the parent panel through every hover,
+   focus change and layout transition, including the first hover. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]{
+  background-color:#25312f!important;
+  background-image:var(--fi110-permanent-photo,linear-gradient(142deg,#364742,#172124))!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  backface-visibility:visible!important;
+  -webkit-backface-visibility:visible!important;
+}
+/* Override old per-card solid "background:" shorthands, even on hover. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category].fi95-current,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:hover,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:focus-within{
+  background-image:var(--fi110-permanent-photo,linear-gradient(142deg,#364742,#172124))!important;
+  background-position:center!important;
+  background-size:cover!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+/* The former conditional photo plane is no longer used to SHOW imagery.
+   Keep it transparent so its fallback/gradient cannot obscure the card. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-photo-wrap{
+  background:transparent!important;
+  background-image:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  transition:none!important;
+  filter:none!important;
+  backface-visibility:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-cover{
+  /* Existing <img> is kept for load/error detection, but cannot create a
+     disappearing photo layer over the always-visible card background. */
+  display:block!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  transition:none!important;
+  pointer-events:none!important;
+}
+/* Old decorative masks on the PANEL itself might activate on the first
+   hover in the bundled code; don't let them cover the photo. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]::before,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]::after{
+  content:none!important;
+  display:none!important;
+}
+/* Retain a single lightweight gradient that keeps the white names legible. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-image-overlay{
+  opacity:1!important;
+  visibility:visible!important;
+  background:linear-gradient(180deg,rgba(4,6,7,.05) 0%,transparent 33%,rgba(5,7,8,.13) 54%,rgba(3,5,6,.68) 100%)!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category].fi95-image-fallback{
+  /* The final gradient is only needed if BOTH verified URLs fail. */
+  background-image:var(--fi110-permanent-photo,linear-gradient(150deg,#374c44,#151e21))!important;
+}
+/* Keep the expanded card width from Phase 109; reduce the upward jump
+   slightly to avoid moving the pointer between cards at the edge. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(.fi95-current,:hover,:focus-within){
+  transform:translate3d(0,-3px,0)!important;
+}
+/* Remove the Index rail: no empty label or line above the photographs. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-rail-top{
+  display:none!important;
+}
+
+/* PLACES — sharper source photographs, no soft image effects.
+   No changes to radius, 60-degree slots, drag, wheel or oval geometry. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-image{
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  overflow:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-image img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  transform:none!important;
+  transition:none!important;
+  image-rendering:auto!important;
+  backface-visibility:visible!important;
+}
+/* Less shadow/texture over images. Keep enough contrast for captions. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame{
+  border:1px solid rgba(227,225,211,.67)!important;
+  background:#293431!important;
+  box-shadow:0 13px 29px rgba(4,9,9,.28),0 0 0 1px rgba(230,224,197,.06)!important;
+  overflow:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame::before{
+  opacity:.17!important;
+  background:linear-gradient(115deg,rgba(255,255,255,.16),transparent 25%,transparent 85%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame::after{
+  opacity:.45!important;
+  background:linear-gradient(180deg,rgba(0,0,0,.04),transparent 58%,rgba(0,0,0,.10))!important;
+}
+/* Slightly cleaner editorial framing and more breathing room. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-title h2{
+  letter-spacing:-.068em!important;
+  font-weight:720!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-caption{
+  color:#c6cabc!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi109-place-readout{
+  gap:7px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi109-place-name{
+  text-wrap:balance;
+  text-shadow:0 1px 10px rgba(1,5,4,.15)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi109-place-country{
+  color:#c4cabd!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-head{
+  border-bottom-color:rgba(227,220,199,.17)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi95-level-foot{
+  border-top-color:rgba(227,220,199,.19)!important;
+}
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]{
+    /* The same immutable photo plane on touch devices. */
+    background-size:cover!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]{
+    transition:none!important;
+  }
+}
