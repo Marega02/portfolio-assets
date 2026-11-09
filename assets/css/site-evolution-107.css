@@ -1,0 +1,227 @@
+/* PHASE 107 — HOME FLUIDITY + PLACES HORIZONTAL ELLIPSE
+   Keep Phase 105 cylinder and Phase 106 atlas. This layer:
+   • reduces Home cards and their transition cost
+   • makes the photos more readable without over-darkening
+   • opens each chapter with a shorter GPU-only slide
+   • gives Places a real wider-X / shallower-Z oval, long side facing viewer
+   • adds subtle atlas editorial detailing; no animations or WebGL.
+*/
+
+/* HOME — smaller, cleaner photographic navigation. No flex-growth animation:
+   changing active index must not trigger width redistribution of all panels. */
+.world-hub.fi92-ready.fi95-ready .fi95-home{
+  background:
+    radial-gradient(ellipse 60% 58% at 48% 48%,rgba(76,79,76,.24),transparent 85%),
+    linear-gradient(140deg,#171b1d 0%,#0e1215 55%,#090c0f 100%)!important;
+  transition:transform .43s cubic-bezier(.32,.77,.24,1)!important;
+  backface-visibility:hidden;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-gallery{
+  width:min(790px,78vw)!important;
+  height:min(58vh,550px)!important;
+  min-height:310px!important;
+  gap:clamp(8px,.75vw,12px)!important;
+  padding:0 5px!important;
+  perspective:1300px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel{
+  flex:1 1 0!important;
+  flex-grow:1!important;
+  height:81%!important;
+  transform:translate3d(0,0,0) rotateY(0deg)!important;
+  border:1px solid rgba(221,223,217,.23)!important;
+  border-radius:3px!important;
+  box-shadow:9px 18px 30px rgba(0,0,0,.21)!important;
+  transition:transform .32s cubic-bezier(.2,.8,.25,1),
+             border-color .22s ease,
+             box-shadow .25s ease!important;
+  contain:layout style;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel:nth-child(1){
+  transform:translate3d(0,3px,-9px) rotateY(10deg)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel:nth-child(2){
+  transform:translate3d(0,0,0) rotateY(3deg)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel:nth-child(3){
+  transform:translate3d(0,0,0) rotateY(-3deg)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel:nth-child(4){
+  transform:translate3d(0,3px,-9px) rotateY(-10deg)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel.fi95-current,
+.world-hub.fi92-ready.fi95-ready .fi95-panel:is(:hover,:focus-within){
+  flex-grow:1!important;
+  transform:translate3d(0,-7px,22px) rotateY(0deg)!important;
+  z-index:8!important;
+  border-color:rgba(242,233,218,.69)!important;
+  box-shadow:0 19px 34px rgba(0,0,0,.28)!important;
+}
+/* Brighter photographs: the original double dark gradients plus grayscale
+   and brightness(.72) had hidden their contents. */
+.world-hub.fi92-ready.fi95-ready .fi95-gallery .fi95-panel .fi95-cover,
+.world-hub.fi92-ready.fi95-ready .fi95-gallery .fi95-panel.fi95-current .fi95-cover,
+.world-hub.fi92-ready.fi95-ready .fi95-gallery .fi95-panel:not(.fi95-current) .fi95-cover{
+  display:block!important;
+  opacity:1!important;
+  filter:saturate(.90) contrast(1.05) brightness(1.01)!important;
+  transform:scale(1.012)!important;
+  transition:transform .34s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-gallery .fi95-panel:is(:hover,:focus-within) .fi95-cover{
+  transform:scale(1.045)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-image-overlay{
+  background:
+    linear-gradient(180deg,rgba(4,9,12,.14) 0%,transparent 26%,transparent 54%,rgba(4,8,10,.63) 100%),
+    linear-gradient(90deg,rgba(6,10,12,.075),transparent 55%,rgba(6,10,12,.075))!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel .world-link .world-name{
+  font-size:clamp(17px,1.75vw,22px)!important;
+  text-shadow:0 2px 11px rgba(0,0,0,.62)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel-text{
+  left:clamp(12px,1.5vw,21px)!important;
+  bottom:clamp(17px,3vh,29px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-panel-arrow{
+  right:14px!important;
+  bottom:clamp(18px,3vh,30px)!important;
+  font-size:20px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-gallery .fi95-panel.fi95-image-fallback .fi95-photo-wrap{
+  background:
+    radial-gradient(ellipse 56% 56% at 50% 33%,rgba(192,177,149,.27),transparent 85%),
+    linear-gradient(140deg,#4e5753,#29373a 55%,#192226)!important;
+}
+/* The Home→chapter slide is now shorter, lighter, and has no width reflow. */
+.world-hub.fi92-ready.fi95-ready .fi95-level{
+  transition:transform .43s cubic-bezier(.32,.77,.24,1),
+             visibility 0s linear .43s!important;
+  backface-visibility:hidden;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-level{
+  transition:transform .43s cubic-bezier(.32,.77,.24,1),
+             visibility 0s!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-home{
+  transform:translate3d(0,-100%,0)!important;
+}
+
+/* PLACES — long axis horizontally across the user's view (X), the short
+   axis extending into the screen (Z). These are different axes of the
+   circular orbit, not a 2D card row. Preserve all 60deg slots and nav. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+  transform:scale3d(1.29,.985,.865)!important;
+  transform-origin:50% 50%!important;
+  transform-style:preserve-3d!important;
+}
+/* Counter the scene's horizontal stretch on PHOTO contents. Their shape
+   and typographic proportions stay close to the successful Phase 105. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta{
+  transform:scaleX(.80)!important;
+  transform-origin:50% 50%!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-axis{
+  width:min(455px,69%)!important;
+  height:min(126px,34%)!important;
+  top:50%!important;
+  transform:translate(-50%,-50%) rotate(-3deg)!important;
+  border-color:rgba(211,202,169,.16)!important;
+}
+
+/* A deeper atlas and understated editorial framing: no extra images. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on{
+  background:
+    radial-gradient(ellipse 41% 45% at 50% 57%,rgba(154,122,77,.21),transparent 77%),
+    radial-gradient(ellipse 65% 73% at 10% 90%,rgba(58,88,76,.27),transparent 75%),
+    radial-gradient(ellipse 68% 58% at 88% 5%,rgba(53,73,78,.27),transparent 78%),
+    linear-gradient(125deg,#11191a,#1b2726 47%,#0d1417 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi100-places-on::before{
+  opacity:.7!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-title h2{
+  letter-spacing:-.063em!important;
+  text-shadow:0 8px 24px rgba(6,12,12,.2)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-title::after{
+  content:"AN ATLAS OF MOMENTS — 06 DESTINATIONS";
+  display:block;
+  margin:13px auto 4px;
+  color:#a9b5a8;
+  font:600 9px/1.4 ui-monospace,Consolas,monospace;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  pointer-events:none;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-foot{
+  border-color:rgba(202,198,165,.23)!important;
+  letter-spacing:.13em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi102-instruction{
+  color:#c8c7b5!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-sculpture{
+  display:none!important;
+}
+
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-gallery{
+    width:100%!important;
+    height:min(61vh,515px)!important;
+    min-height:320px!important;
+    gap:10px!important;
+    padding:0 14vw 0 8vw!important;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready .fi95-panel.fi95-current,
+  .world-hub.fi92-ready.fi95-ready .fi95-panel:is(:hover,:focus-within){
+    flex:0 0 min(55vw,292px)!important;
+    width:min(55vw,292px)!important;
+    height:73%!important;
+    transform:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+    transform:scale3d(1.19,.99,.90)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta{
+    transform:scaleX(.86)!important;
+  }
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-gallery{
+    min-height:295px!important;
+    height:min(60vh,475px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready .fi95-panel.fi95-current,
+  .world-hub.fi92-ready.fi95-ready .fi95-panel:is(:hover,:focus-within){
+    flex:0 0 min(59vw,250px)!important;
+    width:min(59vw,250px)!important;
+    height:76%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-title::after{
+    font-size:7px;
+    letter-spacing:.10em;
+    margin:7px auto 3px;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+    transform:scale3d(1.13,1,.93)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta{
+    transform:scaleX(.90)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-home,
+  .world-hub.fi92-ready.fi95-ready .fi95-level,
+  .world-hub.fi92-ready.fi95-ready .fi95-panel{
+    transition:none!important;
+  }
+}
