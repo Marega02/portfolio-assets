@@ -46,7 +46,7 @@
         ]
       },
       places:{
-        label:"PLACES",detail:"AN ORBITAL STUDY / VISUAL TEST",cover:"https://s3.amazonaws.com/webflow-prod-assets/6adce03b89b49e519149623e/6ae398defd72a627ec25328e_1.jpg",accent:"#b6d8cb",
+        label:"PLACES",detail:"MEMORIES IN MOTION / PERSONAL ATLAS",cover:"https://s3.amazonaws.com/webflow-prod-assets/6adce03b89b49e519149623e/6ae398defd72a627ec25328e_1.jpg",accent:"#b6d8cb",
         items:[
           // Original three Places: keep them intact.
           {name:"SOČA VALLEY",sub:"SLOVENIA",value:"soca",src:photo("8920813")},
@@ -279,7 +279,7 @@
         image.src=item.src;
       });
       chapter.querySelector(".fi95-level-foot span:first-child").textContent=
-        key==="places"?"SIX PLACES / SPATIAL EXPERIMENT — NO LINKS":"THREE SELECTED FRAGMENTS";
+        key==="places"?"SIX DESTINATIONS / MEMORIES IN MOTION":"THREE SELECTED FRAGMENTS";
       pick(index);
     }
     function openLevel(key,index=0){
