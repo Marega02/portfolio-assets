@@ -1,0 +1,163 @@
+/* PHASE 112 — HOME PHOTO EXPANSION + PLACES / SOUND-LIKE ORBIT
+   Keep the exact six Places locations and four Home native links.
+   • Home selection actually opens the selected photo, via changing the
+     WIDTH of only that image frame (not the gallery's grid tracks).
+     No opacity, blur, filter or animation loop: photos stay visible.
+   • Places adopts Sound's shorter transitions and more readable
+     3D side faces, while retaining its own palette and six-stop rhythm.
+*/
+
+/* HOME: stable grid tracks, expanded photographic card, no huge relayout.
+   The four tracks remain fixed; only the selected child grows outward.
+   Background-image is on the same card, so no hover image disappearance. */
+@media(min-width:791px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-rows:1fr!important;
+    overflow:visible!important;
+    gap:clamp(9px,.8vw,14px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    height:100%!important;
+    flex:none!important;
+    opacity:1!important;
+    visibility:visible!important;
+    transform:translate3d(0,0,0)!important;
+    transform-origin:50% 50%!important;
+    z-index:1!important;
+    border-color:rgba(238,235,221,.3)!important;
+    transition:
+      width .27s cubic-bezier(.22,.80,.25,1),
+      margin-left .27s cubic-bezier(.22,.80,.25,1),
+      transform .27s cubic-bezier(.22,.80,.25,1),
+      border-color .22s ease,
+      box-shadow .22s ease!important;
+    backface-visibility:visible!important;
+    isolation:isolate!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(.fi95-current,:hover,:focus-within){
+    width:146%!important;
+    max-width:none!important;
+    margin-left:-23%!important;
+    margin-right:0!important;
+    height:100%!important;
+    transform:translate3d(0,-4px,0)!important;
+    z-index:12!important;
+    opacity:1!important;
+    visibility:visible!important;
+    border-color:rgba(248,241,224,.89)!important;
+    box-shadow:0 20px 36px rgba(0,0,0,.30)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-panel-text{
+    transition:transform .25s cubic-bezier(.22,.80,.25,1)!important;
+  }
+}
+/* The actual photograph is drawn on each panel itself since Phase 110.
+   Keep the same background throughout, including selected states. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category],
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(.fi95-current,:hover,:focus-within){
+  background-image:var(--fi110-permanent-photo,linear-gradient(130deg,#394d45,#1b2528))!important;
+  background-size:cover!important;
+  background-position:center!important;
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-photo-wrap{
+  background:none!important;
+  transform:none!important;
+  opacity:1!important;
+}
+/* Content remains calm while the photo opens. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-panel .world-link .world-name{
+  color:#faf8f2!important;
+  text-shadow:0 2px 12px rgba(0,0,0,.48)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-panel .fi95-image-overlay{
+  background:linear-gradient(180deg,rgba(5,9,8,.07),transparent 34%,rgba(2,5,5,.14) 64%,rgba(2,4,5,.70) 100%)!important;
+}
+
+/* PLACES: six destinations in an oval cylinder, but the camera and side
+   faces now behave more like Sound's handsome three-visible orbit. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+  perspective:930px!important;
+  transform:scale3d(1.14,.99,.94)!important;
+  transform-origin:50% 50%!important;
+  transform-style:preserve-3d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-rotor{
+  transition:transform .49s cubic-bezier(.22,.79,.25,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage.fi102-dragging .fi102-rotor{
+  transition:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi100-photo.fi102-photo{
+  transform-style:preserve-3d!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta{
+  transform:scaleX(.885)!important;
+  transform-origin:50% 50%!important;
+  backface-visibility:visible!important;
+  transition:none!important;
+}
+/* Counter-rotate ONLY the immediate neighbours by ~18° to display more
+   photo surface (60° cylinder becomes ~42° effective facing direction). */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-right .fi95-item-frame,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-right .fi95-item-meta{
+  transform:rotateY(-18deg) scaleX(.885)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-left .fi95-item-frame,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-left .fi95-item-meta{
+  transform:rotateY(18deg) scaleX(.885)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame{
+  border-radius:2px!important;
+  border-color:rgba(234,225,206,.62)!important;
+  box-shadow:0 16px 29px rgba(3,9,9,.30),0 0 0 1px rgba(235,225,195,.04)!important;
+}
+/* Readout and controls pick up Sound's balanced micro-typography. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi109-place-name{
+  font-size:clamp(22px,2.7vw,35px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-stage .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-stage .fi102-instruction{
+  letter-spacing:.15em!important;
+}
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+    transform:scale3d(1.115,.99,.95)!important;
+    perspective:850px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta{
+    transform:scaleX(.9)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-right .fi95-item-frame,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-right .fi95-item-meta{
+    transform:rotateY(-14deg) scaleX(.9)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-left .fi95-item-frame,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo.fi112-side-left .fi95-item-meta{
+    transform:rotateY(14deg) scaleX(.9)!important;
+  }
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+    transform:scale3d(1.075,1,.96)!important;
+    perspective:750px!important;
+  }
+}
+/* The newer sound and older places each keep reduced motion preference. */
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category],
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-rotor{
+    transition:none!important;
+  }
+}
