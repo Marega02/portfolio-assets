@@ -1,0 +1,115 @@
+/* PHASE 106 — PLACES / ATLAS ATMOSPHERE
+   Phase 105's proven six-photo 3D carousel remains unchanged.
+   Only three visual updates: editorial travel background, no LM object,
+   gently oval orbit (no new animation, JS or rendering work). */
+
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on.fi100-places-on {
+  /* Dusk atlas: graphite, moss-grey, dusky sandstone and warm horizon light. */
+  background:
+    radial-gradient(ellipse 42% 39% at 51% 59%, rgba(150,123,94,.145) 0%, rgba(92,82,67,.05) 48%, transparent 90%),
+    radial-gradient(ellipse 60% 80% at 15% 77%, rgba(67,92,80,.20) 0%, transparent 74%),
+    radial-gradient(ellipse 65% 60% at 87% 25%, rgba(52,73,80,.22) 0%, transparent 82%),
+    linear-gradient(132deg, #111a1c 0%, #182123 27%, #1b2424 51%, #121a1c 78%, #0d1416 100%)!important;
+  color:#eae8df!important;
+}
+/* The atlas contours replace the previous blue digital grid.
+   CSS-only; no images, SVG files, canvases, animation loops or requests. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on.fi100-places-on::before {
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  opacity:.57!important;
+  background-image:
+    repeating-radial-gradient(
+      ellipse 48% 47% at 4% 95%,
+      transparent 0px,
+      transparent 29px,
+      rgba(196,201,176,.095) 30px,
+      transparent 31px,
+      transparent 42px
+    ),
+    repeating-radial-gradient(
+      ellipse 58% 43% at 96% -12%,
+      transparent 0px,
+      transparent 35px,
+      rgba(191,207,196,.070) 36px,
+      transparent 37px,
+      transparent 51px
+    ),
+    radial-gradient(ellipse 60% 45% at 54% 50%,rgba(212,185,146,.05),transparent 78%)!important;
+  background-size:100% 100%!important;
+  background-position:center center!important;
+  mask-image:linear-gradient(110deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.32) 47%,rgba(0,0,0,.8) 100%)!important;
+  -webkit-mask-image:linear-gradient(110deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.32) 47%,rgba(0,0,0,.8) 100%)!important;
+}
+
+/* The metal monogram and surrounding rings are removed completely.
+   The six images become the only visual hero. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-sculpture {
+  display:none!important;
+}
+
+/* A faint elliptical horizon is enough to imply the orbit. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-axis {
+  width:min(405px,63%)!important;
+  height:min(154px,43%)!important;
+  top:51%!important;
+  transform:translate(-50%,-50%) rotate(-5deg)!important;
+  border:1px solid rgba(209,196,163,.13)!important;
+  box-shadow:none!important;
+  opacity:.75!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-axis::before {
+  border-color:rgba(202,197,171,.075)!important;
+}
+
+/* Ovalize the ACTUAL spatial scene (not just the decorative outline).
+   8% more horizontal width, 2% less height. The existing 60-degree
+   cylinder remains intact and still navigates identically. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world {
+  transform:scale3d(1.08,.98,1)!important;
+  transform-origin:50% 50%!important;
+  transform-style:preserve-3d!important;
+}
+
+/* Harmonize the outer typography with the travel/editorial palette. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-title h2 {
+  color:#f0eee5!important;
+  text-shadow:0 2px 16px rgba(0,0,0,.10)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-caption,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-number,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-sign {
+  color:#b4bdb1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-level-foot,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi102-instruction {
+  color:#b6c2b6!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi100-scene-meta,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-stage .fi102-instruction {
+  text-shadow:0 1px 6px rgba(3,9,8,.44)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-frame {
+  border-color:rgba(220,217,198,.48)!important;
+  box-shadow:11px 23px 28px rgba(1,5,5,.35)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta strong {
+  color:#f2f0e7!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi95-item.fi102-photo .fi95-item-meta small {
+  color:#bdc8b9!important;
+}
+
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-world {
+    transform:scale3d(1.045,.985,1)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"].fi102-carousel-on .fi102-axis {
+    width:74%!important;height:36%!important;
+  }
+}
