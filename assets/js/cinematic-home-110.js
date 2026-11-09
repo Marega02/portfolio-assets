@@ -49,7 +49,7 @@
         label:"PLACES",detail:"MEMORIES IN MOTION / PERSONAL ATLAS",cover:"https://s3.amazonaws.com/webflow-prod-assets/6adce03b89b49e519149623e/6af229d8d2ed6dd493860312_Places%20HD%20Soca%20Valley%20%E2%80%94%201600px.jpeg",accent:"#b6d8cb",
         items:[
           // Original three Places: keep them intact.
-          {name:"SOČA VALLEY",sub:"SLOVENIA",value:"soca",src:photo("8920813")},
+          {name:"SOČA VALLEY",sub:"SLOVENIA",value:"soca",src:"https://s3.amazonaws.com/webflow-prod-assets/6adce03b89b49e519149623e/6af229d8d2ed6dd493860312_Places%20HD%20Soca%20Valley%20%E2%80%94%201600px.jpeg"},
           {name:"LONDON",sub:"UNITED KINGDOM",value:"london",src:"https://s3.amazonaws.com/webflow-prod-assets/6adce03b89b49e519149623e/6af229f1a5ae357dc16c667a_Places%20HD%20London%20%E2%80%94%201600px.jpeg"},
           {name:"KUALA LUMPUR",sub:"MALAYSIA",value:"kl",src:"https://s3.amazonaws.com/webflow-prod-assets/6adce03b89b49e519149623e/6af22a07edb0c6ee38685e93_Places%20HD%20Kuala%20Lumpur%20%E2%80%94%201600px.jpeg"},
           // Three additional visual-only samples to test the spherical layout.
