@@ -1,0 +1,437 @@
+/* PHASE 108 — THE EDITORIAL INDEX
+   Inspired by the compositional restraint and tactile interaction of the
+   Aristide Benoist reference, without copying its artwork or page.
+   Home only: four compact photographic columns, no disappearance,
+   no changing column width, fast and calm chapter transitions.
+   Places / Work / Sound / About chapter designs remain unchanged. */
+
+/* THE ROOM */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home{
+  grid-template-rows:clamp(62px,10vh,82px) minmax(0,1fr) clamp(64px,10vh,78px)!important;
+  background:
+    radial-gradient(ellipse 56% 59% at 50% 51%,rgba(69,78,77,.21),transparent 84%),
+    linear-gradient(135deg,#171a1c 0%,#111417 49%,#0c0e11 100%)!important;
+  color:#f5f3ed!important;
+  opacity:1;
+  transform:translate3d(0,0,0)!important;
+  transition:transform .27s cubic-bezier(.24,.72,.36,1),opacity .27s ease!important;
+  backface-visibility:hidden!important;
+  overflow:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-head{
+  height:100%!important;
+  border-bottom:1px solid rgba(207,211,206,.15)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-logo{
+  font-size:clamp(27px,2.6vw,36px)!important;
+  letter-spacing:-.09em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-home-label{
+  font-size:9px!important;
+  color:#cecfca!important;
+  letter-spacing:.16em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-head-right{
+  color:#a3a6a3!important;
+  font-size:9px!important;
+  letter-spacing:.12em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery-wrap{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+}
+/* The four sections become a small editorial exhibition, not oversized UI
+   cards. The typographic hierarchy sits OUTSIDE the photographs. */
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro{
+  position:absolute!important;
+  z-index:5!important;
+  top:clamp(13px,3.8vh,38px)!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  width:min(890px,92%)!important;
+  margin:0!important;
+  text-align:center!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-kicker{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  font:650 9px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  letter-spacing:.19em!important;
+  color:#acb2ac!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-kicker i{
+  display:inline-block!important;
+  width:5px!important;height:5px!important;
+  background:#d0bda5!important;border-radius:50%!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro h1{
+  margin:8px 0 0!important;
+  padding:0!important;
+  font:650 clamp(24px,3.05vw,45px)/.98 Arial,Helvetica,sans-serif!important;
+  text-align:center!important;
+  letter-spacing:-.071em!important;
+  color:#f5f2eb!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro h1 em{
+  font-style:normal!important;
+  color:#8f9894!important;
+  font-weight:450!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-punctuation{
+  color:#c0a084!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail{
+  position:absolute!important;
+  left:50%!important;
+  width:min(710px,78vw)!important;
+  transform:translateX(-50%)!important;
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:10px!important;
+  z-index:5!important;
+  color:#a7aba6!important;
+  font:650 9px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  letter-spacing:.17em!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-top{
+  top:19.5%!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-bottom{
+  bottom:7%!important;
+  color:#b7b9b4!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-trackmarks{
+  display:none!important;
+}
+/* Stable 4-column composition: selecting another photo does not relayout
+   the four children. This removes the slow flex-grow animation from 95/96. */
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery{
+  position:absolute!important;
+  z-index:4!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:1fr!important;
+  align-items:stretch!important;
+  justify-content:stretch!important;
+  gap:clamp(8px,.75vw,13px)!important;
+  left:50%!important;top:52%!important;
+  transform:translate3d(-50%,-50%,0)!important;
+  width:min(710px,78vw)!important;
+  height:min(52vh,470px)!important;
+  min-height:245px!important;
+  padding:0!important;
+  margin:0!important;
+  perspective:1100px!important;
+  transform-style:flat!important;
+  overflow:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery:before{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel{
+  position:relative!important;
+  display:block!important;
+  grid-row:1!important;
+  flex:none!important;
+  flex-grow:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  contain:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  border:1px solid rgba(233,231,218,.22)!important;
+  border-radius:2px!important;
+  background:#24302e!important;
+  box-shadow:0 12px 22px rgba(0,0,0,.19)!important;
+  z-index:1!important;
+  transform:translate3d(0,0,0)!important;
+  transform-origin:50% 50%!important;
+  transition:transform .25s cubic-bezier(.22,.8,.27,1),
+             border-color .25s ease,
+             box-shadow .25s ease!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:nth-child(1){
+  background:#3a352f!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:nth-child(2){
+  background:#2d2529!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:nth-child(3){
+  background:#263d39!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:nth-child(4){
+  background:#292c2e!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel.fi95-current,
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:is(:hover,:focus-within){
+  width:100%!important;height:100%!important;
+  flex-grow:0!important;
+  transform:translate3d(0,-7px,0)!important;
+  z-index:8!important;
+  border-color:rgba(244,236,219,.89)!important;
+  box-shadow:0 18px 30px rgba(0,0,0,.29)!important;
+}
+/* Critical fix: images must never go transparent/hidden during hover or
+   while the active-index switches. No filter animations or dynamic masks. */
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-photo-wrap{
+  position:absolute!important;inset:0!important;
+  display:block!important;
+  overflow:hidden!important;
+  opacity:1!important;
+  visibility:visible!important;
+  background:transparent!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery .fi95-panel .fi95-cover,
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery .fi95-panel.fi95-current .fi95-cover,
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery .fi95-panel:not(.fi95-current) .fi95-cover,
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery .fi95-panel:is(:hover,:focus-within) .fi95-cover{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  opacity:1!important;
+  visibility:visible!important;
+  width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  transform:scale(1.01)!important;
+  transition:transform .36s cubic-bezier(.22,.8,.26,1)!important;
+  pointer-events:none!important;
+  backface-visibility:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:is(:hover,.fi95-current,:focus-within) .fi95-cover{
+  transform:scale(1.045)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-image-overlay{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg,rgba(4,7,9,.08) 0%,transparent 21%,transparent 42%,rgba(3,5,7,.72) 100%)!important;
+}
+/* The card is a photograph first; the name is a small editorial caption. */
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel-num{
+  top:15px!important;left:15px!important;
+  color:#fffdf7!important;font-size:10px!important;
+  letter-spacing:.11em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel-text{
+  left:clamp(11px,1.15vw,18px)!important;
+  right:8px!important;
+  bottom:clamp(17px,2.15vw,27px)!important;
+  z-index:6!important;
+  text-align:left!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel .world-link .world-name{
+  font:740 clamp(17px,1.68vw,25px)/.98 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.065em!important;
+  color:#faf9f3!important;
+  text-shadow:0 2px 12px rgba(1,3,5,.46)!important;
+  white-space:nowrap!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi108-panel-desc{
+  display:block!important;
+  margin-top:10px!important;
+  max-width:100%!important;
+  font:650 8px/1.35 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.085em!important;
+  color:#deddd3!important;
+  text-shadow:0 1px 8px rgba(0,0,0,.68)!important;
+  opacity:.88!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel-arrow{
+  right:11px!important;
+  bottom:20px!important;
+  font:400 17px/1 Arial,sans-serif!important;
+  opacity:0!important;
+  transition:opacity .2s ease!important;
+  transform:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:is(:hover,:focus-within,.fi95-current) .fi95-panel-arrow{
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-home-foot{
+  height:100%!important;
+  border-top:1px solid rgba(207,211,206,.15)!important;
+  color:#b2b5af!important;
+  letter-spacing:.13em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-current{
+  color:#f3eee5!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-current-title{
+  margin-left:4%!important;
+  color:#d4d2c8!important;
+  font-size:13px!important;
+  letter-spacing:.14em!important;
+}
+/* Instant and calm chapter reveal instead of moving two full-height
+   page layers through 100% of the viewport. No geometry recalculations. */
+.world-hub.fi92-ready.fi95-ready .fi95-level{
+  opacity:0!important;
+  transform:translate3d(0,15px,0)!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:opacity .28s ease,
+             transform .28s cubic-bezier(.22,.78,.24,1),
+             visibility 0s linear .28s!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-level{
+  opacity:1!important;
+  transform:translate3d(0,0,0)!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transition:opacity .28s ease,
+             transform .28s cubic-bezier(.22,.78,.24,1),
+             visibility 0s!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-home.fi108-home{
+  opacity:0!important;
+  transform:translate3d(0,-12px,0) scale(.995)!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home{
+  transition:opacity .27s ease,
+             transform .27s cubic-bezier(.2,.7,.2,1)!important;
+}
+/* This section remains informative even if an image request fails. */
+.world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel.fi95-image-fallback{
+  background:
+    radial-gradient(ellipse at 48% 21%,rgba(145,160,150,.20),transparent 65%),
+    linear-gradient(138deg,#343f40,#1c272c)!important;
+}
+
+/* MOBILE: native swipe, no perspective or expensive scale animations. */
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-head{
+    height:100%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery-wrap{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro{
+    top:9px!important;
+    width:100%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro h1{
+    font-size:clamp(22px,5.3vw,35px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail{
+    width:100%!important;
+    font-size:8px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-top{
+    top:19%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-bottom{
+    bottom:9%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery{
+    position:relative!important;
+    left:auto!important;top:auto!important;
+    transform:none!important;
+    display:flex!important;
+    justify-content:flex-start!important;
+    align-items:center!important;
+    grid-template-columns:none!important;
+    width:100%!important;
+    height:min(58vh,500px)!important;
+    min-height:225px!important;
+    gap:11px!important;
+    padding:0 17vw 0 9vw!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;
+    scroll-padding:0 12vw!important;
+    -webkit-overflow-scrolling:touch;
+    perspective:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel.fi95-current,
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel:is(:hover,:focus-within){
+    flex:0 0 min(55vw,285px)!important;
+    width:min(55vw,285px)!important;
+    height:79%!important;
+    transform:none!important;
+    scroll-snap-align:center!important;
+    transition:border-color .18s ease!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel-text{
+    bottom:20px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel .world-link .world-name{
+    font-size:clamp(20px,4vw,26px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-panel-desc{
+    font-size:8px!important;
+  }
+}
+@media(max-width:560px){
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-home-label{
+    margin-left:auto!important;margin-right:0!important;
+    text-align:right!important;
+    font-size:8px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro{
+    top:10px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-intro h1{
+    font-size:clamp(19px,5vw,26px)!important;
+    margin-top:7px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-kicker{
+    font-size:7px!important;letter-spacing:.12em!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-top{
+    top:18%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-bottom{
+    bottom:9%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-gallery{
+    min-height:235px!important;
+    height:min(57vh,445px)!important;
+    padding:0 17vw 0 8vw!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel{
+    flex:0 0 min(58vw,255px)!important;
+    width:min(58vw,255px)!important;
+    height:77%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi108-rail-bottom span:last-child{
+    display:none!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-panel,
+  .world-hub.fi92-ready.fi95-ready .fi108-home .fi95-cover,
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home,
+  .world-hub.fi92-ready.fi95-ready .fi95-level{
+    transition:none!important;
+  }
+}
