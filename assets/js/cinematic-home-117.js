@@ -292,11 +292,10 @@
       if(!isTouch){
         const sizes=[.915,.915,.915,.915];
         sizes[active]=1.26;
-        gallery.style.setProperty("display","grid","important");
         gallery.style.setProperty("grid-template-columns",
           sizes.map(v=>"minmax(0,"+v+"fr)").join(" "),"important");
         gallery.style.setProperty("transition",
-          "grid-template-columns 1.02s cubic-bezier(.45,.05,.20,1) .06s","important");
+          reduced.matches?"none":"grid-template-columns 1.02s cubic-bezier(.45,.05,.20,1) .06s","important");
       }
       home.querySelector(".fi95-current").textContent="0"+(active+1)+" / 04";
       home.querySelector(".fi95-current-title").textContent=meta[keys[active]].label;
@@ -402,7 +401,6 @@
       },true);
       cards[i].addEventListener("mouseenter",()=>focusCard(i));
       cards[i].addEventListener("focusin",()=>focusCard(i));
-      cards[i].addEventListener("pointerenter",()=>focusCard(i),{passive:true});
       cards[i].addEventListener("click",event=>{
         if(event.target.closest("a,button"))return;
         link.click();
