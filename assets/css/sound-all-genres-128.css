@@ -1,0 +1,68 @@
+/* PHASE 128 — ALL TEN SOUND LIBRARIES
+   Inherit the approved Phase127 editorial album layout. Each genre gets
+   its own subtle atmosphere without changing the digital elevator. */
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi123-album-room.fi127-archive{
+  background:
+    radial-gradient(ellipse at 15% 7%,color-mix(in srgb,var(--fi128-glow,#9c7a70) 25%,transparent),transparent 60%),
+    radial-gradient(ellipse at 85% 86%,rgba(71,92,94,.13),transparent 61%),
+    linear-gradient(126deg,#17191b 0%,#212026 55%,#15191b 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-soul{
+  --fi128-glow:#b7785d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-hiphop{
+  --fi128-glow:#ba8665!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-jazz{
+  --fi128-glow:#98724b!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-rnb{
+  --fi128-glow:#8c718f!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-funk{
+  --fi128-glow:#b19055!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-electronic{
+  --fi128-glow:#5d819f!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-ukrap{
+  --fi128-glow:#9a7473!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-rock{
+  --fi128-glow:#7f7268!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-songwriters{
+  --fi128-glow:#8c9773!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-alternative{
+  --fi128-glow:#6f8c84!important;
+}
+/* Long but deliberate genre names should not collide with the notes. */
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-songwriters .fi127-intro h3{
+  font-size:clamp(31px,4.4vw,56px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi127-intro h3{
+  overflow-wrap:anywhere!important;
+}
+/* The typographic sleeve is complete artwork when a remote archive lacks
+   the original photo; never show blank tiles or broken-image symbols. */
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi127-record-art,
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi127-spotlight-art{
+  background-color:#37313a!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi127-real-art{
+  opacity:1!important;
+  object-fit:cover!important;
+  color:transparent!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi127-spotify{
+  min-height:39px!important;
+}
+@media(max-width:650px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi128-genre-songwriters .fi127-intro h3{
+    font-size:clamp(27px,7.5vw,41px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor .fi127-artist-head h4{
+    overflow-wrap:anywhere!important;
+  }
+}
