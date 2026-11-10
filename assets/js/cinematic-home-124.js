@@ -88,7 +88,7 @@
       '</header>'+
       '<main class="fi95-gallery-wrap">'+
         '<div class="fi108-intro">'+
-          '<span class="fi108-kicker"><i aria-hidden="true"></i> SELECTED CHAPTERS / NO. 01—04</span>'+
+          '<span class="fi108-kicker"><i aria-hidden="true"></i> SELECTED CHAPTERS / FOUR WORLDS</span>'+
           '<h1>FOUR SIDES<span class="fi108-punctuation">.</span><em> ONE STORY.</em></h1>'+
         '</div>'+
 
