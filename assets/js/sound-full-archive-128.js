@@ -208,7 +208,7 @@
     button.setAttribute("aria-pressed","false");
     button.innerHTML=
       '<span class="fi127-record-frame">'+
-        '<span class="fi127-record-art" data-record="'+r.number+'" style="--fi127-tint:'+hueColors[r.group]+'">'+
+        '<span class="fi127-record-art" data-record="'+r.number+'" style="--fi127-tint:'+hueColors[r.group%hueColors.length]+'">'+
           '<span class="fi127-record-placeholder">'+
             '<span>'+safe(r.artist)+'</span>'+
             '<strong>'+safe(r.title)+'</strong>'+
@@ -291,7 +291,7 @@
         "IN FOCUS / "+labelNum(selected)+"—"+labelNum(records.length);
       const cover=spot.querySelector(".fi127-spotlight-art");
       cover.dataset.record=String(selected);
-      cover.style.setProperty("--fi127-tint",hueColors[record.group]);
+      cover.style.setProperty("--fi127-tint",hueColors[record.group%hueColors.length]);
       cover.innerHTML='<span class="fi127-record-placeholder">'+
         '<span>'+safe(record.artist)+'</span>'+
         '<strong>'+safe(record.title)+'</strong>'+
