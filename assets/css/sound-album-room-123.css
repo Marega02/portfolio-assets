@@ -47,6 +47,45 @@
 .fi111-depth{pointer-events:none!important}
 .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
 .fi111-rotor{pointer-events:auto!important}
+/* Explicit entry for each centered genre. It uses the same pointer
+   handler as tapping the photo, providing a reliable discovery path. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi123-enter{
+  position:absolute!important;
+  z-index:20!important;
+  left:50%!important;
+  bottom:clamp(36px,6vh,61px)!important;
+  transform:translateX(-50%)!important;
+  padding:11px 17px!important;
+  min-width:165px!important;
+  border:1px solid rgba(234,207,184,.6)!important;
+  border-radius:2px!important;
+  background:rgba(25,22,26,.65)!important;
+  color:#f9e9dc!important;
+  font:700 9px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.11em!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  backdrop-filter:none!important;
+  transition:background .2s ease,border-color .2s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi123-enter:is(:hover,:focus-visible){
+  border-color:#edcbb1!important;
+  background:rgba(68,47,49,.88)!important;
+}
+@media(max-width:580px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+  .fi123-enter{
+    bottom:34px!important;
+    padding:10px 12px!important;
+    min-width:145px!important;
+    font-size:8px!important;
+  }
+}
+
 /* A standalone overlay within the Sound cluster. This does not replace
    or reparent any existing carousel photo or interfere with Places. */
 .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
