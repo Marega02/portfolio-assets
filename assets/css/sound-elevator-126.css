@@ -1,0 +1,160 @@
+/* PHASE 126 — SOUND / THE THIRD FLOOR
+   One clear vertical direction: Home -> Sound -> Albums.
+   The album collection is a full-screen elevator floor, not a popup.
+   Only Sound is affected. Previously approved carousel remains intact. */
+.world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor,
+.world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-level.fi126-album-floor{
+  position:absolute!important;
+  inset:0!important;
+  z-index:95!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#19191c!important;
+  isolation:isolate!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  transform:translate3d(0,103%,0)!important;
+  transition:transform .68s cubic-bezier(.32,.72,.18,1)!important;
+  will-change:transform!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open.fi126-floor-open .fi95-level.fi126-album-floor{
+  transform:translate3d(0,0,0)!important;
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open
+.fi95-level[data-category="sound"].fi111-sound-on:not(.fi126-album-floor){
+  transition:transform .68s cubic-bezier(.32,.72,.18,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready.fi95-level-open.fi126-floor-open
+.fi95-level[data-category="sound"].fi111-sound-on:not(.fi126-album-floor){
+  transform:translate3d(0,-103%,0)!important;
+  pointer-events:none!important;
+}
+/* Reuse the entire album design of Phase 123, now across the viewport. */
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor[data-category="sound"] .fi123-album-room{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-height:100%!important;
+  z-index:5!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  pointer-events:auto!important;
+  transition:none!important;
+}
+/* Directional signposts help users always know which floor is open. */
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi126-crumbs{
+  display:flex!important;
+  align-items:center!important;
+  justify-self:center!important;
+  justify-content:center!important;
+  gap:clamp(5px,.8vw,12px)!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:nowrap!important;
+  color:#a49b96!important;
+  font:650 9px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.11em!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi126-crumbs i{
+  color:#927d78!important;
+  font-style:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi126-crumbs strong{
+  color:#f0dac3!important;
+  font-weight:750!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi123-room-back{
+  color:#f2e6d9!important;
+  transition:color .18s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi123-room-back:hover{
+  color:#d4a78d!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi123-room-content{
+  padding-left:clamp(22px,5vw,75px)!important;
+  padding-right:clamp(22px,5vw,75px)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi123-album-grid{
+  width:100%!important;
+  max-width:min(950px,96%)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi126-floor-rail{
+  position:absolute!important;
+  z-index:40!important;
+  top:50%!important;
+  right:13px!important;
+  transform:translateY(-50%)!important;
+  display:flex!important;
+  align-items:center!important;
+  flex-direction:column!important;
+  gap:7px!important;
+  color:#9c8881!important;
+  font:650 8px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.05em!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi126-floor-rail i{
+  display:block!important;
+  width:1px!important;
+  height:28px!important;
+  background:rgba(222,198,175,.29)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level.fi126-album-floor .fi126-floor-rail strong{
+  display:grid!important;
+  place-items:center!important;
+  width:25px!important;
+  height:25px!important;
+  border:1px solid rgba(233,200,174,.76)!important;
+  border-radius:50%!important;
+  font:750 10px/1 ui-monospace,Consolas,monospace!important;
+  color:#f8dfc9!important;
+}
+@media(max-width:760px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor
+  .fi126-floor-rail{display:none!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor
+  .fi123-room-content{padding-left:clamp(13px,3vw,24px)!important;padding-right:clamp(13px,3vw,24px)!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor
+  .fi126-crumbs{font-size:7px!important;letter-spacing:.045em!important;gap:5px!important}
+}
+@media(max-width:400px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor
+  .fi126-crumbs span{display:none!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor
+  .fi126-crumbs i{display:none!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor
+  .fi126-crumbs strong{font-size:9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level.fi126-album-floor,
+  .world-hub.fi92-ready.fi95-ready.fi95-level-open .fi95-level.fi126-album-floor,
+  .world-hub.fi92-ready.fi95-ready.fi95-level-open
+  .fi95-level[data-category="sound"].fi111-sound-on:not(.fi126-album-floor){
+    transition:none!important;
+    will-change:auto!important;
+  }
+}
