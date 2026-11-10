@@ -376,6 +376,13 @@ function init(){
       copy.removeAttribute("aria-disabled");
       copy.setAttribute("role","button");
       copy.setAttribute("aria-label","Open "+genres[i]+" album collection");
+      // Keep cover captions in sync with the two renamed categories.
+      if(i===7||i===9){
+        const coverName=copy.querySelector(".fi95-item-meta strong");
+        const coverSub=copy.querySelector(".fi95-item-meta small");
+        if(coverName)coverName.textContent=genres[i];
+        if(coverSub)coverSub.textContent=notes[i];
+      }
       copy.dataset.soundSlot=String(i);
       rotor.appendChild(copy);
     });
