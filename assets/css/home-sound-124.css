@@ -1,0 +1,60 @@
+/* PHASE 124 — ONE HOME FOLIO / IMAGE-ONLY SOUND ENTRY
+   Deliberately leaves the approved visual layouts untouched. */
+
+/* The new numbers are children of the independent overlay only.
+   Eliminate every older number element attached to the photographs,
+   including those revived by scroll-triggered legacy interactions. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery
+.fi95-panel :is(.fi119-folio,.fi113-panel-id,.fi95-panel-num,.fi95-panel-number,.fi95-card-num),
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery
+.fi95-panel [class*="panel-num"],
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery
+.fi95-panel [class*="folio"]{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-home-foot .fi95-current{
+  display:none!important;
+  visibility:hidden!important;
+}
+/* The only intended numbers ABOVE the photographs are the 01 / 04
+   through 04 / 04 folios in this independent, always visible grid. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio{
+  display:inline-flex!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+}
+
+/* Sound: no separate Explore button, no extra ENTER tag on the cover.
+   The photograph itself remains a genuine click/tap target. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-enter{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front .fi95-item-frame::after{
+  content:none!important;
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link{
+  text-decoration:none!important;
+}
+/* Prevent duplicate counters on small screens as well. The mobile
+   original genre-label and swipe interactions are preserved. */
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+  .fi95-gallery > .fi118-labels-overlay{display:none!important}
+}
