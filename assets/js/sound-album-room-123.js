@@ -197,6 +197,7 @@ function init(){
         '<span class="fi111-readout-note">WARM VOICES</span>'+
       '</div>'+
       '<div class="fi111-side-note" aria-hidden="true"><span>SOUND AS A PLACE<br>TO GET LOST</span><i></i><span>VOL. 001</span></div>'+
+      '<button type="button" class="fi123-enter" aria-label="Open Soul album collection">OPEN SOUL COLLECTION ↗</button>'+
       '<div class="fi111-instructions">'+
         '<span>DRAG / SCROLL TO EXPLORE <b aria-hidden="true">↔</b></span>'+
         '<span class="fi111-counter">01 / 10</span>'+
@@ -220,6 +221,11 @@ function init(){
     const kicker=stage?.querySelector(".fi111-readout-kicker");
     const count=stage?.querySelector(".fi111-counter");
     if(name)name.textContent=genres[i];
+    const entry=stage?.querySelector(".fi123-enter");
+    if(entry){
+      entry.textContent="EXPLORE "+genres[i]+" ↗";
+      entry.setAttribute("aria-label","Open "+genres[i]+" album collection");
+    }
     if(note)note.textContent="";
     if(kicker)kicker.textContent="NOW IN FOCUS / "+String(i+1).padStart(2,"0")+"—10";
     if(count)count.textContent=String(i+1).padStart(2,"0")+" / 10";
@@ -243,8 +249,9 @@ function init(){
   }
   function onPointerDown(e){
     if(e.button!==0||!stage||level.dataset.category!=="sound"||room)return;
+    const entry=e.target instanceof Element?e.target.closest(".fi123-enter"):null;
     const tapped=e.target instanceof Element?e.target.closest(".fi111-photo"):null;
-    tapSlot=tapped?Number(tapped.dataset.soundSlot):-1;
+    tapSlot=entry?((active%10)+10)%10:tapped?Number(tapped.dataset.soundSlot):-1;
     dragging=true;pointerId=e.pointerId;startX=lastX=e.clientX;
     stage.classList.add("fi111-dragging");
     if(rotor)rotor.style.transition="none";
