@@ -1,0 +1,54 @@
+/* PHASE 120 — WORK / WEBFLOW PROTOTYPES
+   Two of three existing Work projects point to user-provided published
+   Webflow demos, rather than the old internal case-study popup.
+   Labels make the prototype status explicit without changing the
+   asymmetric Work layout or the Da Gianni project action. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-project.fi120-prototype{
+  display:block!important;
+  text-decoration:none!important;
+  color:inherit!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi120-prototype-badge{
+  position:absolute!important;
+  top:clamp(36px,3.75vw,46px)!important;
+  right:clamp(13px,1.4vw,21px)!important;
+  z-index:6!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:7px 9px!important;
+  border:1px solid rgba(255,245,225,.53)!important;
+  border-radius:2px!important;
+  background:rgba(16,22,21,.53)!important;
+  color:#f6f1e6!important;
+  font:700 9px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.14em!important;
+  pointer-events:none!important;
+  backdrop-filter:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi120-prototype-badge i{
+  font-size:13px!important;
+  font-weight:400!important;
+  font-style:normal!important;
+  letter-spacing:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-project.fi120-prototype:hover .fi120-prototype-badge{
+  border-color:rgba(255,245,225,.85)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-work-bottom span:last-child{
+  color:#d7c4ac!important;
+  letter-spacing:.08em!important;
+}
+@media(max-width:600px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi120-prototype-badge{
+    top:40px!important;
+    right:13px!important;
+    padding:6px 8px!important;
+    font-size:8px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-work-bottom span:last-child{
+    font-size:7px!important;
+    letter-spacing:.03em!important;
+  }
+}
