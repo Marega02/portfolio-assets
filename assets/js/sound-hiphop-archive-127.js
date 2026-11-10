@@ -51,9 +51,9 @@
       ["The Boy Who Played the Harp",2025,"24f1GFXCkViGoRpmGqlSSl"]
     ]],
     ["2PAC","WEST COAST / CLASSICS",[
-      ["Me Against the World",1995,null],
-      ["All Eyez on Me",1996,null],
-      ["The Don Killuminati: The 7 Day Theory",1996,null]
+      ["Me Against the World",1995,"5ASoLiKB7ffqusD9X9wQlS"],
+      ["All Eyez on Me",1996,"4CzT5ueFBRpbILw34HQYxi"],
+      ["The Don Killuminati: The 7 Day Theory",1996,"1D9KE2JJcdQPhtPRJv0uLP"]
     ]],
     ["THE NOTORIOUS B.I.G.","BROOKLYN / CLASSICS",[
       ["Ready to Die",1994,"2HTbQ0RHwukKVXAlTmCZP2"],
