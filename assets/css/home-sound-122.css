@@ -1,0 +1,87 @@
+/* PHASE 122 — FOLIO NUMBERS OUTSIDE THE HOVERING PHOTO PANEL.
+   The approved photo/genre carousel compositions are unchanged. */
+
+/* On desktop, hide OLD panel numerals and show numbers within the same
+   independent overlay that keeps Work, Sound, Places, About visible.
+   They cannot disappear during hover because they are not panel children. */
+@media(min-width:791px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+  .fi95-gallery .fi95-panel .fi119-folio{
+    display:none!important;
+    visibility:hidden!important;
+  }
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay > .fi118-label-cell{
+  position:relative!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio{
+  position:absolute!important;
+  left:clamp(14px,1.45vw,22px)!important;
+  top:clamp(14px,1.45vw,22px)!important;
+  z-index:200!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  padding:0!important;
+  margin:0!important;
+  width:auto!important;
+  height:auto!important;
+  color:#f6ecdc!important;
+  border:0!important;
+  background:transparent!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  filter:none!important;
+  transform:none!important;
+  backface-visibility:visible!important;
+  text-shadow:0 2px 13px rgba(0,0,0,.56)!important;
+  transition:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio em{
+  display:block!important;
+  font:italic 500 clamp(19px,1.65vw,25px)/1 Georgia,"Times New Roman",serif!important;
+  letter-spacing:-.075em!important;
+  color:#f6ecdc!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio i{
+  display:block!important;
+  width:1px!important;
+  height:17px!important;
+  background:rgba(242,225,199,.55)!important;
+  transform:rotate(22deg)!important;
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio small{
+  display:block!important;
+  font:600 9px/1.1 ui-monospace,Consolas,monospace!important;
+  color:#ddd4c4!important;
+  opacity:.88!important;
+  letter-spacing:.06em!important;
+}
+/* The carousel keeps its original 3D layout: only picture quality and
+   cropping are tuned so performers and instruments are more legible. */
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo .fi95-item-image img{
+  object-fit:cover!important;
+  object-position:center center!important;
+  filter:none!important;
+  opacity:1!important;
+}
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+  .fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio{
+    display:none!important;
+  }
+}
