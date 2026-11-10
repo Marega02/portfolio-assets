@@ -98,46 +98,106 @@
   ];
   let scrollObserver=null;
   function albumLink(r){return r.spotify;}
-  function getCover(r){
-    if(!r.id)return Promise.resolve(null);
-    if(thumbnails.has(r.id))return thumbnails.get(r.id);
-    const request=fetch("https://open.spotify.com/oembed?url="+
-      encodeURIComponent("https://open.spotify.com/album/"+r.id),
-      {mode:"cors",credentials:"omit"})
-      .then(response=>{if(!response.ok)throw new Error("Artwork unavailable");return response.json();})
-      .then(data=>typeof data.thumbnail_url==="string"&&/^https:\/\//.test(data.thumbnail_url)?data.thumbnail_url:null)
-      .catch(()=>null);
-    thumbnails.set(r.id,request);
-    return request;
+  // Spotify's oEmbed sometimes omits thumbnail_url. Never stop at a
+  // missing response: query MusicBrainz release-group metadata and use
+  // Cover Art Archive thumbnails. Every cover is validated on image load,
+  // and the designed sleeve remains readable when no remote art exists.
+  const cleanName=v=>String(v).normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase().replace(/\b(deluxe|edition|expanded|remastered|anniversary|explicit|version)\b/g,"")
+    .replace(/[^a-z0-9]+/g," ").trim();
+  const similarity=(a,b)=>{
+    const x=cleanName(a),y=cleanName(b);
+    if(!x||!y)return false;
+    return x===y||x.length>7&&y.includes(x)||y.length>7&&x.includes(y);
+  };
+  let mbSerial=Promise.resolve(),mbNextAt=0;
+  function mbLookup(record){
+    async function request(){
+      const delay=Math.max(0,mbNextAt-Date.now());
+      if(delay)await new Promise(resolve=>setTimeout(resolve,delay));
+      mbNextAt=Date.now()+1100;
+      const raw='releasegroup:"'+record.title.replace(/["\\]/g,"")+
+        '" AND artist:"'+record.artist.replace(/["\\]/g,"")+'"';
+      const url="https://musicbrainz.org/ws/2/release-group/?fmt=json&limit=8&query="+
+        encodeURIComponent(raw);
+      try{
+        const response=await fetch(url,{mode:"cors",credentials:"omit"});
+        if(!response.ok)return [];
+        const data=await response.json();
+        const matches=(data["release-groups"]||[]).filter(item=>{
+          const credit=(item["artist-credit"]||[]).map(x=>x?.artist?.name||x?.name||"").join(" ");
+          return similarity(item.title,record.title)&&similarity(credit,record.artist)&&
+            /^[0-9a-f-]{36}$/i.test(item.id||"");
+        });
+        return matches.slice(0,4).map(item=>
+          "https://coverartarchive.org/release-group/"+item.id+"/front-500");
+      }catch(_){return [];}
+    }
+    const p=mbSerial.then(request,request);
+    mbSerial=p.catch(()=>{});
+    return p;
   }
-  function fillCover(node,r){
-    if(attached.has(node)||!r.id)return;
+  function getCover(record){
+    const key=cleanName(record.artist)+"|"+cleanName(record.title);
+    if(thumbnails.has(key))return thumbnails.get(key);
+    const promise=(async()=>{
+      let urls=[];
+      if(record.id){
+        try{
+          const resp=await fetch("https://open.spotify.com/oembed?url="+
+            encodeURIComponent("https://open.spotify.com/album/"+record.id),
+            {mode:"cors",credentials:"omit"});
+          if(resp.ok){
+            const item=await resp.json();
+            if(item.thumbnail_url&&/^https:\/\//.test(item.thumbnail_url)&&
+               similarity(item.title,record.title)){
+              urls.push(item.thumbnail_url);
+            }
+          }
+        }catch(_){}
+      }
+      // Even a valid Spotify thumbnail can fail on some browsers. Supply
+      // backup image URLs rather than treating the first image as certain.
+      const backups=await mbLookup(record);
+      urls.push(...backups);
+      return [...new Set(urls)];
+    })().catch(()=>[]);
+    thumbnails.set(key,promise);
+    return promise;
+  }
+  function renderImage(target,urls,record,cls){
+    if(!target||!target.isConnected||!urls?.length)return;
+    const img=document.createElement("img");
+    img.className=cls;
+    img.alt="Cover art: "+record.title+" — "+record.artist;
+    img.decoding="async";img.loading="lazy";
+    let offset=0;
+    const next=()=>{
+      if(!target.isConnected||offset>=urls.length){img.remove();return;}
+      img.src=urls[offset++];
+    };
+    img.onerror=next;
+    img.onload=()=>{img.style.opacity="1";};
+    target.querySelector(".fi127-real-art")?.remove();
+    target.appendChild(img);
+    next();
+  }
+  function fillCover(node,record){
+    if(attached.has(node))return;
     attached.add(node);
-    getCover(r).then(src=>{
-      if(!src||!node.isConnected)return;
-      const img=document.createElement("img");
-      img.className="fi127-real-art";
-      img.src=src;
-      img.alt="Cover art: "+r.title+" — "+r.artist;
-      img.loading="lazy";
-      img.decoding="async";
-      img.onerror=()=>img.remove();
-      node.appendChild(img);
-      const spotlight=node.closest(".fi127-record")?.classList.contains("fi127-record-active");
-      if(spotlight){
-        const spot=node.closest(".fi127-archive")?.querySelector(".fi127-spotlight-art");
-        if(spot&&spot.dataset.record===String(r.number))addSpotlightImage(spot,src,r);
+    getCover(record).then(urls=>{
+      if(!urls?.length||!node.isConnected)return;
+      renderImage(node,urls,record,"fi127-real-art");
+      const spot=node.closest(".fi127-record")?.classList.contains("fi127-record-active")?
+        node.closest(".fi127-archive")?.querySelector(".fi127-spotlight-art"):null;
+      if(spot&&spot.dataset.record===String(record.number)){
+        addSpotlightImage(spot,urls,record);
       }
     });
   }
-  function addSpotlightImage(spot,src,r){
-    if(!spot||!src||!spot.isConnected)return;
-    const img=document.createElement("img");
-    img.src=src;img.alt="Album cover: "+r.title;img.decoding="async";
-    img.className="fi127-real-art fi127-spotlight-image";
-    img.onerror=()=>img.remove();
-    spot.querySelector(".fi127-real-art")?.remove();
-    spot.appendChild(img);
+  function addSpotlightImage(spot,urls,record){
+    if(!spot||!urls?.length||!spot.isConnected)return;
+    renderImage(spot,urls,record,"fi127-real-art fi127-spotlight-image");
   }
   function buildCard(r){
     const button=document.createElement("button");
@@ -236,8 +296,10 @@
         '<span>'+safe(record.artist)+'</span>'+
         '<strong>'+safe(record.title)+'</strong>'+
         '<small>'+record.year+'</small></span>';
-      if(record.id)getCover(record).then(src=>{
-        if(src&&cover.dataset.record===String(record.number))addSpotlightImage(cover,src,record);
+      getCover(record).then(urls=>{
+        if(urls?.length&&cover.dataset.record===String(record.number)){
+          addSpotlightImage(cover,urls,record);
+        }
       });
       spot.querySelector(".fi127-spotlight-year").textContent=record.year+" / "+record.sub;
       spot.querySelector(".fi127-spotlight-title").textContent=record.title;
