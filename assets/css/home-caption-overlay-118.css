@@ -1,0 +1,263 @@
+/* PHASE 118 — SEPARATE HOME TITLE PLANE & BALANCED HOVER TIMING
+   The v117 controller owns the grid weights. This stylesheet only
+   presents the four permanent labels and protects their visibility.
+   Site sections Work/Sound/Places/About are not modified. */
+
+/* Retire old floating World Index without touching native portfolio routes. */
+html body .w19-root, html body .w19-trigger, html body .w19-drawer,
+html body .w19-backdrop, html body .w19-close, html body .w19-link {
+  display:none!important;visibility:hidden!important;pointer-events:none!important;
+}
+
+@media(min-width:791px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+    display:grid!important;
+    grid-template-rows:minmax(0,1fr)!important;
+    width:min(945px,87vw)!important;
+    height:min(61vh,568px)!important;
+    min-height:300px!important;
+    gap:clamp(10px,1.05vw,17px)!important;
+    top:53%!important;
+    overflow:visible!important;
+    /* v117 JS sets the precise column weights with inline !important. */
+    transition:grid-template-columns 1.02s cubic-bezier(.45,.05,.20,1) .06s!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category],
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within){
+    display:block!important;
+    width:100%!important;height:100%!important;
+    min-width:0!important;
+    flex:none!important;
+    margin:0!important;
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    transition:border-color .5s ease,box-shadow .5s ease!important;
+    box-shadow:0 12px 27px rgba(0,0,0,.18)!important;
+    backface-visibility:visible!important;
+    isolation:isolate!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within){
+    border-color:rgba(238,229,210,.67)!important;
+    box-shadow:0 16px 31px rgba(0,0,0,.23)!important;
+    z-index:7!important;
+  }
+}
+/* ONLY one permanent visual caption. The old native anchor remains in the
+   DOM and handles the real chapter routing, but the outer card is now a
+   focusable interactive surface. No legacy .world-name hover transitions. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-panel-text{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi115-photo-label,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-panel-num,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi113-panel-id{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi117-caption,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within) .fi117-caption{
+  position:absolute!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:flex-end!important;
+  gap:9px!important;
+  inset:auto clamp(12px,1.45vw,22px) clamp(18px,3vh,32px) clamp(14px,1.55vw,23px)!important;
+  width:auto!important;
+  height:auto!important;
+  z-index:100!important;
+  margin:0!important;
+  padding:0!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  transform:none!important;
+  pointer-events:none!important;
+  backface-visibility:visible!important;
+  transition:none!important;
+  color:#fcf6eb!important;
+  text-shadow:0 2px 13px rgba(0,0,0,.65)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi117-caption-title,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within) .fi117-caption-title{
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  transform:none!important;
+  font:750 clamp(19px,1.95vw,30px)/1.02 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.063em!important;
+  color:#fffaf0!important;
+  text-wrap:nowrap!important;
+  white-space:nowrap!important;
+  transition:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi117-caption-subtitle,
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within) .fi117-caption-subtitle{
+  display:block!important;
+  opacity:.92!important;
+  visibility:visible!important;
+  transform:none!important;
+  font:650 8px/1.35 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.09em!important;
+  color:#f2e9d9!important;
+  white-space:normal!important;
+  transition:none!important;
+}
+/* The image is painted on the card itself, so changes in the old
+   photo-wrap's hover state cannot make it disappear. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category],
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:is(:hover,.fi95-current,:focus-within){
+  background-image:var(--fi110-permanent-photo,linear-gradient(130deg,#35453f,#182321))!important;
+  background-size:cover!important;
+  background-position:center!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-photo-wrap{
+  background:none!important;
+  transform:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi95-image-overlay{
+  z-index:1!important;
+  opacity:1!important;
+  pointer-events:none!important;
+  background:linear-gradient(180deg,rgba(4,6,8,.02),transparent 35%,rgba(3,5,6,.14) 57%,rgba(1,3,4,.73) 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category]:focus-visible{
+  outline:2px solid #d5c2a5!important;
+  outline-offset:4px!important;
+}
+/* The current composition and typography remain aligned. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-intro{
+  top:0!important;width:min(945px,92%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-intro h1{
+  margin-top:8px!important;
+  font:640 clamp(25px,3vw,45px)/1.05 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.07em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi108-rail-bottom{
+  width:min(945px,87vw)!important;
+  bottom:4.7%!important;
+}
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+    display:flex!important;
+    grid-template-columns:none!important;
+    width:100%!important;
+    top:auto!important;
+    transition:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi117-caption-title{
+    font-size:clamp(20px,5vw,28px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi117-caption-subtitle{
+    font-size:8px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+    transition:none!important;
+  }
+}
+
+/* PHASE 118 OVERRIDES — captions are NOT descendants of the panels.
+   The overlay is a separate grid layered on top of their photographs,
+   with the same responsive tracks, gap and easing. No legacy hover
+   selector can change the labels' visibility or opacity. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery > .fi118-labels-overlay{
+  position:absolute!important;
+  inset:0!important;
+  z-index:120!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:minmax(0,1fr)!important;
+  gap:inherit!important;
+  padding:0!important;
+  margin:0!important;
+  min-height:0!important;
+  width:100%!important;
+  height:100%!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  pointer-events:none!important;
+  filter:none!important;
+  transform:none!important;
+  transition:grid-template-columns .78s cubic-bezier(.33,.24,.20,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery > .fi118-labels-overlay > .fi118-label-cell{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  align-items:flex-start!important;
+  gap:9px!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  padding:0 clamp(12px,1.45vw,22px) clamp(18px,3vh,32px) clamp(14px,1.55vw,23px)!important;
+  margin:0!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  pointer-events:none!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+  text-shadow:0 2px 14px rgba(0,0,0,.66)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery > .fi118-labels-overlay .fi118-label-name{
+  display:block!important;
+  font:750 clamp(19px,1.95vw,30px)/1.02 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.063em!important;
+  color:#fff9ef!important;
+  white-space:nowrap!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+  flex:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery > .fi118-labels-overlay .fi118-label-subtitle{
+  display:block!important;
+  font:650 8px/1.35 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.08em!important;
+  color:#f1ebde!important;
+  white-space:normal!important;
+  opacity:.93!important;
+  visibility:visible!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+  flex:none!important;
+}
+@media(min-width:791px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery{
+    transition:grid-template-columns .78s cubic-bezier(.33,.24,.20,1)!important;
+  }
+  /* Hide the previous in-card caption: it is retained solely as a
+     mobile fallback but cannot duplicate the desktop independent titles. */
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery .fi95-panel[data-category] .fi117-caption{
+    display:none!important;
+  }
+}
+@media(max-width:790px){
+  /* The swipe layout is not a desktop grid; keep each in-card caption
+     on touch so it moves naturally with its own photograph. */
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery > .fi118-labels-overlay{
+    display:none!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery > .fi118-labels-overlay{
+    transition:none!important;
+  }
+}
