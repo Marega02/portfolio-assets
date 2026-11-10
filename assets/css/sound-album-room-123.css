@@ -1,0 +1,516 @@
+/* PHASE 123 — THE RECORD ROOMS
+   Keep the approved ten-position 3D genre carousel. Add a second level
+   into an album sleeve gallery after the front genre card is tapped.
+   No playback. Genuine cover art via MusicBrainz Cover Art Archive. */
+
+/* SOUNDS: the user asked to remove genre descriptions from the carousel. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo .fi95-item-meta small,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-readout-note{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo .fi95-item-meta{gap:0!important;margin-top:12px!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-readout-name{
+  padding-bottom:2px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo{
+  pointer-events:auto!important;
+  cursor:grab!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front{cursor:pointer!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front .fi95-item-frame{
+  border-color:rgba(244,231,213,.9)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front .fi95-item-frame::after{
+  content:"ENTER ↗"!important;
+  position:absolute!important;
+  top:auto!important;left:0!important;right:0!important;bottom:0!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  height:26px!important;
+  background:linear-gradient(180deg,transparent,rgba(7,8,12,.7))!important;
+  color:#f5ece1!important;
+  font:650 8px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.11em!important;
+  opacity:.95!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-depth{pointer-events:none!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-rotor{pointer-events:auto!important}
+/* A standalone overlay within the Sound cluster. This does not replace
+   or reparent any existing carousel photo or interfere with Places. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi111-sound-stage{
+  transition:opacity .34s ease,filter .34s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi111-sound-stage.fi123-stage-away{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  filter:blur(2px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-room{
+  position:absolute!important;
+  z-index:150!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-rows:44px minmax(0,1fr) 31px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(230,207,187,.14)!important;
+  border-radius:2px!important;
+  background:
+    radial-gradient(ellipse 65% 61% at 55% 43%,rgba(97,61,66,.30),transparent 79%),
+    linear-gradient(125deg,#191719 0%,#292022 48%,#18191c 100%)!important;
+  color:#f4eee5!important;
+  isolation:isolate!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translate3d(0,23px,0)!important;
+  transition:opacity .34s cubic-bezier(.21,.69,.21,1),
+    transform .34s cubic-bezier(.21,.69,.21,1),
+    visibility 0s linear .34s!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-room.fi123-room-visible{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translate3d(0,0,0)!important;
+  transition:opacity .34s cubic-bezier(.21,.69,.21,1),
+    transform .34s cubic-bezier(.21,.69,.21,1),
+    visibility 0s!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-head{
+  display:grid!important;
+  grid-template-columns:1fr auto 1fr!important;
+  gap:12px!important;
+  align-items:center!important;
+  border-bottom:1px solid rgba(235,214,191,.18)!important;
+  padding:0 clamp(14px,2vw,27px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-back{
+  display:inline-flex!important;
+  justify-self:start!important;
+  align-items:center!important;
+  gap:10px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#f6e9d9!important;
+  padding:10px 3px!important;
+  font:700 15px/1 Arial,Helvetica,sans-serif!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-back span{
+  font:650 9px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.13em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-counter,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-monogram{
+  font:650 9px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.15em!important;
+  color:#c3ac9d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-monogram{
+  justify-self:end!important;
+  color:#ede7da!important;
+  font:750 22px/1 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.085em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-monogram span{color:#c4a18d!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-content{
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) auto!important;
+  gap:clamp(9px,1.6vh,17px)!important;
+  width:100%!important;
+  min-height:0!important;
+  padding:clamp(11px,2.1vh,19px) clamp(14px,2.3vw,30px) 14px!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#90786c transparent;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro{
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+  align-items:end!important;
+  column-gap:clamp(17px,3vw,42px)!important;
+  row-gap:4px!important;
+  padding:0 0 12px!important;
+  border-bottom:1px solid rgba(232,216,195,.15)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-eyebrow{
+  grid-column:1 / -1!important;
+  font:650 9px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.16em!important;
+  color:#cdac98!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro h3{
+  grid-row:2!important;
+  grid-column:1!important;
+  padding:0!important;
+  margin:0!important;
+  font:760 clamp(38px,5.6vw,69px)/.89 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.085em!important;
+  color:#faf2e9!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro h3 em{
+  color:#cba98a!important;
+  font-style:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro p{
+  grid-row:2!important;
+  grid-column:2!important;
+  max-width:365px!important;
+  margin:0!important;
+  padding:0!important;
+  font:460 clamp(11px,1.06vw,14px)/1.45 Arial,Helvetica,sans-serif!important;
+  color:#d0c4bd!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-ledger{
+  grid-row:2!important;
+  grid-column:3!important;
+  font:650 8px/1.4 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.10em!important;
+  white-space:nowrap!important;
+  color:#b2aba4!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:clamp(10px,2.1vw,28px)!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:850px!important;
+  width:100%!important;
+  margin:0 auto!important;
+  padding:4px 6px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:12px!important;
+  background:transparent!important;
+  border:0!important;
+  padding:0!important;
+  margin:0!important;
+  color:#eee8de!important;
+  cursor:pointer!important;
+  text-align:left!important;
+  opacity:.80!important;
+  min-width:0!important;
+  min-height:0!important;
+  transform:translate3d(0,0,0)!important;
+  transition:opacity .22s ease,transform .3s cubic-bezier(.22,.8,.23,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:is(:hover,:focus-visible,.fi123-album-active){
+  transform:translate3d(0,-8px,0)!important;
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:focus-visible{
+  outline:2px solid #dbb79d!important;
+  outline-offset:5px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-sleeve{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  aspect-ratio:1!important;
+  transform-style:flat!important;
+  overflow:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-disc{
+  position:absolute!important;
+  top:5%!important;
+  bottom:5%!important;
+  right:-7%!important;
+  width:90%!important;
+  aspect-ratio:1!important;
+  border-radius:50%!important;
+  background:
+    radial-gradient(circle at 50% 50%,#c3a487 0 5%,#171516 5.5% 10%,#332b2d 10.5% 12%,
+      #100f11 12.5% 18%,#222021 19%,#0f0f10 25%,#232021 26%,#121214 30%,#292528 31%,
+      #141315 33%,#211d1f 44%,#111113 46%,#2b2627 48%,#111214 50%,#131416 100%)!important;
+  box-shadow:0 6px 19px rgba(0,0,0,.31)!important;
+  opacity:.42!important;
+  transform:translate3d(-8%,0,0)!important;
+  transition:transform .31s cubic-bezier(.22,.8,.23,1),opacity .31s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-active .fi123-record-disc,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:hover .fi123-record-disc{
+  transform:translate3d(13%,0,0)!important;
+  opacity:.93!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-art{
+  display:block!important;
+  position:absolute!important;
+  inset:0 10% 0 0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(246,234,214,.65)!important;
+  background:#35292b!important;
+  box-shadow:0 9px 22px rgba(0,0,0,.30)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-art img{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-art img[hidden]{display:none!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-art-backup{
+  position:absolute!important;inset:0!important;
+  display:flex!important;flex-direction:column!important;
+  gap:9px!important;justify-content:flex-end!important;
+  padding:clamp(11px,1.25vw,17px)!important;
+  background:radial-gradient(circle at 60% 22%,rgba(241,197,145,.26),transparent 50%),
+    linear-gradient(135deg,#553b40,#1e2225)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:nth-child(2) .fi123-art-backup{background:linear-gradient(135deg,#a17c55,#463a30)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:nth-child(3) .fi123-art-backup{background:linear-gradient(135deg,#2b5a6a,#27262c)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:nth-child(4) .fi123-art-backup{background:linear-gradient(135deg,#6e5d4d,#20272b)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-art-backup b{
+  font:740 clamp(13px,1.35vw,20px)/1.05 Arial,sans-serif!important;
+  letter-spacing:-.065em!important;color:#f9eee1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-art-backup small{
+  font:650 9px/1.2 ui-monospace,Consolas,monospace!important;
+  color:#e8ddd3!important;letter-spacing:.05em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-caption{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0 3px!important;
+  color:#f6f0e8!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-caption strong{
+  font:720 clamp(13px,1.35vw,18px)/1.12 Arial,Helvetica,sans-serif!important;
+  color:#f6eee5!important;
+  letter-spacing:-.042em!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-caption small{
+  font:650 9px/1.35 ui-monospace,Consolas,monospace!important;
+  color:#bcaaa0!important;
+  letter-spacing:.06em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-detail{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto auto!important;
+  align-items:end!important;
+  gap:5px 17px!important;
+  min-height:64px!important;
+  width:100%!important;
+  padding:13px 0 0!important;
+  border-top:1px solid rgba(233,216,195,.19)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-index{
+  grid-column:1!important;grid-row:1!important;
+  font:650 8px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.14em!important;
+  color:#bfab9e!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-name{
+  grid-column:1!important;grid-row:2!important;
+  font:760 clamp(19px,2.6vw,30px)/1.02 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.065em!important;
+  color:#f9f1e6!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-artist{
+  grid-column:1!important;grid-row:3!important;
+  font:650 9px/1.3 ui-monospace,Consolas,monospace!important;
+  color:#cebcae!important;letter-spacing:.1em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-kind{
+  grid-column:2!important;grid-row:1!important;
+  font:700 8px/1.4 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.12em!important;
+  color:#d5bc9e!important;
+  text-align:right!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link{
+  grid-column:2!important;grid-row:2 / span 2!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:23px!important;
+  padding:12px 15px!important;
+  color:#262322!important;
+  background:#efe8dd!important;
+  border-radius:2px!important;
+  font:700 9px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.095em!important;
+  text-decoration:none!important;
+  transition:background .2s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link:hover{background:#d4bdad!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link b{font:400 19px/1 Arial,sans-serif!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-foot{
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:0 clamp(14px,2vw,27px)!important;
+  border-top:1px solid rgba(235,214,191,.18)!important;
+  color:#b6a79f!important;
+  font:650 8px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.12em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-record{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:12px!important;
+  min-width:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-cover{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  width:100%!important;
+  aspect-ratio:1!important;
+  padding:clamp(9px,1vw,15px)!important;
+  border:1px dashed rgba(227,210,194,.35)!important;
+  background:linear-gradient(145deg,rgba(216,187,162,.095),rgba(36,30,36,.5))!important;
+  color:#d7c6b9!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-cover i{
+  font:450 25px Georgia,Times,serif!important;
+  letter-spacing:-.05em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-cover strong{
+  font:700 clamp(15px,1.6vw,22px)/1.08 Arial,sans-serif!important;
+  letter-spacing:-.06em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-note{
+  font:650 8px/1.4 ui-monospace,Consolas,monospace!important;
+  color:#b8a89e!important;
+  letter-spacing:.09em!important;
+}
+@media(max-width:800px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-content{padding:13px 17px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro{grid-template-columns:auto 1fr!important;gap:8px 16px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-ledger{grid-column:1 / -1!important;grid-row:3!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro h3{font-size:clamp(38px,7vw,58px)!important}
+}
+@media(max-width:580px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-room{grid-template-rows:43px minmax(0,1fr) 24px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-head{grid-template-columns:auto 1fr auto!important;padding:0 12px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-counter{justify-self:center!important;font-size:7px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-back span{font-size:7px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro{grid-template-columns:1fr!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro h3{grid-column:1!important;grid-row:2!important;font-size:44px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro p{grid-column:1!important;grid-row:3!important;font-size:12px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-ledger{grid-column:1!important;grid-row:4!important;font-size:7px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important;max-width:380px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-caption strong{font-size:14px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-record-detail{grid-template-columns:1fr!important;gap:6px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-detail-index,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-name,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-artist,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-kind,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-link{
+    grid-column:1!important;grid-row:auto!important;text-align:left!important;justify-self:start!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-foot span:last-child{display:none!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-content{gap:11px!important;padding:12px 13px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-room,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi111-sound-stage,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-record-disc{transition:none!important}
+}
