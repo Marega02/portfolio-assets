@@ -17,6 +17,7 @@ const COLLECTIONS=[
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const count=n=>String(n).padStart(2,"0");
 let active=null,stage=null,readoutObserver=null,watcher=null,dragX=0,dragY=0,hasDrag=false,returnFocus=null;
+let tapped=-1,tappedPointer=-1,suppressClickUntil=0;
 const mountSelector=".world-hub.fi95-ready .fi95-level[data-category='places'] .fi100-stage";
 const reduced=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const cssUrl="https://marega02.github.io/portfolio-assets/assets/css/places-personal-atlas-130.css?v=130.2";
@@ -35,12 +36,13 @@ function syncStage(){
    c.setAttribute("aria-label","Explore "+COLLECTIONS[i].title);
    c.classList.add("fi130-clickable");
    // The previous three concept covers were not the user's photos.
-   // For Mountains, use a scenic existing cover only as a navigation illustration.
-   if(i===3){
-     const img=c.querySelector(".fi95-item-image img");
-     if(img){img.src="https://images.pexels.com/photos/10050561/pexels-photo-10050561.jpeg?auto=compress&cs=tinysrgb&w=900";img.alt="Illustrative mountain cover, not a personal photograph";}
+   // These were three unrelated demo cities/landscapes. Retire the
+   // misleading images until real personal photographs are supplied.
+   if(i>=3){
+     c.querySelector(".fi95-item-image")?.replaceChildren();
+     c.classList.add("fi130-no-cover");
+     if(i===3)c.classList.add("fi130-mountain-cover");
    }
-   if(i>=4){c.querySelector(".fi95-item-image")?.replaceChildren();c.classList.add("fi130-no-cover");}
  });
  const label=stage.querySelector(".fi109-place-name");
  if(label){
@@ -61,17 +63,47 @@ function syncStage(){
  }
  stage.addEventListener("pointerdown",onDown,true);
  stage.addEventListener("pointermove",onMove,true);
+ stage.addEventListener("pointerup",onUp,true);
+ stage.addEventListener("pointercancel",onCancel,true);
  stage.addEventListener("click",onClick,true);
  stage.addEventListener("keydown",onKey,true);
  stage.querySelector(".fi100-instruction span:first-child")?.insertAdjacentHTML("beforeend",' <b class="fi130-hint"> · CLICK PHOTO TO OPEN ↗</b>');
 }
 function unhook(){
- if(stage){stage.removeEventListener("pointerdown",onDown,true);stage.removeEventListener("pointermove",onMove,true);stage.removeEventListener("click",onClick,true);stage.removeEventListener("keydown",onKey,true);}
+ if(stage){stage.removeEventListener("pointerdown",onDown,true);stage.removeEventListener("pointermove",onMove,true);stage.removeEventListener("pointerup",onUp,true);stage.removeEventListener("pointercancel",onCancel,true);stage.removeEventListener("click",onClick,true);stage.removeEventListener("keydown",onKey,true);}
  readoutObserver?.disconnect();readoutObserver=null;stage=null;
 }
-function onDown(e){dragX=e.clientX;dragY=e.clientY;hasDrag=false;}
+function onDown(e){
+ dragX=e.clientX;dragY=e.clientY;hasDrag=false;tappedPointer=e.pointerId;
+ const card=e.target instanceof Element?e.target.closest(".fi102-photo"):null;
+ tapped=card&&stage?.contains(card)?[...stage.querySelectorAll(".fi102-photo")].indexOf(card):-1;
+}
 function onMove(e){if(Math.abs(e.clientX-dragX)>12||Math.abs(e.clientY-dragY)>12)hasDrag=true;}
+function onCancel(){tapped=-1;tappedPointer=-1;hasDrag=false;}
+function onUp(e){
+ if(tapped<0||e.pointerId!==tappedPointer)return;
+ const index=tapped;
+ const moved=hasDrag||Math.hypot(e.clientX-dragX,e.clientY-dragY)>12;
+ onCancel();
+ if(moved||active)return;
+ // Read the selection after the native carousel's pointer-up navigation.
+ Promise.resolve().then(()=>{
+   if(!stage||!stage.isConnected||active)return;
+   const cards=[...stage.querySelectorAll(".fi102-photo")];
+   const front=cards.findIndex(c=>c.classList.contains("fi102-front"));
+   if(front<0)return;
+   suppressClickUntil=performance.now()+430;
+   if(index===front){returnFocus=stage;showEntry(COLLECTIONS[index],null);}
+   else{
+     const delta=(index-front+6)%6;
+     stage.dispatchEvent(new KeyboardEvent("keydown",{
+       key:delta<=3?"ArrowRight":"ArrowLeft",bubbles:true,cancelable:true
+     }));
+   }
+ });
+}
 function onClick(e){
+ if(performance.now()<suppressClickUntil)return;
  const card=e.target instanceof Element?e.target.closest(".fi102-photo"):null;
  if(!card||hasDrag)return;
  if(!card.classList.contains("fi102-front"))return; // side photos still rotate
@@ -185,7 +217,7 @@ function init(){
   if(page!==rootEntry&&rootEntry?.kind==="folder")showEntry(rootEntry,null);
   else close();
  },true);
- if(document.querySelector("link[data-fi130-style]")==null){
+ if(!document.querySelector('link[href*="places-personal-atlas-130.css"]')){
   const l=document.createElement("link");l.rel="stylesheet";l.href=cssUrl;l.dataset.fi130Style="1";document.head.appendChild(l);
  }
  watcher=new MutationObserver(()=>{
