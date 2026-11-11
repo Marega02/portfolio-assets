@@ -20,7 +20,7 @@ let active=null,stage=null,readoutObserver=null,watcher=null,dragX=0,dragY=0,has
 let tapped=-1,tappedPointer=-1,suppressClickUntil=0;
 const mountSelector=".world-hub.fi95-ready .fi95-level[data-category='places'] .fi100-stage";
 const reduced=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const cssUrl="https://marega02.github.io/portfolio-assets/assets/css/places-personal-atlas-130.css?v=130.2";
+const cssUrl="https://marega02.github.io/portfolio-assets/assets/css/places-personal-atlas-130.css?v=130.4";
 function syncStage(){
  const next=document.querySelector(mountSelector);
  if(!next||stage===next)return;
@@ -55,7 +55,7 @@ function syncStage(){
        [".fi109-place-note",data.kind==="folder"?"OPEN THE TRAIL ARCHIVE":data.kind==="empty"?"READY FOR NEW MEMORIES":"PERSONAL PHOTO JOURNAL"]
      ];
      fields.forEach(([sel,val])=>{const el=stage.querySelector(sel);if(el&&el.textContent!==val)el.textContent=val;});
-     cards.forEach((c,i)=>{const t=c.querySelector(".fi95-item-meta strong");if(t&&t.textContent!==COLLECTIONS[i].title)t.textContent=COLLECTIONS[i].title;});
+     cards.forEach((c,i)=>{const t=c.querySelector(".fi95-item-meta strong");if(t&&t.textContent!==COLLECTIONS[i].title)t.textContent=COLLECTIONS[i].title;if(c.getAttribute("aria-disabled")!=="false")c.setAttribute("aria-disabled","false");});
    };
    readoutObserver=new MutationObserver(update);
    readoutObserver.observe(stage.querySelector(".fi109-place-readout")||label,{childList:true,subtree:true,characterData:true});
