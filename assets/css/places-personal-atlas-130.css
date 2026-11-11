@@ -55,3 +55,39 @@ body.fi130-open{overflow:hidden!important}
 /* Covers without personal photos retain the editorial placeholder instead of an unrelated destination image. */
 .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-photo.fi130-no-cover .fi95-item-frame{background:radial-gradient(ellipse at 25% 24%,rgba(114,139,122,.34),transparent 65%),linear-gradient(140deg,#2d3a35,#161d20)!important}
 .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-photo.fi130-no-cover .fi95-item-image{background:transparent!important}
+
+/* Phase 130.4 — click capture: native Places set pointer-events:none on
+   every carousel face when this was only a visual study. Allow the front
+   and visible side faces to receive taps without changing the orbit. */
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi100-photo.fi102-photo.fi130-clickable:is(.fi102-front,.fi102-side){
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi130-mountain-cover .fi95-item-image{
+  position:relative!important;
+  isolation:isolate!important;
+  background:radial-gradient(ellipse at 67% 23%,#899b8b,transparent 49%),
+    linear-gradient(144deg,#526b5f,#233c3b 58%,#152628)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi130-mountain-cover .fi95-item-image::before{
+  content:""!important;
+  position:absolute!important;
+  inset:23% -5% 0!important;
+  background:linear-gradient(150deg,#abbba8,#536b65 62%,#1e3432);
+  clip-path:polygon(0 88%,16% 64%,30% 72%,53% 6%,82% 69%,100% 37%,100% 100%,0 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi130-mountain-cover .fi95-item-image::after{
+  content:""!important;
+  position:absolute!important;
+  inset:59% -4% 0!important;
+  background:linear-gradient(155deg,#385b52,#142727);
+  clip-path:polygon(0 80%,20% 39%,47% 67%,76% 10%,100% 61%,100% 100%,0 100%)!important;
+}
