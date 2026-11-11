@@ -51,3 +51,7 @@ body.fi130-open{overflow:hidden!important}
 @media(max-width:700px){.fi130-shell{grid-template-rows:56px minmax(0,1fr) 36px!important}.fi130-subgrid{grid-template-columns:1fr 1fr}.fi130-subcard,.fi130-add-card{height:190px;padding:16px!important}.fi130-subcard strong,.fi130-add-card strong{font-size:24px}.fi130-footer span:last-child{display:none}.fi130-content{padding-top:24px!important}.fi130-path{margin-bottom:22px!important}.fi130-hint{display:none!important}}
 @media(max-width:440px){.fi130-subgrid{grid-template-columns:1fr}.fi130-subcard,.fi130-add-card{height:150px}.fi130-viewer{grid-template-columns:29px minmax(0,1fr) 29px}.fi130-brand{font-size:9px!important}}
 @media(prefers-reduced-motion:reduce){.fi130-shell,.fi130-subcard{transition:none!important}}
+
+/* Covers without personal photos retain the editorial placeholder instead of an unrelated destination image. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-photo.fi130-no-cover .fi95-item-frame{background:radial-gradient(ellipse at 25% 24%,rgba(114,139,122,.34),transparent 65%),linear-gradient(140deg,#2d3a35,#161d20)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-photo.fi130-no-cover .fi95-item-image{background:transparent!important}
