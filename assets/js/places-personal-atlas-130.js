@@ -11,7 +11,7 @@ const COLLECTIONS=[
   {title:"MOUNTAINS",hint:"TRAILS & SUMMITS",kind:"folder",children:[
     {title:"RODICA",hint:"SLOVENIAN ALPS",kind:"gallery",photos:[]}
   ]},
-  {title:"YOUR NEXT PLACE",hint:"COMING SOON",kind:"empty",photos:[]},
+  {title:"SINGAPORE",hint:"SINGAPORE",kind:"gallery",photos:[]},
   {title:"MORE MEMORIES",hint:"COMING SOON",kind:"empty",photos:[]}
 ];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -19,7 +19,7 @@ const count=n=>String(n).padStart(2,"0");
 let active=null,stage=null,readoutObserver=null,watcher=null,dragX=0,dragY=0,hasDrag=false,returnFocus=null;
 const mountSelector=".world-hub.fi95-ready .fi95-level[data-category='places'] .fi100-stage";
 const reduced=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const cssUrl="https://marega02.github.io/portfolio-assets/assets/css/places-personal-atlas-130.css?v=130.1";
+const cssUrl="https://marega02.github.io/portfolio-assets/assets/css/places-personal-atlas-130.css?v=130.2";
 function syncStage(){
  const next=document.querySelector(mountSelector);
  if(!next||stage===next)return;
@@ -38,8 +38,9 @@ function syncStage(){
    // For Mountains, use a scenic existing cover only as a navigation illustration.
    if(i===3){
      const img=c.querySelector(".fi95-item-image img");
-     if(img){img.src="https://images.pexels.com/photos/10050561/pexels-photo-10050561.jpeg?auto=compress&cs=tinysrgb&w=900";img.alt="Illustrative mountain landscape";}
+     if(img){img.src="https://images.pexels.com/photos/10050561/pexels-photo-10050561.jpeg?auto=compress&cs=tinysrgb&w=900";img.alt="Illustrative mountain cover, not a personal photograph";}
    }
+   if(i>=4){c.querySelector(".fi95-item-image")?.replaceChildren();c.classList.add("fi130-no-cover");}
  });
  const label=stage.querySelector(".fi109-place-name");
  if(label){
