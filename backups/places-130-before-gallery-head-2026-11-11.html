@@ -1,0 +1,1139 @@
+
+
+<!-- WORK — EXTERNAL CSS -->
+<link rel="stylesheet" href="https://marega02.github.io/portfolio-assets/assets/css/work.css?v=1">
+
+<!-- SOUND — EXTERNAL CSS -->
+<link rel="stylesheet" href="https://marega02.github.io/portfolio-assets/assets/css/sound.css?v=1">
+<!-- PHASE 121: ORIGINAL APPROVED WORK EDITORIAL DESIGN, NO HOMEPAGE RULES -->
+<style>
+/* WORK / DISTINCT CHAPTER TREATMENT */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on{
+  color:#ece8df!important;
+  background:
+    radial-gradient(ellipse 70% 53% at 63% 42%,rgba(135,100,73,.135),transparent 80%),
+    radial-gradient(ellipse 40% 54% at 8% 93%,rgba(76,94,85,.13),transparent 82%),
+    linear-gradient(130deg,#151a19 0%,#1a1d1b 48%,#111616 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on::before{
+  background:
+    linear-gradient(90deg,transparent calc(50% - .5px),rgba(213,214,201,.035) 50%,transparent calc(50% + .5px))!important;
+  opacity:1!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-head{
+  border-bottom:1px solid rgba(223,221,208,.16)!important;
+  height:70px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-back{
+  color:#f0ece4!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-back span,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-sign{
+  color:#bbbcb2!important;
+  letter-spacing:.15em!important;
+  font-size:9px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-title{
+  padding:11px 0 0!important;
+  gap:4px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-title h2{
+  color:#f2eee7!important;
+  font:730 clamp(40px,5.35vw,72px)/.94 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.068em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-number{
+  color:#d4aa8c!important;
+  letter-spacing:.17em!important;
+  font-size:9px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-caption{
+  color:#b4bab0!important;
+  font:650 9px/1.5 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.16em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-level-foot{
+  height:58px!important;
+  color:#adb9ad!important;
+  border-color:rgba(218,217,203,.16)!important;
+  letter-spacing:.13em!important;
+  font-size:9px!important;
+}
+/* Hide the old 3D triptych but leave its original buttons in DOM.
+   They still open the preexisting Webflow native case-study routes. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-cluster{
+  display:block!important;
+  position:relative!important;
+  width:min(1150px,100%)!important;
+  height:100%!important;
+  min-height:300px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:visible!important;
+  perspective:none!important;
+  transform-style:flat!important;
+  isolation:isolate!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-cluster::before,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-cluster::after,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-cluster-spine{
+  display:none!important;content:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-cluster > .fi95-item{
+  display:none!important;
+}
+/* STRUCTURE: magazine-style asymmetric hierarchy, scalable to more cases. */
+.world-hub.fi92-ready.fi95-ready .fi113-work-stage{
+  display:grid!important;
+  position:relative!important;
+  grid-template-rows:auto minmax(0,1fr) auto!important;
+  gap:clamp(11px,1.7vh,17px)!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:300px!important;
+  max-width:1110px!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-intro{
+  display:grid!important;
+  grid-template-columns:1fr auto 1fr!important;
+  justify-content:space-between!important;
+  align-items:end!important;
+  gap:12px!important;
+  min-height:54px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-kicker,
+.world-hub.fi92-ready.fi95-ready .fi113-work-count{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  font:650 9px/1.4 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.115em!important;
+  color:#b3b7ac!important;
+  white-space:nowrap!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-kicker i{
+  display:inline-block!important;
+  width:6px!important;height:6px!important;
+  border-radius:50%!important;
+  background:#c6ad8c!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-count{
+  justify-self:end!important;
+  color:#a5b1a6!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-intro p{
+  margin:0!important;
+  font:560 clamp(15px,1.7vw,23px)/1.05 Georgia,Times,serif!important;
+  letter-spacing:-.04em!important;
+  text-align:center!important;
+  color:#f0ede5!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-intro p em{
+  font-style:italic!important;
+  color:#b49c88!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-gallery{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.32fr) minmax(0,.95fr)!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  gap:clamp(11px,1.15vw,17px)!important;
+  align-items:stretch!important;
+  min-height:0!important;
+  height:100%!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;
+  border:1px solid rgba(235,231,215,.36)!important;
+  border-radius:2px!important;
+  background:#30342f!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  cursor:pointer!important;
+  text-align:left!important;
+  box-shadow:0 10px 24px rgba(0,0,0,.18)!important;
+  transform:translate3d(0,0,0)!important;
+  transition:transform .29s cubic-bezier(.2,.82,.2,1),border-color .24s ease,box-shadow .27s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-featured{
+  grid-column:1!important;
+  grid-row:1 / span 2!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-1{
+  grid-column:2!important;grid-row:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-2{
+  grid-column:2!important;grid-row:2!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project:is(:hover,:focus-visible){
+  transform:translate3d(0,-5px,0)!important;
+  border-color:rgba(243,222,194,.81)!important;
+  box-shadow:0 15px 32px rgba(0,0,0,.28)!important;
+  z-index:4!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project:focus-visible{
+  outline:2px solid #d9b697!important;
+  outline-offset:4px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-photo{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100%!important;height:100%!important;
+  overflow:hidden!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-photo > img{
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  opacity:1!important;
+  filter:saturate(.94) contrast(1.04)!important;
+  transform:scale(1.01)!important;
+  transition:transform .48s cubic-bezier(.2,.75,.24,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project:hover .fi113-project-photo > img{
+  transform:scale(1.055)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-1 .fi113-project-photo > img{
+  object-position:center 57%!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-shade{
+  position:absolute!important;inset:0!important;
+  pointer-events:none!important;
+  z-index:1!important;
+  background:linear-gradient(180deg,rgba(8,12,12,.24),transparent 32%,rgba(4,7,6,.26) 53%,rgba(3,6,6,.79) 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-overline{
+  display:flex!important;
+  position:absolute!important;
+  left:clamp(13px,1.4vw,21px)!important;
+  right:clamp(13px,1.4vw,21px)!important;
+  top:clamp(14px,1.5vw,22px)!important;
+  z-index:3!important;
+  justify-content:space-between!important;
+  font:700 9px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.16em!important;
+  color:#f4eee5!important;
+  text-shadow:0 1px 5px rgba(0,0,0,.45)!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-caption{
+  position:absolute!important;
+  left:clamp(14px,1.8vw,27px)!important;
+  right:clamp(20px,2vw,35px)!important;
+  bottom:clamp(15px,1.6vw,27px)!important;
+  z-index:4!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  flex-direction:column!important;
+  gap:7px!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-category{
+  display:block!important;
+  font:700 9px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.14em!important;
+  color:#e2d6c5!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-caption strong{
+  color:#fffaf0!important;
+  font:750 clamp(19px,2.3vw,31px)/.98 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.064em!important;
+  text-shadow:0 2px 9px rgba(0,0,0,.24)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-featured .fi113-project-caption strong{
+  font-size:clamp(29px,3.3vw,47px)!important;
+  letter-spacing:-.076em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-caption small{
+  color:#ede4d9!important;
+  font:520 clamp(10px,1vw,13px)/1.4 Arial,Helvetica,sans-serif!important;
+  letter-spacing:.01em!important;
+  opacity:.89!important;
+  max-width:370px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-arrow{
+  position:absolute!important;
+  z-index:4!important;
+  right:clamp(12px,1.4vw,21px)!important;
+  bottom:clamp(14px,1.5vw,23px)!important;
+  display:grid!important;
+  place-items:center!important;
+  width:32px!important;height:32px!important;
+  border:1px solid rgba(251,241,226,.67)!important;
+  border-radius:50%!important;
+  font:400 20px/1 Arial,sans-serif!important;
+  color:#f7f4e9!important;
+  opacity:.7!important;
+  transform:translate3d(0,0,0)!important;
+  transition:opacity .2s ease,transform .22s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project:hover .fi113-project-arrow{
+  opacity:1!important;
+  transform:translate3d(2px,-2px,0)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-browser{
+  position:absolute!important;
+  z-index:2!important;
+  display:block!important;
+  top:19%!important;
+  right:clamp(12px,3.5vw,55px)!important;
+  width:clamp(142px,20vw,265px)!important;
+  height:auto!important;
+  aspect-ratio:1.27!important;
+  overflow:hidden!important;
+  border-radius:5px!important;
+  border:1px solid rgba(237,235,227,.67)!important;
+  box-shadow:0 15px 38px rgba(0,0,0,.28)!important;
+  background:#efeee6!important;
+  transform:rotate(4deg)!important;
+  pointer-events:none!important;
+  transition:transform .3s cubic-bezier(.2,.8,.22,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project:hover .fi113-project-browser{
+  transform:rotate(1deg) translateY(-4px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-browser-top{
+  display:flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  width:100%!important;
+  height:17px!important;
+  padding:0 7px!important;
+  background:#ece9e3!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-browser-top i{
+  display:block!important;
+  width:4px!important;height:4px!important;
+  border-radius:50%!important;
+  background:#978a80!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-browser-top b{
+  margin-left:auto!important;
+  font:650 6px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.05em!important;
+  color:#615c57!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-project-browser > img{
+  display:block!important;
+  width:100%!important;height:calc(100% - 17px)!important;
+  object-fit:cover!important;
+  object-position:top center!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-bottom{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  min-height:24px!important;
+  font:650 8px/1.4 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.14em!important;
+  color:#aeb5ac!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi113-work-bottom b{
+  color:#d0b59d!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  margin-left:5px!important;
+}
+/* Tablet and phone: vertical project list scrolls INSIDE the Work view.
+   New projects can be appended without squeezing old ones. */
+@media(max-width:850px){
+  .world-hub.fi92-ready.fi95-ready .fi113-work-intro{
+    grid-template-columns:1fr auto!important;
+    min-height:37px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-intro p{
+    display:none!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-count{
+    font-size:7px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-stage{
+    min-height:260px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-gallery{
+    grid-template-columns:minmax(0,1.22fr) minmax(0,.9fr)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-caption strong{
+    font-size:18px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-featured .fi113-project-caption strong{
+    font-size:28px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-browser{
+    width:clamp(115px,20vw,165px)!important;
+    top:18%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-caption small{
+    display:none!important;
+  }
+}
+@media(max-width:600px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi95-cluster{
+    min-height:0!important;
+    overflow:hidden!important;
+    padding:0!important;
+    width:100%!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-stage{
+    display:flex!important;
+    flex-direction:column!important;
+    min-height:0!important;
+    height:100%!important;
+    gap:10px!important;
+    overflow:hidden!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-intro{
+    flex:0 0 auto!important;
+    min-height:28px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-gallery{
+    display:flex!important;
+    flex-direction:column!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    gap:12px!important;
+    padding:2px 2px 17px!important;
+    scroll-snap-type:y proximity;
+    scrollbar-width:thin;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project,
+  .world-hub.fi92-ready.fi95-ready .fi113-project-featured,
+  .world-hub.fi92-ready.fi95-ready .fi113-project-1,
+  .world-hub.fi92-ready.fi95-ready .fi113-project-2{
+    position:relative!important;
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:190px!important;
+    aspect-ratio:1.7!important;
+    flex:0 0 auto!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    scroll-snap-align:start!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-featured{
+    min-height:230px!important;
+    aspect-ratio:1.35!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-caption strong,
+  .world-hub.fi92-ready.fi95-ready .fi113-project-featured .fi113-project-caption strong{
+    font-size:clamp(21px,5.2vw,29px)!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-caption small{
+    display:block!important;
+    font-size:10px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-project-browser{
+    top:17%!important;
+    width:clamp(127px,34vw,178px)!important;
+    right:15px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-bottom{
+    flex:0 0 auto!important;
+    justify-content:center!important;
+    min-height:19px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi113-work-bottom span:first-child{
+    display:none!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-gallery,
+  .world-hub.fi92-ready.fi95-ready .fi113-project,
+  .world-hub.fi92-ready.fi95-ready .fi113-project-photo > img,
+  .world-hub.fi92-ready.fi95-ready .fi113-project-browser{
+    transition:none!important;
+  }
+}
+
+/* PHASE 120 — WORK / WEBFLOW PROTOTYPES
+   Two of three existing Work projects point to user-provided published
+   Webflow demos, rather than the old internal case-study popup.
+   Labels make the prototype status explicit without changing the
+   asymmetric Work layout or the Da Gianni project action. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-project.fi120-prototype{
+  display:block!important;
+  text-decoration:none!important;
+  color:inherit!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi120-prototype-badge{
+  position:absolute!important;
+  top:clamp(36px,3.75vw,46px)!important;
+  right:clamp(13px,1.4vw,21px)!important;
+  z-index:6!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:7px 9px!important;
+  border:1px solid rgba(255,245,225,.53)!important;
+  border-radius:2px!important;
+  background:rgba(16,22,21,.53)!important;
+  color:#f6f1e6!important;
+  font:700 9px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.14em!important;
+  pointer-events:none!important;
+  backdrop-filter:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi120-prototype-badge i{
+  font-size:13px!important;
+  font-weight:400!important;
+  font-style:normal!important;
+  letter-spacing:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-project.fi120-prototype:hover .fi120-prototype-badge{
+  border-color:rgba(255,245,225,.85)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-work-bottom span:last-child{
+  color:#d7c4ac!important;
+  letter-spacing:.08em!important;
+}
+@media(max-width:600px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi120-prototype-badge{
+    top:40px!important;
+    right:13px!important;
+    padding:6px 8px!important;
+    font-size:8px!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="work"].fi113-work-on .fi113-work-bottom span:last-child{
+    font-size:7px!important;
+    letter-spacing:.03em!important;
+  }
+}
+</style>
+<style>
+/* PHASE 123 — THE RECORD ROOMS
+   Keep the approved ten-position 3D genre carousel. Add a second level
+   into an album sleeve gallery after the front genre card is tapped.
+   No playback. Genuine cover art via MusicBrainz Cover Art Archive. */
+
+/* SOUNDS: the user asked to remove genre descriptions from the carousel. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo .fi95-item-meta small,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-readout-note{
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo .fi95-item-meta{gap:0!important;margin-top:12px!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-readout-name{
+  padding-bottom:2px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo{
+  pointer-events:auto!important;
+  cursor:grab!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front{cursor:pointer!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front .fi95-item-frame{
+  border-color:rgba(244,231,213,.9)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front .fi95-item-frame::after{
+  content:"ENTER ↗"!important;
+  position:absolute!important;
+  top:auto!important;left:0!important;right:0!important;bottom:0!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  height:26px!important;
+  background:linear-gradient(180deg,transparent,rgba(7,8,12,.7))!important;
+  color:#f5ece1!important;
+  font:650 8px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.11em!important;
+  opacity:.95!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-depth{pointer-events:none!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-rotor{pointer-events:auto!important}
+/* Explicit entry for each centered genre. It uses the same pointer
+   handler as tapping the photo, providing a reliable discovery path. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi123-enter{
+  position:absolute!important;
+  z-index:20!important;
+  left:50%!important;
+  bottom:clamp(36px,6vh,61px)!important;
+  transform:translateX(-50%)!important;
+  padding:11px 17px!important;
+  min-width:165px!important;
+  border:1px solid rgba(234,207,184,.6)!important;
+  border-radius:2px!important;
+  background:rgba(25,22,26,.65)!important;
+  color:#f9e9dc!important;
+  font:700 9px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.11em!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  backdrop-filter:none!important;
+  transition:background .2s ease,border-color .2s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi123-enter:is(:hover,:focus-visible){
+  border-color:#edcbb1!important;
+  background:rgba(68,47,49,.88)!important;
+}
+@media(max-width:580px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+  .fi123-enter{
+    bottom:34px!important;
+    padding:10px 12px!important;
+    min-width:145px!important;
+    font-size:8px!important;
+  }
+}
+
+/* A standalone overlay within the Sound cluster. This does not replace
+   or reparent any existing carousel photo or interfere with Places. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi111-sound-stage{
+  transition:opacity .34s ease,filter .34s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi111-sound-stage.fi123-stage-away{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  filter:blur(2px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-room{
+  position:absolute!important;
+  z-index:150!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-rows:44px minmax(0,1fr) 31px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(230,207,187,.14)!important;
+  border-radius:2px!important;
+  background:
+    radial-gradient(ellipse 65% 61% at 55% 43%,rgba(97,61,66,.30),transparent 79%),
+    linear-gradient(125deg,#191719 0%,#292022 48%,#18191c 100%)!important;
+  color:#f4eee5!important;
+  isolation:isolate!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translate3d(0,23px,0)!important;
+  transition:opacity .34s cubic-bezier(.21,.69,.21,1),
+    transform .34s cubic-bezier(.21,.69,.21,1),
+    visibility 0s linear .34s!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-room.fi123-room-visible{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translate3d(0,0,0)!important;
+  transition:opacity .34s cubic-bezier(.21,.69,.21,1),
+    transform .34s cubic-bezier(.21,.69,.21,1),
+    visibility 0s!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-head{
+  display:grid!important;
+  grid-template-columns:1fr auto 1fr!important;
+  gap:12px!important;
+  align-items:center!important;
+  border-bottom:1px solid rgba(235,214,191,.18)!important;
+  padding:0 clamp(14px,2vw,27px)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-back{
+  display:inline-flex!important;
+  justify-self:start!important;
+  align-items:center!important;
+  gap:10px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#f6e9d9!important;
+  padding:10px 3px!important;
+  font:700 15px/1 Arial,Helvetica,sans-serif!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-back span{
+  font:650 9px/1 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.13em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-counter,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-monogram{
+  font:650 9px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.15em!important;
+  color:#c3ac9d!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-monogram{
+  justify-self:end!important;
+  color:#ede7da!important;
+  font:750 22px/1 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.085em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-monogram span{color:#c4a18d!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-content{
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) auto!important;
+  gap:clamp(9px,1.6vh,17px)!important;
+  width:100%!important;
+  min-height:0!important;
+  padding:clamp(11px,2.1vh,19px) clamp(14px,2.3vw,30px) 14px!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#90786c transparent;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro{
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+  align-items:end!important;
+  column-gap:clamp(17px,3vw,42px)!important;
+  row-gap:4px!important;
+  padding:0 0 12px!important;
+  border-bottom:1px solid rgba(232,216,195,.15)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-eyebrow{
+  grid-column:1 / -1!important;
+  font:650 9px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.16em!important;
+  color:#cdac98!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro h3{
+  grid-row:2!important;
+  grid-column:1!important;
+  padding:0!important;
+  margin:0!important;
+  font:760 clamp(38px,5.6vw,69px)/.89 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.085em!important;
+  color:#faf2e9!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro h3 em{
+  color:#cba98a!important;
+  font-style:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-intro p{
+  grid-row:2!important;
+  grid-column:2!important;
+  max-width:365px!important;
+  margin:0!important;
+  padding:0!important;
+  font:460 clamp(11px,1.06vw,14px)/1.45 Arial,Helvetica,sans-serif!important;
+  color:#d0c4bd!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-ledger{
+  grid-row:2!important;
+  grid-column:3!important;
+  font:650 8px/1.4 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.10em!important;
+  white-space:nowrap!important;
+  color:#b2aba4!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:clamp(10px,2.1vw,28px)!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:850px!important;
+  width:100%!important;
+  margin:0 auto!important;
+  padding:4px 6px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:12px!important;
+  background:transparent!important;
+  border:0!important;
+  padding:0!important;
+  margin:0!important;
+  color:#eee8de!important;
+  cursor:pointer!important;
+  text-align:left!important;
+  opacity:.80!important;
+  min-width:0!important;
+  min-height:0!important;
+  transform:translate3d(0,0,0)!important;
+  transition:opacity .22s ease,transform .3s cubic-bezier(.22,.8,.23,1)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:is(:hover,:focus-visible,.fi123-album-active){
+  transform:translate3d(0,-8px,0)!important;
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:focus-visible{
+  outline:2px solid #dbb79d!important;
+  outline-offset:5px!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-sleeve{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  aspect-ratio:1!important;
+  transform-style:flat!important;
+  overflow:visible!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-disc{
+  position:absolute!important;
+  top:5%!important;
+  bottom:5%!important;
+  right:-7%!important;
+  width:90%!important;
+  aspect-ratio:1!important;
+  border-radius:50%!important;
+  background:
+    radial-gradient(circle at 50% 50%,#c3a487 0 5%,#171516 5.5% 10%,#332b2d 10.5% 12%,
+      #100f11 12.5% 18%,#222021 19%,#0f0f10 25%,#232021 26%,#121214 30%,#292528 31%,
+      #141315 33%,#211d1f 44%,#111113 46%,#2b2627 48%,#111214 50%,#131416 100%)!important;
+  box-shadow:0 6px 19px rgba(0,0,0,.31)!important;
+  opacity:.42!important;
+  transform:translate3d(-8%,0,0)!important;
+  transition:transform .31s cubic-bezier(.22,.8,.23,1),opacity .31s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-active .fi123-record-disc,
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:hover .fi123-record-disc{
+  transform:translate3d(13%,0,0)!important;
+  opacity:.93!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-art{
+  display:block!important;
+  position:absolute!important;
+  inset:0 10% 0 0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(246,234,214,.65)!important;
+  background:#35292b!important;
+  box-shadow:0 9px 22px rgba(0,0,0,.30)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-art img{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-art img[hidden]{display:none!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-art-backup{
+  position:absolute!important;inset:0!important;
+  display:flex!important;flex-direction:column!important;
+  gap:9px!important;justify-content:flex-end!important;
+  padding:clamp(11px,1.25vw,17px)!important;
+  background:radial-gradient(circle at 60% 22%,rgba(241,197,145,.26),transparent 50%),
+    linear-gradient(135deg,#553b40,#1e2225)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:nth-child(2) .fi123-art-backup{background:linear-gradient(135deg,#a17c55,#463a30)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:nth-child(3) .fi123-art-backup{background:linear-gradient(135deg,#2b5a6a,#27262c)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album:nth-child(4) .fi123-art-backup{background:linear-gradient(135deg,#6e5d4d,#20272b)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-art-backup b{
+  font:740 clamp(13px,1.35vw,20px)/1.05 Arial,sans-serif!important;
+  letter-spacing:-.065em!important;color:#f9eee1!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-art-backup small{
+  font:650 9px/1.2 ui-monospace,Consolas,monospace!important;
+  color:#e8ddd3!important;letter-spacing:.05em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-caption{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0 3px!important;
+  color:#f6f0e8!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-caption strong{
+  font:720 clamp(13px,1.35vw,18px)/1.12 Arial,Helvetica,sans-serif!important;
+  color:#f6eee5!important;
+  letter-spacing:-.042em!important;
+  white-space:normal!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-album-caption small{
+  font:650 9px/1.35 ui-monospace,Consolas,monospace!important;
+  color:#bcaaa0!important;
+  letter-spacing:.06em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-record-detail{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto auto!important;
+  align-items:end!important;
+  gap:5px 17px!important;
+  min-height:64px!important;
+  width:100%!important;
+  padding:13px 0 0!important;
+  border-top:1px solid rgba(233,216,195,.19)!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-index{
+  grid-column:1!important;grid-row:1!important;
+  font:650 8px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.14em!important;
+  color:#bfab9e!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-name{
+  grid-column:1!important;grid-row:2!important;
+  font:760 clamp(19px,2.6vw,30px)/1.02 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.065em!important;
+  color:#f9f1e6!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-artist{
+  grid-column:1!important;grid-row:3!important;
+  font:650 9px/1.3 ui-monospace,Consolas,monospace!important;
+  color:#cebcae!important;letter-spacing:.1em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-kind{
+  grid-column:2!important;grid-row:1!important;
+  font:700 8px/1.4 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.12em!important;
+  color:#d5bc9e!important;
+  text-align:right!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link{
+  grid-column:2!important;grid-row:2 / span 2!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:23px!important;
+  padding:12px 15px!important;
+  color:#262322!important;
+  background:#efe8dd!important;
+  border-radius:2px!important;
+  font:700 9px/1.2 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.095em!important;
+  text-decoration:none!important;
+  transition:background .2s ease!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link:hover{background:#d4bdad!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link b{font:400 19px/1 Arial,sans-serif!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-room-foot{
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:0 clamp(14px,2vw,27px)!important;
+  border-top:1px solid rgba(235,214,191,.18)!important;
+  color:#b6a79f!important;
+  font:650 8px/1.3 ui-monospace,Consolas,monospace!important;
+  letter-spacing:.12em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-record{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:12px!important;
+  min-width:0!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-cover{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  width:100%!important;
+  aspect-ratio:1!important;
+  padding:clamp(9px,1vw,15px)!important;
+  border:1px dashed rgba(227,210,194,.35)!important;
+  background:linear-gradient(145deg,rgba(216,187,162,.095),rgba(36,30,36,.5))!important;
+  color:#d7c6b9!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-cover i{
+  font:450 25px Georgia,Times,serif!important;
+  letter-spacing:-.05em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-cover strong{
+  font:700 clamp(15px,1.6vw,22px)/1.08 Arial,sans-serif!important;
+  letter-spacing:-.06em!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-empty-note{
+  font:650 8px/1.4 ui-monospace,Consolas,monospace!important;
+  color:#b8a89e!important;
+  letter-spacing:.09em!important;
+}
+@media(max-width:800px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-content{padding:13px 17px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro{grid-template-columns:auto 1fr!important;gap:8px 16px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-ledger{grid-column:1 / -1!important;grid-row:3!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro h3{font-size:clamp(38px,7vw,58px)!important}
+}
+@media(max-width:580px){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-room{grid-template-rows:43px minmax(0,1fr) 24px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-head{grid-template-columns:auto 1fr auto!important;padding:0 12px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-counter{justify-self:center!important;font-size:7px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-back span{font-size:7px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro{grid-template-columns:1fr!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro h3{grid-column:1!important;grid-row:2!important;font-size:44px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-intro p{grid-column:1!important;grid-row:3!important;font-size:12px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-ledger{grid-column:1!important;grid-row:4!important;font-size:7px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important;max-width:380px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-caption strong{font-size:14px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-record-detail{grid-template-columns:1fr!important;gap:6px!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-detail-index,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-name,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-artist,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-kind,
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"] .fi123-detail-link{
+    grid-column:1!important;grid-row:auto!important;text-align:left!important;justify-self:start!important;
+  }
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-foot span:last-child{display:none!important}
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-room-content{gap:11px!important;padding:12px 13px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album-room,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi111-sound-stage,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-album,.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+  .fi123-record-disc{transition:none!important}
+}
+
+</style>
+<style>
+/* PHASE 124 — ONE HOME FOLIO / IMAGE-ONLY SOUND ENTRY
+   Deliberately leaves the approved visual layouts untouched. */
+
+/* The new numbers are children of the independent overlay only.
+   Eliminate every older number element attached to the photographs,
+   including those revived by scroll-triggered legacy interactions. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery
+.fi95-panel :is(.fi119-folio,.fi113-panel-id,.fi95-panel-num,.fi95-panel-number,.fi95-card-num),
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery
+.fi95-panel [class*="panel-num"],
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home .fi95-gallery
+.fi95-panel [class*="folio"]{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-home-foot .fi95-current{
+  display:none!important;
+  visibility:hidden!important;
+}
+/* The only intended numbers ABOVE the photographs are the 01 / 04
+   through 04 / 04 folios in this independent, always visible grid. */
+.world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+.fi95-gallery > .fi118-labels-overlay .fi122-overlay-folio{
+  display:inline-flex!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+}
+
+/* Sound: no separate Explore button, no extra ENTER tag on the cover.
+   The photograph itself remains a genuine click/tap target. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-enter{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front .fi95-item-frame::after{
+  content:none!important;
+  display:none!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"].fi111-sound-on
+.fi111-photo.fi111-front{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="sound"]
+.fi123-detail-link{
+  text-decoration:none!important;
+}
+/* Prevent duplicate counters on small screens as well. The mobile
+   original genre-label and swipe interactions are preserved. */
+@media(max-width:790px){
+  .world-hub.fi92-ready.fi95-ready .fi95-home.fi108-home
+  .fi95-gallery > .fi118-labels-overlay{display:none!important}
+}
+
+</style>
+<link rel="stylesheet" href="https://marega02.github.io/portfolio-assets/assets/css/sound-hiphop-archive-127.css?v=127.2">
