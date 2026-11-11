@@ -1,0 +1,114 @@
+/* PLACES 131 / clickable personal photo atlas, lightweight, no heavy effects */
+body.fi130-open{overflow:hidden!important}
+.fi130-clickable.fi102-front{cursor:pointer!important}
+.fi130-clickable.fi102-front .fi95-item-frame{border-color:rgba(247,239,228,.72)!important}
+.fi130-hint{font-weight:650!important;font-size:inherit!important;white-space:nowrap!important}
+.fi130-shell{--paper:#ede6dc;--faint:#b6b6aa;--rule:rgba(238,230,213,.19);position:fixed!important;inset:0!important;z-index:2147483000!important;display:grid!important;grid-template-rows:70px minmax(0,1fr) 42px!important;background:radial-gradient(ellipse at 70% 25%,#28332f 0%,#18211f 47%,#11191a 100%)!important;color:var(--paper)!important;opacity:1;transform:translate3d(0,101%,0);transition:transform .7s cubic-bezier(.26,.76,.21,1)!important;font-family:Arial,Helvetica,sans-serif!important;isolation:isolate!important}
+.fi130-shell.fi130-visible{transform:translate3d(0,0,0)}
+.fi130-shell *{box-sizing:border-box}
+.fi130-top,.fi130-footer{display:flex;align-items:center;justify-content:space-between;padding:0 clamp(17px,4vw,65px)!important;border-bottom:1px solid var(--rule)}
+.fi130-footer{border-bottom:0;border-top:1px solid var(--rule)}
+.fi130-brand,.fi130-footer,.fi130-path,.fi130-eyebrow,.fi130-empty-number,.fi130-empty-foot,.fi130-subcard-number,.fi130-subcard-action,.fi130-gallery-meta{font:650 10px/1.4 ui-monospace,Consolas,monospace!important;letter-spacing:.115em!important}
+.fi130-footer{font-size:8px!important;color:var(--faint)!important}
+.fi130-exit,.fi130-up{cursor:pointer;border:0;color:var(--paper);background:transparent;font:700 11px/1.3 ui-monospace,Consolas,monospace;letter-spacing:.12em}
+.fi130-exit{padding:14px;border:1px solid var(--rule)!important}
+.fi130-up{padding:9px 0}
+.fi130-exit:hover,.fi130-up:hover{color:#d4b89a}
+.fi130-content{min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding:clamp(23px,4vw,54px) clamp(17px,7vw,110px) 45px!important;scrollbar-width:thin}
+.fi130-heading{max-width:1100px;margin:0 auto 28px!important}
+.fi130-path{display:flex;align-items:center;gap:12px;color:#b9bcb4;margin-bottom:clamp(22px,4vh,45px)!important}
+.fi130-eyebrow{display:block;color:#d6b49c;margin-bottom:13px}
+.fi130-heading h2{margin:0!important;font:750 clamp(48px,8vw,105px)/.87 Arial,Helvetica,sans-serif!important;letter-spacing:-.087em!important;color:#f8f1e7!important}
+.fi130-heading h2 em{font-style:normal;color:#c2a58b}
+.fi130-heading p{margin:14px 0 0!important;font:600 11px/1.4 ui-monospace,monospace;letter-spacing:.1em;color:#bec6ba}
+.fi130-folder-intro,.fi130-subgrid,.fi130-empty,.fi130-viewer,.fi130-thumbnails,.fi130-gallery-meta{width:100%;max-width:1100px;margin-left:auto!important;margin-right:auto!important}
+.fi130-folder-intro{font:450 clamp(15px,1.6vw,20px)/1.5 Arial,sans-serif;color:#c9d1c8;margin-bottom:25px!important}
+.fi130-subgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px!important}
+.fi130-subcard,.fi130-add-card{height:clamp(220px,28vh,320px);display:flex;flex-direction:column;align-items:flex-start;padding:24px!important;position:relative;border:1px solid var(--rule);background:linear-gradient(145deg,#38453d,#1a2421);color:var(--paper);text-align:left}
+.fi130-subcard{cursor:pointer;transition:transform .25s ease,border-color .25s ease}
+.fi130-subcard:hover{transform:translateY(-4px);border-color:#d6b89d}
+.fi130-subcard strong,.fi130-add-card strong{font:750 clamp(24px,3vw,42px)/.95 Arial,sans-serif;letter-spacing:-.06em;margin-top:auto}
+.fi130-subcard small,.fi130-add-card small{font:650 9px/1.4 ui-monospace,monospace;letter-spacing:.12em;color:#c2c9bf;margin-top:10px}
+.fi130-subcard-action{margin-top:20px;color:#e5c5a9}
+.fi130-add-card{background:transparent;border-style:dashed;color:#abb5aa}
+.fi130-add-card>span{font:250 46px Arial}
+.fi130-empty{min-height:min(50vh,435px);display:flex;flex-direction:column;gap:17px}
+.fi130-empty-number,.fi130-empty-foot{color:#a9b5a9}
+.fi130-empty-frame{flex:1;min-height:240px;border:1px dashed rgba(218,213,196,.36);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px!important;background:radial-gradient(circle at 50% 55%,rgba(121,138,124,.12),transparent 65%)}
+.fi130-empty-plus{font:300 45px/1 Arial;color:#acbbae}
+.fi130-empty-frame strong{font:700 clamp(22px,4vw,44px)/1 Arial;letter-spacing:-.06em;margin:18px 0 0}
+.fi130-empty-frame p{font:450 13px/1.5 Arial;max-width:300px;color:#aebbae}
+.fi130-viewer{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;gap:10px;align-items:center;max-width:900px}
+.fi130-viewer figure{margin:0;min-width:0}
+.fi130-main-image{display:block;width:100%;max-height:55vh;object-fit:contain}
+.fi130-image-caption{font:500 12px/1.5 Arial;color:#b8c1b8;margin-top:10px}
+.fi130-prev,.fi130-next{height:45px;cursor:pointer;border:1px solid var(--rule);background:transparent;color:var(--paper)}
+.fi130-gallery-meta{max-width:900px;margin-top:15px!important;color:#cdb49f}
+.fi130-thumbnails{max-width:900px;display:flex;gap:10px;margin-top:20px!important;overflow-x:auto}
+.fi130-thumb{width:80px;height:80px;padding:0;flex:none;cursor:pointer;background:transparent;border:2px solid transparent}
+.fi130-thumb-active{border-color:#e9d9c7}
+.fi130-thumb img{width:100%;height:100%;object-fit:cover}
+@media(max-width:700px){.fi130-shell{grid-template-rows:56px minmax(0,1fr) 36px!important}.fi130-subgrid{grid-template-columns:1fr 1fr}.fi130-subcard,.fi130-add-card{height:190px;padding:16px!important}.fi130-subcard strong,.fi130-add-card strong{font-size:24px}.fi130-footer span:last-child{display:none}.fi130-content{padding-top:24px!important}.fi130-path{margin-bottom:22px!important}.fi130-hint{display:none!important}}
+@media(max-width:440px){.fi130-subgrid{grid-template-columns:1fr}.fi130-subcard,.fi130-add-card{height:150px}.fi130-viewer{grid-template-columns:29px minmax(0,1fr) 29px}.fi130-brand{font-size:9px!important}}
+@media(prefers-reduced-motion:reduce){.fi130-shell,.fi130-subcard{transition:none!important}}
+
+/* Covers without personal photos retain the editorial placeholder instead of an unrelated destination image. */
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-photo.fi130-no-cover .fi95-item-frame{background:radial-gradient(ellipse at 25% 24%,rgba(114,139,122,.34),transparent 65%),linear-gradient(140deg,#2d3a35,#161d20)!important}
+.world-hub.fi92-ready.fi95-ready .fi95-level[data-category="places"] .fi102-photo.fi130-no-cover .fi95-item-image{background:transparent!important}
+
+/* Phase 130.4 — click capture: native Places set pointer-events:none on
+   every carousel face when this was only a visual study. Allow the front
+   and visible side faces to receive taps without changing the orbit. */
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi100-photo.fi102-photo.fi130-clickable:is(.fi102-front,.fi102-side){
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi130-mountain-cover .fi95-item-image{
+  position:relative!important;
+  isolation:isolate!important;
+  background:radial-gradient(ellipse at 67% 23%,#899b8b,transparent 49%),
+    linear-gradient(144deg,#526b5f,#233c3b 58%,#152628)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi130-mountain-cover .fi95-item-image::before{
+  content:""!important;
+  position:absolute!important;
+  inset:23% -5% 0!important;
+  background:linear-gradient(150deg,#abbba8,#536b65 62%,#1e3432);
+  clip-path:polygon(0 88%,16% 64%,30% 72%,53% 6%,82% 69%,100% 37%,100% 100%,0 100%)!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi130-mountain-cover .fi95-item-image::after{
+  content:""!important;
+  position:absolute!important;
+  inset:59% -4% 0!important;
+  background:linear-gradient(155deg,#385b52,#142727);
+  clip-path:polygon(0 80%,20% 39%,47% 67%,76% 10%,100% 61%,100% 100%,0 100%)!important;
+}
+/* Photo tap reliability: earlier Places experiments intentionally disabled
+   pointer hit-testing on the gallery cards. The front card is now active. */
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on .fi102-world{
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on .fi102-rotor{
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi100-photo.fi102-photo.fi130-clickable.fi102-front{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.world-hub.fi92-ready.fi95-ready
+.fi95-level[data-category="places"].fi102-carousel-on
+.fi95-item.fi102-photo.fi130-clickable.fi102-front .fi95-item-frame{
+  cursor:pointer!important;
+}
