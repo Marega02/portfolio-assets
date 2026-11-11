@@ -62,7 +62,7 @@ async function ghGet(path){
  return r.json();
 }
 async function ghPut(path,bytes,sha,message){
- const b= typeof bytes==="string"?btoa(unescape(encodeURIComponent(bytes))):toBase64(bytes);
+ const b=typeof bytes==="string"?toBase64(new TextEncoder().encode(bytes)):toBase64(bytes);
  const payload={message,content:b,branch:"main",...(sha?{sha}:{})};
  const r=await fetch(GH+"/"+path,{
   method:"PUT",headers:{...ghHeaders(),"Content-Type":"application/json"},
@@ -72,13 +72,16 @@ async function ghPut(path,bytes,sha,message){
  return r.json();
 }
 function toBase64(bytes){
- const x=new Uint8Array(bytes);
+ const x=bytes instanceof Uint8Array?bytes:new Uint8Array(bytes);
  let out="";
  for(let i=0;i<x.length;i+=8192)out+=String.fromCharCode(...x.slice(i,i+8192));
  return btoa(out);
 }
 function fromBase64(content){
- return decodeURIComponent(escape(atob(String(content).replace(/\s/g,""))));
+ const str=atob(String(content).replace(/\s/g,""));
+ const out=new Uint8Array(str.length);
+ for(let i=0;i<str.length;i++)out[i]=str.charCodeAt(i);
+ return new TextDecoder().decode(out);
 }
 async function digest(s){
  const data=new TextEncoder().encode(s);
