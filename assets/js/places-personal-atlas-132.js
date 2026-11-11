@@ -20,6 +20,33 @@ const COLLECTIONS=[
 ];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const count=n=>String(n).padStart(2,"0");
+
+/* Selected photos are published by the private importer to GitHub Pages.
+   Public visitors read only this static manifest; no Google account or
+   GitHub token is ever required in the visitor-facing Webflow site. */
+const PHOTO_MANIFEST="https://marega02.github.io/portfolio-assets/assets/photos/places-manifest.json";
+function slugPhotoEntry(entry){
+ return entry.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+   .replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+}
+async function loadPersonalPhotos(){
+ try{
+  const r=await fetch(PHOTO_MANIFEST+"?t="+Date.now(),{cache:"no-store"});
+  if(!r.ok)return;
+  const payload=await r.json();
+  const galleries=payload?.galleries||{};
+  const entries=COLLECTIONS.flatMap(x=>x.kind==="folder"?x.children:[x]);
+  for(const entry of entries){
+   const items=galleries[slugPhotoEntry(entry)];
+   if(!Array.isArray(items))continue;
+   entry.photos=items.filter(p=>
+      p&&typeof p.src==="string"&&p.src.startsWith(
+        "https://marega02.github.io/portfolio-assets/assets/photos/"
+      )).map(p=>({src:p.src,alt:String(p.alt||entry.title),caption:String(p.caption||"")}));
+  }
+ }catch(e){ /* Offline and unpublished manifest: keep the current placeholders. */ }
+}
+
 let active=null,stage=null,readoutObserver=null,watcher=null,dragX=0,dragY=0,hasDrag=false,returnFocus=null;
 let tapped=-1,tappedPointer=-1,suppressClickUntil=0;
 const mountSelector=".world-hub.fi95-ready .fi95-level[data-category='places'] .fi100-stage";
@@ -323,6 +350,8 @@ function clearFloors(){
  }
 }
 function init(){
+ loadPersonalPhotos();
+ window.addEventListener("focus",loadPersonalPhotos,{passive:true});
  // Window capture runs before the existing Home Escape handler, so a
  // return from floor 04 never jumps straight out of Places to Home.
  window.addEventListener("keydown",e=>{
