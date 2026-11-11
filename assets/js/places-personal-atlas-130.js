@@ -178,6 +178,13 @@ function close(){
  returnFocus=null;
 }
 function init(){
+ // Intercept Escape before the older Home capture listener can close Places.
+ window.addEventListener("keydown",e=>{
+  if(!active||e.key!=="Escape")return;
+  e.preventDefault();e.stopImmediatePropagation();
+  if(page!==rootEntry&&rootEntry?.kind==="folder")showEntry(rootEntry,null);
+  else close();
+ },true);
  if(document.querySelector("link[data-fi130-style]")==null){
   const l=document.createElement("link");l.rel="stylesheet";l.href=cssUrl;l.dataset.fi130Style="1";document.head.appendChild(l);
  }
