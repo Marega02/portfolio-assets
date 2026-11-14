@@ -2,7 +2,6 @@
  * Credentials remain in Webflow Cloud secret environment variables.
  * Only the Google account matching ADMIN_EMAIL can read selections or publish.
  */
-export const runtime="edge";
 const GOOGLE="https://photospicker.googleapis.com/v1";
 const GH="https://api.github.com/repos/Marega02/portfolio-assets/contents";
 const MANIFEST="assets/photos/places-manifest.json";
