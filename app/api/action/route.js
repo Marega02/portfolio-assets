@@ -89,7 +89,7 @@ async function digest(s){
 }
 async function publish(token,sessionId,destination,ids){
  if(!allowed.has(destination))throw Object.assign(new Error("Destinazione non valida."),{code:400});
- if(!Array.isArray(ids)||ids.length<1||ids.length>12||ids.some(id=>!isPlain(id,1000)))throw Object.assign(new Error("Seleziona da 1 a 12 fotografie."),{code:400});
+ if(!Array.isArray(ids)||ids.length!==1||ids.some(id=>!isPlain(id,1000)))throw Object.assign(new Error("Invia una fotografia alla volta."),{code:400});
  const session=await google(token,"/sessions/"+encodeURIComponent(sessionId));
  if(!session.mediaItemsSet)throw Object.assign(new Error("Completa prima la selezione su Google Foto."),{code:400});
  const items=await selected(token,sessionId),chosen=items.filter(x=>ids.includes(x.id));
@@ -118,13 +118,20 @@ async function publish(token,sessionId,destination,ids){
   if(!["image/jpeg","image/png","image/webp"].includes(type)){
     results.push({name:item.mediaFile.filename,status:"unsupported-format"});continue;
   }
-  const content=await photo.arrayBuffer();
-  if(content.byteLength>8*1024*1024){
-    results.push({name:item.mediaFile.filename,status:"too-large"});continue;
-  }
   const ext=type==="image/png"?"png":type==="image/webp"?"webp":"jpg";
   const path="assets/photos/"+destination+"/"+id+"."+ext;
-  await ghPut(path,content,null,"Add "+destination+" photograph "+id);
+  // A previous request may have saved the image before reaching the
+  // manifest update. Reconcile such orphaned files safely on retry.
+  const alreadyUploaded=await ghGet(path);
+  if(alreadyUploaded){
+    try{await photo.body?.cancel();}catch{}
+  }else{
+    const content=await photo.arrayBuffer();
+    if(content.byteLength>8*1024*1024){
+      results.push({name:item.mediaFile.filename,status:"too-large"});continue;
+    }
+    await ghPut(path,content,null,"Add "+destination+" photograph "+id);
+  }
   const record={
     id,src:CDN+path,
     alt:item.mediaFile.filename||"Photograph",
@@ -138,8 +145,8 @@ async function publish(token,sessionId,destination,ids){
  if(results.some(x=>x.status==="imported")){
   await ghPut(MANIFEST,JSON.stringify(data,null,2),prev?.sha||null,"Update Places gallery "+destination);
  }
- // End the Picker session after all successful changes are persisted.
- try{await google(token,"/sessions/"+encodeURIComponent(sessionId),"DELETE");}catch{}
+ // Keep the selection open for the remaining photo requests; the client
+ // closes the Picker session after every selected photo is processed.
  return {imported:results.filter(x=>x.status==="imported").length,results,totalInGallery:gallery.length};
 }
 export async function POST(request){
@@ -167,6 +174,10 @@ export async function POST(request){
   }
   if(action==="import"){
    return Response.json(await publish(token,body.sessionId,body.destination,body.ids));
+  }
+  if(action==="finish"){
+   try{await google(token,"/sessions/"+encodeURIComponent(body.sessionId),"DELETE");}catch{}
+   return Response.json({finished:true});
   }
   return fail("Operazione sconosciuta.");
  }catch(e){
