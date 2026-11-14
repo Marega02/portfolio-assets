@@ -126,7 +126,18 @@ export default function Importer(){
     }
    }
    throw new Error("La selezione è scaduta. Puoi riprovare.");
-  }catch(e){setStatus("Selezione interrotta: "+e.message);try{windowRef.close();}catch{}}
+  }catch(e){
+    const message="Selezione interrotta: "+e.message;
+    setStatus(message);
+    // Keep the popup available for diagnosis instead of silently closing it.
+    try{
+      if(windowRef&&!windowRef.closed&&windowRef.location.href==="about:blank"){
+        windowRef.document.title="Google Foto / Connessione interrotta";
+        windowRef.document.body.style.cssText="font:16px/1.7 system-ui,sans-serif;padding:36px;background:#111;color:#f5f5f5;white-space:pre-wrap";
+        windowRef.document.body.textContent="Google Foto non si è aperto.\\n\\n"+message+"\\n\\nTorna alla scheda Places per i dettagli.";
+      }
+    }catch{}
+  }
   setBusy(false);
  }
  async function importPhotos(){
