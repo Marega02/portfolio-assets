@@ -70,8 +70,16 @@ export default function Importer(){
    headers:{"Content-Type":"application/json",Authorization:"Bearer "+currentToken},
    body:JSON.stringify(data),cache:"no-store"
   });
-  const info=await resp.json().catch(()=>({error:"Risposta del server non valida."}));
-  if(!resp.ok)throw new Error(info.error||"Richiesta non riuscita.");
+  const raw=await resp.text();
+  let info;
+  try{info=JSON.parse(raw);}catch{
+   throw new Error("Il server ha risposto HTTP "+resp.status+" senza JSON. "+(
+    [500,502,503,504,522,524].includes(resp.status)
+     ?"La richiesta potrebbe aver superato il limite Webflow Cloud; riprova solo le fotografie rimanenti."
+     :"Controlla la pagina e l'accesso Google."
+   ));
+  }
+  if(!resp.ok)throw new Error((info.error||"Richiesta non riuscita.")+" (HTTP "+resp.status+")");
   return info;
  }
  async function signIn(){
@@ -142,15 +150,39 @@ export default function Importer(){
  }
  async function importPhotos(){
   if(!selected.length||!session.current||!token||busy)return;
-  setBusy(true);setReport(null);setStatus("Importazione in corso. Non chiudere la pagina.");
-  try{
-   const out=await action({action:"import",sessionId:session.current,
-     destination,ids:selected.map(x=>x.id)});
-   setReport(out);
-   setStatus("Importazione conclusa: "+out.imported+" foto nuove. Le immagini appariranno nel sito dopo la pubblicazione di GitHub Pages.");
-   setSelected([]);
-   session.current="";
-  }catch(e){setStatus("Importazione non completata: "+e.message);}
+  const batch=[...selected],pickerSession=session.current;
+  setBusy(true);setReport(null);
+  let completed=0,newPhotos=0,alreadyThere=0;
+  const results=[];
+  for(let i=0;i<batch.length;i++){
+    const item=batch[i];
+    setStatus("Importazione "+(i+1)+" di "+batch.length+": "+item.name+". Non chiudere la pagina.");
+    try{
+      // Each request imports just one image and atomically updates the
+      // catalogue, avoiding Webflow Cloud's per-request 20s limit.
+      const out=await action({action:"import",sessionId:pickerSession,
+       destination,ids:[item.id]});
+      results.push(...(out.results||[]));
+      completed++;
+      newPhotos+=(out.imported||0);
+      alreadyThere+=(out.results||[]).filter(r=>r.status==="already-present").length;
+      setReport({results:[...results],imported:newPhotos});
+      setSelected(batch.slice(i+1));
+      setStatus("Completate "+completed+" di "+batch.length+" foto. Nuove: "+newPhotos+", già presenti: "+alreadyThere+".");
+    }catch(e){
+      setSelected(batch.slice(i)); // Keep current and remaining photos retryable.
+      setReport({results:[...results],imported:newPhotos});
+      setStatus("Importazione interrotta alla foto "+(i+1)+" di "+batch.length+
+       ". "+completed+" completate; "+(batch.length-i)+" ancora da verificare. "+
+       e.message+" Puoi ripremere Importa per riprovare senza duplicare le foto già salvate.");
+      setBusy(false);return;
+    }
+  }
+  try{await action({action:"finish",sessionId:pickerSession});}catch{}
+  session.current="";
+  setSelected([]);
+  setStatus("Importazione conclusa: "+newPhotos+" foto nuove, "+alreadyThere+
+   " già presenti. Le foto appariranno su Places quando GitHub Pages avrà pubblicato gli aggiornamenti.");
   setBusy(false);
  }
  return <main>
