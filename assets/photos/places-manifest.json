@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-14T10:10:40.499Z",
+  "updatedAt": "2026-11-14T10:12:46.585Z",
   "galleries": {
     "monte-talm": [
       {
@@ -61,6 +61,68 @@
         "id": "b4296c3e27ed514a0695",
         "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/b4296c3e27ed514a0695.jpg",
         "alt": "IMG_20260712_085427.jpg",
+        "caption": ""
+      }
+    ],
+    "london": [
+      {
+        "id": "e2ad470e6afee0dc882c",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/e2ad470e6afee0dc882c.jpg",
+        "alt": "IMG_20260906_171143.jpg",
+        "caption": ""
+      },
+      {
+        "id": "c8a24af1a53695c03522",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/c8a24af1a53695c03522.jpg",
+        "alt": "IMG_20260906_155935.jpg",
+        "caption": ""
+      },
+      {
+        "id": "6341f90cd1b449722639",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/6341f90cd1b449722639.jpg",
+        "alt": "IMG_20260906_110516.jpg",
+        "caption": ""
+      },
+      {
+        "id": "974d6bd768bd04dd1cfc",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/974d6bd768bd04dd1cfc.jpg",
+        "alt": "IMG_20260905_194241.jpg",
+        "caption": ""
+      },
+      {
+        "id": "4e914fbc29008e0e86af",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/4e914fbc29008e0e86af.jpg",
+        "alt": "IMG_20260905_185024.jpg",
+        "caption": ""
+      },
+      {
+        "id": "0da590d551e867cb22c8",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/0da590d551e867cb22c8.jpg",
+        "alt": "IMG_20260904_155846.jpg",
+        "caption": ""
+      },
+      {
+        "id": "80055f19853f20eca4a4",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/80055f19853f20eca4a4.jpg",
+        "alt": "IMG_20260904_145210.jpg",
+        "caption": ""
+      },
+      {
+        "id": "51d9330a6675715bb7f9",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/51d9330a6675715bb7f9.jpg",
+        "alt": "IMG_20260904_140521.jpg",
+        "caption": ""
+      },
+      {
+        "id": "c38a71a24a783536552e",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/c38a71a24a783536552e.jpg",
+        "alt": "IMG_20260904_120120.jpg",
+        "caption": ""
+      },
+      {
+        "id": "6f06f59a6fb4d9797f31",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/6f06f59a6fb4d9797f31.jpg",
+        "alt": "IMG_20260904_113412.jpg",
         "caption": ""
       }
     ]
