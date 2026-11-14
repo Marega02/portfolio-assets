@@ -1,4 +1,4 @@
-export const runtime="edge";
+export const dynamic="force-dynamic";
 export async function GET(){
  return Response.json({
   configured:Boolean(process.env.GOOGLE_CLIENT_ID&&process.env.GITHUB_TOKEN&&process.env.ADMIN_EMAIL),
