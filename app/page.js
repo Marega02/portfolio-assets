@@ -17,19 +17,53 @@ export default function Importer(){
  useEffect(()=>{
   state.current.cancelled=false;
   fetch(base()+"/api/config",{cache:"no-store"})
-    .then(r=>r.json()).then(data=>{
-       setConfig(data);
-       setStatus(data.configured
-         ?"Pronto. Accedi con Google per selezionare le tue foto."
-         :"Configurazione privata richiesta: apri il file README del progetto.");
-    }).catch(()=>setStatus("Impossibile leggere la configurazione."));
+   .then(async r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(data=>{
+    if(state.current.cancelled)return;
+    setConfig(data);
+    setStatus(data.configured
+     ?"Configurazione rilevata. Premi Accedi con Google."
+     :"Il server non rileva ancora tutte le variabili di Webflow Cloud.");
+   })
+   .catch(e=>{if(!state.current.cancelled)setStatus("Configurazione non raggiungibile: "+e.message+". Premi Accedi con Google per riprovare.");});
   const script=document.createElement("script");
   script.src="https://accounts.google.com/gsi/client";
   script.async=true;
-  script.onload=()=>setGisReady(true);
+  script.dataset.placesGsi="1";
+  script.addEventListener("load",()=>{script.dataset.status="loaded";if(!state.current.cancelled)setGisReady(true);});
+  script.addEventListener("error",()=>{
+   script.dataset.status="error";
+   if(!state.current.cancelled)setStatus("Lo script Google non si carica. Verifica la protezione antitracciamento o un'estensione che blocca Google, poi premi Accedi con Google per riprovare.");
+  });
   document.head.appendChild(script);
   return()=>{state.current.cancelled=true;script.remove();};
  },[]);
+ async function ensureGoogle(){
+  if(window.google?.accounts?.oauth2)return;
+  let script=document.querySelector('script[data-places-gsi="1"]');
+  if(script?.dataset.status==="error"){script.remove();script=null;}
+  let created=false;
+  if(!script){
+   script=document.createElement("script");
+   script.dataset.placesGsi="1";
+   script.src="https://accounts.google.com/gsi/client";
+   script.async=true;
+   created=true;
+  }
+  if(script.dataset.status!=="loaded"){
+   await new Promise((resolve,reject)=>{
+    const cleanup=()=>{clearTimeout(timer);script.removeEventListener("load",ok);script.removeEventListener("error",bad);};
+    const ok=()=>{script.dataset.status="loaded";cleanup();resolve();};
+    const bad=()=>{script.dataset.status="error";cleanup();reject(new Error("Il browser ha bloccato lo script di accesso Google."));};
+    const timer=setTimeout(()=>{cleanup();reject(new Error("Google non ha risposto entro 12 secondi. Verifica la protezione antitracciamento di Firefox o eventuali ad blocker."));},12000);
+    script.addEventListener("load",ok,{once:true});
+    script.addEventListener("error",bad,{once:true});
+    if(created)document.head.appendChild(script);
+   });
+  }
+  if(!window.google?.accounts?.oauth2)throw new Error("Google Identity Services non è disponibile nel browser.");
+  setGisReady(true);
+ }
  async function action(data,currentToken=token){
   const resp=await fetch(base()+"/api/action",{
    method:"POST",
@@ -40,25 +74,29 @@ export default function Importer(){
   if(!resp.ok)throw new Error(info.error||"Richiesta non riuscita.");
   return info;
  }
- function signIn(){
-  if(!window.google?.accounts?.oauth2||!config?.clientId){
-   setStatus("Google non è ancora disponibile.");return;
-  }
+ async function signIn(){
+  if(busy)return;
+  setStatus("Verifico configurazione e accesso Google...");
   try{
-   if(!googleClient.current){
+   const resp=await fetch(base()+"/api/config",{cache:"no-store"});
+   if(!resp.ok)throw new Error("Il server di configurazione risponde HTTP "+resp.status+" (percorso "+base()+"/api/config).");
+   const current=await resp.json();
+   setConfig(current);
+   if(!current?.configured||!current.clientId)throw new Error("Il server non trova tutte le tre variabili richieste: GOOGLE_CLIENT_ID, ADMIN_EMAIL e GITHUB_TOKEN. Controlla che siano salvate nell'ambiente places-google-photos-importer.");
+   await ensureGoogle();
+   if(!googleClient.current||config?.clientId!==current.clientId){
     googleClient.current=window.google.accounts.oauth2.initTokenClient({
-      client_id:config.clientId,scope,
-      callback:r=>{
-       if(!r.access_token){
-        setStatus(r.error||"Accesso Google annullato.");return;
-       }
-       setToken(r.access_token);setStatus("Accesso eseguito. Scegli le fotografie.");
-      },
-      error_callback:()=>setStatus("Accesso Google interrotto o finestra bloccata.")
+     client_id:current.clientId,scope,
+     callback:r=>{
+      if(!r.access_token){setStatus(r.error||"Accesso Google annullato.");return;}
+      setToken(r.access_token);setStatus("Accesso eseguito. Scegli le fotografie.");
+     },
+     error_callback:err=>setStatus("Accesso Google interrotto: "+(err?.message||err?.type||"finestra bloccata"))
     });
    }
    googleClient.current.requestAccessToken({prompt:"consent"});
-  }catch(e){setStatus("Errore di accesso: "+e.message);}
+   setStatus("Si apre la finestra di autorizzazione Google. Se non compare, abilita i popup per questo sito.");
+  }catch(e){setStatus("Impossibile accedere: "+e.message);}
  }
  async function choosePhotos(){
   if(!token||busy)return;
@@ -111,7 +149,8 @@ export default function Importer(){
   <section>
    <div className="step"><span>01</span> Autorizza Google Foto</div>
    <p>L'accesso serve esclusivamente a scegliere le foto. Nessuna sincronizzazione automatica dell'intera libreria.</p>
-   <div className="actions"><button onClick={signIn} disabled={!config?.configured||!gisReady||busy}>{token?"Rinnova accesso Google":"Accedi con Google"}</button></div>
+   <div className="actions"><button onClick={signIn} disabled={busy}>{token?"Rinnova accesso Google":"Accedi con Google"}</button></div>
+   <p role="status" aria-live="polite">{status}</p>
   </section>
   <section>
    <div className="step"><span>02</span> Seleziona le fotografie</div>
