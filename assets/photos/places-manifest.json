@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-14T10:12:46.585Z",
+  "updatedAt": "2026-11-14T10:18:37.464Z",
   "galleries": {
     "monte-talm": [
       {
@@ -123,6 +123,14 @@
         "id": "6f06f59a6fb4d9797f31",
         "src": "https://marega02.github.io/portfolio-assets/assets/photos/london/6f06f59a6fb4d9797f31.jpg",
         "alt": "IMG_20260904_113412.jpg",
+        "caption": ""
+      }
+    ],
+    "malaysia": [
+      {
+        "id": "37569d5bec668569a42d",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/malaysia/37569d5bec668569a42d.jpg",
+        "alt": "IMG_20260403_193845.jpg",
         "caption": ""
       }
     ]
