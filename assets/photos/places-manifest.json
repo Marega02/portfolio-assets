@@ -1,5 +1,68 @@
 {
   "version": 1,
-  "updatedAt": null,
-  "galleries": {}
+  "updatedAt": "2026-11-14T10:10:40.499Z",
+  "galleries": {
+    "monte-talm": [
+      {
+        "id": "c583f365c64900c819f1",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/c583f365c64900c819f1.jpg",
+        "alt": "IMG_20260712_114348.jpg",
+        "caption": ""
+      },
+      {
+        "id": "10e0472d76ec52a0c3cb",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/10e0472d76ec52a0c3cb.jpg",
+        "alt": "IMG_20260712_111749.jpg",
+        "caption": ""
+      },
+      {
+        "id": "c3bae2ed9ca35e735505",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/c3bae2ed9ca35e735505.jpg",
+        "alt": "IMG_20260712_111213.jpg",
+        "caption": ""
+      },
+      {
+        "id": "a4153c325d26cc485842",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/a4153c325d26cc485842.jpg",
+        "alt": "IMG_20260712_111204.jpg",
+        "caption": ""
+      },
+      {
+        "id": "a76908c388408f3f374d",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/a76908c388408f3f374d.jpg",
+        "alt": "IMG_20260712_103749.jpg",
+        "caption": ""
+      },
+      {
+        "id": "c47712a5b899198d88ed",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/c47712a5b899198d88ed.jpg",
+        "alt": "IMG_20260712_100907.jpg",
+        "caption": ""
+      },
+      {
+        "id": "f8731912badd4f5acc7c",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/f8731912badd4f5acc7c.jpg",
+        "alt": "IMG_20260712_100105.jpg",
+        "caption": ""
+      },
+      {
+        "id": "9936394cb756908a3695",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/9936394cb756908a3695.jpg",
+        "alt": "IMG_20260712_091851.jpg",
+        "caption": ""
+      },
+      {
+        "id": "7c429f03b299cde065a8",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/7c429f03b299cde065a8.jpg",
+        "alt": "IMG_20260712_090556.jpg",
+        "caption": ""
+      },
+      {
+        "id": "b4296c3e27ed514a0695",
+        "src": "https://marega02.github.io/portfolio-assets/assets/photos/monte-talm/b4296c3e27ed514a0695.jpg",
+        "alt": "IMG_20260712_085427.jpg",
+        "caption": ""
+      }
+    ]
+  }
 }
